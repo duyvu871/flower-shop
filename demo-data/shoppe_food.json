@@ -1,0 +1,5479 @@
+{
+  "delivery_infos": [
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1003994"
+      },
+      "city_id": 218,
+      "phones": [
+        "0775168592"
+      ],
+      "restaurant_id": 1003994,
+      "restaurant_url": "mi-tron-indomie-158",
+      "brand_id": 9704,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 107613,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-69c18f3c-240303115723.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-69c18f3c-240303115723.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 20,
+      "categories": [
+        "Ăn vặt/vỉa hè"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "mi-tron-indomie-158",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Mì Trộn Indomie 158",
+        "photos": [],
+        "brand_id": 9704,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "mi-tron-indomie-158",
+        "price_range": {},
+        "restaurant_count": 8
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s60x60/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s120x120/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s160x120/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s160x160/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s180x180/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s240x240/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s280x175/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s400x216/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s600x324/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s640x400/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s640x640/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s750x400/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g101/1003994/prof/s1242x600/file_restaurant_photo_ml9d_16212-bf0dcbeb-210517102640.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "9A Ngõ 158 Thái Thịnh, P. Láng Hạ, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "07:10:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Mì Trộn Indomie 158 - Thái Thịnh",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22480238,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/mi-tron-indomie-158",
+      "display_order": 0,
+      "delivery_id": 107613,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "40k"
+        ]
+      },
+      "position": {
+        "latitude": 21.01265895,
+        "is_verified": false,
+        "longitude": 105.81708511
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1017853"
+      },
+      "city_id": 218,
+      "phones": [
+        "0899261518"
+      ],
+      "restaurant_id": 1017853,
+      "restaurant_url": "duy-food-mi-tron-indomie-online",
+      "brand_id": 11543,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 111092,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 22,
+      "categories": [
+        "Shop Online"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "duy-food-mi-tron-indomie-online",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Duy Food - Mì Trộn Indomie",
+        "photos": [],
+        "brand_id": 11543,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "duy-food-mi-tron-indomie",
+        "price_range": {},
+        "restaurant_count": 3
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s60x60/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s120x120/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s160x120/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s160x160/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s180x180/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s240x240/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s280x175/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s400x216/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s600x324/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s640x400/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s640x640/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s750x400/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g102/1017853/prof/s1242x600/foody-upload-api-foody-mobile-1fa8fdf2-0177-476d-8-200424095302.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "Ngõ 180 Nguyễn Lương Bằng (108 Ngõ 19 Trần Quang Diệu), P. Quang Trung, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Duy Food - Mì Trộn Indomie Online",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521601,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/duy-food-mi-tron-indomie-online",
+      "display_order": 0,
+      "delivery_id": 111092,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "48k"
+        ]
+      },
+      "position": {
+        "latitude": 21.015221,
+        "is_verified": false,
+        "longitude": 105.825946
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=19069"
+      },
+      "city_id": 218,
+      "phones": [
+        "0338203204"
+      ],
+      "restaurant_id": 19069,
+      "restaurant_url": "xoi-ran-de-la-thanh",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 17553,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "merchant_time": 20,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "xoi-ran-de-la-thanh",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s60x60/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s120x120/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s160x120/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s160x160/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s180x180/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s240x240/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s280x175/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s400x216/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s600x324/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s640x400/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s640x640/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s750x400/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g2/19069/prof/s1242x600/foody-mobile-xoi-ran2-jpg-227-635775001980948985.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "415 Đê La Thành, P. Thành Công, Ba Đình, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Xôi Hiệp Hòa - Đê La Thành",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/xoi-ran-de-la-thanh",
+      "display_order": 16869,
+      "delivery_id": 17553,
+      "district_id": 20,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "28k"
+        ]
+      },
+      "position": {
+        "latitude": 21.02342096,
+        "is_verified": true,
+        "longitude": 105.81933478
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.6,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1034303"
+      },
+      "city_id": 218,
+      "phones": [
+        "0382200426",
+        "0988488305"
+      ],
+      "restaurant_id": 1034303,
+      "restaurant_url": "tien-thanh-my-tron-indomie-shop-online",
+      "brand_id": 18289,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 123204,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-c5e3d5af-230407132104.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640x400/image-c5e3d5af-230407132104.png",
+            "height": 640
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 10,
+      "categories": [
+        "Shop Online"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "tien-thanh-my-tron-indomie-shop-online",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Tiến Thành - Mỳ Trộn Indomie",
+        "photos": [],
+        "brand_id": 18289,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "tien-thanh-my-tron-indomie",
+        "price_range": {},
+        "restaurant_count": 1
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s60x60/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s120x120/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s160x120/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s160x160/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s180x180/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s240x240/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s280x175/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s400x216/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s600x324/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s640x400/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s640x640/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s750x400/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g104/1034303/prof/s1242x600/file_restaurant_photo_kxyi_16160-e2993cc0-210318215341.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "Nhà 6, Ngách 1, Ngõ 12 Khuất Duy Tiến, Thanh Xuân, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Tiến Thành - Mỳ Trộn Indomie - Shop Online",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521497,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/tien-thanh-my-tron-indomie-shop-online",
+      "display_order": 0,
+      "delivery_id": 123204,
+      "district_id": 29,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "44k"
+        ]
+      },
+      "position": {
+        "latitude": 20.993761,
+        "is_verified": false,
+        "longitude": 105.802314
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1029732"
+      },
+      "city_id": 218,
+      "phones": [
+        "0815836886",
+        "0878763333"
+      ],
+      "restaurant_id": 1029732,
+      "restaurant_url": "xuan-food-mi-tron-indomie",
+      "brand_id": 10629,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 119796,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 11,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "xuan-food-mi-tron-indomie",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Xuân Food - Mì Trộn Indomie",
+        "photos": [],
+        "brand_id": 10629,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "xuan-food-mi-tron-indomie",
+        "price_range": {},
+        "restaurant_count": 7
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-30-200903135348.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s60x60/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s120x120/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s160x120/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s160x160/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s180x180/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s240x240/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s280x175/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s400x216/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s600x324/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s640x400/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s640x640/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s750x400/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g103/1029732/prof/s1242x600/foody-upload-api-foody-mobile-30-200903135348.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "Đối Diện Cầu Thang 2 Nhà A1 Ngõ 15 Vĩnh Hồ, P. Thịnh Quang, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Xuân Food - Mì Trộn Indomie",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521507,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/xuan-food-mi-tron-indomie",
+      "display_order": 0,
+      "delivery_id": 119796,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "45k"
+        ]
+      },
+      "position": {
+        "latitude": 21.004625,
+        "is_verified": false,
+        "longitude": 105.821147
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=297288"
+      },
+      "city_id": 218,
+      "phones": [
+        "0903169886",
+        "0354711152",
+        "02435522987"
+      ],
+      "restaurant_id": 297288,
+      "restaurant_url": "o-ga-com-ga-de-nhat",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 21641,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s60/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s120/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s180/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s240/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s280/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s400/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s600/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s750/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s1242/image-7fb069a9-230220151542.png",
+            "height": 0
+          },
+          {
+            "width": 320,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s320x320/image-7fb069a9-230220151542.png",
+            "height": 320
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 15,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "o-ga-com-ga-de-nhat",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "image-01b7328b-200910115828.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s60x60/image-01b7328b-200910115828.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s120x120/image-01b7328b-200910115828.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s160x120/image-01b7328b-200910115828.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s160x160/image-01b7328b-200910115828.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s180x180/image-01b7328b-200910115828.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s240x240/image-01b7328b-200910115828.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s280x175/image-01b7328b-200910115828.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s400x216/image-01b7328b-200910115828.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s600x324/image-01b7328b-200910115828.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s640x400/image-01b7328b-200910115828.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s640x640/image-01b7328b-200910115828.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s750x400/image-01b7328b-200910115828.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g30/297288/prof/s1242x600/image-01b7328b-200910115828.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "10 Ngõ 68 Triều Khúc, Thanh Xuân, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Quán Cơm Hạt Dẻ - Cơm Gà Online",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/o-ga-com-ga-de-nhat",
+      "display_order": 20732,
+      "delivery_id": 21641,
+      "district_id": 29,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "49k"
+        ]
+      },
+      "position": {
+        "latitude": 20.983461,
+        "is_verified": false,
+        "longitude": 105.799822
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=726012"
+      },
+      "city_id": 218,
+      "phones": [
+        "0967005449",
+        "02423242233",
+        "0902200502"
+      ],
+      "restaurant_id": 726012,
+      "restaurant_url": "the-alley-tra-sua-dai-loan-trung-hoa",
+      "brand_id": 4269,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 34623,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640x400/image-e7c01b89-230407132109.png",
+            "height": 640
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 3,
+      "categories": [
+        "Café/Dessert"
+      ],
+      "cuisines": [
+        "Món Á"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "the-alley-tra-sua-dai-loan-trung-hoa",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "The Alley - Trà Sữa Đài Loan - Hà Nội",
+        "photos": [],
+        "brand_id": 4269,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "the-alley-tra-sua-dai-loan-ha-noi",
+        "price_range": {},
+        "restaurant_count": 14
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s60x60/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s120x120/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s160x120/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s160x160/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s180x180/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s240x240/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s280x175/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s400x216/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s600x324/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s640x400/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s640x640/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s750x400/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g73/726012/prof/s1242x600/foody-upload-api-foody-mobile-alley-jpg-180321161335.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "23 Trung Hòa, P. Trung Hoà, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "The Alley - Trà Sữa Đài Loan - Trung Hòa",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm giá 50%",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22393858,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/the-alley-tra-sua-dai-loan-trung-hoa",
+      "display_order": 32846,
+      "delivery_id": 34623,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "60k"
+        ]
+      },
+      "position": {
+        "latitude": 21.014576,
+        "is_verified": false,
+        "longitude": 105.801711
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1034051"
+      },
+      "city_id": 218,
+      "phones": [
+        "0326863360"
+      ],
+      "restaurant_id": 1034051,
+      "restaurant_url": "huong-tron-mi-tron-indomie-do-an-vat-nguyen-thi-dinh",
+      "brand_id": 11907,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 122987,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s60/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s120/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s180/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s240/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s280/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s400/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s600/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s750/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s1242/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 320,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s320x320/image-425ab440-230220151457.png",
+            "height": 320
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 35,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "huong-tron-mi-tron-indomie-do-an-vat-nguyen-thi-dinh",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Hương Tròn - Mì Trộn Indomie & Đồ Ăn Vặt_foody",
+        "photos": [],
+        "brand_id": 11907,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "huong-tron-mi-tron-indomie-do-an-vat",
+        "price_range": {},
+        "restaurant_count": 4
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-240-200702142043.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s60x60/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s120x120/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s160x120/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s160x160/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s180x180/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s240x240/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s280x175/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s400x216/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s600x324/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s640x400/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s640x640/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s750x400/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g104/1034051/prof/s1242x600/foody-upload-api-foody-mobile-240-200702142043.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "12A Ngõ 1 Nguyễn Thị Định (Ngõ Bên Phải), P. Trung Hòa, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "10:15:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Hương Tròn - Mì Trộn Indomie & Đồ Ăn Vặt - Nguyễn Thị Định",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22525621,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/huong-tron-mi-tron-indomie-do-an-vat-nguyen-thi-dinh",
+      "display_order": 0,
+      "delivery_id": 122987,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "38k"
+        ]
+      },
+      "position": {
+        "latitude": 21.013198,
+        "is_verified": false,
+        "longitude": 105.804389
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=859819"
+      },
+      "city_id": 218,
+      "phones": [
+        "0975895871"
+      ],
+      "restaurant_id": 859819,
+      "restaurant_url": "papa-s-kitchen-do-an-han-quoc-com-tron-healthy-gao-lut-hong-mai",
+      "brand_id": 9031,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 68237,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "merchant_time": 20,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Hàn",
+        "Món Á"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "papa-s-kitchen-do-an-han-quoc-com-tron-healthy-gao-lut-hong-mai",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Papa's Kitchen - Đồ Ăn Hàn Quốc",
+        "photos": [],
+        "brand_id": 9031,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "papa-s-kitchen-do-an-han-quoc",
+        "price_range": {},
+        "restaurant_count": 6
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s60x60/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s120x120/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s160x120/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s160x160/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s180x180/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s240x240/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s280x175/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s400x216/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s600x324/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s640x400/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s640x640/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s750x400/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g86/859819/prof/s1242x600/foody-upload-api-foody-mobile-papa-1-jpg-181206163237.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "18 Ngõ 187 Hồng Mai, P. Quỳnh Lôi, Hai Bà Trưng, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "10:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Papa’s Kitchen - Đồ Ăn Hàn Quốc & Cơm Trộn Healthy Gạo Lứt - Hồng Mai",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22525423,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/papa-s-kitchen-do-an-han-quoc-com-tron-healthy-gao-lut-hong-mai",
+      "display_order": 64176,
+      "delivery_id": 68237,
+      "district_id": 24,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "62k"
+        ]
+      },
+      "position": {
+        "latitude": 20.99979316,
+        "is_verified": false,
+        "longitude": 105.85576286
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=124528"
+      },
+      "city_id": 218,
+      "phones": [
+        "0919106192"
+      ],
+      "restaurant_id": 124528,
+      "restaurant_url": "pho-ga-nguyet-phu-doan",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 17074,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [],
+      "service_type": 1,
+      "url_rewrite_name": "pho-ga-nguyet-phu-doan",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s60x60/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s120x120/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s160x120/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s160x160/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s180x180/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s240x240/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s280x175/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s400x216/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s600x324/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s640x400/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s640x640/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s750x400/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g13/124528/prof/s1242x600/file_restaurant_photo_z1yj_16095-d2852a9d-210102200914.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "5 Phủ Doãn, P. Hàng Bông, Hoàn Kiếm, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "17:15:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Phở Gà Nguyệt - Phủ Doãn",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/pho-ga-nguyet-phu-doan",
+      "display_order": 16414,
+      "delivery_id": 17074,
+      "district_id": 25,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "57k"
+        ]
+      },
+      "position": {
+        "latitude": 21.0301579,
+        "is_verified": true,
+        "longitude": 105.8475852
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1021281"
+      },
+      "city_id": 218,
+      "phones": [
+        "0348470321"
+      ],
+      "restaurant_id": 1021281,
+      "restaurant_url": "ga-ran-ga-u-muoi-hoa-tieu-hoang-ngan",
+      "brand_id": 9345,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 113632,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 10,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "ga-ran-ga-u-muoi-hoa-tieu-hoang-ngan",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Gà Rán & Gà Ủ Muối Hoa Tiêu",
+        "photos": [],
+        "brand_id": 9345,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "ga-ran-ga-u-muoi-hoa-tieu",
+        "price_range": {},
+        "restaurant_count": 5
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s60x60/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s120x120/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s160x120/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s160x160/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s180x180/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s240x240/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s280x175/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s400x216/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s600x324/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s640x400/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s640x640/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s750x400/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g103/1021281/prof/s1242x600/file_restaurant_photo_p6bg_16759-a29ab40e-230209220958.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "24 Ngõ 80 Hoàng Ngân, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "08:20:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Gà Rán & Gà Ủ Muối Hoa Tiêu - Hoàng Ngân",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521499,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/ga-ran-ga-u-muoi-hoa-tieu-hoang-ngan",
+      "display_order": 0,
+      "delivery_id": 113632,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "85k"
+        ]
+      },
+      "position": {
+        "latitude": 21.008522,
+        "is_verified": false,
+        "longitude": 105.809807
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=241564"
+      },
+      "city_id": 218,
+      "phones": [
+        "0978225506"
+      ],
+      "restaurant_id": 241564,
+      "restaurant_url": "tri-duc-chao-nieu-pho-bun-mien",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 25786,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "tri-duc-chao-nieu-pho-bun-mien",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-mobile-20-jpg-309-636004809264384661.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s60x60/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s120x120/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s160x120/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s160x160/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s180x180/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s240x240/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s280x175/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s400x216/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s600x324/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s640x400/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s640x640/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s750x400/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g25/241564/prof/s1242x600/foody-mobile-20-jpg-309-636004809264384661.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "38B Nguyễn Khang, P. Yên Hòa, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:01",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Trí Đức - Cháo Niêu & Phở Bún Miến",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/tri-duc-chao-nieu-pho-bun-mien",
+      "display_order": 24635,
+      "delivery_id": 25786,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "63k"
+        ]
+      },
+      "position": {
+        "latitude": 21.02079651,
+        "is_verified": false,
+        "longitude": 105.80030557
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.6,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1031463"
+      },
+      "city_id": 218,
+      "phones": [
+        "0374243694"
+      ],
+      "restaurant_id": 1031463,
+      "restaurant_url": "com-van-phong-com-nieu-hop-tac-xa-tay-son",
+      "brand_id": 12066,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 121058,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "com-van-phong-com-nieu-hop-tac-xa-tay-son",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Cơm Niêu Văn Phòng & Cơm Sinh Viên",
+        "photos": [],
+        "brand_id": 12066,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "com-nieu-van-phong-com-sinh-vien",
+        "price_range": {},
+        "restaurant_count": 11
+      },
+      "limit_distance": 15000,
+      "image_name": "image-f38e2aa0-230602150856.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s60x60/image-f38e2aa0-230602150856.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s120x120/image-f38e2aa0-230602150856.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s160x120/image-f38e2aa0-230602150856.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s160x160/image-f38e2aa0-230602150856.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s180x180/image-f38e2aa0-230602150856.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s240x240/image-f38e2aa0-230602150856.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s280x175/image-f38e2aa0-230602150856.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s400x216/image-f38e2aa0-230602150856.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s600x324/image-f38e2aa0-230602150856.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s640x400/image-f38e2aa0-230602150856.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s640x640/image-f38e2aa0-230602150856.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s750x400/image-f38e2aa0-230602150856.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g104/1031463/prof/s1242x600/image-f38e2aa0-230602150856.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "17 Ngõ 252 Tây Sơn, P. Trung Liệt, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "08:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Cơm Văn Phòng & Cơm Niêu Hợp Tác Xã - Tây Sơn",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22480451,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/com-van-phong-com-nieu-hop-tac-xa-tay-son",
+      "display_order": 0,
+      "delivery_id": 121058,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "54k"
+        ]
+      },
+      "position": {
+        "latitude": 21.008105,
+        "is_verified": false,
+        "longitude": 105.823289
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.6,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=702949"
+      },
+      "city_id": 218,
+      "phones": [
+        "0989174593"
+      ],
+      "restaurant_id": 702949,
+      "restaurant_url": "tiem-ga-ran-ong-anh-cu-loc",
+      "brand_id": 7633,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 19415,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640x400/image-e7c01b89-230407132109.png",
+            "height": 640
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 10,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "tiem-ga-ran-ong-anh-cu-loc",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Tiệm Gà Óng Ánh",
+        "photos": [],
+        "brand_id": 7633,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "tiem-ga-ong-anh",
+        "price_range": {},
+        "restaurant_count": 7
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s60x60/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s120x120/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s160x120/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s160x160/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s180x180/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s240x240/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s280x175/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s400x216/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s600x324/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s640x400/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s640x640/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s750x400/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g71/702949/prof/s1242x600/foody-upload-api-foody-mobile-an-b593d03a-211119190056.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "168 Ngõ 20 Cự Lộc, Thanh Xuân, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "09:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Tiệm Gà Rán Óng Ánh - Cự Lộc",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 21809339,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/tiem-ga-ran-ong-anh-cu-loc",
+      "display_order": 18651,
+      "delivery_id": 19415,
+      "district_id": 29,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "58k"
+        ]
+      },
+      "position": {
+        "latitude": 21.00345189,
+        "is_verified": false,
+        "longitude": 105.81301555
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1081045"
+      },
+      "city_id": 218,
+      "phones": [
+        "0832707096"
+      ],
+      "restaurant_id": 1081045,
+      "restaurant_url": "duy-food-mi-tron-indomie-hoang-cau",
+      "brand_id": 11543,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 186559,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 20,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [],
+      "service_type": 1,
+      "url_rewrite_name": "duy-food-mi-tron-indomie-hoang-cau",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Duy Food - Mì Trộn Indomie",
+        "photos": [],
+        "brand_id": 11543,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "duy-food-mi-tron-indomie",
+        "price_range": {},
+        "restaurant_count": 3
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s60x60/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s120x120/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s160x120/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s160x160/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s180x180/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s240x240/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s280x175/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s400x216/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s600x324/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s640x400/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s640x640/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s750x400/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g109/1081045/prof/s1242x600/foody-upload-api-foody-mobile-du-3d1378ad-210602104512.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "108 Ngõ 61 Hoàng Cầu, P. Ô Chợ Dừa, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Duy Food - Mì Trộn Indomie - Hoàng Cầu",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22525550,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/duy-food-mi-tron-indomie-hoang-cau",
+      "display_order": 0,
+      "delivery_id": 186559,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "45k"
+        ]
+      },
+      "position": {
+        "latitude": 21.01586815,
+        "is_verified": false,
+        "longitude": 105.82623703
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.6,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=652808"
+      },
+      "city_id": 218,
+      "phones": [
+        "0965979318"
+      ],
+      "restaurant_id": 652808,
+      "restaurant_url": "tra-sua-tocotoco-686-quang-trung",
+      "brand_id": 15045,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 31077,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-8d108e8c-230407132059.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640x400/image-8d108e8c-230407132059.png",
+            "height": 640
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 8,
+      "categories": [
+        "Café/Dessert"
+      ],
+      "cuisines": [
+        "Món Á"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "tra-sua-tocotoco-686-quang-trung",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Tocotoco Trà Sữa Trân Châu",
+        "photos": [],
+        "brand_id": 15045,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "tocotoco-tra-sua-tran-chau",
+        "price_range": {},
+        "restaurant_count": 12
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s60x60/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s120x120/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s160x120/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s160x160/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s180x180/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s240x240/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s280x175/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s400x216/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s600x324/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s640x400/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s640x640/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s750x400/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g66/652808/prof/s1242x600/foody-upload-api-foody-mobile-an-0eeef555-211224174730.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "686 Quang Trung, P. La Khê, Hà Đông, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "08:15:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Trà Sữa Tocotoco - 686 Quang Trung",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 21266182,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/tra-sua-tocotoco-686-quang-trung",
+      "display_order": 29544,
+      "delivery_id": 31077,
+      "district_id": 23,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "43k"
+        ]
+      },
+      "position": {
+        "latitude": 20.95799761,
+        "is_verified": false,
+        "longitude": 105.75886177
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=951780"
+      },
+      "city_id": 218,
+      "phones": [
+        "0376013716",
+        "0984815385"
+      ],
+      "restaurant_id": 951780,
+      "restaurant_url": "thanh-hang-quan-pho-chao-cac-loai",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 93793,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "thanh-hang-quan-pho-chao-cac-loai",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s60x60/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s120x120/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s160x120/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s160x160/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s180x180/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s240x240/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s280x175/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s400x216/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s600x324/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s640x400/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s640x640/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s750x400/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g96/951780/prof/s1242x600/foody-upload-api-foody-mobile-avar70-190829142749.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "3H2, Ngõ 130 Xuân Thủy, P. Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "17:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Thanh Hằng Quán - Phở & Cháo Các Loại",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/thanh-hang-quan-pho-chao-cac-loai",
+      "display_order": 0,
+      "delivery_id": 93793,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "55k"
+        ]
+      },
+      "position": {
+        "latitude": 21.03800281,
+        "is_verified": false,
+        "longitude": 105.78533313
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=978125"
+      },
+      "city_id": 218,
+      "phones": [
+        "0964299596",
+        "0984103370",
+        "0333081760"
+      ],
+      "restaurant_id": 978125,
+      "restaurant_url": "bumtro-bun-tron-nam-bo-tan-mai",
+      "brand_id": 7960,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 100008,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s60/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s120/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s160/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s180/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s240/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s280/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s400/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s600/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s640/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s750/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s1242/image-425ab440-230220151457.png",
+            "height": 0
+          },
+          {
+            "width": 320,
+            "value": "https://images.foody.vn/label_image/g2024/20230220/s320x320/image-425ab440-230220151457.png",
+            "height": 320
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "bumtro-bun-tron-nam-bo-tan-mai",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "BUMTRO - Bún Trộn Nam Bộ",
+        "photos": [],
+        "brand_id": 7960,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "bumtro-bun-tron-nam-bo",
+        "price_range": {},
+        "restaurant_count": 24
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-2-200917114100.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s60x60/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s120x120/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s160x120/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s160x160/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s180x180/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s240x240/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s280x175/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s400x216/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s600x324/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s640x400/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s640x640/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s750x400/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g98/978125/prof/s1242x600/foody-upload-api-foody-mobile-2-200917114100.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "71A Ngõ 260 Tân Mai, Hoàng Mai, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "BUMTRO - Bún Trộn Nam Bộ - Tân Mai",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22481694,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/bumtro-bun-tron-nam-bo-tan-mai",
+      "display_order": 0,
+      "delivery_id": 100008,
+      "district_id": 26,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "55k"
+        ]
+      },
+      "position": {
+        "latitude": 20.98110855,
+        "is_verified": false,
+        "longitude": 105.8553473
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1000058090"
+      },
+      "city_id": 218,
+      "phones": [
+        "0981801582"
+      ],
+      "restaurant_id": 1000058090,
+      "restaurant_url": "trang-huyen-my-tron-indomie-do-an-vat-minh-khai",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 276528,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s60/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s120/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s160/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s160/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s180/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s240/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s280/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s400/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s600/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s640/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s640/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s750/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s1242/image-df2a2ed1-230105111929.png",
+            "height": 0
+          },
+          {
+            "width": 320,
+            "value": "https://images.foody.vn/label_image/g2024/20230105/s320x320/image-df2a2ed1-230105111929.png",
+            "height": 320
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 25,
+      "categories": [
+        "Shop Online"
+      ],
+      "cuisines": [
+        "Món Việt",
+        "Món Bắc"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "trang-huyen-my-tron-indomie-do-an-vat-minh-khai",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s60x60/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s120x120/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s160x120/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s160x160/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s180x180/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s240x240/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s280x175/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s400x216/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s600x324/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s640x400/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s640x640/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s750x400/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g100006/1000058090/prof/s1242x600/foody-upload-api-foody-mobile-0f-a8508eed-221221193246.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "110 Ngõ Hoà Bình 7, P. Minh Khai, Hai Bà Trưng, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "00:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Trang Huyền - Mỳ Trộn Indomie & Đồ Ăn Vặt - Minh Khai",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521536,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/trang-huyen-my-tron-indomie-do-an-vat-minh-khai",
+      "display_order": 0,
+      "delivery_id": 276528,
+      "district_id": 24,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "32k"
+        ]
+      },
+      "position": {
+        "latitude": 20.9973499,
+        "is_verified": false,
+        "longitude": 105.858005
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1058056"
+      },
+      "city_id": 218,
+      "phones": [
+        "0975459808"
+      ],
+      "restaurant_id": 1058056,
+      "restaurant_url": "ga-luoc-ga-u-muoi-hoa-tieu-ga-ran-thanh-nhan",
+      "brand_id": 12999,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 142022,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-89281870-240303115755.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-89281870-240303115755.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "ga-luoc-ga-u-muoi-hoa-tieu-ga-ran-thanh-nhan",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Gà Luộc & Gà Ủ Muối Hoa Tiêu & Gà Rán",
+        "photos": [],
+        "brand_id": 12999,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "ga-luoc-ga-u-muoi-hoa-tieu-ga-ran",
+        "price_range": {},
+        "restaurant_count": 3
+      },
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-110-201202111848.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s60x60/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s120x120/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s160x120/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s160x160/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s180x180/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s240x240/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s280x175/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s400x216/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s600x324/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s640x400/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s640x640/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s750x400/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g106/1058056/prof/s1242x600/foody-upload-api-foody-mobile-110-201202111848.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "257 Thanh Nhàn, P. Thanh Nhàn, Hai Bà Trưng, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "08:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Gà Luộc & Gà Ủ Muối Hoa Tiêu & Gà Rán - Thanh Nhàn",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521541,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/ga-luoc-ga-u-muoi-hoa-tieu-ga-ran-thanh-nhan",
+      "display_order": 0,
+      "delivery_id": 142022,
+      "district_id": 24,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "83k"
+        ]
+      },
+      "position": {
+        "latitude": 21.00284825,
+        "is_verified": false,
+        "longitude": 105.85374487
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.9,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=762383"
+      },
+      "city_id": 218,
+      "phones": [
+        "0904626662"
+      ],
+      "restaurant_id": 762383,
+      "restaurant_url": "chan-ga-canh-ga-nuong-chi-pheo-minh-khai",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 58031,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "merchant_time": 25,
+      "categories": [
+        "Ăn vặt/vỉa hè"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "chan-ga-canh-ga-nuong-chi-pheo-minh-khai",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s60x60/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s120x120/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s160x120/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s160x160/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s180x180/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s240x240/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s280x175/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s400x216/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s600x324/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s640x400/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s640x640/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s750x400/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g77/762383/prof/s1242x600/foody-upload-api-foody-mobile-qqq-201224100042.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "67 Ngõ Hoà Bình 7, Minh Khai, P. Minh Khai, Hai Bà Trưng, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "17:10:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Chân Gà & Cánh Gà Nướng Chí Phèo - Minh Khai",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/chan-ga-canh-ga-nuong-chi-pheo-minh-khai",
+      "display_order": 54595,
+      "delivery_id": 58031,
+      "district_id": 24,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "25k"
+        ]
+      },
+      "position": {
+        "latitude": 20.996892,
+        "is_verified": false,
+        "longitude": 105.85694
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1037196"
+      },
+      "city_id": 218,
+      "phones": [
+        "0823201991"
+      ],
+      "restaurant_id": 1037196,
+      "restaurant_url": "bep-bum-mi-ga-tan-mi-tron-indomie-duong-lang",
+      "brand_id": 10703,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 125388,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-70f8205c-230407132118.png",
+            "height": 0
+          },
+          {
+            "width": 320,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s320x320/image-70f8205c-230407132118.png",
+            "height": 320
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "bep-bum-mi-ga-tan-mi-tron-indomie-duong-lang",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Bếp Bum - Cơm Dừa Malay & Bún Trộn Bò",
+        "photos": [],
+        "brand_id": 10703,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "bep-bum-com-dua-malay-bun-tron-bo",
+        "price_range": {},
+        "restaurant_count": 4
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s60x60/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s120x120/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s160x120/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s160x160/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s180x180/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s240x240/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s280x175/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s400x216/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s600x324/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s640x400/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s640x640/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s750x400/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g104/1037196/prof/s1242x600/file_restaurant_photo_q7gq_16346-293b26b3-211019222901.jpg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "942 Đường Láng, P. Láng Thượng, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "10:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Bếp Bum - Mì Gà Tần & Mì Trộn Indomie - Đường Láng",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22521579,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/bep-bum-mi-ga-tan-mi-tron-indomie-duong-lang",
+      "display_order": 0,
+      "delivery_id": 125388,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "48k"
+        ]
+      },
+      "position": {
+        "latitude": 21.0220341,
+        "is_verified": false,
+        "longitude": 105.8009954
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.9,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=991813"
+      },
+      "city_id": 218,
+      "phones": [
+        "0974906664",
+        "0929420000"
+      ],
+      "restaurant_id": 991813,
+      "restaurant_url": "an-vat-online-khuong-dinh",
+      "brand_id": 11889,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 103535,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s60/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s120/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s160/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s180/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s240/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s280/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s400/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s600/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s750/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s1242/image-e7c01b89-230407132109.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2024/20230407/s640x400/image-e7c01b89-230407132109.png",
+            "height": 640
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 20,
+      "categories": [
+        "Shop Online"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "an-vat-online-khuong-dinh",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Ăn Vặt Online",
+        "photos": [],
+        "brand_id": 11889,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "an-vat-online",
+        "price_range": {},
+        "restaurant_count": 2
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s60x60/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s120x120/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s160x120/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s160x160/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s180x180/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s240x240/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s280x175/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s400x216/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s600x324/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s640x400/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s640x640/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s750x400/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g100/991813/prof/s1242x600/file_restaurant_photo_lfmv_16011-1df66714-200927155541.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "394 Đ. Khương Đình, P. Hạ Đình, Thanh Xuân, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "06:00:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Ăn Vặt Online Khương Đình",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Flash Sale",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22525671,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/an-vat-online-khuong-dinh",
+      "display_order": 0,
+      "delivery_id": 103535,
+      "district_id": 29,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "36k"
+        ]
+      },
+      "position": {
+        "latitude": 20.98798802,
+        "is_verified": false,
+        "longitude": 105.81281706
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.7,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=989041"
+      },
+      "city_id": 218,
+      "phones": [
+        "0945109933"
+      ],
+      "restaurant_id": 989041,
+      "restaurant_url": "com-tho-anh-nguyen-ho-dac-di",
+      "brand_id": 4799,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 102772,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": false,
+      "label": {
+        "photos": [
+          {
+            "width": 60,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s60/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 120,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s120/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 160,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s160/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 180,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s180/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 240,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s240/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 280,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s280/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 400,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s400/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 600,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s600/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 640,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s640/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 750,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s750/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242/image-7e789c23-240303115650.png",
+            "height": 0
+          },
+          {
+            "width": 1242,
+            "value": "https://images.foody.vn/label_image/g2025/20240303/s1242x1242/image-7e789c23-240303115650.png",
+            "height": 1242
+          }
+        ],
+        "label_position": 1
+      },
+      "merchant_time": 12,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [
+        "Món Việt"
+      ],
+      "service_type": 1,
+      "url_rewrite_name": "com-tho-anh-nguyen-ho-dac-di",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "brand": {
+        "rush_hour": [],
+        "promotion_title": "",
+        "name": "Cơm Thố Anh Nguyễn",
+        "photos": [],
+        "brand_id": 4799,
+        "operating": {
+          "status": 1,
+          "color": "#239839",
+          "close_time": "23:59:59",
+          "open_time": "00:00:01",
+          "text": {
+            "resource_name": "delivery_restaurant_opening"
+          }
+        },
+        "position": {},
+        "min_order_value": {},
+        "url_rewrite_name": "com-tho-anh-nguyen",
+        "price_range": {},
+        "restaurant_count": 57
+      },
+      "limit_distance": 15000,
+      "image_name": "file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s60x60/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s120x120/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s160x120/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s160x160/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s180x180/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s240x240/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s280x175/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s400x216/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s600x324/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s640x400/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s640x640/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s750x400/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g99/989041/prof/s1242x600/file_restaurant_photo_gjyd_16159-9b1530b1-210317101435.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "1 P. Hồ Đắc Di, P. Nam Đồng, Đống Đa, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "09:30:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Cơm Thố Anh Nguyễn - Hồ Đắc Di",
+      "promotion_groups": [
+        {
+          "group": 1,
+          "text": "Giảm món",
+          "browsing_icon": "https://images.foody.vn/icon/browsing_discount/s/voucher_14.png",
+          "discount_type": 5,
+          "id": 22532266,
+          "icon": "https://images.foody.vn/icon/discount/s/voucher_14.png"
+        }
+      ],
+      "url": "https://shopeefood.vn/ha-noi/com-tho-anh-nguyen-ho-dac-di",
+      "display_order": 0,
+      "delivery_id": 102772,
+      "district_id": 22,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "55k"
+        ]
+      },
+      "position": {
+        "latitude": 21.01119087,
+        "is_verified": false,
+        "longitude": 105.83056268
+      },
+      "shipping_methods": [
+        1
+      ]
+    },
+    {
+      "total_order": 0,
+      "rating": {
+        "total_review": 1000,
+        "avg": 4.8,
+        "display_total_review": "999+",
+        "app_link": "foody://foody.vn?action=reviewlist&id=1135715"
+      },
+      "city_id": 218,
+      "phones": [
+        "0866998812"
+      ],
+      "restaurant_id": 1135715,
+      "restaurant_url": "bun-rieu-top-mo-ha-beo-bun-rieu-top-mo-suon-sun-bun-rieu-top-mo-moc-gion-tran-duy-hung",
+      "brand_id": 0,
+      "is_open": true,
+      "contract_type": 1,
+      "id": 258993,
+      "location_url": "ha-noi",
+      "has_contract": true,
+      "is_quality_merchant": true,
+      "merchant_time": 20,
+      "categories": [
+        "Quán ăn"
+      ],
+      "cuisines": [],
+      "service_type": 1,
+      "url_rewrite_name": "bun-rieu-top-mo-ha-beo-bun-rieu-top-mo-suon-sun-bun-rieu-top-mo-moc-gion-tran-duy-hung",
+      "is_foody_delivery": true,
+      "rush_hour": [],
+      "limit_distance": 15000,
+      "image_name": "foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+      "restaurant_status": 2,
+      "campaigns": [],
+      "photos": [
+        {
+          "width": 60,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s60x60/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 60
+        },
+        {
+          "width": 120,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s120x120/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s160x120/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 120
+        },
+        {
+          "width": 160,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s160x160/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 160
+        },
+        {
+          "width": 180,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s180x180/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 180
+        },
+        {
+          "width": 240,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s240x240/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 240
+        },
+        {
+          "width": 280,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s280x175/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 175
+        },
+        {
+          "width": 400,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s400x216/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 216
+        },
+        {
+          "width": 600,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s600x324/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 324
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s640x400/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 400
+        },
+        {
+          "width": 640,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s640x640/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 640
+        },
+        {
+          "width": 750,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s750x400/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 400
+        },
+        {
+          "width": 1242,
+          "value": "https://images.foody.vn/res/g114/1135715/prof/s1242x600/foody-upload-api-foody-mobile-co-def6d983-220505084101.jpeg",
+          "height": 600
+        }
+      ],
+      "confirm_methods": {},
+      "address": "14 Ngõ 80 Trần Duy Hưng, P. Trung Hoà, Cầu Giấy, Hà Nội",
+      "name_en": "",
+      "foody_service_id": 1,
+      "min_order_value": {
+        "resource_name": "delivery_order_minimum",
+        "resource_args": [
+          "20k"
+        ]
+      },
+      "operating": {
+        "status": 1,
+        "color": "#239839",
+        "close_time": "23:59:00",
+        "open_time": "07:48:00",
+        "text": {
+          "resource_name": "delivery_restaurant_opening"
+        }
+      },
+      "name": "Bún Riêu Tóp Mỡ Hà Béo - Bún Riêu Tóp Mỡ Sườn Sụn & Bún Riêu Tóp Mỡ Mọc Giòn - Trần Duy Hưng",
+      "promotion_groups": [],
+      "url": "https://shopeefood.vn/ha-noi/bun-rieu-top-mo-ha-beo-bun-rieu-top-mo-suon-sun-bun-rieu-top-mo-moc-gion-tran-duy-hung",
+      "display_order": 0,
+      "delivery_id": 258993,
+      "district_id": 21,
+      "is_pickup": false,
+      "price_range": {
+        "resource_name": "avg_price_format",
+        "resource_args": [
+          "49k"
+        ]
+      },
+      "position": {
+        "latitude": 21.01281366,
+        "is_verified": false,
+        "longitude": 105.80063055
+      },
+      "shipping_methods": [
+        1
+      ]
+    }
+  ]
+}
