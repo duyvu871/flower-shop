@@ -1,6 +1,6 @@
 import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
-import {extractProperties} from "@/helper/extractProperties";
+import {extractProperties} from "@/helpers/extractProperties";
 
 export async function signIn(credentials:  Record<"username" | "password", string> | undefined) {
     const client = await clientPromise;

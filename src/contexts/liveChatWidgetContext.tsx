@@ -78,11 +78,11 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
 
     return (
         <LivechatWidgetContext.Provider value={{
-        openWidget,
+            openWidget,
             closeWidget,
             isWidgetOpen,
-    }}>
-    {children}
-    </LivechatWidgetContext.Provider>
-)
+        }}>
+        {children}
+        </LivechatWidgetContext.Provider>
+    )
 }
