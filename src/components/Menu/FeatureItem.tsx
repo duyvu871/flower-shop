@@ -6,7 +6,7 @@ import store from "@/redux/store";
 import {tw} from "@/ultis/tailwind.ultis";
 
 export enum TranslateIconName {
-    home= "Home",
+    home= "Trang chủ",
     search= "Tìm món",
     order= "Đặt món",
     profile= "Tài khoản"
@@ -17,7 +17,7 @@ type FeatureItemProps = {
     customIcon: React.ReactElement
 }
 
-export default function FeatureItem({title, customIcon}: FeatureItemProps) {
+export function FeatureItemMobile({title, customIcon}: FeatureItemProps) {
     // console.log(title);
     const [isCurrentScreen, setIsCurrentScreen] = useState<boolean>(false);
     const screen = useSelector((state: RootState) => state.screen.currentScreen);
@@ -30,11 +30,22 @@ export default function FeatureItem({title, customIcon}: FeatureItemProps) {
     return (
         <div
             className={tw(
-                "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500  border-t-3 border-gray ",
+                "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray ",
                 isCurrentScreen ? "text-orange-600 border-orange-600" : ""
             )}
             onClick={() => handleChangeScreen(title)}
         >
+            <div className={"text-center text-3xl"}>{customIcon}</div>
+            <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
+        </div>
+    )
+}
+
+export function FeatureItemDesktop({title, customIcon}: FeatureItemProps) {
+    return (
+        <div className={tw(
+            "flex flex-col justify-center items-center w-full h-full p-2 text-gray-500  border-t-3 border-gray ",
+        )}>
             <div className={"text-center text-3xl"}>{customIcon}</div>
             <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
         </div>

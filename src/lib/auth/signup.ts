@@ -1,29 +1,37 @@
 import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
-import {extractProperties} from "@/helper/extractProperties";
+import {extractProperties} from "@/helpers/extractProperties";
 import {uid} from "uid";
+import {UserInterface} from "types/userInterface";
 
-export async function signUp(credentials:  Record<"username" | "password", string> | undefined) {
+export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|"email", string> | undefined) {
     const client = await clientPromise;
     // console.log(credentials);
     const usersCollection = client
         .db(process.env.DB_NAME)
         .collection("users");
-    const username = credentials?.username;
+    const fullName = credentials?.fullName;
     const password = credentials?.password;
+    const email = credentials?.email;
+    const phone = credentials?.phone;
 
-    if (!username || !password) {
+    if (!fullName || !password) {
         throw new Error("Invalid credentials");
     }
 
-    const user = await usersCollection.findOne({ username});
+    const user = await usersCollection.findOne({
+        email: credentials.email,
+        phone: credentials.phone
+    });
 
     if (user) {
-        throw new Error("User is exist.");
+        throw new Error("Tài khoản đã tồn tại");
     }
 
-    const doc = {
-        username,
+    const doc: UserInterface = {
+        fullName,
+        email: email as string,
+        phone: phone as string,
         password: bcrypt.hashSync(password as string, 10),
         role: "user",
         balance: 1000,
@@ -34,6 +42,9 @@ export async function signUp(credentials:  Record<"username" | "password", strin
             .join(''),
         virtualVolume: 1000,
         total_request_withdraw: 0,
+        address: "",
+        cart: [],
+        orderHistory: [],
         transactions: [],
         actionHistory: [],
         withDrawHistory: [],
@@ -49,5 +60,5 @@ export async function signUp(credentials:  Record<"username" | "password", strin
         throw new Error("Insert user failed");
     }
 
-    return extractProperties(doc, ["id_index", "username", "role", "balance", "uid"]);
+    return extractProperties(doc, ["id_index", "fullName", "role", "balance", "uid"]);
 }

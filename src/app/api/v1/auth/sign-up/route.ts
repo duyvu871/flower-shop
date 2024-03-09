@@ -2,7 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import {signUp} from "@/lib/auth/signup";
 
 interface ISignUpRequest {
-    username: string;
+    fullName: string;
     password: string;
     email: string;
     phone: string;
@@ -12,9 +12,8 @@ export async function POST(request: NextRequest) {
     try {
         const json: ISignUpRequest = await request.json();
         console.log(json);
-        const {username , password} = json;
 
-        const response = await signUp({username, password});
+        const response = await signUp({...json});
 
         return new NextResponse(JSON.stringify(response), {
             status: 200,

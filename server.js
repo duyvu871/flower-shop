@@ -4,7 +4,7 @@ const next = require('next')
 const dotenv = require('dotenv');
 dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = process.env.NODE_ENV === "production" ? process.env.NEXTAUTH_URL : 'localhost';
+const hostname = process.env.NODE_ENV === "production" ? process.env.NEXTAUTH_URL : '192.168.2.60';
 console.log('hostname', hostname);
 const port = 3000;
 // when using middlewares `hostname` and `port` must be provided below

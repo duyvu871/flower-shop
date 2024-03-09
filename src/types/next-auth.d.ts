@@ -7,4 +7,5 @@ declare module "next-auth" {
         user: UserSessionPayload
             & DefaultSession["user"]
     }
+    interface NextAuthUser extends UserSessionPayload, DefaultSession["user"] {}
 }
