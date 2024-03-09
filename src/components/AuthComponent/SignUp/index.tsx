@@ -289,7 +289,7 @@ export default function SignInForm() {
                                         Đã đăng kí tài khoản? Đăng nhập&nbsp;
                                     </p>
                                 </div>
-                                <Link href={"/auth/signup"}>
+                                <Link href={"/auth/signin"}>
                                     <p className={"text-[14px] text-orange-600"}> tại đây</p>
                                 </Link>
                             </div>
