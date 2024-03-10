@@ -13,7 +13,6 @@ import {useToast} from "@/hooks/useToast";
 import {useRouter} from "next/navigation";
 import { signIn } from "next-auth/react";
 
-
 interface FormState {
     fullName: string;
     phoneNumber: string;
