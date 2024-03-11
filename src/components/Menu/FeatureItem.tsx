@@ -31,11 +31,11 @@ export function FeatureItemMobile({title, customIcon}: FeatureItemProps) {
         <div
             className={tw(
                 "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray ",
-                isCurrentScreen ? "text-orange-600 border-orange-600" : ""
+                isCurrentScreen ? "text-orange-600 border-orange-600 bg-gray-50" : ""
             )}
             onClick={() => handleChangeScreen(title)}
         >
-            <div className={"text-center text-3xl"}>{customIcon}</div>
+            <div className={"text-center text-2xl"}>{customIcon}</div>
             <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
         </div>
     )

@@ -72,11 +72,12 @@ export default function SignInForm() {
             body: JSON.stringify(requestBody)
         });
 
+        const data = await res.json();
         if (res.status === 200) {
             success("Đăng kí thành công");
             push("/auth/signin");
         } else {
-            error("Đăng kí thất bại");
+            error(data.error);
         }
     }
 

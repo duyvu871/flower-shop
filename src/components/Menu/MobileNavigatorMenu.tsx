@@ -38,7 +38,7 @@ function MobileNavigatorMenu({isShow}: MobileNavigatorMenuProps) {
 
     return (
         <div className={tw(
-            "flex flex-row justify-between items-center fixed bottom-0 w-full",
+            "flex flex-row justify-between items-center fixed bottom-0 w-full z-[999] bg-white md:hidden",
             isShow ? "" : "hidden"
         )}>
             {Icons.map((item , index) =>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useLayoutEffect} from 'react';
 import {
     Navbar,
     NavbarBrand,
@@ -6,7 +6,8 @@ import {
     NavbarItem,
     Button,
     Link,
-    Input, Select, SelectItem
+    Input, Select, SelectItem,
+    Avatar
 } from "@nextui-org/react";
 import Logo from "@/components/Logo";
 import {RootState} from "@/redux/reducers";
@@ -20,6 +21,10 @@ import OrderCart from "@/components/OrderCart";
 import StoreLocation from "@/ultis/location.ultis";
 import {setStoreLocation} from "@/redux/action/setStoreLocation";
 import {useRouter, usePathname} from "next/navigation";
+import {useAuth} from "@/hooks/useAuth";
+import {UserDataContext} from "@/contexts/UserDataContext";
+import AvatarTriggerDropdown from "@/components/Avatar/AvatarTriggerDropdown";
+import {extractProperties} from "@/helpers/extractProperties";
 
 interface DesktopNavigatorMenuProps {
     isShow: boolean;
@@ -33,6 +38,8 @@ const BonusTranslateIconName = {
 } as const;
 
 function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
+    const {isLogin, user} = useAuth();
+    const {userData} = useContext(UserDataContext);
     const screen = useSelector((state: RootState) => state.screen.currentScreen);
     const location = useSelector((state: RootState) => state.storeLocation.currentLocation);
     const {push} = useRouter();
@@ -47,15 +54,23 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
     const handleSelectionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         store.dispatch(setStoreLocation(event.target.value as keyof typeof StoreLocation));
     }
+
+    // useLayoutEffect(() => {
+    //     if (!isLogin) {
+    //         push("/auth/signin");
+    //     }
+    // }, [isLogin]);
+
     return (
-       <Navbar shouldHideOnScroll className={tw(isShow ? "hidden" : "", 'p-3 bg-white')} >
+       <Navbar shouldHideOnScroll className={tw(isShow ? "hidden" : "", 'p-3 bg-white ')} maxWidth={"full"}>
            <NavbarContent justify="start">
-               <NavbarBrand onClick={logoAction} className={"cursor-pointer"}>
+               <NavbarBrand onClick={logoAction} className={"cursor-pointer flex"}>
                    <Logo size={50}/>
-                   <p className={"text-xl font-bold text-inherit"}>NgonNgon</p>
+                   <p className={"text-xl font-bold text-inherit hidden sm:block"}>NgonNgon</p>
                </NavbarBrand>
+
            </NavbarContent>
-           <NavbarContent justify="center">
+           <NavbarContent justify="center" className={""}>
                <NavbarItem>
                    <Select
                        items={Object.keys(StoreLocation).map((key) => ({
@@ -77,6 +92,8 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                        }
                    </Select>
                </NavbarItem>
+           </NavbarContent>
+           <NavbarContent justify="center" className={"hidden md:flex"}>
                {pages.map((page: keyof typeof BonusTranslateIconName, index) => (
                    <NavbarItem
                        isActive={(screen === page)}
@@ -84,6 +101,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                            "cursor-pointer font-semibold",
                            (screen === page) ? "text-orange-600" : "")}
                        key={"navbar-item-" + page}
+
                        onClick={() => {store.dispatch(changeScreen(page))}}
                    >
                        <div>{BonusTranslateIconName[page]}</div>
@@ -91,7 +109,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                ))}
            </NavbarContent>
            <NavbarContent justify="end">
-               <NavbarItem>
+               <NavbarItem className={"hidden lg:flex"}>
                    <Input
                        classNames={{
                            base: "max-w-full sm:max-w-[12rem] h-10",
@@ -110,10 +128,27 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                         <OrderCart/>
                     </Link>
                 </NavbarItem>
-               <NavbarItem className={"hidden lg:flex "}>
-                     <Link href={"/auth/signin"}>
-                         <Button className={"bg-orange-600 text-white"}>Đăng nhập</Button>
-                     </Link>
+               <NavbarItem className={"hidden lg:flex"}>
+                   {isLogin ? (
+                       <AvatarTriggerDropdown
+                            userData={extractProperties(userData, ["fullName", "email"])}
+                            avatarIcon={
+                                <Avatar
+                                    showFallback
+                                    isBordered
+                                    color="warning"
+                                    size="sm"
+                                    name={userData.fullName}
+                                    src={userData.avatar}
+                                    className={"text-white font-bold uppercase cursor-pointer"}/>
+                            }
+                          />
+
+                   ): (
+                       <Link href={"/auth/signin"} >
+                           <Button className={"bg-orange-600 text-white"}>Đăng nhập</Button>
+                       </Link>
+                   )}
                </NavbarItem>
            </NavbarContent>
        </Navbar>

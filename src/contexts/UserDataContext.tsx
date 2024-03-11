@@ -21,8 +21,16 @@ interface ExtendedUserInterface {
 
 const defaultUserData: WithId<UserInterface> = {
     _id: "" as unknown as ObjectId,
-    username: "",
+    fullName: "",
     balance: 1000,
+    phone: "",
+    avatar: "",
+    virtualVolume: 0,
+    address: "",
+    email: "",
+    id_index: 0,
+    total_request_withdraw: 0,
+    cart: [""],
     uid: "",
     bankingInfo: {
         bank: "",
@@ -30,6 +38,7 @@ const defaultUserData: WithId<UserInterface> = {
         accountName: ""
     },
     role: "user",
+    orderHistory: [""],
     transactions: [""],
     actionHistory: [""],
     withDrawHistory: [""],

@@ -2,6 +2,7 @@ import {OrderType} from "types/order";
 import clientPromise from "@/lib/mongodb";
 import {ObjectId} from "mongodb";
 import {NextResponse} from "next/server";
+import DBConfigs from "@/configs/database.config";
 
 type WithdrawPayload = {
     volume: number;
@@ -73,4 +74,10 @@ export async function CreateOrderByCronjob() {
     }
     // const previousOrder =
 
+}
+
+export async function getMenuList(time: "morning" | "afternoon" | "evening"| "night") {
+    const client = await clientPromise;
+    const orderCollection = client.db(process.env.DB_NAME).collection(`${DBConfigs.menu[time]}-menu`);
+    return await orderCollection.find({}).toArray();
 }

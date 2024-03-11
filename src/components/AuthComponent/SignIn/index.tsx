@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {
     Spacer,
     Button,
@@ -13,9 +13,11 @@ import {EyeFilledIcon, EyeSlashFilledIcon} from "@nextui-org/shared-icons";
 import {useToast} from "@/hooks/useToast";
 import {useRouter} from "next/navigation";
 import { signIn } from "next-auth/react";
+import {useAuth} from "@/hooks/useAuth";
 
 
 export default function SignUpForm() {
+    const {isLogin, user} = useAuth();
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [isRemember, setIsRemember] = React.useState<boolean>(false);
@@ -47,7 +49,7 @@ export default function SignUpForm() {
             return;
         }
         const res = await signIn("credentials", {
-            username: email,
+            email,
             password,
             redirect: false,
         });
@@ -64,6 +66,12 @@ export default function SignUpForm() {
         }
     }
     const toggleVisibility = () => setIsVisible(!isVisible);
+
+    useLayoutEffect(() => {
+        if (isLogin) {
+            push("/");
+        }
+    }, [isLogin]);
 
     return (
         <div className={"flex justify-center items-start h-full bg-gray-100 p-10"}>
@@ -82,7 +90,7 @@ export default function SignUpForm() {
                         variant="bordered"
                         placeholder="Tên đăng nhập hoặc email"
                         isInvalid={isInvalid}
-                        color={isInvalid ? "danger" : "success"}
+                        color={isInvalid ? "danger" : "primary"}
                         errorMessage={isInvalid && "Vui lòng nhập đúng định dạng tài khoản"}
                         onValueChange={(value) => {
                             setEmail(value);
@@ -100,7 +108,7 @@ export default function SignUpForm() {
                         placeholder="Nhập mật khẩu"
                         value={password}
                         isInvalid={isInvalidPassword}
-                        color={isInvalidPassword ? "danger" : "success"}
+                        color={isInvalidPassword ? "danger" : "primary"}
                         errorMessage={isInvalidPassword && "Hãy nhập mật khẩu có độ dài lớn hơn 6 ký tự"}
                         endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>

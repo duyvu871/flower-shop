@@ -1,5 +1,3 @@
-import path from 'path';
-
 const AppConfig = {
     mainApiUrl: 'http://localhost:3000',
     url: {

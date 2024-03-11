@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import {tw} from "@/ultis/tailwind.ultis";
 import MobileNavigatorMenu from "@/components/Menu/MobileNavigatorMenu";
@@ -17,16 +17,17 @@ const MenuComponents = {
 
 
 export default function MenuBar({}: MenuBarProps) {
-    const isMobile = useMediaQuery(768);
-    const isTablet = useMediaQuery(1024);
-    const isDesktop = useMediaQuery(1280);
+    const isMobile = useMediaQuery(460);
+
+    // const isTablet = useMediaQuery(1024);
+    // const isDesktop = useMediaQuery(1280);
     useEffect(() => {
 
-    }, [isMobile]);
+    }, []);
     return (
        <>
-           <MobileNavigatorMenu isShow={isMobile}/>
-           <DesktopNavigatorMenu isShow={isMobile}/>
+           <MobileNavigatorMenu isShow={true}/>
+           <DesktopNavigatorMenu isShow={false}/>
        </>
     )
 

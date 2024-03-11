@@ -23,9 +23,11 @@ const screens = {
 function HomePage({}: HomePageProps) {
     const currentScreen = useSelector((state: RootState) => state.screen.currentScreen);
     return (
-        <div className={"w-full h-full flex justify-center items-center"}>
-            {React.createElement(screens[currentScreen] || HomeScreen)}
-        </div>
+        <>
+            {(screens[currentScreen]({}) || HomeScreen({}))}
+        </>
+        // <div className={"w-full h-full flex justify-center items-center"}>
+        // </div>
     );
 }
 

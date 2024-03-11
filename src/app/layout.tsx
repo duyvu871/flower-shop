@@ -10,7 +10,8 @@ import { Toaster } from '@/ultis/component_default_props.ultis';
 import {UserDataProvider} from "@/contexts/UserDataContext";
 import NextUIProvider from "@/app/NextuiProvider";
 import MenuBar from "@/components/Menu";
-import ToastProvider from "@/components/ToastProvider";
+// import ToastProvider from "@/components/ToastProvider";
+import 'react-multi-carousel/lib/styles.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-        <body className={inter.className+ " h-full"}>
+        <body className={inter.className+ ""}>
             <NextauthSessionProviders>
                 <NextUIProvider>
                     <ReduxProviders>

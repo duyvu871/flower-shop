@@ -30,4 +30,15 @@
         win: number;
         createdAt: Date;
     }
+    export type timeOrder = "morning" | "afternoon" | "evening"| "night";
+    export type MenuItemType = {
+        _id: ObjectId;
+        name: string;
+        price: number;
+        // type: timeOrder;
+        image: string;
+        description: string;
+        total_sold: number;
+        address: string;
+    }
 // }

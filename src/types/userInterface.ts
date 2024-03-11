@@ -3,7 +3,8 @@ interface UserInterface {
     fullName: string;
     email: string;
     phone: string;
-    password: string;
+    password?: string;
+    avatar: string;
     role: "user"|"admin";
     balance: number;
     id_index: number;
@@ -24,7 +25,7 @@ interface UserInterface {
 }
 
 interface UserPayload {
-    username: string;
+    fullName: string;
     email: string;
     bankMethod: {
         bankName: string;

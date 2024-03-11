@@ -10,7 +10,7 @@ export interface UserPasswordUpdate {
 }
 
 export interface UserSessionPayload {
-    username: string;
+    fullName: string;
     role: string;
     balance: number;
     uid: string;
