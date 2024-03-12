@@ -17,18 +17,22 @@ interface MobileNavigatorMenuProps {
 const Icons = [
     {
         title: 'home',
+        path: '/',
         icon: <IoMdHome />,
     },
     {
         title: "search",
+        path: "/search",
         icon: <IoIosSearch />
     },
     {
         title: "order",
+        path: "/order",
         icon: <BiSolidFoodMenu />
     },
     {
         title: "profile",
+        path: "/profile",
         icon: <MdAccountCircle />
     },
 ] as const;
@@ -38,13 +42,14 @@ function MobileNavigatorMenu({isShow}: MobileNavigatorMenuProps) {
 
     return (
         <div className={tw(
-            "flex flex-row justify-between items-center fixed bottom-0 w-full z-[999] bg-white md:hidden",
+            "flex flex-row justify-between items-center fixed bottom-0 w-full z-[49] bg-white md:hidden",
             isShow ? "" : "hidden"
         )}>
             {Icons.map((item , index) =>
                 <FeatureItemMobile
                     title={item.title}
                     customIcon={item.icon}
+                    path={item.path}
                     key={"feature-item-" + item.title}/>
             )}
         </div>

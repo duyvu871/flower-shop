@@ -17,10 +17,6 @@ const MenuComponents = {
 
 
 export default function MenuBar({}: MenuBarProps) {
-    const isMobile = useMediaQuery(460);
-
-    // const isTablet = useMediaQuery(1024);
-    // const isDesktop = useMediaQuery(1280);
     useEffect(() => {
 
     }, []);

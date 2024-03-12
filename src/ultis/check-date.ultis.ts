@@ -2,25 +2,29 @@ const getCurrentTimeOfDay = () => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
 
-    if (currentHour >= 5 && currentHour < 12) {
+    if (currentHour >= 0 && currentHour < 9) {
         return {
             message: 'Buổi sáng',
-            type: 'morning'
+            type: 'morning',
+            currentHour
         };
-    } else if (currentHour >= 12 && currentHour < 18) {
+    } else if (currentHour >= 9 && currentHour < 15) {
         return {
             message: 'Buổi chiều',
-            type: 'afternoon'
+            type: 'afternoon',
+            currentHour
         };
-    } else if (currentHour >= 18 && currentHour < 24) {
+    } else if (currentHour >= 15 && currentHour < 19) {
         return {
             message: 'Buổi tối',
-            type: 'evening'
+            type: 'evening',
+            currentHour
         };
     } else {
         return {
             message: 'Buổi tối',
-            type: 'evening'
+            type: 'evening',
+            currentHour,
         };
     }
 };

@@ -5,6 +5,7 @@ const DBConfigs = {
         afternoon: "afternoon",
         evening: "evening",
         night: "night"
-    }
+    },
+    perPage: 10
 }
 export default DBConfigs;

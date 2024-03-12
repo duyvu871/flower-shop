@@ -4,6 +4,7 @@ import {RootState} from "@/redux/reducers";
 import {changeScreen} from "@/redux/action/activeMenuFeature";
 import store from "@/redux/store";
 import {tw} from "@/ultis/tailwind.ultis";
+import {useRouter ,usePathname} from "next/navigation";
 
 export enum TranslateIconName {
     home= "Trang chủ",
@@ -14,19 +15,29 @@ export enum TranslateIconName {
 
 type FeatureItemProps = {
     title: keyof typeof TranslateIconName,
-    customIcon: React.ReactElement
+    customIcon: React.ReactElement,
+    path: string
 }
 
-export function FeatureItemMobile({title, customIcon}: FeatureItemProps) {
+export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
     // console.log(title);
     const [isCurrentScreen, setIsCurrentScreen] = useState<boolean>(false);
-    const screen = useSelector((state: RootState) => state.screen.currentScreen);
+    const router = useRouter();
+    const pathName = usePathname();
+    // const screen = useSelector((state: RootState) => state.screen.currentScreen);
     const handleChangeScreen = (screen: ReturnType<typeof changeScreen>['payload']) => {
-        store.dispatch(changeScreen(screen));
+        // if (screen === title) return;
+        // store.dispatch(changeScreen(screen));
+        router.push(path);
     }
     useEffect(() => {
-        setIsCurrentScreen(screen === title);
-    }, [screen, title]);
+        if ((title === "home" && pathName === "/")) {
+            setIsCurrentScreen(true);
+        } else {
+            setIsCurrentScreen(pathName.includes(title));
+        }
+
+    }, [title, pathName]);
     return (
         <div
             className={tw(

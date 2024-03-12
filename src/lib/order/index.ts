@@ -76,8 +76,20 @@ export async function CreateOrderByCronjob() {
 
 }
 
-export async function getMenuList(time: "morning" | "afternoon" | "evening"| "night") {
-    const client = await clientPromise;
+export async function getMenuList(time: "morning" | "afternoon" | "evening"| "night", page: number, limit: number) {
+    const perPage = DBConfigs.perPage; // 10
+    const client = await clientPromise; // connect to database
     const orderCollection = client.db(process.env.DB_NAME).collection(`${DBConfigs.menu[time]}-menu`);
-    return await orderCollection.find({}).toArray();
+    const count = await orderCollection.countDocuments(); // count total documents
+    const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
+    const paginate = await orderCollection.find({}).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
+    return {
+        data: paginate,
+        count,
+        page,
+        limit,
+        perPage
+    }
 }
+
+export type MenuListWithPaginate = ReturnType<typeof getMenuList>;
