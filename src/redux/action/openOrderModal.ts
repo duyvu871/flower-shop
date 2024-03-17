@@ -11,7 +11,7 @@ export interface CloseOrderModalAction extends Action {
     type: typeof CLOSE_ORDER_MODAL;
 }
 
-export type OrderModalActionTypes = OpenOrderModalAction | CloseOrderModalAction;
+export type OrderModalActionTypes = OpenOrderModalAction | CloseOrderModalAction | OpenCartModalAction | CloseCartModalAction;
 
 export const openOrderModal = (orderId: string): OpenOrderModalAction => {
     return {
@@ -24,4 +24,13 @@ export const closeOrderModal = (): CloseOrderModalAction => {
     return {
         type: CLOSE_ORDER_MODAL
     }
+}
+
+export const CLOSE_CART_MODAL = 'CLOSE_CART_MODAL';
+export const OPEN_CART_MODAL = 'OPEN_CART_MODAL';
+export interface OpenCartModalAction extends Action {
+    type: typeof OPEN_CART_MODAL;
+}
+export interface CloseCartModalAction extends Action {
+    type: typeof CLOSE_CART_MODAL;
 }

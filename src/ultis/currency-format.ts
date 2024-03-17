@@ -64,4 +64,15 @@ export function usdtToVndIntegers(usdt: number | string, exchangeRate: number | 
     );
 }
 
+export function calculateDiscount(price: string, discount: number | string): string {
+    return formatCurrency(
+        multiplyLargeNumbers(
+            price,
+            divideLargeIntegers(
+                discount.toString(),
+                '100'
+            )
+        )
+    );
+}
 export {divideLargeIntegers, multiplyLargeNumbers, subtractLargeIntegers, addLargeNumber};

@@ -6,6 +6,7 @@ interface UserInterface {
     password?: string;
     avatar: string;
     role: "user"|"admin";
+    isLoyalCustomer: boolean;
     balance: number;
     id_index: number;
     uid: string;

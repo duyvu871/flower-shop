@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
 html {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
@@ -98,5 +106,25 @@ div[data-overlay-container] {
 @media (min-width: 460px) {
     .react-multi-carousel-list {
         display: flex !important;
+    }
+}
+
+@keyframes checkbox-check{
+    0%{
+        width: 0;
+        height: 0;
+        border-color: #212121;
+        transform: translate3d(0,0,0) rotate(45deg);
+    }
+    33%{
+        width: .2em;
+        height: 0;
+        transform: translate3d(0,0,0) rotate(45deg);
+    }
+    100%{
+        width: .2em;
+        height: .5em;
+        border-color: #212121;
+        transform: translate3d(0,-.5em,0) rotate(45deg);
     }
 }

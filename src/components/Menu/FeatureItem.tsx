@@ -41,7 +41,7 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
     return (
         <div
             className={tw(
-                "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray ",
+                "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray hover:bg-gray-100",
                 isCurrentScreen ? "text-orange-600 border-orange-600 bg-gray-50" : ""
             )}
             onClick={() => handleChangeScreen(title)}

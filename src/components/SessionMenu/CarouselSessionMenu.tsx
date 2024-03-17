@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Carousel from "react-multi-carousel";
-import {ShopItemCardMemo} from "@/components/Card/ShopItemCard";
-import {MenuDataContext} from "@/contexts/MenuDataContext";
+import ShopItemCard from "@/components/Card/ShopItemCard";
+import {useMenuData} from "@/hooks/useMenuData";
 
 interface CarouselSessionMenuProps {
     
@@ -43,7 +43,7 @@ const customLeftArrow = (
 );
 
 function CarouselSessionMenu({}: CarouselSessionMenuProps) {
-    const {menuData, getMenuData, updateMenuData} = useContext(MenuDataContext);
+    const {menuData, getMenuData, updateMenuData} = useMenuData();
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
 
     return (
@@ -77,13 +77,14 @@ function CarouselSessionMenu({}: CarouselSessionMenuProps) {
             rtl={false}
         >
             {isLoaded && menuData.map((item, index) => (
-                <ShopItemCardMemo
+                <ShopItemCard
                     title={item.name}
                     img={item.image}
                     location={item.address}
                     price={String(item.price)}
                     dishID={item._id as unknown as string}
                     totalSold={item.total_sold}
+                    discount={String(item.discount)}
                     key={index}
                 />
             ))}

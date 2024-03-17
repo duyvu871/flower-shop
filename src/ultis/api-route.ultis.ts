@@ -9,4 +9,7 @@ export const routePaths = {
     getOrders: "/api/v1/order/get-orders",
     updateOrder: "/api/v1/order/update-order",
     foodDelivery: "/api/v1/info/get-food-delivery",
+    allMenu: "/api/v1/info/get-all-menu",
+    searchFood: "/api/v1/info/search-food-delivery",
+    searchById: "/api/v1/info/search-by-id",
 }

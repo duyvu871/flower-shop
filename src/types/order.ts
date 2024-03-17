@@ -6,8 +6,13 @@
     export interface OrderType {
         _id: ObjectId;
         userId: ObjectId;
-        type: "withdrawal" | "refill";
-        volume: number;
+        orderList: {
+            menuItem: ObjectId;
+            totalOrder: number;
+            takeNote: string;
+        }[];
+        // type: "withdrawal" | "refill";
+        orderVolume: number;
         promotions: number;
         status: "pending" | "approved" | "rejected";
         isHandled: boolean;
@@ -40,5 +45,6 @@
         description: string;
         total_sold: number;
         address: string;
+        discount: number;
     }
 // }

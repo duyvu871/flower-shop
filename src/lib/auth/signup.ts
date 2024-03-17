@@ -29,6 +29,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
     }
 
     const doc: UserInterface = {
+        avatar: "",
         fullName,
         email: email as string,
         phone: phone as string,
@@ -41,6 +42,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
             .map(char => char.charCodeAt(0).toLocaleString()[0])
             .join(''),
         virtualVolume: 1000,
+        isLoyalCustomer: false,
         total_request_withdraw: 0,
         address: "",
         cart: [],

@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchScreen from "@/containers/HomePage/SearchScreen";
 
 interface PageProps {
 
@@ -6,9 +7,7 @@ interface PageProps {
 
 function Page({}: PageProps) {
     return (
-        <div>
-            Search
-        </div>
+       <SearchScreen />
     );
 }
 

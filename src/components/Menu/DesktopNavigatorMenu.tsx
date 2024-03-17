@@ -124,9 +124,9 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                    />
                </NavbarItem>
                 <NavbarItem className={"cursor-pointer"}>
-                    <Link href={"/cart"}>
+                    {/*<Link href={"/cart"}>*/}
                         <OrderCart/>
-                    </Link>
+                    {/*</Link>*/}
                 </NavbarItem>
                <NavbarItem className={"hidden lg:flex"}>
                    {isLogin ? (

@@ -14,7 +14,7 @@ const AppConfig = {
             info: {
                 userData: "/api/v1/info/get-user-data",
                 withdrawalHistory: "/api/v1/info/get-withdrawal-history",
-                search: "/api/v1/info/search-engine",
+                search: "/api/v1/info/search-food-delivery",
             },
             order: {
                 withdraw: "/api/v1/order/withdraw",

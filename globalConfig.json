@@ -1,0 +1,5 @@
+{
+  "allowedDebtLimit": 100000,
+  "allowedDebtLimitPeriod": 30,
+  "allowedDebtLimitPeriodUnit": "days"
+}

@@ -27,8 +27,6 @@ function HomePage({}: HomePageProps) {
     return (
         <>
             <HomeScreen />
-            <OrderModal />
-            <CartModal />
         </>
         // <div className={"w-full h-full flex justify-center items-center"}>
         // </div>

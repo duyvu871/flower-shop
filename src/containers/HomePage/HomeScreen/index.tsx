@@ -8,6 +8,7 @@ import {IoLockClosed} from "react-icons/io5";
 import {Chip} from "@nextui-org/react";
 import {getCurrentTimeOfDay} from "@/ultis/check-date.ultis";
 import Image from "next/image";
+import ProfileCard from "@/components/Profile/ProfileCard";
 
 interface HomeScreenProps {
 
@@ -52,7 +53,7 @@ function HomeScreen({}: HomeScreenProps) {
         <div className={"w-full flex flex-col justify-start items-center pb-[90px]"}>
             {/*<div className={tw("home_screen image-container min-h-[200px]", (currentImageIndex !== 0 ? "fade-in" : ""))}*/}
             {/*     style={{backgroundImage: `url('${bannerUrls[currentImageIndex]}')`}}></div>*/}
-            <div className={"w-full h-[200px] overflow-hidden"}>
+            <div className={"w-full h-[200px] overflow-hidden absolute"}>
                 <div className={"overflow-hidden relative"}>
                     {bannerUrls.map((url, index) => {
                         return (
@@ -72,11 +73,12 @@ function HomeScreen({}: HomeScreenProps) {
                     })}
                 </div>
             </div>
-            <FindPosition/>
-            <MenuOrderList/>
+            {/*<FindPosition/>*/}
+            <ProfileCard />
+            {/*<MenuOrderList/>*/}
             <div
                 className={"text-2xl font-bold w-full text-start p-2 mobile:px-10 flex flex-row items-center flex-wrap gap-2"}>
-                <span>Món ngon hôm nay</span>
+                {/*<span>Món ngon hôm nay</span>*/}
                 <Chip className={isClose ? "" : "hidden"}>
                     <div className={"flex flex-row justify-center items-center gap-1 text-gray-50"}>
                         <p>Đã hết thời gian đặt đơn</p>

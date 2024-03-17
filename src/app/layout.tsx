@@ -12,6 +12,10 @@ import NextUIProvider from "@/app/NextuiProvider";
 import MenuBar from "@/components/Menu";
 // import ToastProvider from "@/components/ToastProvider";
 import 'react-multi-carousel/lib/styles.css';
+import {MenuDataProvider} from "@/contexts/MenuDataContext";
+import OrderModal from "@/components/Modal/OrderModal";
+import CartModal from "@/components/Modal/CartModal";
+import React from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,8 +39,12 @@ export default function RootLayout({
                     <ReduxProviders>
                         <LiveChatWidgetProvider>
                             <UserDataProvider>
-                                <MenuBar />
-                                {children}
+                                <MenuDataProvider>
+                                    <MenuBar />
+                                    {children}
+                                    <OrderModal />
+                                    <CartModal />
+                                </MenuDataProvider>
                             </UserDataProvider>
                         </LiveChatWidgetProvider>
                     </ReduxProviders>

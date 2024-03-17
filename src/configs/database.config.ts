@@ -4,7 +4,8 @@ const DBConfigs = {
         morning: "morning",
         afternoon: "afternoon",
         evening: "evening",
-        night: "night"
+        night: "night",
+        other: "other"
     },
     perPage: 10
 }

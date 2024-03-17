@@ -1,14 +1,17 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {FaShoppingCart} from "react-icons/fa";
-import {useSelector} from "react-redux";
-import {RootState} from "@/redux/reducers";
+import {MenuDataContext} from "@/contexts/MenuDataContext";
+import {useRouter} from "next/navigation";
+import {useMenuData} from "@/hooks/useMenuData";
+import store from "@/redux/store";
 
 interface OrderCartProps {
 
 };
 
 function OrderCart({}: OrderCartProps) {
-    const totalOrders = useSelector((state: RootState) => state.cart.items.length);
+    const {cart} = useMenuData();
+    const { push } = useRouter()
     const cartRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (cartRef.current) {
@@ -22,11 +25,13 @@ function OrderCart({}: OrderCartProps) {
         //         cartRef.current.style.removeProperty("animation");
         //     }
         // }
-    }, [totalOrders]);
+    }, [cart]);
     return (
-        <div className={"text-orange-600 relative cart"} ref={cartRef}>
+        <div className={"text-orange-600 relative cart"} ref={cartRef} onClick={() => {
+            store.dispatch({type: 'OPEN_CART_MODAL'})
+        }}>
             <div className={"absolute top-[-10px] right-[-10px] text-xs text-orange-400 bg-orange-50 rounded-full py-[2px] px-[5px] "}>
-                {totalOrders}
+                {cart.length}
             </div>
             <FaShoppingCart className={"text-2xl"}/>
         </div>
