@@ -4,6 +4,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import {tw} from "@/ultis/tailwind.ultis";
 import MobileNavigatorMenu from "@/components/Menu/MobileNavigatorMenu";
 import DesktopNavigatorMenu from "@/components/Menu/DesktopNavigatorMenu";
+import {usePathname} from "next/navigation";
 
 type MenuBarProps = {
 
@@ -17,13 +18,11 @@ const MenuComponents = {
 
 
 export default function MenuBar({}: MenuBarProps) {
-    useEffect(() => {
 
-    }, []);
     return (
        <>
            <MobileNavigatorMenu isShow={true}/>
-           <DesktopNavigatorMenu isShow={false}/>
+           <DesktopNavigatorMenu isShow={true}/>
        </>
     )
 

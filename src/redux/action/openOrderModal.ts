@@ -34,3 +34,13 @@ export interface OpenCartModalAction extends Action {
 export interface CloseCartModalAction extends Action {
     type: typeof CLOSE_CART_MODAL;
 }
+
+
+export const OPEN_CONFIRMATION_MODAL = 'OPEN_CONFIRMATION_MODAL';
+export const CLOSE_CONFIRMATION_MODAL = 'CLOSE_CONFIRMATION_MODAL';
+export interface OpenConfirmationModalAction extends Action {
+    type: typeof OPEN_CONFIRMATION_MODAL;
+}
+export interface CloseConfirmationModalAction extends Action {
+    type: typeof CLOSE_CONFIRMATION_MODAL;
+}

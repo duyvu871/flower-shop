@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Avatar} from "@nextui-org/react";
 import {useUserData} from "@/hooks/useUserData";
 import {formatCurrency} from "@/ultis/currency-format";
-import {FaEye, FaEyeSlash} from "react-icons/fa";
+import {FaEye, FaEyeSlash, FaMedal} from "react-icons/fa";
 import {tw} from "@/ultis/tailwind.ultis";
 
 interface ProfileCardProps {
@@ -33,10 +33,14 @@ function ProfileCard({}: ProfileCardProps) {
                             // size="lg"
                             name={userData.fullName}
                             src={userData.avatar}
-                            className={"text-white font-bold uppercase cursor-pointer w-20 h-20"}/>
+                            className={"text-white text-2xl font-bold uppercase cursor-pointer w-20 h-20"}/>
                         <div className={"flex flex-col justify-center items-center gap-2"}>
                             <p className={"font-bold text-xl"}>{userData.fullName || "Nguyễn Thị T"}</p>
-                            {isLoyalCustomer ? <span className={"bg-gray-200 rounded-full p-1 px-2 text-xs"}>Khách hàng thân thiết</span> : ""}
+                            {isLoyalCustomer ?
+                                <span className={"flex flex-row justify-center items-center gap-1 bg-gray-200 rounded-full p-1 px-2 text-xs"}>
+                                    Khách hàng thân thiết
+                                    <FaMedal className={"text-gray-600"}/>
+                                </span> : ""}
                         </div>
                     </div>
                     <div className={"w-[60%] flex flex-col justify-center items-center gap-1"}>
@@ -47,7 +51,7 @@ function ProfileCard({}: ProfileCardProps) {
                             <p className={"text-2xl font-bold flex gap-1"}>
                                 {isShowBalance ?
                                     <span
-                                        className={tw(isNegativeBalance ? "text-red-500" : "text-green-500")}>{formatCurrency(userData.balance.toString())}</span>
+                                        className={tw(isNegativeBalance ? "text-red-500" : "text-green-500")}>{formatCurrency(userData.balance.toString()||"1000")}</span>
                                     : <span>******</span>
                                 }
                                 <span>vnđ</span>

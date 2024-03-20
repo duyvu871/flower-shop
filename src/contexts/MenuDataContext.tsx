@@ -34,7 +34,7 @@ export interface MenuData {
     updateAllMenuType: (data: AllMenuType) => void;
     getAllTypeMenu: () => Promise<AllMenuType|null>;
     searchItem: (search: string) => Promise<MenuItemType[]|null>;
-    getItemById: (id: string) => Promise<MenuItemType|null>;
+    getItemById: (id: string[]) => Promise<MenuItemType[]|null>;
 }
 
 const MenuListResponseDefault: GetMenuListType = {
@@ -73,7 +73,7 @@ export const MenuDataContext = createContext<MenuData>({
     updateAllMenuType: (data: AllMenuType) => {},
     getAllTypeMenu: async () => null,
     searchItem: async (search: string) => null,
-    getItemById: async (id: string) => null
+    getItemById: async (id: string[]) => null
 } as MenuData);
 
 export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
@@ -81,10 +81,12 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     const [cart, setCart] = React.useState<CartItemType[]>([]);
     const [allMenuType, setAllMenuType] = React.useState<AllMenuType>(AllMenuTypeDefault);
 
-    const getItemById = async (id: string) => {
-        const response = await fetch(routePaths.searchFood + `?id=${id}`);
+    const getItemById = async (id: string[]) => {
+        // console.log("MenuDataProvider", "getItemByIs", id)
+
+        const response = await fetch(routePaths.searchById + `?ids=${id.join(",")}`);
         if (response.status === 200) {
-            return await response.json() as MenuItemType;
+            return await response.json() as MenuItemType[];
         }
         console.log("MenuDataProvider", "getItemByIs", "Failed to get menu data");
         return null;

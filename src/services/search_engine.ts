@@ -1,5 +1,5 @@
 import clientPromise from "@/lib/mongodb";
-import {WithId} from "mongodb";
+import {ObjectId, WithId} from "mongodb";
 
 export class SearchEngine {
     // search by field
@@ -12,7 +12,12 @@ export class SearchEngine {
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
         const collection = db.collection(collectionName);
-        const cursor = collection.find({[field]: {$regex: query, $options: "i"}});
+        let cursor;
+        if (field === "_id") {
+            cursor = collection.find({_id: new ObjectId(query as string)});
+            return await cursor.project(projection).toArray() as T[] | null;
+        }
+        cursor = collection.find({[field]: {$regex: query, $options: "i"}});
         return await cursor.project(projection).toArray() as T[] | null;
     }
     // search in database

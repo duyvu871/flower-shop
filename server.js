@@ -2,7 +2,9 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({
+    path: './.env'
+});
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = process.env.NODE_ENV === "production" ? process.env.NEXTAUTH_URL : "192.168.31.197";
 console.log('hostname', hostname);

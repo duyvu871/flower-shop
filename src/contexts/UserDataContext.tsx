@@ -30,6 +30,7 @@ const defaultUserData: WithId<UserInterface> = {
     email: "",
     id_index: 0,
     total_request_withdraw: 0,
+    isLoyalCustomer: false,
     cart: [""],
     uid: "",
     bankingInfo: {
@@ -126,7 +127,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         if (res.status === 200) {
             const data: WithId<UserInterface> = await res.json();
             setUserData(data);
-            console.log(data);
+            // console.log(data);
             return data;
         }
         return null;
@@ -154,7 +155,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
                     if (data) {
                         // console.log(data.withDrawHistory)
                         const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
-                        console.log("withdrawalHistory", withdrawalHistory);
+                        // console.log("withdrawalHistory", withdrawalHistory);
                         setUserWithdrawalHistory(withdrawalHistory);
                     }
                 }

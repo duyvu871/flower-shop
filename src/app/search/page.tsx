@@ -1,5 +1,9 @@
 import React from 'react';
 import SearchScreen from "@/containers/HomePage/SearchScreen";
+import MenuBar from "@/components/Menu";
+import HomePage from "@/containers/HomePage";
+import OrderModal from "@/components/Modal/OrderModal";
+import CartModal from "@/components/Modal/CartModal";
 
 interface PageProps {
 
@@ -7,7 +11,12 @@ interface PageProps {
 
 function Page({}: PageProps) {
     return (
-       <SearchScreen />
+        <>
+            <MenuBar/>
+            <SearchScreen />
+            <OrderModal/>
+            <CartModal/>
+        </>
     );
 }
 

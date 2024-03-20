@@ -8,10 +8,14 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({error: "ID is required"}, {status: 400});
     }
 
-    const response = await SearchEngine.searchInManyCollection<MenuItemType>(
-        ['morning', 'afternoon', 'evening', 'other'].map(item => item + "-menu"),
+    const response = await SearchEngine.searchByField<MenuItemType>(
+        ['other'].map(item => item + "-menu").join(''),
         '_id',
         id,
         ['name', 'price', 'image', 'description', 'total_sold', 'address', 'discount', "_id"]
     );
+    if (!response) {
+        return NextResponse.json({error: "Failed to get menu data"}, {status: 500});
+    }
+    return NextResponse.json(response, {status: 200});
 }

@@ -1,4 +1,4 @@
-import React, {useContext, useLayoutEffect} from 'react';
+import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import {
     Navbar,
     NavbarBrand,
@@ -55,14 +55,16 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
         store.dispatch(setStoreLocation(event.target.value as keyof typeof StoreLocation));
     }
 
+
+    // const [isDesktopShow, setIsDesktopShow] = useState<string>("");
     // useLayoutEffect(() => {
-    //     if (!isLogin) {
-    //         push("/auth/signin");
+    //     if (pathname === "/profile") {
+    //         setIsDesktopShow("hidden mobile:flex");
     //     }
-    // }, [isLogin]);
+    // }, []);
 
     return (
-       <Navbar shouldHideOnScroll className={tw(isShow ? "hidden" : "", 'p-3 bg-white ')} maxWidth={"full"}>
+       <Navbar shouldHideOnScroll className={tw(isShow ? "" : "hidden", 'p-3 bg-white')} maxWidth={"full"}>
            <NavbarContent justify="start">
                <NavbarBrand onClick={logoAction} className={"cursor-pointer flex"}>
                    <Logo size={50}/>

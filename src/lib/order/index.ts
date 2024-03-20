@@ -1,14 +1,21 @@
-import {OrderType} from "types/order";
+import {OrderType, OrderWithDrawType} from "types/order";
 import {ObjectId} from "mongodb";
 import DBConfigs from "@/configs/database.config";
 import {CartItemType} from "@/contexts/MenuDataContext";
 import {calculateCart} from "@/helpers/calculateCart";
-import {messageTemplate, dataTemplate} from "@/helpers/returned_response_template";
+import {dataTemplate} from "@/helpers/returned_response_template";
 import {getGlobalConfig} from "@/lib/globalConfig";
 import clientPromise from "@/lib/mongodb";
 import {Await} from "@/helpers/helpers-type";
+import {NextResponse} from "next/server";
 
-export async function CreateOrder(cart: CartItemType[], uid: string) {
+type WithdrawPayload = {
+    volume: number;
+    uid: string;
+}
+
+
+export async function CreateOrder(cart: CartItemType[], uid: string, location: string) {
     const client =await clientPromise;
     const globalConfig = getGlobalConfig();
     const userCollection = client.db(process.env.DB_NAME).collection("users");
@@ -21,7 +28,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string) {
     if (!userData) {
         return dataTemplate({error: "Không tìm thấy người dùng trong hệ thống"}, 404);
     }
-    const orderVolume = calculateCart(cart); // calculate total order volume
+    const orderVolume = calculateCart(cart)*1000; // calculate total order volume
     // if (userData.balance < orderVolume) {
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
@@ -36,9 +43,10 @@ export async function CreateOrder(cart: CartItemType[], uid: string) {
                 takeNote: item.takeNote
             }
         }),
+        location,
         orderVolume,
         promotions: 0,
-        status: "pending",
+        status: "approved",
         isHandled: false,
         handlerId: new ObjectId(),
         receive: 0,
@@ -51,7 +59,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string) {
     if (!orderAction) {
         return dataTemplate({error: "Lỗi khi tạo đơn hàng"}, 500);
     }
-    if (orderAction.acknowledged) {
+    if (!orderAction.acknowledged) {
         return dataTemplate({error: "Thông tin đơn hàng chưa được thêm vào hệ thống"}, 500);
     }
 
@@ -66,7 +74,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string) {
         $inc: {balance: - orderVolume},
         // @ts-ignore
         $push: {
-            withDrawHistory: {
+            orderHistory: {
                 $each: [orderDataInsert._id],
                 $position: 0
             }
@@ -82,6 +90,87 @@ export async function CreateOrder(cart: CartItemType[], uid: string) {
         balance: userBalanceAfterUpdate,
         orderData: orderDataInsert
     },  200);
+}
+
+export async function getHistory(collection: string, uid: string, page: number, limit: number) {
+    const perPage = DBConfigs.perPage; // 10
+    const client = await clientPromise; // connect to database
+    const orderCollection = client.db(process.env.DB_NAME).collection(collection);
+    const count = await orderCollection.countDocuments(); // count total documents
+    const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
+    const paginate = await orderCollection.find({userId: new ObjectId(uid)}).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
+    return {
+        data: paginate,
+        count,
+        page,
+        limit,
+        perPage
+    }
+}
+
+export async function getDocumentByIds(collection: string, ids: string[]) {
+    const client = await clientPromise;
+    const orderCollection = client.db(process.env.DB_NAME).collection(collection);
+    return await orderCollection.find({_id: {$in: ids.map((id) => new ObjectId(id))}}).toArray();
+
+}
+
+export async function CreateWithdrawOrder(orderData: WithdrawPayload) {
+    const {uid, volume} = orderData;
+    const client = await clientPromise;
+    const userCollection = client.db(process.env.DB_NAME).collection("users");
+    const withdrawCollection = client.db(process.env.DB_NAME).collection("withdraws");
+
+    const userData = await userCollection.findOne({_id: new ObjectId(uid)});
+    if (!userData) {
+        return NextResponse.json({error: "Không tìm thấy người dùng trong hệ thống"}, {status: 404});
+    }
+    if (userData.balance < volume) {
+        return NextResponse.json({error: "Số dư không đủ"}, {status: 400});
+    }
+
+    const withdrawOrder: OrderWithDrawType = {
+        _id: new ObjectId(),
+        userId: new ObjectId(uid),
+        type: "withdrawal",
+        orderVolume: volume,
+        promotions: 0,
+        status: "pending",
+        isHandled: false,
+        handlerId: new ObjectId(),
+        receive: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    }
+
+    const withdrawAction = await withdrawCollection.insertOne(withdrawOrder);
+
+    if (!withdrawAction.acknowledged) {
+        return NextResponse.json({error: "Thông tin rút tiền chưa được thêm vào hệ thống"}, {status: 500});
+    }
+
+    const userBalanceAfterUpdate = userData.balance - volume;
+
+    if (userBalanceAfterUpdate < 0) {
+        return NextResponse.json({error: "Số dư không đủ"}, {status: 400});
+    }
+
+    const updateUserBalance =  await userCollection.updateOne({_id: new ObjectId(uid)}, {
+        $inc: {balance: -volume},
+        // @ts-ignore
+        $push: {
+            withDrawHistory: {
+                $each: [withdrawOrder._id],
+                $position: 0
+            }
+        }
+    });
+
+    return NextResponse.json({
+        message: "Yêu cầu rút tiền đã được thêm vào hệ thống",
+        balance: userBalanceAfterUpdate,
+        withdrawData: withdrawOrder
+    }, {status: 200});
 }
 
 

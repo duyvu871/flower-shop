@@ -55,6 +55,11 @@ export function formatCurrency(value: string): string {
     return decimalPart ? `${formattedWholeNumber}.${decimalPart}` : formattedWholeNumber;
 }
 
+export function currencyToNumber(value: string): number {
+    return parseInt(value.replace(/,/g, ''), 10);
+
+}
+
 export function usdtToVndIntegers(usdt: number | string, exchangeRate: number | string): string {
     return formatCurrency(
         multiplyLargeNumbers(

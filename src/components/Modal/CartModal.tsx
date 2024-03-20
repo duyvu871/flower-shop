@@ -9,12 +9,14 @@ import {ObjectId} from "mongodb";
 import {tw} from "@/ultis/tailwind.ultis";
 import {calculateDiscount, formatCurrency} from "@/ultis/currency-format";
 import {calculateCart} from "@/helpers/calculateCart";
+import {useRouter} from "next/navigation";
 
 interface CartModalProps {
     
 };
 
 function CartModal({}: CartModalProps) {
+    const {push} = useRouter();
     const isCartModalOpen = useSelector((state: RootState) => state.orderModal.isCartModalOpen);
     const {cart, updateCart: updateCartState, removeFromCart} = useMenuData();
     const [deleteItems, setDeleteItems] = React.useState<Record<string, boolean>>({});
@@ -24,6 +26,7 @@ function CartModal({}: CartModalProps) {
     const orderValueRef = React.useRef<HTMLInputElement>(null);
 
     const handlePayToBill = () => {
+        push("/order");
         console.log("pay to bill");
     }
     const handleDeleteList = (itemId: string) => {
@@ -155,7 +158,7 @@ function CartModal({}: CartModalProps) {
                                             />
                                         </div>
                                         <div className={"flex flex-col gap-1 w-[60%]"}>
-                                            <span className={"text-sm font-semibold"}>{item.name}</span>
+                                            <span className={"text-sm font-semibold line-clamp-2"}>{item.name}</span>
                                             <span className={"font-bold"}>{price}.000đ</span>
                                         </div>
                                     </div>

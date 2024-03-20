@@ -1,10 +1,11 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import {AuthOptions, getServerSession} from "next-auth";
 import {signIn} from "@/lib/auth/signin";
-import {UserPayload} from "@/types/userInterface";
-import {extractProperties} from "@/helpers/extractProperties";
+// import {UserPayload} from "@/types/userInterface";
+// import {extractProperties} from "@/helpers/extractProperties";
 import {UserSessionPayload} from "@/services/interface.authenticate";
 
+// @ts-ignore
 export const nextauthOptions: AuthOptions = {
     session: {
         strategy: "jwt",
@@ -12,6 +13,7 @@ export const nextauthOptions: AuthOptions = {
     },
     providers: [
         CredentialsProvider({
+            type: "credentials",
             id: "credentials",
             name: "Credentials",
             credentials: {
@@ -25,9 +27,9 @@ export const nextauthOptions: AuthOptions = {
                 },
             },
             // @ts-ignore
-            async authorize(credentials) {
+            async authorize(credentials: Record<"password"|"email", string>) {
                 return await signIn(credentials) as UserSessionPayload;
-            },
+            }
         }),
         // ...add more providers here
     ],

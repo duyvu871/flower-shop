@@ -28,7 +28,7 @@ interface OrderModalProps {
 
 function OrderModal({}: OrderModalProps) {
     // const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const { menuData, findItem, addToCart, searchItem} = useMenuData();
+    const { menuData, findItem, addToCart, getItemById} = useMenuData();
     const {isOrderModalOpen, orderId} = useSelector((state: RootState) => state.orderModal);
     const [totalOrder, setTotalOrder] = React.useState<number>(1);
     const [price, setPrice] = React.useState<number>(0);
@@ -65,7 +65,15 @@ function OrderModal({}: OrderModalProps) {
         if (item) {
             setOrderInfo(item);
         } else {
-
+           if (orderId) {
+               getItemById(orderId as string)
+                   .then((item) => {
+                       // console.log(item)
+                       if (item) {
+                           setOrderInfo(item[0]);
+                       }
+                   });
+           }
         }
     }, [orderId]);
 

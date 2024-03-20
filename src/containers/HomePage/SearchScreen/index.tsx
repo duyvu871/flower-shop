@@ -6,6 +6,8 @@ import {Image, Input, Spinner} from "@nextui-org/react";
 import {useDebounce} from "@uidotdev/usehooks"
 import {useMenuData} from "@/hooks/useMenuData";
 import MenuOrderList from "@/components/MenuOrder/MenuOrderList";
+import store from "@/redux/store";
+import {openOrderModal} from "@/redux/action/openOrderModal";
 
 interface SearchScreenProps {
 
@@ -16,7 +18,7 @@ function SearchScreen({}: SearchScreenProps) {
     const [searchValue, setSearchValue] = React.useState<string>("");
     const [searchResult, setSearchResult] = React.useState<MenuItemType[]>([]);
     const [isSearching, setIsSearching] = React.useState<boolean>(false);
-    const debouncedSearchValue = useDebounce(searchValue, 800);
+    const debouncedSearchValue = useDebounce(searchValue, 500);
     const searchRef = React.useRef<HTMLInputElement>(null);
     useEffect(() => {
        const search = async () => {
@@ -73,7 +75,8 @@ function SearchScreen({}: SearchScreenProps) {
                             key={index}
                             className={"flex flex-row justify-between items-center w-full my-4"}
                             onClick={() => {
-
+                                // console.log(item._id)
+                                store.dispatch(openOrderModal(item._id as unknown as string))
                             }}
                         >
                             <div className={"flex flex-row justify-start items-start"}>

@@ -14,3 +14,28 @@ export function formatISODate(isoDateString: Date): string {
 
     return `${formattedDate} ${formattedTime}`;
 }
+
+interface FormattedDate {
+    day: number;
+    month: number;
+    year: number;
+    time: string;
+}
+
+export function formatDate(date: Date): FormattedDate {
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-based, so add 1
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Format hours and minutes with leading zeros if needed
+    const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+
+    // Construct the time string in HH:mm format
+    const time = `${formattedHours}:${formattedMinutes}`;
+
+    return { day, month, year, time };
+}
+

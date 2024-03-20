@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import {ObjectId, WithId} from "mongodb";
 import { getServerAuthSession } from "@/lib/nextauthOptions";
 
-import {CreateOrder} from "@/lib/order";
+import {CreateOrder, CreateWithdrawOrder} from "@/lib/order";
 
 type WithdrawPayload = {
     volume: number;
@@ -17,5 +17,5 @@ export async function POST(req: NextRequest) {
     }
     const {user} = session;
     const {volume, uid} = await req.json() as WithdrawPayload;
-    return await CreateOrder({volume, uid});
+    return await CreateWithdrawOrder({volume, uid});
 }

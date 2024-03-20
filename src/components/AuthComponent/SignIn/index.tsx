@@ -16,8 +16,8 @@ import { signIn } from "next-auth/react";
 import {useAuth} from "@/hooks/useAuth";
 
 
-export default function SignUpForm() {
-    const {isLogin, user} = useAuth();
+export default function SignInForm() {
+    // const {isLogin, user} = useAuth();
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [isRemember, setIsRemember] = React.useState<boolean>(false);
@@ -67,15 +67,15 @@ export default function SignUpForm() {
     }
     const toggleVisibility = () => setIsVisible(!isVisible);
 
-    useLayoutEffect(() => {
-        if (isLogin) {
-            push("/");
-        }
-    }, [isLogin]);
+    // useLayoutEffect(() => {
+    //     if (isLogin) {
+    //         push("/");
+    //     }
+    // }, [isLogin]);
 
     return (
-        <div className={"flex justify-center items-start h-full bg-gray-100 p-10"}>
-            <div className={"w-[600px] bg-white p-5 py-10 rounded-xl"}>
+        <div className={"flex justify-center items-start h-full bg-gray-100 p-5 mobile:p-10"}>
+            <div className={"w-[600px] bg-white p-2 mobile:p-5 py-10 rounded-xl"}>
                 <p className={"text-[24px] font-bold text-center mb-8 text-gray-800"}>
                     Đăng nhập
                 </p>
@@ -83,6 +83,7 @@ export default function SignUpForm() {
                     <Input
                         autoComplete={"off"}
                         spellCheck={false}
+                        autoCapitalize={"off"}
                         fullWidth
                         value={value}
                         type="text"
@@ -124,14 +125,14 @@ export default function SignUpForm() {
                         className="max-w-xl text-gray-800"
                     />
                     <Spacer y={6}/>
-                    <div className={"flex justify-between items-start"}>
+                    <div className={"flex justify-between items-start gap-2"}>
                         <Checkbox onValueChange={(value) => setIsRemember(value)}>
-                            <p className={"text-[14px] text-gray-800"}>Lưu thông tin đăng nhập</p>
+                            <p className={"text-[13px] text-gray-800"}>Lưu thông tin đăng nhập</p>
                         </Checkbox>
                         <div className={"flex flex-col "}>
-                            <p className={"text-[14px] text-gray-800 cursor-pointer"}>Quên mật khẩu?</p>
+                            <p className={"text-[13px] text-gray-800 cursor-pointer"}>Quên mật khẩu?</p>
                             <Link href={"/auth/signup"}>
-                                <p className={"text-[14px] text-orange-600"}>Chưa có tài khoản?</p>
+                                <p className={"text-[13px] text-orange-600"}>Chưa có tài khoản?</p>
                             </Link>
                         </div>
                     </div>

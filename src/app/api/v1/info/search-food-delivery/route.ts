@@ -9,8 +9,7 @@ export async function GET(req: NextRequest, params: {search :string}) {
         return NextResponse.json({error: "Search query is required"}, {status: 400});
     }
     const result = await SearchEngine.searchInManyCollection<MenuItemType>(
-        // ['morning', 'afternoon', 'evening', 'other'].map(item => item + "-menu"),
-        ['other'].map(item => item + "-menu"),
+        ['morning', 'afternoon', 'evening', 'other'].map(item => item + "-menu"),
         'name',
         search,
         ['name', 'price', 'image', 'description', 'total_sold', 'address', 'discount', "_id"]

@@ -12,6 +12,7 @@
             takeNote: string;
         }[];
         // type: "withdrawal" | "refill";
+        location: string;
         orderVolume: number;
         promotions: number;
         status: "pending" | "approved" | "rejected";
@@ -46,5 +47,30 @@
         total_sold: number;
         address: string;
         discount: number;
+    }
+    export interface PurchaseOrderType {
+        _id: ObjectId;
+        amount: number;
+        status: "pending" | "approved" | "rejected";
+        paymentMethod: "cash" | "credit" | "paypal" | "zalo" | "momo" | "bank" | "other";
+        userId: string;
+        isPaid: boolean;
+        confirmed: boolean;
+        items: {id: string, quantity: number}[];
+        createdAt: Date;
+        updatedAt: Date;
+    }
+    export interface OrderWithDrawType {
+        _id: ObjectId;
+        userId: ObjectId;
+        type: "withdrawal" | "refill";
+        orderVolume: number;
+        promotions: number;
+        status: "pending" | "approved" | "rejected";
+        isHandled: boolean;
+        handlerId: ObjectId;
+        receive: number;
+        createdAt: Date;
+        updatedAt: Date;
     }
 // }

@@ -34,7 +34,7 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
         if ((title === "home" && pathName === "/")) {
             setIsCurrentScreen(true);
         } else {
-            setIsCurrentScreen(pathName.includes(title));
+            setIsCurrentScreen(pathName.split("/")[1].includes(title));
         }
 
     }, [title, pathName]);

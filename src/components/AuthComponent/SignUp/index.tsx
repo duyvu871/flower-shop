@@ -128,8 +128,8 @@ export default function SignInForm() {
     const toggleRetypeVisibility = () => setIsRetypeVisible(!isRetypeVisible);
 
     return (
-        <div className={"flex justify-center items-start h-full bg-gray-100 p-10"}>
-                <div className={"w-[600px] bg-white p-5 py-10 rounded-xl"}>
+        <div className={"flex justify-center items-start h-full bg-gray-100 p-5 mobile:p-10"}>
+                <div className={"w-[600px] bg-white p-2 mobile:p-5 py-10 rounded-xl"}>
                     <p className={"text-[24px] font-bold text-center mb-8 text-gray-800"}>
                         Đăng Ký
                     </p>
@@ -139,6 +139,7 @@ export default function SignInForm() {
                                 type="text"
                                 autoSave={"off"}
                                 spellCheck={false}
+                                autoCapitalize={"off"}
                                 // value={formState.fullName}
                                 label="Tên đầy đủ"
                                 variant={"bordered"}
