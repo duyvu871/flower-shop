@@ -25,6 +25,7 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useUserData} from "@/hooks/useUserData";
 import {useToast} from "@/hooks/useToast";
+import store from "@/redux/store";
 
 interface OrderScreenProps {
 
@@ -54,7 +55,8 @@ function OrderScreen({}: OrderScreenProps) {
             return;
         }
         success(response.message);
-        updateUserData(response.balance, "balance");
+        updateUserData({balance: response.balance}, "balance");
+        console.log(response)
         success("Đã trừ "+ formatCurrency(response.orderData.orderVolume.toString()) + "đ từ tài khoản của bạn");
     }
     const handleClearCart = () => clearCart();
@@ -72,6 +74,9 @@ function OrderScreen({}: OrderScreenProps) {
         });
         setTotalPrice(total);
     }, [cart]);
+    useEffect(() => {
+        store.dispatch({type: "CLOSE_CART_MODAL"});
+    }, []);
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center"}>
            <div className={"flex flex-col justify-center items-center p-3"}>

@@ -9,7 +9,7 @@ interface RedirectHeaderProps {
 
 function RedirectHeader({redirectUrl, title}: RedirectHeaderProps) {
     return (
-        <div className={"flex flex-row justify-start items-center w-full py-5 fixed bg-white"}>
+        <div className={"flex flex-row justify-start items-center w-full py-5 fixed z-[999] bg-white"}>
             <div className={"flex justify-center items-center rounded-full p-5 absolute"}>
                 <Link href={redirectUrl} color={"warning"}>
                     <IoArrowBackSharp size={30}/>

@@ -6,7 +6,7 @@ import {ObjectId, WithId} from "mongodb";
 import {OrderType} from "types/order";
 import {BankingMethodUpdate} from "@/services/interface.authenticate";
 
-interface ExtendedUserInterface {
+export interface ExtendedUserInterface {
     userData: WithId<UserInterface>;
     userWithdrawalHistory: OrderType[];
     // setUserData: Dispatch<SetStateAction<UserInterface>>;
@@ -17,6 +17,7 @@ interface ExtendedUserInterface {
     updateUserData: (data: Partial<WithId<UserInterface>>, key?: keyof WithId<UserInterface>) => void;
     getWithdrawalHistory: (list: ObjectId[]) => Promise<any>;
     updateUserWithdrawalHistory: (data: OrderType) => void;
+    updateFullUserData: (data: Partial<UserInterface>) => Promise<WithId<UserInterface>&{status:number}>;
 }
 
 const defaultUserData: WithId<UserInterface> = {
@@ -54,7 +55,10 @@ export const UserDataContext = createContext<ExtendedUserInterface>({
     getUserData: async () => defaultUserData,
     updateUserData: (data: Partial<WithId<UserInterface>>, key?: keyof WithId<UserInterface>) => {},
     getWithdrawalHistory: async (list: ObjectId[]) => {},
-    updateUserWithdrawalHistory: (data: OrderType) => {}
+    updateUserWithdrawalHistory: (data: OrderType) => {},
+    updateFullUserData: async (data: Partial<UserInterface>) => ({
+        ...defaultUserData, status: 200
+    })
 });
 
 export const UserDataProvider = ({children}: {children: ReactNode}) => {
@@ -63,7 +67,21 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
     const [userData, setUserData] = useState<WithId<UserInterface>>(defaultUserData);
     const [userWithdrawalHistory, setUserWithdrawalHistory] = useState<OrderType[]>([]);
     // update user data
-    const updateUserData = useCallback(function (
+    const updateFullUserData = async function (data: Partial<UserInterface>) {
+        const res = await fetch('/api/v1/auth/update/update-full-user', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        });
+        const userUpdateData = await res.json();
+        if (res.status === 200) {
+            setUserData(userUpdateData);
+        }
+        return userUpdateData as WithId<UserInterface> & {status:number};
+    }
+    const updateUserData = function (
         data: Partial<WithId<UserInterface>>, key?: keyof WithId<UserInterface>
     ) {
         if (key) {
@@ -73,7 +91,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
             //update all data
             setUserData((prevData) => ({ ...prevData, ...data }));
         }
-    }, []);
+    }
     //update user withdrawal history
     const updateUserWithdrawalHistory = useCallback(function (data: OrderType) {
         setUserWithdrawalHistory((prevData) => ([data, ...prevData]));
@@ -169,6 +187,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
 
     return (
         <UserDataContext.Provider value={{
+            updateFullUserData,
             userWithdrawalHistory,
             userData,
             updateBankingMethod,

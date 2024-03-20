@@ -74,6 +74,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
         $inc: {balance: - orderVolume},
         // @ts-ignore
         $push: {
+            // @ts-ignore
             orderHistory: {
                 $each: [orderDataInsert._id],
                 $position: 0
@@ -98,7 +99,7 @@ export async function getHistory(collection: string, uid: string, page: number, 
     const orderCollection = client.db(process.env.DB_NAME).collection(collection);
     const count = await orderCollection.countDocuments(); // count total documents
     const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
-    const paginate = await orderCollection.find({userId: new ObjectId(uid)}).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
+    const paginate = await orderCollection.find({userId: new ObjectId(uid)}).sort({createdAt: -1}).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
     return {
         data: paginate,
         count,
@@ -159,6 +160,7 @@ export async function CreateWithdrawOrder(orderData: WithdrawPayload) {
         $inc: {balance: -volume},
         // @ts-ignore
         $push: {
+            // @ts-ignore
             withDrawHistory: {
                 $each: [withdrawOrder._id],
                 $position: 0
