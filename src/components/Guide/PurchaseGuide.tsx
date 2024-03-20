@@ -23,7 +23,7 @@ function PurchaseGuide({}: PurchaseGuideProps) {
                 <span className={"text-md font-normal text-center flex flex-col "}>
                     Nội dung chuyển khoản:
                     <p>
-                        "<strong>nap tien ngonngon + SO_TIEN_NAP + TEN_NGUOI_NAP</strong>"
+                        &quot<strong>nap tien ngonngon + SO_TIEN_NAP + TEN_NGUOI_NAP</strong>&quot
                     </p>
                 </span>
             </div>
