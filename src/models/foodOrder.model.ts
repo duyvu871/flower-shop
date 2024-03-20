@@ -1,4 +1,4 @@
-import mongoose, {Document, Model, Schema} from "mongoose";
+import mongoose, {type Document, Model, Schema} from "mongoose";
 import {Schema as SchemaType} from "mongoose";
 import {ObjectId} from "mongodb";
 import {MenuItemType} from "types/order";

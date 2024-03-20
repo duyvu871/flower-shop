@@ -83,9 +83,9 @@ function WithdrawScreen({}: WithdrawScreenProps) {
                     onFocus={(e) => {
                         e.target.value = String(placeBetValue)
                     }}
-                    onBlur={(e) => {
-                        e.target.value = formatCurrency(e.target.value.toLocaleString())
-                    }}
+                    // onBlur={(e) => {
+                    //     e.target.value = formatCurrency(e.target.value.toLocaleString())
+                    // }}
                 />
                 <div className={"text-[#b94644] text-xs"}>
                     {visibleError ? "Số dư không đủ" : ""}
