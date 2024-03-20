@@ -1,7 +1,7 @@
 import React from 'react';
 import MobileNavigatorMenu from "@/components/Menu/MobileNavigatorMenu";
 import RedirectHeader from "@/components/RedirectHeader";
-import OrderHistoryScreen from "@/containers/OrderHistory/OrderHIstoryScreen";
+import OrderHistoryScreen from "@/containers/OrderHistory/OrderHistoryScreen";
 
 interface PageProps {
 

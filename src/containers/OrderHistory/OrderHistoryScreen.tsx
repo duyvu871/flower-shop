@@ -8,7 +8,7 @@ import {formatCurrency} from "@/ultis/currency-format";
 import {useSession} from "next-auth/react";
 import {useOrder} from "@/hooks/useOrder";
 import {OrderType, PurchaseOrderType} from "types/order";
-import {useMenuData} from "@/hooks/useMenuData";
+// import {useMenuData} from "@/hooks/useMenuData";
 
 interface OrderHistoryScreenProps {
 
@@ -81,16 +81,20 @@ function OrderHistoryScreen({}: OrderHistoryScreenProps) {
                                     </div>
                                     <div className={"flex flex-col justify-center items-start gap-2"}>
                                         <p className={"text-gray-500 font-semibold"}>Danh sách món ăn: </p>
-                                        <div className={"flex flex-col justify-center items-center gap-2"}>
+                                        <div className={"flex flex-col justify-center items-start gap-2"}>
                                             {orderList.map((item, index) => {
                                                 return (
-                                                    <p key={"order-item-" + index.toString()}
-                                                       className={"text-black font-semibold"}>
-
-                                                        {
-                                                            // @ts-ignore
-                                                            item.itemData.name||"ok"} x{item.totalOrder}
-                                                    </p>
+                                                    <span key={"order-item-" + index.toString()}
+                                                       className={"text-black font-semibold text-sm flex justify-center items-center gap-1"}>
+                                                        -
+                                                        <p className={"line-clamp-1"}>
+                                                             {
+                                                                 // @ts-ignore
+                                                                 item.itemData.name||"ok"
+                                                             }
+                                                        </p>
+                                                        <p>x{item.totalOrder}</p>
+                                                    </span>
                                                 );
                                             })}
                                         </div>

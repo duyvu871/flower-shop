@@ -51,7 +51,7 @@ function ProfileCard({}: ProfileCardProps) {
                             <p className={"text-2xl font-bold flex gap-1"}>
                                 {isShowBalance ?
                                     <span
-                                        className={tw(isNegativeBalance ? "text-red-500" : "text-green-500")}>{formatCurrency(userData.balance.toString()||"1000")}</span>
+                                        className={tw(isNegativeBalance ? "text-red-500" : "text-green-500")}>{formatCurrency((userData.balance||1000).toString())}</span>
                                     : <span>******</span>
                                 }
                                 <span>vnđ</span>
