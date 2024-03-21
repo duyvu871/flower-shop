@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {MenuItemType} from "types/order";
 import {IoIosSearch} from "react-icons/io";
 import {Image, Input, Spinner} from "@nextui-org/react";
@@ -15,7 +15,7 @@ interface SearchScreenProps {
 };
 
 function SearchScreen({}: SearchScreenProps) {
-    const [searchHistory, setSearchHistory] = useLocalStorage<string[]>("searchHistory", []);
+    const [searchHistory, setSearchHistory] = useState<string[]>([]);
     const { searchItem, storeItemToLocalStorage } = useMenuData();
     const [searchValue, setSearchValue] = React.useState<string>("");
     const [searchResult, setSearchResult] = React.useState<Record<string, MenuItemType[]>>({
@@ -46,6 +46,12 @@ function SearchScreen({}: SearchScreenProps) {
        }
        search();
     }, [debouncedSearchValue]);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+            setSearchHistory(searchHistory as string[]);
+        }
+    },[searchHistory]);
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center px-4 pb-[90px]"}>
             <Input
