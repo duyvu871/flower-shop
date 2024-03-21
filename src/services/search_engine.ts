@@ -1,18 +1,18 @@
 import clientPromise from "@/lib/mongodb";
-import {ObjectId, WithId} from "mongodb";
+import {Document, FindCursor, ObjectId, WithId} from "mongodb";
 
 export class SearchEngine {
     // search by field
     public static async searchByField<T>(
         collectionName: string,
         field: keyof T,
-        query: RegExp|string|number,
+        query: RegExp | string | number,
         projection: (keyof WithId<T>)[] = []
-    ): Promise<T[]|null> {
+    ): Promise<T[] | null> {
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
         const collection = db.collection(collectionName);
-        let cursor;
+        let cursor: FindCursor<WithId<Document>>;
         if (field === "_id") {
             cursor = collection.find({_id: new ObjectId(query as string)});
             return await cursor.project(projection).toArray() as T[] | null;
@@ -67,4 +67,5 @@ export class SearchEngine {
 
         return matchedCollections;
     }
+
 }

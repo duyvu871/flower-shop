@@ -50,6 +50,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
                 $inc: {total_sold: item.totalOrder}
             });
             return {
+                name: item.name,
                 menuItem: new ObjectId(item._id),
                 totalOrder: item.totalOrder,
                 takeNote: item.takeNote
@@ -118,10 +119,10 @@ export async function getHistory(collection: string, uid: string, page: number, 
     }
 }
 
-export async function getDocumentByIds(collection: string, ids: string[]) {
+export async function getDocumentByIds(collection: string, ids: string[], projection: string[] = []) {
     const client = await clientPromise;
     const orderCollection = client.db(process.env.DB_NAME).collection(collection);
-    return await orderCollection.find({_id: {$in: ids.map((id) => new ObjectId(id))}}).toArray();
+    return await orderCollection.find({_id: {$in: ids.map((id) => new ObjectId(id))}}).project(projection).toArray();
 }
 
 export async function CreateWithdrawOrder(orderData: WithdrawPayload) {

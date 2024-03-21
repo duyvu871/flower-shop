@@ -25,6 +25,7 @@ import {useAuth} from "@/hooks/useAuth";
 import {UserDataContext} from "@/contexts/UserDataContext";
 import AvatarTriggerDropdown from "@/components/Avatar/AvatarTriggerDropdown";
 import {extractProperties} from "@/helpers/extractProperties";
+import {useUserData} from "@/hooks/useUserData";
 
 interface DesktopNavigatorMenuProps {
     isShow: boolean;
@@ -39,7 +40,7 @@ const BonusTranslateIconName = {
 
 function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
     const {isLogin, user} = useAuth();
-    const {userData} = useContext(UserDataContext);
+    const {userData} = useUserData();
     const screen = useSelector((state: RootState) => state.screen.currentScreen);
     const location = useSelector((state: RootState) => state.storeLocation.currentLocation);
     const {push} = useRouter();
@@ -54,7 +55,6 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
     const handleSelectionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         store.dispatch(setStoreLocation(event.target.value as keyof typeof StoreLocation));
     }
-
 
     // const [isDesktopShow, setIsDesktopShow] = useState<string>("");
     // useLayoutEffect(() => {

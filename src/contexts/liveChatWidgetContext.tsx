@@ -34,7 +34,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
     const openWidget = (liveChatWidget?: any) => {
         setIsWidgetOpen(true);
         //@ts-ignore
-        if (livechatRef.current) {
+        if (livechatRef.current && isLiveChatLoaded) {
             //@ts-ignore
             livechatRef.current.maximize();
         } else {
@@ -46,7 +46,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
     const closeWidget = (liveChatWidget?: any) => {
         setIsWidgetOpen(false);
         //@ts-ignore
-        if (livechatRef.current) {
+        if (livechatRef.current && isLiveChatLoaded) {
             //@ts-ignore
             livechatRef.current.minimize();
             livechatRef.current.hideWidget();
@@ -86,14 +86,22 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
         window.Tawk_API = window.Tawk_API || {};
         //@ts-ignore
         window.Tawk_LoadStart = new Date();
-        //@ts-ignore
+        let interval;
         const loadLiveChat = async () => {
             try {
                 await loadScript(convertTawkUrl(AppConfig.liveChat.linkLiveChat)).then(() => {
                     console.log("loaded live chat");
                     timeout(1000).then(() => {
                         // @ts-ignore
-                        window.Tawk_API.hideWidget();
+                        interval = setInterval(() => {
+                            //@ts-ignore
+                            if (window.Tawk_API) {
+                                //@ts-ignore
+                                window.Tawk_API.hideWidget();
+                                clearInterval(interval);
+                                setIsLiveChatLoaded(true);
+                            }
+                        }, 1000);
                     })
                 });
                 //@ts-ignore

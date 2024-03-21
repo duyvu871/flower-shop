@@ -7,6 +7,7 @@ import {OrderType} from "types/order";
 import {BankingMethodUpdate} from "@/services/interface.authenticate";
 
 export interface ExtendedUserInterface {
+    fetchData: () => void;
     userData: WithId<UserInterface>;
     userWithdrawalHistory: OrderType[];
     // setUserData: Dispatch<SetStateAction<UserInterface>>;
@@ -47,6 +48,7 @@ const defaultUserData: WithId<UserInterface> = {
 }
 
 export const UserDataContext = createContext<ExtendedUserInterface>({
+    fetchData: () => {},
     userData: defaultUserData,
     userWithdrawalHistory: [],
     updateBankingMethod: async (bankMethod: BankingMethodUpdate) => {},
@@ -165,28 +167,29 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         return await res.json();
     }, [sessionData]);
 
-    useLayoutEffect( () => {
-        const fetchData = async () => {
-            try {
-                if (sessionData) {
-                    const data = await getUserData();
-                    if (data) {
-                        // console.log(data.withDrawHistory)
-                        const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
-                        // console.log("withdrawalHistory", withdrawalHistory);
-                        setUserWithdrawalHistory(withdrawalHistory);
-                    }
+    const fetchData = async () => {
+        try {
+            if (sessionData) {
+                const data = await getUserData();
+                if (data) {
+                    // console.log(data.withDrawHistory)
+                    const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
+                    // console.log("withdrawalHistory", withdrawalHistory);
+                    setUserWithdrawalHistory(withdrawalHistory);
                 }
-            } catch (err) {
-                console.error(err);
             }
-        };
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
+    useLayoutEffect( () => {
         fetchData();
     }, [sessionData]);
 
     return (
         <UserDataContext.Provider value={{
+            fetchData,
             updateFullUserData,
             userWithdrawalHistory,
             userData,

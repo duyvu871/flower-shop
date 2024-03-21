@@ -16,12 +16,16 @@ export async function GET(req: NextRequest) {
     if (!history) {
         return NextResponse.json({error: "Failed to get history"}, {status: 500});
     }
-    const {data} = history;
-    for (const item of data) {
-        for (const order of item.orderList) {
-            order.itemData = (await getDocumentByIds("other-menu", [order.menuItem]))[0];
-        }
-    }
+    // const collections = ['morning', 'afternoon', 'evening', 'other'].map(item => item + "-menu");
+
+    // const {data} = history;
+    // for (const item of data) {
+    //     for (const order of item.orderList) {
+    //         const result = await Promise.all(collections.map(collection => getDocumentByIds(collection, [order.menuItem], ["name"])));
+    //         const orderData = result.find(item => item.length > 0);
+    //         order.itemData = orderData[0];
+    //     }
+    // }
 
     return NextResponse.json(history, {status: 200});
 }

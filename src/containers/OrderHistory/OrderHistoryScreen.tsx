@@ -83,6 +83,7 @@ function OrderHistoryScreen({}: OrderHistoryScreenProps) {
                                         <p className={"text-gray-500 font-semibold"}>Danh sách món ăn: </p>
                                         <div className={"flex flex-col justify-center items-start gap-2"}>
                                             {orderList.map((item, index) => {
+                                                console.log(item)
                                                 return (
                                                     <span key={"order-item-" + index.toString()}
                                                        className={"text-black font-semibold text-sm flex justify-center items-center gap-1"}>
@@ -90,7 +91,7 @@ function OrderHistoryScreen({}: OrderHistoryScreenProps) {
                                                         <p className={"line-clamp-1"}>
                                                              {
                                                                  // @ts-ignore
-                                                                 item.itemData.name||"ok"
+                                                                 item.name||"ok"
                                                              }
                                                         </p>
                                                         <p>x{item.totalOrder}</p>

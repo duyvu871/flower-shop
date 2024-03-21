@@ -7,6 +7,7 @@
         _id: ObjectId;
         userId: ObjectId;
         orderList: {
+            name: string;
             menuItem: ObjectId;
             totalOrder: number;
             takeNote: string;

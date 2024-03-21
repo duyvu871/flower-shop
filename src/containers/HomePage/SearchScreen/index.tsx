@@ -3,17 +3,19 @@ import React, {useEffect} from 'react';
 import {MenuItemType} from "types/order";
 import {IoIosSearch} from "react-icons/io";
 import {Image, Input, Spinner} from "@nextui-org/react";
-import {useDebounce} from "@uidotdev/usehooks"
+import {useDebounce, useLocalStorage} from "@uidotdev/usehooks"
 import {useMenuData} from "@/hooks/useMenuData";
 import MenuOrderList from "@/components/MenuOrder/MenuOrderList";
 import store from "@/redux/store";
 import {openOrderModal} from "@/redux/action/openOrderModal";
+import SearchHistory from "@/containers/HomePage/SearchScreen/SearchHistory";
 
 interface SearchScreenProps {
 
 };
 
 function SearchScreen({}: SearchScreenProps) {
+    const [searchHistory, setSearchHistory] = useLocalStorage<string[]>("searchHistory", []);
     const { searchItem, storeItemToLocalStorage } = useMenuData();
     const [searchValue, setSearchValue] = React.useState<string>("");
     const [searchResult, setSearchResult] = React.useState<Record<string, MenuItemType[]>>({
@@ -29,6 +31,7 @@ function SearchScreen({}: SearchScreenProps) {
        const search = async () => {
            let result = {};
            if (debouncedSearchValue) {
+                setSearchHistory([debouncedSearchValue, ...searchHistory])
                 setIsSearching(true);
                 const searchResponse = await searchItem(debouncedSearchValue);
                 if (searchResponse) {
@@ -67,6 +70,7 @@ function SearchScreen({}: SearchScreenProps) {
                 // }}
             />
             <MenuOrderList />
+            <SearchHistory />
             <div className={"flex flex-col justify-center items-center overflow-auto"}>
                 {isSearching && (
                     <div className={"flex flex-col justify-center items-center"}>
