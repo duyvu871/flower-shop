@@ -52,12 +52,12 @@ function OrderHistoryScreen({}: OrderHistoryScreenProps) {
                                             <div className={"flex flex-row justify-center items-center"}>
                                                 {isPending
                                                     ? <BiMoneyWithdraw size={20} className={"text-gray-400"}/>
-                                                    : <BiMoneyWithdraw size={20} className={"text-green-500"}/>}
+                                                    : <BiMoneyWithdraw size={20} className={"text-danger"}/>}
                                                 {isPending
                                                     ?
                                                     <p className={"text-gray-400 font-semibold"}>{formatCurrency((orderVolume).toString())}đ</p>
                                                     :
-                                                    <p className={"text-green-500 font-semibold"}>+{formatCurrency((orderVolume).toString())}đ</p>}
+                                                    <p className={"text-danger font-semibold"}>-{formatCurrency((orderVolume).toString())}đ</p>}
                                             </div>
                                             <div className={"flex flex-row justify-center items-center gap-2"}>
                                                 <p className={"text-gray-500 pl-5 text-xs"}>{date.day}/{date.month}/{date.year} {date.time}</p>

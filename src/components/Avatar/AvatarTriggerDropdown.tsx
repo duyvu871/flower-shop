@@ -6,6 +6,7 @@ import {TbReport} from "react-icons/tb";
 import {RiCustomerService2Line} from "react-icons/ri";
 import {FaSignOutAlt} from "react-icons/fa";
 import {CgProfile} from "react-icons/cg";
+import {useLiveChatWidget} from "@/hooks/useLiveChatWidget";
 
 interface AvatarTriggerDropdownProps {
     avatarIcon: React.ReactNode;
@@ -18,6 +19,8 @@ interface AvatarTriggerDropdownProps {
 function AvatarTriggerDropdown({
     avatarIcon, userData
 }: AvatarTriggerDropdownProps) {
+    const {openWidget} = useLiveChatWidget();
+
     return (
         <Dropdown placement="bottom-end">
             <DropdownTrigger>
@@ -34,7 +37,7 @@ function AvatarTriggerDropdown({
                 <DropdownItem key="analytics" endContent={<TbReport size={20} className={"text-gray-500"}/>} href={"/cart"}>
                     Đơn hàng
                 </DropdownItem>
-                <DropdownItem key="customer-service"  endContent={<RiCustomerService2Line size={20} className={"text-gray-500"}/>} >
+                <DropdownItem key="customer-service"  endContent={<RiCustomerService2Line size={20} className={"text-gray-500"}/>} onClick={openWidget}>
                     Liên hệ cskh
                 </DropdownItem>
                 <DropdownItem key="settings" showDivider endContent={<CiSettings size={20} />} href={'/settings'}>

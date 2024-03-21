@@ -12,6 +12,7 @@
             takeNote: string;
         }[];
         // type: "withdrawal" | "refill";
+        takeNote: string;
         location: string;
         orderVolume: number;
         promotions: number;
@@ -47,6 +48,7 @@
         total_sold: number;
         address: string;
         discount: number;
+        type: "morning-menu"| "afternoon-menu" | "evening-menu" | "other-menu";
     }
     export interface PurchaseOrderType {
         _id: ObjectId;

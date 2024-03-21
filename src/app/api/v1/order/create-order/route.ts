@@ -10,6 +10,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.redirect("/")
     }
     const {user} = session;
-    const {cart, location} = await req.json() as {cart: CartItemType[], location: string};
-    return await CreateOrder(cart, user._id, location);
+    const {cart, location, takeNote} = await req.json() as {cart: CartItemType[], location: string, takeNote: string};
+    return await CreateOrder(cart, user._id, location, takeNote);
 }

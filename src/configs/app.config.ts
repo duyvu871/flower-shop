@@ -23,7 +23,8 @@ const AppConfig = {
         }
     },
     liveChat: {
-        license: 16898652
+        license: "65fb78321ec1082f04d99173",
+        linkLiveChat: 'https://tawk.to/chat/65fb78321ec1082f04d99173/1hpf4r1lj'
     }
 }
 

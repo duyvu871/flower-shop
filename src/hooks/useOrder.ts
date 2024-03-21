@@ -74,7 +74,7 @@ export function useOrder() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({cart, location})
+            body: JSON.stringify({cart, location, takeNote})
         });
         return await response.json();
     }

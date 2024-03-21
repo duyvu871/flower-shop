@@ -15,7 +15,7 @@ type WithdrawPayload = {
 }
 
 
-export async function CreateOrder(cart: CartItemType[], uid: string, location: string) {
+export async function CreateOrder(cart: CartItemType[], uid: string, location: string, takeNote: string) {
     const client =await clientPromise;
     const globalConfig = getGlobalConfig();
     const userCollection = client.db(process.env.DB_NAME).collection("users");
@@ -32,17 +32,30 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
     // if (userData.balance < orderVolume) {
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
+    const userBalanceAfterUpdate = userData.balance - orderVolume; // update user balance
+    if (userBalanceAfterUpdate < -(globalConfig.allowedDebtLimit as number)) {
+        return dataTemplate({error: "Đã quá mức nợ cho phép"}, 400);
+    }
+    const menuCollections = ["morning", "afternoon", "evening", "other"]
+        .reduce((acc, cur) => ({
+            ...acc,
+            [`${cur}-menu`]: client.db(process.env.DB_NAME).collection(`${cur}-menu`)
+        }), {});
 
     const orderDataInsert: OrderType = {
         _id: new ObjectId(),
         userId: new ObjectId(uid),
         orderList: cart.map((item) => {
+            menuCollections[item.type].updateOne({_id: new ObjectId(item._id)}, {
+                $inc: {total_sold: item.totalOrder}
+            });
             return {
                 menuItem: new ObjectId(item._id),
                 totalOrder: item.totalOrder,
                 takeNote: item.takeNote
             }
         }),
+        takeNote,
         location,
         orderVolume,
         promotions: 0,
@@ -63,10 +76,6 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
         return dataTemplate({error: "Thông tin đơn hàng chưa được thêm vào hệ thống"}, 500);
     }
 
-    const userBalanceAfterUpdate = userData.balance - orderVolume; // update user balance
-    if (userBalanceAfterUpdate < -(globalConfig.allowedDebtLimit as number)) {
-        return dataTemplate({error: "Đã quá mức nợ cho phép"}, 400);
-    }
     // if (userBalanceAfterUpdate < 0) {
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
@@ -113,7 +122,6 @@ export async function getDocumentByIds(collection: string, ids: string[]) {
     const client = await clientPromise;
     const orderCollection = client.db(process.env.DB_NAME).collection(collection);
     return await orderCollection.find({_id: {$in: ids.map((id) => new ObjectId(id))}}).toArray();
-
 }
 
 export async function CreateWithdrawOrder(orderData: WithdrawPayload) {

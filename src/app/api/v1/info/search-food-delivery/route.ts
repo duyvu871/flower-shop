@@ -12,7 +12,7 @@ export async function GET(req: NextRequest, params: {search :string}) {
         ['morning', 'afternoon', 'evening', 'other'].map(item => item + "-menu"),
         'name',
         search,
-        ['name', 'price', 'image', 'description', 'total_sold', 'address', 'discount', "_id"]
+        ['name', 'price', 'image', 'description', 'total_sold', 'address', 'discount', "_id", "type"]
         );
 
     return NextResponse.json(result, {status: 200});

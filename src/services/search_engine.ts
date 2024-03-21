@@ -37,36 +37,34 @@ export class SearchEngine {
         field: keyof T,
         query: string,
         projection: (keyof WithId<T>)[] = []
-    ): Promise<T[]|null> {
+    ): Promise<Record<typeof collectionNames[number], T[]>> {
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
-        const regex = new RegExp(["", query, ""].join(""), "i");
+        const regex = new RegExp(["", query.split(" ").map(item => `(?=.*${item})`).join("|"), ""].join(""), "i");
         const pipeline: any[] = [
             {
-                $match: {name: {$regex: regex}}
+                $match: {
+                    [field]: {
+                        $regex: regex
+                    }
+                }
             },
-            ...collectionNames.slice(1).map((collection, index) => {
-                return [
-                    {
-                        $lookup: {
-                            from: collection,
-                            localField: field,
-                            foreignField: field,
-                            as: collection
-                        }
-                    },
-                    {
-                        $unwind: `$${collection}`
-                    },
-                    {
-                        $project: {
-                            ...projection.reduce((acc, cur) => ({...acc, [cur]: 1}), {}),
-                        }
-                    },
-                ]
-            }).flat()
+            {
+                $project: {
+                    ...projection.reduce((acc, cur) => ({...acc, [cur]: 1}), {}),
+                }
+            },
         ];
 
-        return await db.collection(collectionNames[0]).aggregate(pipeline).toArray() as T[] | null;
+        const matchedCollections: Record<typeof collectionNames[number], T[]> = {};
+        for (const collectionName of collectionNames) {
+            const cursor = db.collection(collectionName).aggregate(pipeline);
+            const result = await cursor.toArray() as T[] | null;
+            if (result) {
+                matchedCollections[collectionName] = result;
+            }
+        }
+
+        return matchedCollections;
     }
 }

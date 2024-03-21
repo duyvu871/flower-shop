@@ -56,7 +56,7 @@ function OrderScreen({}: OrderScreenProps) {
         }
         success(response.message);
         updateUserData({balance: response.balance}, "balance");
-        console.log(response)
+        // console.log(response)
         success("Đã trừ "+ formatCurrency(response.orderData.orderVolume.toString()) + "đ từ tài khoản của bạn");
     }
     const handleClearCart = () => clearCart();

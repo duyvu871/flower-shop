@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set DEV_HOSTNAME=192.168.22.110&&node --max-old-space-size=2048 server.js",
+    "dev": "set DEV_HOSTNAME=192.168.31.197&&node --max-old-space-size=2048 server.js",
     "build": "next build",
     "start": "set NODE_ENV=production && next build && next start"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.10",
+    "@tawk.to/tawk-messenger-react": "^2.0.2",
     "@uidotdev/usehooks": "^2.4.1",
     "bcrypt": "^5.1.1",
     "bignumber.js": "^9.1.2",

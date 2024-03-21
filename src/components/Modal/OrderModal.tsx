@@ -28,7 +28,7 @@ interface OrderModalProps {
 
 function OrderModal({}: OrderModalProps) {
     // const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const { menuData, findItem, addToCart, getItemById} = useMenuData();
+    const { findItem, addToCart, getItemById, storeItemToLocalStorage} = useMenuData();
     const {isOrderModalOpen, orderId} = useSelector((state: RootState) => state.orderModal);
     const [totalOrder, setTotalOrder] = React.useState<number>(1);
     const [price, setPrice] = React.useState<number>(0);
@@ -43,6 +43,7 @@ function OrderModal({}: OrderModalProps) {
         total_sold: 0,
         address: "",
         discount: 0,
+        type: "morning-menu",
         // category: "",
     });
     const handleAddToCart = () => {
@@ -66,11 +67,12 @@ function OrderModal({}: OrderModalProps) {
             setOrderInfo(item);
         } else {
            if (orderId) {
-               getItemById(orderId as string)
+               getItemById([orderId] as string[])
                    .then((item) => {
                        // console.log(item)
                        if (item) {
                            setOrderInfo(item[0]);
+                           storeItemToLocalStorage(item[0]);
                        }
                    });
            }

@@ -33,8 +33,10 @@ export interface MenuData {
     allMenuType: AllMenuType;
     updateAllMenuType: (data: AllMenuType) => void;
     getAllTypeMenu: () => Promise<AllMenuType|null>;
-    searchItem: (search: string) => Promise<MenuItemType[]|null>;
+    searchItem: (search: string) => Promise<Record<string, MenuItemType[]>|null>;
     getItemById: (id: string[]) => Promise<MenuItemType[]|null>;
+    storeItemToLocalStorage: (data: MenuItemType) => void;
+    getStoreItemFromLocalStorage: () => MenuItemType[];
 }
 
 const MenuListResponseDefault: GetMenuListType = {
@@ -73,13 +75,33 @@ export const MenuDataContext = createContext<MenuData>({
     updateAllMenuType: (data: AllMenuType) => {},
     getAllTypeMenu: async () => null,
     searchItem: async (search: string) => null,
-    getItemById: async (id: string[]) => null
+    getItemById: async (id: string[]) => null,
+    storeItemToLocalStorage: (data: MenuItemType) => {},
+    getStoreItemFromLocalStorage: () => []
 } as MenuData);
 
 export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     const [menuData, setMenuData] = React.useState<MenuItemType[]>([]);
     const [cart, setCart] = React.useState<CartItemType[]>([]);
     const [allMenuType, setAllMenuType] = React.useState<AllMenuType>(AllMenuTypeDefault);
+
+    const storeItemToLocalStorage = (data: MenuItemType) => {
+        const storeItem = JSON.parse(localStorage.getItem("store-menu"));
+        if (storeItem) {
+            const neededStore = storeItem.find((item: MenuItemType) => item._id as unknown as string === data._id as unknown as string);
+            if (neededStore) return;
+            localStorage.setItem("store-menu", JSON.stringify([...storeItem, data]));
+            return;
+        }
+        localStorage.setItem("store-menu", JSON.stringify([data]));
+        return;
+    }
+
+    const getStoreItemFromLocalStorage = () => {
+        const storeItem = JSON.parse(localStorage.getItem("store-menu"));
+        if (storeItem) return storeItem;
+        return [];
+    }
 
     const getItemById = async (id: string[]) => {
         // console.log("MenuDataProvider", "getItemByIs", id)
@@ -94,7 +116,7 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     const searchItem = async (search: string) => {
         const response = await fetch(routePaths.searchFood + `?search=${search}`);
         if (response.status === 200) {
-            return await response.json() as MenuItemType[];
+            return await response.json() as Record<string, MenuItemType[]>;
         }
         console.log("MenuDataProvider", "searchItem", "Failed to get menu data");
         return null;
@@ -115,6 +137,8 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
         if (evening) return evening as MenuItemType;
         const other = allMenuType.other.data.find(item => item._id as unknown as string === id);
         if (other) return other as MenuItemType;
+        const storeItem = getStoreItemFromLocalStorage().find((item: MenuItemType) => item._id as unknown as string === id);
+        if (storeItem) return storeItem as MenuItemType;
         return undefined;
     }
    const filterItem = (ids: string[]) => {
@@ -191,6 +215,8 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
         setCart([]);
     }
 
+
+
     const payTheBill = () => {
 
     }
@@ -209,6 +235,8 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     }, []);
     return (
         <MenuDataContext.Provider value={{
+            storeItemToLocalStorage,
+            getStoreItemFromLocalStorage,
             getAllTypeMenu,
             updateAllMenuType,
             allMenuType,

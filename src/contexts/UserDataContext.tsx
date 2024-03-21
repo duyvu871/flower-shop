@@ -77,7 +77,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         });
         const userUpdateData = await res.json();
         if (res.status === 200) {
-            setUserData(userUpdateData);
+            setUserData({...userData, ...data});
         }
         return userUpdateData as WithId<UserInterface> & {status:number};
     }

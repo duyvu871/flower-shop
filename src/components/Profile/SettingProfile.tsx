@@ -8,6 +8,7 @@ import {useRouter} from "next/navigation";
 import {PiSignOutBold} from "react-icons/pi";
 import {signOut} from "next-auth/react";
 import {HiOutlineBanknotes} from "react-icons/hi2";
+import {useLiveChatWidget} from "@/hooks/useLiveChatWidget";
 
 interface SettingProfileProps {
 
@@ -15,6 +16,7 @@ interface SettingProfileProps {
 
 function SettingProfile({}: SettingProfileProps) {
     const {push} = useRouter();
+    const {openWidget} = useLiveChatWidget();
     const handler = [
         {
             iconStart: <HiOutlineBanknotes size={25} className={"text-green-500"}/>,
@@ -48,7 +50,7 @@ function SettingProfile({}: SettingProfileProps) {
         {
             iconStart: <RiCustomerService2Line size={25} />,
             title: "Liên hệ cskh",
-            action: () => {}
+            action: () => {openWidget()}
         },
         {
             iconStart: <PiSignOutBold size={25} className={"text-red-500"}/>,
