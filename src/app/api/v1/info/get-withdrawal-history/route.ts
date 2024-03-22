@@ -20,3 +20,4 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(withdraws.reverse(), {status: 200});
 }
+export const dynamic = "force-dynamic";

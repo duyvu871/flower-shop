@@ -21,3 +21,4 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(userData, {status: 200});
 }
+export const dynamic = "force-dynamic";

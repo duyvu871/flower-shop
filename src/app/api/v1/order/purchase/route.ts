@@ -30,3 +30,4 @@ export async function GET(req: NextRequest) {
     const response = await getPurchaseHistory(user._id, 10, Number(page) || 1);
     return dataTemplate(response, 200);
 }
+export const dynamic = "force-dynamic";

@@ -19,3 +19,4 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(menuListWithPaginate, {status: 200});
 }
+export const dynamic = "force-dynamic";

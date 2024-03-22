@@ -19,3 +19,5 @@ export async function POST(req: NextRequest) {
     const {volume, uid} = await req.json() as WithdrawPayload;
     return await CreateWithdrawOrder({volume, uid});
 }
+
+export const dynamic = "force-dynamic";

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     try {
         const json: ISignUpRequest = await request.json();
         console.log(json);
-        revalidateTag('signup');
+        // revalidateTag('signup');
         const response = await signUp({...json});
 
         return new NextResponse(JSON.stringify(response), {
@@ -29,4 +29,4 @@ export async function POST(request: NextRequest) {
     }
 }
 
-export const revalidate = 360;
+export const dynamic = "force-dynamic";
