@@ -7,6 +7,7 @@ import {RiCustomerService2Line} from "react-icons/ri";
 import {FaSignOutAlt} from "react-icons/fa";
 import {CgProfile} from "react-icons/cg";
 import {useLiveChatWidget} from "@/hooks/useLiveChatWidget";
+import store from "@/redux/store";
 
 interface AvatarTriggerDropdownProps {
     avatarIcon: React.ReactNode;
@@ -34,7 +35,7 @@ function AvatarTriggerDropdown({
                 <DropdownItem key="profile" endContent={<CgProfile size={20}/>} href={'/profile'}>
                     Thông tin của tôi
                 </DropdownItem>
-                <DropdownItem key="analytics" endContent={<TbReport size={20} className={"text-gray-500"}/>} href={"/cart"}>
+                <DropdownItem key="analytics" endContent={<TbReport size={20} className={"text-gray-500"}/>} onClick={() => store.dispatch({type: "OPEN_CART_MODAL"})}>
                     Đơn hàng
                 </DropdownItem>
                 <DropdownItem key="customer-service"  endContent={<RiCustomerService2Line size={20} className={"text-gray-500"}/>} onClick={openWidget}>
