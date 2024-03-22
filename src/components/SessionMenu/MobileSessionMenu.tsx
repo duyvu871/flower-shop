@@ -74,15 +74,15 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 
     return (
         <>
-            <div className={" flex flex-col justify-center items-center gap-1 mobile:px-10"}>
+            <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
                     <h1>Menu sáng</h1>
                 </div>
-                <div className={"grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
+                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
                     <ItemList menuData={allMenuType.morning.data as MenuItemType[]}/>
                 </div>
             </div>
-            <div className={" flex flex-col justify-center items-center gap-1 mobile:px-10"}>
+            <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
                     <h1 >Menu chiều</h1>
                 </div>
@@ -90,16 +90,16 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
                     <ItemList menuData={allMenuType.afternoon.data as MenuItemType[]}/>
                 </div>
             </div>
-            <div className={" flex flex-col justify-center items-center gap-1 mobile:px-10"}>
+            <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
                     <h1>Menu tối</h1>
                 </div>
-                <div className={"grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
+                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
                     <ItemList menuData={allMenuType.evening.data as MenuItemType[]}/>
                 </div>
             </div>
             <InfiniteScroll
-                className={" flex flex-col justify-center items-center gap-4 mobile:px-10"}
+                className={"w-full flex flex-col justify-center items-center gap-4 mobile:px-10"}
                 fetchMore={() => {
                     setCurrentPagination((prev) => prev + 1);
                 }}
@@ -110,7 +110,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
                     <h1>Các món khác</h1>
                 </div>
-                <div className={"grid grid-cols-2 sm:grid-cols-4 md:gap-4"}>
+                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4"}>
                     <ItemList menuData={allMenuType.other.data as MenuItemType[]}/>
                 </div>
             </InfiniteScroll>

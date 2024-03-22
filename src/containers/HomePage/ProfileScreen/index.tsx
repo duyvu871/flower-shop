@@ -22,7 +22,7 @@ function ProfileScreen({}: ProfileScreenProps) {
                     isBordered
                     color="warning"
                     size="lg"
-                    name={userData.fullName}
+                    // name={userData.fullName}
                     src={userData.avatar}
                     className={"text-white font-bold uppercase cursor-pointer"}
                     classNames={{

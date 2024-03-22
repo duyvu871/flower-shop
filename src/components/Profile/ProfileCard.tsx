@@ -31,7 +31,7 @@ function ProfileCard({}: ProfileCardProps) {
                             isBordered
                             color="warning"
                             // size="lg"
-                            name={userData.fullName}
+                            // name={userData.fullName}
                             src={userData.avatar}
                             className={"text-white text-2xl font-bold uppercase cursor-pointer w-20 h-20"}/>
                         <div className={"flex flex-col justify-center items-center gap-2"}>
