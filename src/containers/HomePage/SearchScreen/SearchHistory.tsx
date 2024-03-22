@@ -5,21 +5,16 @@ import {RxCounterClockwiseClock} from "react-icons/rx";
 import {IoMdSearch} from "react-icons/io";
 
 interface SearchHistoryProps {
-    
+    searchHistory: string[];
+    setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function SearchHistory({}: SearchHistoryProps) {
-    const [searchHistory, setSearchHistory] = useLocalStorage<string[]>("searchHistory", []);
-    useEffect(() => {
-        if (searchHistory.length > 4) {
-            setSearchHistory(searchHistory.slice(0, 4));
-        }
-    }, [searchHistory]);
+function SearchHistory({searchHistory, setSearchValue}: SearchHistoryProps) {
 
     return (
-        <div className={"flex flex-row justify-start items-center gap-4 pb-2 w-full"}>
+        <div className={"flex flex-wrap flex-row justify-start items-center gap-4 pb-2 w-full"}>
             {searchHistory.map((item, index) => (
-                <div key={"search-history-"+index} className={"flex justify-center items-center gap-3"}>
+                <div key={"search-history-"+index} className={"flex justify-center items-center gap-3 hover:bg-gray-100 transition-all hover:rounded px-2 py-1"} onClick={() => setSearchValue(item)}>
                     {index === 0 ? <IoMdSearch /> : <RxCounterClockwiseClock />}
                     <p className={"text-sm"}>{item}</p>
                 </div>

@@ -41,21 +41,32 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
             ...acc,
             [`${cur}-menu`]: client.db(process.env.DB_NAME).collection(`${cur}-menu`)
         }), {});
+    // console.log(menuCollections);
+    const orderList = new Array(cart.length).fill(null);
+    for (let i = 0; i < cart.length; i++) {
+        const item = cart[i];
+        const menuType = item.type;
+        const menuItem = await menuCollections[menuType].updateOne({_id: new ObjectId(item._id)}, {
+            $inc: {total_sold: item.totalOrder}
+        });
+        if (!menuItem) {
+            return dataTemplate({error: "thêm sản phẩm không thành công"}, 404);
+        }
+        // if (menuItem.total_sold + item.totalOrder > menuItem.total) {
+        //     return dataTemplate({error: "Sản phẩm đã hết hàng"}, 400);
+        // }
+        orderList[i] = {
+            name: item.name,
+            menuItem: new ObjectId(item._id),
+            totalOrder: item.totalOrder,
+            takeNote: item.takeNote
+        }
+    }
 
     const orderDataInsert: OrderType = {
         _id: new ObjectId(),
         userId: new ObjectId(uid),
-        orderList: cart.map((item) => {
-            menuCollections[item.type].updateOne({_id: new ObjectId(item._id)}, {
-                $inc: {total_sold: item.totalOrder}
-            });
-            return {
-                name: item.name,
-                menuItem: new ObjectId(item._id),
-                totalOrder: item.totalOrder,
-                takeNote: item.takeNote
-            }
-        }),
+        orderList,
         takeNote,
         location,
         orderVolume,

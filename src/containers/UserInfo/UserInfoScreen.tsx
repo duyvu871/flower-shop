@@ -155,8 +155,8 @@ function UserInfoScreen({}: UserInfoScreenProps) {
                <div className={"w-full flex justify-center items-center p-5"}>
                    <Button color={"success"} className={"text-white"} disabled={isUpdating} onClick={handleUpdate}>
                           {isUpdating
-                              ? <span className={"flex justify-center items-center"}>
-                                  <Spinner size={"sm"}/>
+                              ? <span className={"flex justify-center items-center gap-1"}>
+                                  <Spinner size={"sm"} color={"white"}/>
                                   <p>Đang cập nhật</p>
                               </span>
                               : "Lưu thay đổi"}

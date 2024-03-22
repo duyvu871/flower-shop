@@ -4,7 +4,8 @@ import {RootState} from "@/redux/reducers";
 import {changeScreen} from "@/redux/action/activeMenuFeature";
 import store from "@/redux/store";
 import {tw} from "@/ultis/tailwind.ultis";
-import {useRouter ,usePathname} from "next/navigation";
+import {useRouter ,usePathname, redirect} from "next/navigation";
+import {Link} from "@nextui-org/react";
 
 export enum TranslateIconName {
     home= "Trang chủ",
@@ -28,6 +29,7 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
     const handleChangeScreen = (screen: ReturnType<typeof changeScreen>['payload']) => {
         // if (screen === title) return;
         // store.dispatch(changeScreen(screen));
+        // redirect(path);
         router.push(path);
     }
     useEffect(() => {
@@ -39,16 +41,18 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
 
     }, [title, pathName]);
     return (
-        <div
-            className={tw(
-                "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray hover:bg-gray-100",
-                isCurrentScreen ? "text-orange-600 border-orange-600 bg-gray-50" : ""
-            )}
-            onClick={() => handleChangeScreen(title)}
-        >
-            <div className={"text-center text-2xl"}>{customIcon}</div>
-            <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
-        </div>
+        <Link href={path} className={tw(
+            "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray hover:bg-gray-100",
+            isCurrentScreen ? "text-orange-600 border-orange-600 bg-gray-50" : ""
+        )}>
+            {/*<div*/}
+
+            {/*    // onClick={() => handleChangeScreen(title)}*/}
+            {/*>*/}
+                <div className={"text-center text-2xl"}>{customIcon}</div>
+                <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
+            {/*</div>*/}
+        </Link>
     )
 }
 

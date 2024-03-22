@@ -10,6 +10,7 @@ import {tw} from "@/ultis/tailwind.ultis";
 import {calculateDiscount, formatCurrency} from "@/ultis/currency-format";
 import {calculateCart} from "@/helpers/calculateCart";
 import {useRouter} from "next/navigation";
+import {storeToLocalStorage} from "@/ultis/storeToLocalStorage";
 
 interface CartModalProps {
     
@@ -26,6 +27,7 @@ function CartModal({}: CartModalProps) {
     const orderValueRef = React.useRef<HTMLInputElement>(null);
 
     const handlePayToBill = () => {
+
         push("/order");
         console.log("pay to bill");
     }
@@ -34,6 +36,9 @@ function CartModal({}: CartModalProps) {
             ...prevCheckedItems,
             [itemId]: !prevCheckedItems[itemId],
         }));
+        updateCart('delete_or_select', !deleteItems[itemId], itemId);
+        // @ts-ignore
+        storeToLocalStorage("isPayAll", !!cart.find(item => item.delete_or_select === true));
     };
     const handleItemQuantity = (itemId: string, quantity: string) => {
         const parsedValue = parseInt(quantity);
@@ -42,11 +47,13 @@ function CartModal({}: CartModalProps) {
                 ...prevInputValues,
                 [itemId]: parsedValue,
             }));
+            updateCart('totalOrder', parsedValue, itemId);
         } else {
             setOrderQuantity((prevInputValues) => ({
                 ...prevInputValues,
                 [itemId]: 1,
             }));
+            updateCart('totalOrder', 1, itemId);
         }
     }
     const handleRemoveFromCart = (itemIds: string[]) => {
@@ -68,7 +75,7 @@ function CartModal({}: CartModalProps) {
         updateCart('totalOrder', newTotalOrder, _id);
     }
 
-    const updateCart = (key: string, value: string | number, _id: ObjectId | string) => {
+    const updateCart = (key: string, value: string | number | any, _id: ObjectId | string) => {
         const findItem = cart.find(item => item._id === _id);
         if (!findItem) return;
         const updatedItem = {...findItem, [key]: value};
@@ -177,8 +184,8 @@ function CartModal({}: CartModalProps) {
                                                 inputMode={"numeric"}
                                                 ref={orderValueRef}
                                                 value={orderQuantity[item._id as unknown as string]}
-                                                onChange={(e) => handleItemQuantity(item._id as unknown as string, e.target.value)
-                                                }/>
+                                                onChange={(e) => handleItemQuantity(item._id as unknown as string, e.target.value)}
+                                            />
                                             <button
                                                 onClick={() => plusTotalOrder(item._id as unknown as string)}
                                                 className={"rounded bg-orange-600 border-orange-600 border-2 text-white w-fit text-sm px-1"}

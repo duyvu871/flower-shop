@@ -21,6 +21,8 @@ import {isNumber} from "@/ultis/validate.ultis";
 import {calculateDiscount} from "@/ultis/currency-format";
 import {Textarea} from "@nextui-org/input";
 import {useMenuData} from "@/hooks/useMenuData";
+import {storeToLocalStorage} from "@/ultis/storeToLocalStorage";
+import {useRouter} from "next/navigation";
 
 interface OrderModalProps {
 
@@ -28,6 +30,7 @@ interface OrderModalProps {
 
 function OrderModal({}: OrderModalProps) {
     // const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {push } = useRouter();
     const { findItem, addToCart, getItemById, storeItemToLocalStorage} = useMenuData();
     const {isOrderModalOpen, orderId} = useSelector((state: RootState) => state.orderModal);
     const [totalOrder, setTotalOrder] = React.useState<number>(1);
@@ -50,7 +53,15 @@ function OrderModal({}: OrderModalProps) {
         addToCart(orderInfo, totalOrder, takeNote);
         store.dispatch(closeOrderModal());
     }
-
+    const handleImmediately =() => {
+        storeToLocalStorage("order-immediately", {
+            ...orderInfo,
+            totalOrder,
+            takeNote
+        });
+        store.dispatch(closeOrderModal());
+        push("/order?immediately=true");
+    }
     useEffect(() => {
         if (orderValueRef.current) {
             orderValueRef.current.value = totalOrder.toString();
@@ -176,7 +187,7 @@ function OrderModal({}: OrderModalProps) {
                        <ModalFooter>
                            <div className={"flex flex-row gap-2"}>
                                <Button className={"bg-orange-600 text-white"} onClick={handleAddToCart}>Thêm vào giỏ hàng</Button>
-                               <Button className={""}>Đặt ngay</Button>
+                               <Button className={""} onClick={handleImmediately}>Đặt ngay</Button>
                            </div>
                        </ModalFooter>
                    </>

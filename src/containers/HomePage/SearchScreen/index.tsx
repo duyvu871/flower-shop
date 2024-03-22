@@ -1,9 +1,10 @@
 "use client";
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {MenuItemType} from "types/order";
+import {MenuItemType, TranslateMenuType} from "types/order";
 import {IoIosSearch} from "react-icons/io";
 import {Image, Input, Spinner} from "@nextui-org/react";
-import {useDebounce, useLocalStorage} from "@uidotdev/usehooks"
+import {useDebounce} from "@uidotdev/usehooks"
+import useLocalStorage from "@/hooks/useLocalStorage";
 import {useMenuData} from "@/hooks/useMenuData";
 import MenuOrderList from "@/components/MenuOrder/MenuOrderList";
 import store from "@/redux/store";
@@ -15,7 +16,7 @@ interface SearchScreenProps {
 };
 
 function SearchScreen({}: SearchScreenProps) {
-    const [searchHistory, setSearchHistory] = useState<string[]>([]);
+    const [searchHistory, setSearchHistory] = useState<string[]>( []);
     const { searchItem, storeItemToLocalStorage } = useMenuData();
     const [searchValue, setSearchValue] = React.useState<string>("");
     const [searchResult, setSearchResult] = React.useState<Record<string, MenuItemType[]>>({
@@ -28,10 +29,22 @@ function SearchScreen({}: SearchScreenProps) {
     const debouncedSearchValue = useDebounce(searchValue, 500);
     const searchRef = React.useRef<HTMLInputElement>(null);
     useEffect(() => {
+
        const search = async () => {
            let result = {};
            if (debouncedSearchValue) {
-                setSearchHistory([debouncedSearchValue, ...searchHistory])
+                const searchHistory = localStorage.getItem("searchHistory");
+                if (searchHistory) {
+                     const history = JSON.parse(searchHistory) as string[]
+                     if (!history.includes(debouncedSearchValue)) {
+                         const storeHistory = [debouncedSearchValue, ...history].slice(0, 4);
+                         localStorage.setItem("searchHistory", JSON.stringify(storeHistory));
+                            setSearchHistory(storeHistory);
+                     }
+                } else {
+                    localStorage.setItem("searchHistory", JSON.stringify([debouncedSearchValue]));
+                    setSearchHistory([debouncedSearchValue]);
+                }
                 setIsSearching(true);
                 const searchResponse = await searchItem(debouncedSearchValue);
                 if (searchResponse) {
@@ -46,12 +59,14 @@ function SearchScreen({}: SearchScreenProps) {
        }
        search();
     }, [debouncedSearchValue]);
+
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            window.localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-            setSearchHistory(searchHistory as string[]);
+        const searchHistory = localStorage.getItem("searchHistory");
+        if (searchHistory) {
+            setSearchHistory(JSON.parse(searchHistory) as string[]);
         }
-    },[searchHistory]);
+    }, []);
+
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center px-4 pb-[90px]"}>
             <Input
@@ -64,6 +79,7 @@ function SearchScreen({}: SearchScreenProps) {
                 className={"w-full outline-none"}
                 placeholder="Tìm kiếm món ăn..."
                 size="sm"
+                value={searchValue}
                 startContent={<IoIosSearch size={18} />}
                 type="search"
                 ref={searchRef}
@@ -76,7 +92,7 @@ function SearchScreen({}: SearchScreenProps) {
                 // }}
             />
             <MenuOrderList />
-            <SearchHistory />
+            <SearchHistory searchHistory={searchHistory} setSearchValue={setSearchValue}/>
             <div className={"flex flex-col justify-center items-center overflow-auto"}>
                 {isSearching && (
                     <div className={"flex flex-col justify-center items-center"}>
@@ -87,7 +103,7 @@ function SearchScreen({}: SearchScreenProps) {
                 <div className={" w-full"}>
                     {Object.keys(searchResult).map((key, index) => (
                         <div key={"search-"+key} className={"flex flex-col justify-center items-start"}>
-                            <p className={"text-xl font-semibold text-center"}>{searchResult[key].length ? key : ""}</p>
+                            <p className={"text-xl font-semibold text-center"}>{searchResult[key].length ? TranslateMenuType[key] : ""}</p>
                             <div className={"flex flex-col justify-center items-center pl-2"}>
                                 {searchResult[key].map((item, index) => {
                                     storeItemToLocalStorage(item);

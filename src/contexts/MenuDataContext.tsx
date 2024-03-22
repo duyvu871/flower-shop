@@ -215,8 +215,6 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
         setCart([]);
     }
 
-
-
     const payTheBill = () => {
 
     }

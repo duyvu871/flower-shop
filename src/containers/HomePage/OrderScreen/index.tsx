@@ -22,16 +22,18 @@ import {FaLocationArrow} from "react-icons/fa";
 import {Textarea} from "@nextui-org/input";
 // import {useUserData} from "@/hooks/useUserData";
 import {useSession} from "next-auth/react";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useUserData} from "@/hooks/useUserData";
 import {useToast} from "@/hooks/useToast";
 import store from "@/redux/store";
+import {CartItemType} from "@/contexts/MenuDataContext";
 
 interface OrderScreenProps {
 
 };
 
 function OrderScreen({}: OrderScreenProps) {
+    const isImmediately = useSearchParams().get("immediately");
     const {cart,clearCart} = useMenuData();
     const {userData, updateUserData} = useUserData();
     const {createOrder} = useOrder();
@@ -43,12 +45,16 @@ function OrderScreen({}: OrderScreenProps) {
     const [location, setLocation] = React.useState<string>("");
     const [takeNote, setTakeNote] = React.useState<string>("");
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [cartTemp, setCartTemp] = React.useState<CartItemType[]>([]);
+    const [isPayAll, setIsPayAll] = React.useState<boolean>(false);
+
     const handleOrder = async () => {
         if (!data) {
             return push("/auth/signin");
         }
+
         setIsLoading(true);
-        const response = await createOrder(cart, location||userData.address, takeNote);
+        const response = await createOrder(cartTemp, location||userData.address, takeNote);
         setIsLoading(false);
         if (response.status !== 200) {
             error(response.error);
@@ -59,7 +65,14 @@ function OrderScreen({}: OrderScreenProps) {
         // console.log(response)
         success("Đã trừ "+ formatCurrency(response.orderData.orderVolume.toString()) + "đ từ tài khoản của bạn");
     }
-    const handleClearCart = () => clearCart();
+    const handleClearCart = () => {
+        if (!isImmediately) {
+            clearCart();
+        } else {
+            localStorage.removeItem("order-immediately");
+            push("/");
+        }
+    }
 
     useEffect(() => {
         if (data) {
@@ -69,19 +82,41 @@ function OrderScreen({}: OrderScreenProps) {
 
     useEffect(() => {
         let total = 0;
-        cart.forEach(item => {
-            total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
-        });
+        if (isPayAll) {
+            cartTemp.forEach(item => {
+                //@ts-ignore
+                if (item.delete_or_select) {
+                    total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
+                }
+            })
+        } else {
+            cartTemp.forEach(item => {
+                total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
+            });
+        }
         setTotalPrice(total);
-    }, [cart]);
+    }, [cartTemp]);
     useEffect(() => {
         store.dispatch({type: "CLOSE_CART_MODAL"});
-    }, []);
+        if (!isImmediately) {
+            setCartTemp(cart);
+        } else {
+            setCartTemp(
+                isImmediately.toString() === "true"
+                    ? [JSON.parse(localStorage.getItem("order-immediately")||"{}")]
+                    : cart);
+        }
+        const isPayAll = localStorage.getItem("isPayAll");
+        setIsPayAll(isPayAll === "true");
+    }, [cart]);
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center"}>
            <div className={"flex flex-col justify-center items-center p-3"}>
-               {cart.map((item, index) => {
+               {cartTemp.map((item, index) => {
                    const price = Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)));
+                   //@ts-ignore
+                   if (!item.delete_or_select && isPayAll) return null;
+
                    return (
                        <div key={index} className={"w-full flex flex-row justify-between items-start gap-2 my-1"}>
                            <div className={"flex flex-row justify-center items-start gap-2 w-[70%]"}>
@@ -108,7 +143,7 @@ function OrderScreen({}: OrderScreenProps) {
            </div>
             <div className={"flex flex-col justify-center items-center gap-2 fixed bottom-[90px]"}>
                 <div className={""}>
-                    {totalPrice > 0 ? <span className={"text-xl font-bold"}>Tổng cộng: {totalPrice}.000đ</span> : "Không có sản phẩm nào trong giỏ hàng"}
+                    {totalPrice > 0 ? <span className={"text-xl font-bold"}>Tổng cộng: {formatCurrency(totalPrice.toString())},000đ</span> : "Không có sản phẩm nào trong giỏ hàng"}
                 </div>
                 <div className={"flex flex-row justify-center items-center gap-2"}>
                     {totalPrice > 0

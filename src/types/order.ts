@@ -76,4 +76,10 @@
         createdAt: Date;
         updatedAt: Date;
     }
+    export enum TranslateMenuType {
+        "morning-menu" = "Menu sáng",
+        "afternoon-menu" = "Menu trưa",
+        "evening-menu" = "Menu tối",
+        "other-menu" = "Khác"
+    }
 // }

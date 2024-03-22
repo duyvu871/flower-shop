@@ -18,7 +18,7 @@ import CartModal from "@/components/Modal/CartModal";
 import React from "react";
 import ProviderLayout from "@/components/ProviderLayout";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['vietnamese'] })
 
 export const metadata: Metadata = {
     title: 'Mon ngon den cho moi nha',

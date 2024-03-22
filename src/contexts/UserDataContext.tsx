@@ -5,6 +5,7 @@ import {useSession} from "next-auth/react";
 import {ObjectId, WithId} from "mongodb";
 import {OrderType} from "types/order";
 import {BankingMethodUpdate} from "@/services/interface.authenticate";
+import {usePathname, useRouter} from "next/navigation";
 
 export interface ExtendedUserInterface {
     fetchData: () => void;
@@ -64,6 +65,7 @@ export const UserDataContext = createContext<ExtendedUserInterface>({
 });
 
 export const UserDataProvider = ({children}: {children: ReactNode}) => {
+    const pathName = usePathname();
     const session = useSession();
     const { data: sessionData } = session;
     const [userData, setUserData] = useState<WithId<UserInterface>>(defaultUserData);
@@ -171,7 +173,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         try {
             if (sessionData) {
                 const data = await getUserData();
-                if (data) {
+                if (data && pathName === "/withdraw") {
                     // console.log(data.withDrawHistory)
                     const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
                     // console.log("withdrawalHistory", withdrawalHistory);
