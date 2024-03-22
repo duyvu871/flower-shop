@@ -17,6 +17,7 @@ import OrderModal from "@/components/Modal/OrderModal";
 import CartModal from "@/components/Modal/CartModal";
 import React from "react";
 import ProviderLayout from "@/components/ProviderLayout";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ['vietnamese'] })
 
@@ -35,9 +36,11 @@ export default function RootLayout({
   return (
       <html lang="en">
         <body className={inter.className+ ""}>
-            <ProviderLayout>
-                {children}
-            </ProviderLayout>
+            <Suspense>
+                <ProviderLayout>
+                    {children}
+                </ProviderLayout>
+            </Suspense>
             <ToastContainer{...Toaster as ToastContainerProps}/>
         </body>
       </html>
