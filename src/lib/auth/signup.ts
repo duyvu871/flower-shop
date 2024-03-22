@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import {extractProperties} from "@/helpers/extractProperties";
 import {uid} from "uid";
 import {UserInterface} from "types/userInterface";
+import {ObjectId} from "mongodb";
 
 export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|"email", string> | undefined) {
     const client = await clientPromise;
@@ -29,6 +30,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
     }
 
     const doc: UserInterface = {
+        _id: new ObjectId(),
         avatar: "",
         fullName,
         email: email as string,
@@ -62,5 +64,5 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
         throw new Error("Insert user failed");
     }
 
-    return extractProperties(doc, ["id_index", "fullName", "role", "balance", "uid"]);
+    return extractProperties(doc, ["id_index", "fullName", "role", "balance", "uid", "_id"]);
 }

@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {signUp} from "@/lib/auth/signup";
+import {revalidateTag} from "next/cache";
 
 interface ISignUpRequest {
     fullName: string;
@@ -12,7 +13,7 @@ export async function POST(request: NextRequest) {
     try {
         const json: ISignUpRequest = await request.json();
         console.log(json);
-
+        revalidateTag('signup');
         const response = await signUp({...json});
 
         return new NextResponse(JSON.stringify(response), {
@@ -27,3 +28,5 @@ export async function POST(request: NextRequest) {
         });
     }
 }
+
+export const revalidate = 360;
