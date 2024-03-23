@@ -12,8 +12,6 @@ interface MobileNavigatorMenuProps {
     isShow: boolean;
 };
 
-
-
 const Icons = [
     {
         title: 'home',

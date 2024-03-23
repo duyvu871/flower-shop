@@ -1,5 +1,5 @@
 "use client";
-import React, {createContext, useLayoutEffect} from "react";
+import React, {createContext, useLayoutEffect, useState} from "react";
 import {MenuItemType} from "types/order";
 import {getCurrentTimeOfDay} from "@/ultis/check-date.ultis";
 import {routePaths} from "@/ultis/api-route.ultis";
@@ -19,6 +19,7 @@ export type AllMenuType = {
 }
 
 export interface MenuData {
+    isLoaded: boolean;
     menuData: MenuItemType[];
     cart: CartItemType[];
     getMenuData: (page: number, limit: number, time: string) => Promise<MenuListWithPaginate|null>;
@@ -55,6 +56,7 @@ export const AllMenuTypeDefault: AllMenuType = {
 }
 
 export const MenuDataContext = createContext<MenuData>({
+    isLoaded: false,
     menuData: [],
     cart: [],
     allMenuType: {
@@ -84,7 +86,7 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     const [menuData, setMenuData] = React.useState<MenuItemType[]>([]);
     const [cart, setCart] = React.useState<CartItemType[]>([]);
     const [allMenuType, setAllMenuType] = React.useState<AllMenuType>(AllMenuTypeDefault);
-
+    const [isLoaded, setIsLoaded] = useState<boolean>(false)
     const storeItemToLocalStorage = (data: MenuItemType) => {
         const storeItem = JSON.parse(localStorage.getItem("store-menu"));
         if (storeItem) {
@@ -233,6 +235,7 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     }, []);
     return (
         <MenuDataContext.Provider value={{
+            isLoaded,
             storeItemToLocalStorage,
             getStoreItemFromLocalStorage,
             getAllTypeMenu,

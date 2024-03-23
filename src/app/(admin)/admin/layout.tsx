@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface LayoutProps {
-    
+    children: React.ReactNode;
 };
 
-function Layout({}: LayoutProps) {
+function Layout({children}: LayoutProps) {
     return (
-        <div></div>
+       <>{children}</>
     );
 }
 

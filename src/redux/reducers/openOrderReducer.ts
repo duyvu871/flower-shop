@@ -1,7 +1,7 @@
 // reducer.ts
 import { OrderModalActionTypes, OPEN_ORDER_MODAL, CLOSE_ORDER_MODAL, CLOSE_CART_MODAL, OPEN_CART_MODAL } from '@/redux/action/openOrderModal';
 
-interface OrderModalState {
+export interface OrderModalState {
     isOrderModalOpen?: boolean;
     isCartModalOpen?: boolean;
     orderId?: string;

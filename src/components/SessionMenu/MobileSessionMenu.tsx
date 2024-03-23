@@ -6,13 +6,14 @@ import ItemList from "@/components/SessionMenu/ItemList";
 import InfiniteScroll from "@/components/InfiniteScroll";
 import {useMenuData} from "@/hooks/useMenuData";
 import {GetMenuListType} from "@/lib/order";
+import store from "@/redux/store";
 
 interface MobileSessionMenuProps {
 
 };
 
 function MobileSessionMenu({}: MobileSessionMenuProps) {
-    const {getMenuData, allMenuType, getAllTypeMenu, updateAllMenuType} = useMenuData();
+    const {getMenuData, allMenuType, getAllTypeMenu, updateAllMenuType, isLoaded: isMenuDataLoaded} = useMenuData();
     const [menuData, setMenuData] = React.useState<AllMenuType>({
         morning: {} as GetMenuListType,
         afternoon: {} as GetMenuListType,
@@ -30,6 +31,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
             if (!isPreventFetch) return;
             const data = await getAllTypeMenu();
             if (data) {
+                store.dispatch({type: "ShowLoadingScreen", payload: true})
                 setIsLoaded(true);
                 setTotalItems(data.other.count);
                 updateAllMenuType(data);
@@ -76,25 +78,25 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
         <>
             <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
-                    <h1>Menu sáng</h1>
+                    <h1>Menu trưa: <p className={"text-lg text-gray-500"}>10:30-11:00</p></h1>
                 </div>
-                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
+                <div className={"w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2"}>
                     <ItemList menuData={allMenuType.morning.data as MenuItemType[]}/>
                 </div>
             </div>
             <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
-                    <h1 >Menu chiều</h1>
+                    <h1 >Menu chiều: <p className={"text-lg text-gray-500"}>4:30-5:30</p></h1>
                 </div>
-                <div className={"grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
+                <div className={"w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2"}>
                     <ItemList menuData={allMenuType.afternoon.data as MenuItemType[]}/>
                 </div>
             </div>
             <div className={"w-full flex flex-col justify-center items-center gap-1 mobile:px-10"}>
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
-                    <h1>Menu tối</h1>
+                    <h1>Menu tối:<p className={"text-lg text-gray-500"}> 21:00-23:00</p></h1>
                 </div>
-                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4 my-2"}>
+                <div className={"w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2"}>
                     <ItemList menuData={allMenuType.evening.data as MenuItemType[]}/>
                 </div>
             </div>
@@ -110,7 +112,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
                 <div className={"text-2xl font-bold text-start w-full p-2"}>
                     <h1>Các món khác</h1>
                 </div>
-                <div className={"w-full grid grid-cols-2 sm:grid-cols-4 md:gap-4"}>
+                <div className={"w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4"}>
                     <ItemList menuData={allMenuType.other.data as MenuItemType[]}/>
                 </div>
             </InfiniteScroll>

@@ -18,6 +18,9 @@ import CartModal from "@/components/Modal/CartModal";
 import React from "react";
 import ProviderLayout from "@/components/ProviderLayout";
 import { Suspense } from "react";
+import {tw} from "@/ultis/tailwind.ultis";
+import {Spinner} from "@nextui-org/react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const inter = Inter({ subsets: ['vietnamese'] })
 
@@ -38,6 +41,7 @@ export default function RootLayout({
         <body className={inter.className+ ""}>
             <Suspense>
                 <ProviderLayout>
+                    <LoadingScreen />
                     {children}
                 </ProviderLayout>
             </Suspense>

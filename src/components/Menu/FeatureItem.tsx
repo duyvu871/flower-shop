@@ -41,10 +41,13 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
 
     }, [title, pathName]);
     return (
-        <Link href={path} className={tw(
+        <div
+            className={tw(
             "flex flex-col justify-center items-center w-full h-fit p-2 text-gray-500 cursor-pointer border-t-3 border-gray hover:bg-gray-100",
             isCurrentScreen ? "text-orange-600 border-orange-600 bg-gray-50" : ""
-        )}>
+            )}
+            onClick={() => handleChangeScreen(title)}
+        >
             {/*<div*/}
 
             {/*    // onClick={() => handleChangeScreen(title)}*/}
@@ -52,7 +55,7 @@ export function FeatureItemMobile({title, customIcon, path}: FeatureItemProps) {
                 <div className={"text-center text-2xl"}>{customIcon}</div>
                 <div className={"text-center text-sm font-bold capitalize"}>{TranslateIconName[title]}</div>
             {/*</div>*/}
-        </Link>
+        </div>
     )
 }
 

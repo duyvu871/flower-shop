@@ -35,7 +35,7 @@ function ProfileCard({}: ProfileCardProps) {
                             src={userData.avatar}
                             className={"text-white text-2xl font-bold uppercase cursor-pointer w-20 h-20"}/>
                         <div className={"flex flex-col justify-center items-center gap-2"}>
-                            <p className={"font-bold text-xl"}>{userData.fullName || "Nguyễn Thị T"}</p>
+                            <p className={"font-bold text-xl"}>{userData.fullName || ""}</p>
                             {isLoyalCustomer ?
                                 <span className={"flex flex-row justify-center items-center gap-1 bg-gray-200 rounded-full p-1 px-2 text-xs"}>
                                     Khách hàng thân thiết

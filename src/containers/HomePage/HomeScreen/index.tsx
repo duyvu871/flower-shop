@@ -27,7 +27,7 @@ function HomeScreen({}: HomeScreenProps) {
 
     useEffect(() => {
         const currentTime = getCurrentTimeOfDay()
-        if (currentTime.currentHour >= 19 || currentTime.currentHour < 5) {
+        if (currentTime.currentHour >= 23 || currentTime.currentHour < 5) {
             setIsClose(true);
         }
         const interval = setInterval(() => {

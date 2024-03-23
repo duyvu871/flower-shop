@@ -191,7 +191,7 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
                             }}
                             disabled={isLoading}
                             color={"success"}
-                            className={"text-white flex justify-center items-center gap-2"}
+                            className={"text-white flex justify-center items-center gap-2 font-bold text-md px-5 py-2 rounded-md hover:bg-green-600"}
                             // className={tw("px-5 py-2 bg-green-500 text-white font-semibold rounded-md", "hover:bg-green-600")}
                         >
                             {isLoading ? <Spinner color={"white"} size={"sm"} /> : ""}

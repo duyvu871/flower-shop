@@ -140,7 +140,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                                     isBordered
                                     color="warning"
                                     size="sm"
-                                    name={userData.fullName}
+                                    // name={userData.fullName}
                                     src={userData.avatar}
                                     className={"text-white font-bold uppercase cursor-pointer"}/>
                             }

@@ -25,7 +25,7 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
                 store.dispatch(openOrderModal(dishID))
                 // console.log(dishID)
             }}
-            className={"m-2"}
+            className={"m-2 max-w-[300px]"}
             key={dishID}
         >
           <CardBody className="overflow-visible p-0 sendtocart">
@@ -46,9 +46,9 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
           </CardBody>
             <CardFooter className="text-small flex-col justify-start items-start">
                 <b className={"text-start line-clamp-2 h-[40px]"}>{title}</b>
-                <p className={"line-clamp-3 text-gray-500 text-start my-1 h-[60px]"}>{location}</p>
-                <div className={"flex justify-between w-full"}>
-                    <p className="text-default-900 font-semibold my-1">{Math.floor(Number(price) - Number(calculateDiscount(String(price), discount)))}.000đ</p>
+                {/*<p className={"line-clamp-3 text-gray-500 text-start my-1 h-[60px]"}>{location}</p>*/}
+                <div className={"flex justify-between items-center w-full"}>
+                    <p className="text-default-900 text-lg font-semibold my-1">{Math.floor(Number(price) - Number(calculateDiscount(String(price), discount)))}.000đ</p>
                     <p className="text-default-500 my-1">{totalSold} đã bán</p>
                 </div>
                 <div className={"cart-item"}></div>

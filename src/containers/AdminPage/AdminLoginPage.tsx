@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import {useToast} from "@/hooks/useToast";
 
-export const Form = () => {
+const Form = () => {
     const {error: errorMessage, success} = useToast()
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -67,3 +67,5 @@ export const Form = () => {
         </form>
     )
 }
+
+export default Form;

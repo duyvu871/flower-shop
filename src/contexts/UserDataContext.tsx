@@ -6,8 +6,10 @@ import {ObjectId, WithId} from "mongodb";
 import {OrderType} from "types/order";
 import {BankingMethodUpdate} from "@/services/interface.authenticate";
 import {usePathname, useRouter} from "next/navigation";
+import store from "@/redux/store";
 
 export interface ExtendedUserInterface {
+    isLoaded: boolean;
     fetchData: () => void;
     userData: WithId<UserInterface>;
     userWithdrawalHistory: OrderType[];
@@ -49,6 +51,7 @@ const defaultUserData: WithId<UserInterface> = {
 }
 
 export const UserDataContext = createContext<ExtendedUserInterface>({
+    isLoaded: false,
     fetchData: () => {},
     userData: defaultUserData,
     userWithdrawalHistory: [],
@@ -70,6 +73,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
     const { data: sessionData } = session;
     const [userData, setUserData] = useState<WithId<UserInterface>>(defaultUserData);
     const [userWithdrawalHistory, setUserWithdrawalHistory] = useState<OrderType[]>([]);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     // update user data
     const updateFullUserData = async function (data: Partial<UserInterface>) {
         const res = await fetch('/api/v1/auth/update/update-full-user', {
@@ -173,11 +177,15 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         try {
             if (sessionData) {
                 const data = await getUserData();
-                if (data && pathName === "/withdraw") {
-                    // console.log(data.withDrawHistory)
-                    const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
-                    // console.log("withdrawalHistory", withdrawalHistory);
-                    setUserWithdrawalHistory(withdrawalHistory);
+                if (data) {
+                    setIsLoaded(true);
+                    store.dispatch({type: "ShowLoadingScreen", payload: true})
+                    if (pathName === "/withdraw") {
+                        // console.log(data.withDrawHistory)
+                        const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);
+                        // console.log("withdrawalHistory", withdrawalHistory);
+                        setUserWithdrawalHistory(withdrawalHistory);
+                    }
                 }
             }
         } catch (err) {
@@ -191,6 +199,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
 
     return (
         <UserDataContext.Provider value={{
+            isLoaded,
             fetchData,
             updateFullUserData,
             userWithdrawalHistory,

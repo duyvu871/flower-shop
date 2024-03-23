@@ -5,12 +5,7 @@ export default function useLocalStorage<T>(
     initialValue: T
 ): [T, Dispatch<SetStateAction<T>>] {
     const [storedValue, setStoredValue] = useState(initialValue);
-    // We will use this flag to trigger the reading from localStorage
     const [firstLoadDone, setFirstLoadDone] = useState(false);
-
-    // Use an effect hook in order to prevent SSR inconsistencies and errors.
-    // This will update the state with the value from the local storage after
-    // the first initial value is applied.
     useEffect(() => {
         const fromLocal = () => {
             if (typeof window === "undefined") {
@@ -24,21 +19,16 @@ export default function useLocalStorage<T>(
                 return initialValue;
             }
         };
-
-        // Set  the value from localStorage
         setStoredValue(fromLocal);
-        // First load is done
         setFirstLoadDone(true);
         return () => {
             setFirstLoadDone(false);
         }
     }, [initialValue, key]);
-
     function setLocalValue(value: T) {
         if (!firstLoadDone) {
             return;
         }
-
         try {
             if (typeof window !== "undefined") {
                 window.localStorage.setItem(key, JSON.stringify(value));
@@ -47,18 +37,10 @@ export default function useLocalStorage<T>(
             console.log(error);
         }
     }
-
     const setValue: Dispatch<SetStateAction<T>> = (value) => {
-        // Allow value to be a function so we have the same API as useState
         const valueToStore = value instanceof Function ? value(storedValue) : value;
-
-        // update local storage
         setLocalValue(valueToStore);
-        // Save state
         setStoredValue(valueToStore);
     };
-
-    // Return the original useState functions
-    // return [storedValue, setStoredValue];
     return [storedValue, setValue];
 }

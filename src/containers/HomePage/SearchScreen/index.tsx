@@ -26,7 +26,7 @@ function SearchScreen({}: SearchScreenProps) {
         "other-menu": []
     });
     const [isSearching, setIsSearching] = React.useState<boolean>(false);
-    const debouncedSearchValue = useDebounce(searchValue, 500);
+    const debouncedSearchValue = useDebounce(searchValue, 800);
     const searchRef = React.useRef<HTMLInputElement>(null);
     useEffect(() => {
 

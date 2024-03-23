@@ -41,7 +41,7 @@ function AvatarTriggerDropdown({
                 <DropdownItem key="customer-service"  endContent={<RiCustomerService2Line size={20} className={"text-gray-500"}/>} onClick={openWidget}>
                     Liên hệ cskh
                 </DropdownItem>
-                <DropdownItem key="settings" showDivider endContent={<CiSettings size={20} />} href={'/settings'}>
+                <DropdownItem key="settings" showDivider endContent={<CiSettings size={20} />}>
                     Cài đặt
                 </DropdownItem>
                 <DropdownItem

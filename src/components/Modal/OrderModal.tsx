@@ -170,7 +170,7 @@ function OrderModal({}: OrderModalProps) {
                                    </div>
                                </div>
 
-                               <p className={"text-gray-500 text-sm mb-2"}>{orderInfo.address}</p>
+                               {/*<p className={"text-gray-500 text-sm mb-2"}>{orderInfo.address}</p>*/}
                            </div>
                            <div className={"flex flex-col my-2"}>
                                <Textarea
