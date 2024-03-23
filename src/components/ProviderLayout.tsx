@@ -8,6 +8,8 @@ import MenuBar from "@/components/Menu";
 import OrderModal from "@/components/Modal/OrderModal";
 import CartModal from "@/components/Modal/CartModal";
 import NextauthSessionProviders from "@/components/NextauthSessionProviders";
+import {usePathname} from "next/navigation";
+import {headers} from "next/headers";
 
 interface ProviderLayoutProps {
     children: React.ReactNode;
@@ -21,10 +23,6 @@ function ProviderLayout({children}: ProviderLayoutProps) {
                     <LiveChatWidgetProvider>
                         <UserDataProvider>
                             <MenuDataProvider>
-                                {/*<MenuBar/>*/}
-                                {/*{children}*/}
-                                {/*<OrderModal/>*/}
-                                {/*<CartModal/>*/}
                                 {children}
                             </MenuDataProvider>
                         </UserDataProvider>

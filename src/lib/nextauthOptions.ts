@@ -27,7 +27,7 @@ export const nextauthOptions: AuthOptions = {
                 },
             },
             // @ts-ignore
-            async authorize(credentials: Record<"password"|"email", string>) {
+            async authorize(credentials: Record<"password"|"username", string>) {
                 return await signIn(credentials) as UserSessionPayload;
             }
         }),

@@ -26,22 +26,27 @@ import {UserDataContext} from "@/contexts/UserDataContext";
 import AvatarTriggerDropdown from "@/components/Avatar/AvatarTriggerDropdown";
 import {extractProperties} from "@/helpers/extractProperties";
 import {useUserData} from "@/hooks/useUserData";
+import {useLiveChatWidget} from "@/hooks/useLiveChatWidget";
+import {RiCustomerService2Line} from "react-icons/ri";
+import {router} from "next/client";
 
 interface DesktopNavigatorMenuProps {
     isShow: boolean;
 };
 
-const pages = ["home", "order", "menu"] as const;
+const pages = ["home", "order", "introduce"] as const;
 
 const BonusTranslateIconName = {
     ...TranslateIconName,
     menu: "Thực đơn",
+    introduce: "Giới thiệu cửa hàng",
 } as const;
 
 function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
+    const {openWidget} = useLiveChatWidget();
     const {isLogin, user} = useAuth();
-    const {userData} = useUserData();
-    const screen = useSelector((state: RootState) => state.screen.currentScreen);
+    const {userData, isLoaded} = useUserData();
+    // const screen = useSelector((state: RootState) => state.screen.currentScreen);
     const location = useSelector((state: RootState) => state.storeLocation.currentLocation);
     const {push} = useRouter();
     const pathname = usePathname();
@@ -64,7 +69,14 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
     // }, []);
 
     return (
-       <Navbar shouldHideOnScroll className={tw(isShow ? "" : "hidden", 'p-3 bg-white')} maxWidth={"full"}>
+       <Navbar
+           shouldHideOnScroll
+           className={tw(isShow ? "" : "hidden", 'p-3 bg-white')}
+           maxWidth={"full"}
+           classNames={{
+              wrapper: "px-2"
+           }}
+       >
            <NavbarContent justify="start">
                <NavbarBrand onClick={logoAction} className={"cursor-pointer flex"}>
                    <Logo size={50}/>
@@ -98,13 +110,12 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
            <NavbarContent justify="center" className={"hidden md:flex"}>
                {pages.map((page: keyof typeof BonusTranslateIconName, index) => (
                    <NavbarItem
-                       isActive={(screen === page)}
+                       isActive={(pathname.includes(page) || pathname === "/")}
                        className={tw(
                            "cursor-pointer font-semibold",
-                           (screen === page) ? "text-orange-600" : "")}
+                           (pathname.includes(page) || (page === "home" && pathname === "/")) ? "text-orange-600" : "")}
                        key={"navbar-item-" + page}
-
-                       onClick={() => {store.dispatch(changeScreen(page))}}
+                       onClick={() => {push(`/${(page === "home" )? "/": page}`) }}
                    >
                        <div>{BonusTranslateIconName[page]}</div>
                    </NavbarItem>
@@ -125,9 +136,12 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                        type="search"
                    />
                </NavbarItem>
+               <NavbarItem className={"cursor-pointer"}>
+                   <RiCustomerService2Line size={24} className={"text-orange-600"} onClick={openWidget}/>
+               </NavbarItem>
                 <NavbarItem className={"cursor-pointer"}>
                     {/*<Link href={"/cart"}>*/}
-                        <OrderCart/>
+                    <OrderCart/>
                     {/*</Link>*/}
                 </NavbarItem>
                <NavbarItem className={"hidden lg:flex"}>

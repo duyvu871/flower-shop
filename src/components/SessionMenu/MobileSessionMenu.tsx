@@ -31,7 +31,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
             if (!isPreventFetch) return;
             const data = await getAllTypeMenu();
             if (data) {
-                store.dispatch({type: "ShowLoadingScreen", payload: true})
+                // store.dispatch({type: "ShowLoadingScreen", payload: false})
                 setIsLoaded(true);
                 setTotalItems(data.other.count);
                 updateAllMenuType(data);

@@ -35,7 +35,7 @@ function SettingProfile({}: SettingProfileProps) {
         },
         {
             iconStart: <CgNotes size={25} className={"text-blue-400"} />,
-            title: "Đơn mua",
+            title: "Lịch sủ thanh toán",
             iconEnd: <>
                 <p className={"text-xs text-gray-400"}>Xem lịch sử đặt món</p>
                 <TfiAngleRight />

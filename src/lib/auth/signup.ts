@@ -21,10 +21,11 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
     }
 
     const user = await usersCollection.findOne({
-        email: credentials.email,
+        // email: credentials.email,
+        fullName: credentials.fullName,
         phone: credentials.phone
     });
-
+    // console.log(user)
     if (user) {
         throw new Error("Tài khoản đã tồn tại");
     }
@@ -33,7 +34,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
         _id: new ObjectId(),
         avatar: "",
         fullName,
-        email: email as string,
+        email: email as string || "",
         phone: phone as string,
         password: bcrypt.hashSync(password as string, 10),
         role: "user",

@@ -174,12 +174,15 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
     }, [sessionData]);
 
     const fetchData = async () => {
+        // store.dispatch({type: "HideLoadingScreen", payload: false})
         try {
             if (sessionData) {
+                store.dispatch({type: "ShowLoadingScreen", payload: true})
                 const data = await getUserData();
+                setIsLoaded(true);
+                store.dispatch({type: "HideLoadingScreen", payload: false})
+
                 if (data) {
-                    setIsLoaded(true);
-                    store.dispatch({type: "ShowLoadingScreen", payload: true})
                     if (pathName === "/withdraw") {
                         // console.log(data.withDrawHistory)
                         const withdrawalHistory = await getWithdrawalHistory(data.withDrawHistory as unknown as ObjectId[]);

@@ -19,6 +19,7 @@ import {useAuth} from "@/hooks/useAuth";
 export default function SignInForm() {
     // const {isLogin, user} = useAuth();
     const [email, setEmail] = React.useState<string>("");
+    const [fullName, setFullName] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [isRemember, setIsRemember] = React.useState<boolean>(false);
     const [preventButton, setPreventButton] = React.useState<boolean>(false);
@@ -44,12 +45,12 @@ export default function SignInForm() {
 
     const [isVisible, setIsVisible] = React.useState(false);
     const login = async () => {
-        if (email === "" || password === "") {
+        if (fullName === "" || password === "") {
             error("Vui lòng nhập thông tin tài khoản");
             return;
         }
         const res = await signIn("credentials", {
-            email,
+            username: fullName,
             password,
             redirect: false,
         });
@@ -89,12 +90,14 @@ export default function SignInForm() {
                         type="text"
                         label="Tài khoản"
                         variant="bordered"
-                        placeholder="Tên đăng nhập hoặc email"
-                        isInvalid={isInvalid}
-                        color={isInvalid ? "danger" : "primary"}
-                        errorMessage={isInvalid && "Vui lòng nhập đúng định dạng tài khoản"}
+                        placeholder="Tên đăng nhập"
+                        // isInvalid={isInvalid}
+                        // color={isInvalid ? "danger" : "primary"}
+                        color={"primary"}
+                        // errorMessage={isInvalid && "Vui lòng nhập đúng định dạng tài khoản"}
                         onValueChange={(value) => {
-                            setEmail(value);
+                            // setEmail(value);
+                            setFullName(value);
                             setValue(value);
                         }}
 
