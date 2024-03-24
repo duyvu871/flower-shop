@@ -11,12 +11,14 @@ import {timeout} from "@/helpers/delayAction";
 export interface LivechatWidgetContextType {
     openWidget: (liveChatWidget?: any) => void;
     closeWidget: (liveChatWidget?: any) => void;
+    toggleWidget: (liveChatWidget?: any) => void;
     isWidgetOpen: boolean;
 }
 
 export const LivechatWidgetContext = createContext<LivechatWidgetContextType>({
     openWidget: (liveChatWidget?: any) => {},
     closeWidget: (liveChatWidget?: any) => {},
+    toggleWidget: (liveChatWidget?: any) => {},
     isWidgetOpen: false,
 });
 
@@ -29,6 +31,14 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
     const convertTawkUrl = (originalUrl: string): string => {
         const parts = originalUrl.split('/');
         return `https://embed.tawk.to/${parts[4]}/${parts[5]}`;
+    }
+
+    const toggleWidget = (liveChatWidget: boolean) => {
+        if (isWidgetOpen) {
+            openWidget(liveChatWidget);
+        } else {
+            closeWidget(liveChatWidget);
+        }
     }
 
     const openWidget = (liveChatWidget?: any) => {
@@ -115,6 +125,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
 
     return (
         <LivechatWidgetContext.Provider value={{
+            toggleWidget,
             openWidget,
             closeWidget,
             isWidgetOpen,

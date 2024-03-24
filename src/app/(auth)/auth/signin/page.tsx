@@ -4,6 +4,7 @@ import "@/app/(auth)/auth/style.css";
 import {getServerAuthSession} from "@/lib/nextauthOptions";
 import {redirect} from "next/navigation";
 import MobileNavigatorMenu from "@/components/Menu/MobileNavigatorMenu";
+import DesktopNavigatorMenu from "@/components/Menu/DesktopNavigatorMenu";
 interface PageProps {
 
 };
@@ -16,6 +17,7 @@ async function Page({}: PageProps) {
     return (
         <>
             <MobileNavigatorMenu isShow={true}/>
+            <DesktopNavigatorMenu isShow={true}/>
             <SignInForm />
         </>
     );

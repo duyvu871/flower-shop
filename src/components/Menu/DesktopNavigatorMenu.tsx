@@ -1,3 +1,4 @@
+"use client";
 import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import {
     Navbar,
@@ -22,13 +23,13 @@ import StoreLocation from "@/ultis/location.ultis";
 import {setStoreLocation} from "@/redux/action/setStoreLocation";
 import {useRouter, usePathname} from "next/navigation";
 import {useAuth} from "@/hooks/useAuth";
-import {UserDataContext} from "@/contexts/UserDataContext";
+// import {UserDataContext} from "@/contexts/UserDataContext";
 import AvatarTriggerDropdown from "@/components/Avatar/AvatarTriggerDropdown";
 import {extractProperties} from "@/helpers/extractProperties";
 import {useUserData} from "@/hooks/useUserData";
 import {useLiveChatWidget} from "@/hooks/useLiveChatWidget";
 import {RiCustomerService2Line} from "react-icons/ri";
-import {router} from "next/client";
+// import {router} from "next/client";
 
 interface DesktopNavigatorMenuProps {
     isShow: boolean;
@@ -43,13 +44,16 @@ const BonusTranslateIconName = {
 } as const;
 
 function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
-    const {openWidget} = useLiveChatWidget();
+    const {openWidget, closeWidget} = useLiveChatWidget();
     const {isLogin, user} = useAuth();
     const {userData, isLoaded} = useUserData();
     // const screen = useSelector((state: RootState) => state.screen.currentScreen);
     const location = useSelector((state: RootState) => state.storeLocation.currentLocation);
     const {push} = useRouter();
     const pathname = usePathname();
+
+    const [isOpened, setIsOpened] = useState<boolean>(false);
+
     const logoAction = () => {
         if (pathname !== "/") {
             push("/");
@@ -137,7 +141,18 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                    />
                </NavbarItem>
                <NavbarItem className={"cursor-pointer"}>
-                   <RiCustomerService2Line size={24} className={"text-orange-600"} onClick={openWidget}/>
+                   <RiCustomerService2Line
+                       size={24}
+                       className={"text-orange-600"}
+                       onClick={() => {
+                           // toggleWidget(!isOpened)
+                           setIsOpened((isOpened) => !isOpened);
+                           if (isOpened) {
+                               openWidget();
+                           } else {
+                               closeWidget();
+                           }
+                       }}/>
                </NavbarItem>
                 <NavbarItem className={"cursor-pointer"}>
                     {/*<Link href={"/cart"}>*/}
