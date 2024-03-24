@@ -22,11 +22,12 @@ import {FaLocationArrow} from "react-icons/fa";
 import {Textarea} from "@nextui-org/input";
 // import {useUserData} from "@/hooks/useUserData";
 import {useSession} from "next-auth/react";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {useUserData} from "@/hooks/useUserData";
 import {useToast} from "@/hooks/useToast";
 import store from "@/redux/store";
 import {CartItemType} from "@/contexts/MenuDataContext";
+// import {MenuItemType} from "types/order";
 
 interface OrderScreenProps {
 
@@ -34,12 +35,16 @@ interface OrderScreenProps {
 
 function OrderScreen({}: OrderScreenProps) {
     const isImmediately = useSearchParams().get("immediately");
-    const {cart, clearCart} = useMenuData();
+    const OrderID = useSearchParams().get("order_id");
+    const totalOrder = useSearchParams().get("total_order");
+    const takeNoteFromSearchParams = useSearchParams().get("take_note");
+    const {cart, clearCart, getItemById, findItem} = useMenuData();
     const {userData, updateUserData} = useUserData();
     const {createOrder} = useOrder();
     const {data} = useSession();
     const {push} = useRouter();
     const {success, error} = useToast();
+    const router = useRouter();
     const [totalPrice, setTotalPrice] = React.useState<number>(0);
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
     const [location, setLocation] = React.useState<string>("");
@@ -116,9 +121,47 @@ function OrderScreen({}: OrderScreenProps) {
         const isPayAll = localStorage.getItem("isPayAll");
         setIsPayAll(isPayAll === "true");
     }, [cart]);
+
+
+    useEffect(() => {
+        const getItem = async () => {
+                const item = await getItemById([OrderID as string])
+                if (item) {
+                    setCartTemp([{
+                        ...item[0],
+                        totalOrder: Number(totalOrder),
+                        takeNote: takeNoteFromSearchParams
+                    }]);
+                } else {
+                    setCartTemp([]);
+                }
+            // console.log(cartTemp)
+        }
+        if (isImmediately) {
+            const order = localStorage.getItem("order-immediately");
+
+            if (!order) {
+                if (OrderID) {
+                    getItem();
+                }
+                // setCartTemp([])
+            } else {
+                const parsedOrder = JSON.parse(order) as CartItemType;
+                if (parsedOrder._id as unknown as string === OrderID as string) {
+                    setCartTemp(
+                        isImmediately.toString() === "true"
+                            ? [parsedOrder]
+                            : cart);
+                } else {
+                    getItem();
+                }
+            }
+        }
+    }, [isImmediately, OrderID]);
+
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center"}>
-           <div className={"flex flex-col justify-center items-center p-3 "}>
+           <div className={"flex flex-col justify-center items-center p-3 max-w-xl"}>
                {cartTemp.map((item, index) => {
                    const price = Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)));
                    //@ts-ignore

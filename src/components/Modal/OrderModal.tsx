@@ -60,7 +60,7 @@ function OrderModal({}: OrderModalProps) {
             takeNote
         });
         store.dispatch(closeOrderModal());
-        push("/order?immediately=true");
+        push("/order?immediately=true&order_id=" + orderInfo._id + "&total_order=" + totalOrder + "&take_note=" + takeNote);
     }
     useEffect(() => {
         if (orderValueRef.current) {
