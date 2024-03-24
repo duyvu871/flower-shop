@@ -51,6 +51,7 @@ export default function SignInForm() {
         }
         const res = await signIn("credentials", {
             username: fullName,
+            role: "user",
             password,
             redirect: false,
         });
