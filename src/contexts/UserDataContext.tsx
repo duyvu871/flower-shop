@@ -177,6 +177,9 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
         // store.dispatch({type: "HideLoadingScreen", payload: false})
         try {
             if (sessionData) {
+                if (pathName.includes("admin")) {
+                    return;
+                }
                 store.dispatch({type: "ShowLoadingScreen", payload: true})
                 const data = await getUserData();
                 setIsLoaded(true);

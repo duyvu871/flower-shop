@@ -1,6 +1,4 @@
 'use client'
-
-
 import { Input, Button } from '@nextui-org/react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -28,7 +26,7 @@ const Form = () => {
             })
             console.log('Res', res)
             if (!res?.error) {
-                router.push(callbackUrl)
+                router.push("/admin/dashboard");
             } else {
                 errorMessage('Mật khẩu hoặc tài khoản không đúng!')
             }
@@ -60,7 +58,7 @@ const Form = () => {
                 />
             </div>
             <div className="w-full">
-                <Button className="w-full" size="lg">
+                <Button className="w-full bg-blue-500 text-white" size="lg" type={"submit"}>
                     Login
                 </Button>
             </div>

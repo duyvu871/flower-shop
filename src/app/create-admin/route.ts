@@ -5,11 +5,16 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     const client = await clientPromise;
-    const users = client.db(process.env.DB_NAME).collection("users");
+    const adminCollection = client.db(process.env.DB_NAME).collection("admin");
 
-    const password = bcrypt.hashSync("password", 10);
-    await users.insertOne({
-        email: "admin@example.com",
+    const admin = await adminCollection.findOne({ email: "admin@role.com" });
+    if (admin) {
+        return NextResponse.json({ success: false, message: "Admin already exists" });
+    }
+
+    const password = bcrypt.hashSync("adminrole", 10);
+    await adminCollection.insertOne({
+        email: "admin@role.com",
         password: password,
         role: "admin",
     });

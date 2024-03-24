@@ -5,8 +5,11 @@ interface PageProps {
 };
 
 function Page({}: PageProps) {
+
     return (
-        <div></div>
+        <div>
+            dashboard
+        </div>
     );
 }
 

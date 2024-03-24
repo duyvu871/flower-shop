@@ -25,9 +25,13 @@ export const nextauthOptions: AuthOptions = {
                     // label: "Password",
                     type: "password",
                 },
+                role: {
+                    type: "text",
+                    optional: true,
+                }
             },
             // @ts-ignore
-            async authorize(credentials: Record<"password"|"username", string>) {
+            async authorize(credentials: Record<"password"|"username"|"role", string>) {
                 return await signIn(credentials) as UserSessionPayload;
             }
         }),
