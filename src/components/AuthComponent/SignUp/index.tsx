@@ -137,11 +137,11 @@ export default function SignInForm() {
                         <div className={"flex flex-col justify-center items-start md:flex-row gap-4"}>
                             <Input
                                 type="text"
-                                autoSave={"off"}
+                                autoSave={"on"}
                                 spellCheck={false}
                                 autoCapitalize={"off"}
                                 // value={formState.fullName}
-                                label="Tên đầy đủ"
+                                label="Tên đăng nhập"
                                 variant={"bordered"}
                                 // labelPlacement={"outside"}
                                 isInvalid={!!formState.fullNameError}
@@ -189,7 +189,7 @@ export default function SignInForm() {
                             type="text"
                             label="Tài khoản"
                             variant="bordered"
-                            placeholder="Tên đăng nhập hoặc email"
+                            placeholder="email"
                             isInvalid={!!formState.emailError}
                             color={!!formState.emailError ? "danger" : "primary"}
                             errorMessage={formState.emailError}

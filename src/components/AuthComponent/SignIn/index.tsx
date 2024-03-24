@@ -62,7 +62,7 @@ export default function SignInForm() {
                 error("Email chưa được xác thực");
                 return;
             }
-            error("Đăng nhập thất bại");
+            error(res.error);
         } else {
             push("/");
         }
