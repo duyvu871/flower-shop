@@ -20,13 +20,11 @@ function ProviderLayout({children}: ProviderLayoutProps) {
         <NextauthSessionProviders>
             <NextUIProvider>
                 <ReduxProviders>
-                    <LiveChatWidgetProvider>
-                        <UserDataProvider>
-                            <MenuDataProvider>
-                                {children}
-                            </MenuDataProvider>
-                        </UserDataProvider>
-                    </LiveChatWidgetProvider>
+                    <UserDataProvider>
+                        <MenuDataProvider>
+                            {children}
+                        </MenuDataProvider>
+                    </UserDataProvider>
                 </ReduxProviders>
             </NextUIProvider>
         </NextauthSessionProviders>

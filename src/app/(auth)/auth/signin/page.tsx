@@ -5,6 +5,7 @@ import {getServerAuthSession} from "@/lib/nextauthOptions";
 import {redirect} from "next/navigation";
 import MobileNavigatorMenu from "@/components/Menu/MobileNavigatorMenu";
 import DesktopNavigatorMenu from "@/components/Menu/DesktopNavigatorMenu";
+import {LiveChatWidgetProvider} from "@/contexts/liveChatWidgetContext";
 interface PageProps {
 
 };
@@ -16,9 +17,11 @@ async function Page({}: PageProps) {
     }
     return (
         <>
-            <MobileNavigatorMenu isShow={true}/>
-            <DesktopNavigatorMenu isShow={true}/>
-            <SignInForm />
+            <LiveChatWidgetProvider>
+                <MobileNavigatorMenu isShow={true}/>
+                <DesktopNavigatorMenu isShow={true}/>
+                <SignInForm />
+            </LiveChatWidgetProvider>
         </>
     );
 }

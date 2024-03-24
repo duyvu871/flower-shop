@@ -15,6 +15,7 @@
 body {
     background-color: #eee;
     font-family: "Roboto", sans-serif;
+    height: 100%;
 }
 
 .layout {

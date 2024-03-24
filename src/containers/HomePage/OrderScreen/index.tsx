@@ -34,7 +34,7 @@ interface OrderScreenProps {
 
 function OrderScreen({}: OrderScreenProps) {
     const isImmediately = useSearchParams().get("immediately");
-    const {cart,clearCart} = useMenuData();
+    const {cart, clearCart} = useMenuData();
     const {userData, updateUserData} = useUserData();
     const {createOrder} = useOrder();
     const {data} = useSession();
@@ -60,14 +60,21 @@ function OrderScreen({}: OrderScreenProps) {
             error(response.error);
             return;
         }
+        if (isImmediately) {
+            localStorage.removeItem("order-immediately");
+        } else {
+            clearCart(true);
+        }
         success(response.message);
         updateUserData({balance: response.balance}, "balance");
         // console.log(response)
         success("Đã trừ "+ formatCurrency(response.orderData.orderVolume.toString()) + "đ từ tài khoản của bạn");
+        setIsOpen(false);
+
     }
     const handleClearCart = () => {
         if (!isImmediately) {
-            clearCart();
+            clearCart(false);
         } else {
             localStorage.removeItem("order-immediately");
             push("/");
@@ -111,7 +118,7 @@ function OrderScreen({}: OrderScreenProps) {
     }, [cart]);
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center"}>
-           <div className={"flex flex-col justify-center items-center p-3"}>
+           <div className={"flex flex-col justify-center items-center p-3 "}>
                {cartTemp.map((item, index) => {
                    const price = Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)));
                    //@ts-ignore
@@ -141,7 +148,7 @@ function OrderScreen({}: OrderScreenProps) {
                        </div>
                    )})}
            </div>
-            <div className={"flex flex-col justify-center items-center gap-2 fixed bottom-[90px]"}>
+            <div className={"flex flex-col justify-center items-center gap-2 pb-[90px]"}>
                 <div className={""}>
                     {totalPrice > 0 ? <span className={"text-xl font-bold"}>Tổng cộng: {formatCurrency(totalPrice.toString())},000đ</span> : "Không có sản phẩm nào trong giỏ hàng"}
                 </div>
@@ -149,7 +156,9 @@ function OrderScreen({}: OrderScreenProps) {
                     {totalPrice > 0
                         ? <>
                             <Button className={"bg-green-500 text-white rounded-md p-2"} onClick={() => {setIsOpen(true)}}>Đặt món</Button>
-                            <Button className={"bg-red-500 text-white rounded-md p-2"} onClick={handleClearCart}>Hủy đơn hàng</Button>
+                            <Button className={"bg-red-500 text-white rounded-md p-2"} onClick={() => {
+                                handleClearCart()
+                            }}>Hủy đơn hàng</Button>
                         </>
                         : ""}
                 </div>

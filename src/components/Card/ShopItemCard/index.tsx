@@ -34,7 +34,7 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
                    radius="lg"
                    width="100%"
                    alt={title}
-                   className="w-full object-cover h-[140px]"
+                   className="w-full object-cover h-[140px] hover:scale-110 transition-transform duration-300 ease-in-out"
                    src={img}
               />
               <div

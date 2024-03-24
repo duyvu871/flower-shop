@@ -12,7 +12,7 @@ interface ISignUpRequest {
 export async function POST(request: NextRequest) {
     try {
         const json: ISignUpRequest = await request.json();
-        console.log(json);
+        // console.log(json);
         // revalidateTag('signup');
         const response = await signUp({...json});
 

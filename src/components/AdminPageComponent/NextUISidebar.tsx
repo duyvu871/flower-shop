@@ -76,9 +76,7 @@ function NextUiSidebar({
                                     }`}
                                     href={href}
                                 >
-                  <span className="sidebar__icon">
-                    <Icon/>
-                  </span>
+                                    <span className="sidebar__icon"><Icon/></span>
                                     <span className="sidebar__name">{name}</span>
                                 </Link>
                             </li>

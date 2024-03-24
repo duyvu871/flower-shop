@@ -23,11 +23,12 @@ export const LivechatWidgetContext = createContext<LivechatWidgetContextType>({
 });
 
 export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) => {
-    const isMobile = useMediaQuery(400);
+    // const isMobile = useMediaQuery(400);
     const {userData} = useUserData();
     const [isWidgetOpen, setIsWidgetOpen] = React.useState<boolean>(false);
     const [isLiveChatLoaded, setIsLiveChatLoaded] = React.useState<boolean>(false);
     const livechatRef = useRef<any>();
+    const [countBeforeDestroy, setCountBeforeDestroy] = React.useState<number>(0);
     const convertTawkUrl = (originalUrl: string): string => {
         const parts = originalUrl.split('/');
         return `https://embed.tawk.to/${parts[4]}/${parts[5]}`;
@@ -110,6 +111,10 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                                 window.Tawk_API.hideWidget();
                                 clearInterval(interval);
                                 setIsLiveChatLoaded(true);
+                                setCountBeforeDestroy((prev) => prev + 1);
+                            }
+                            if (countBeforeDestroy > 20) {
+                                clearInterval(interval);
                             }
                         }, 1000);
                     })

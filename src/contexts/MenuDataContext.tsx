@@ -28,7 +28,7 @@ export interface MenuData {
     filterItem: (ids: string[]) => MenuItemType[];
     addToCart: (item: MenuItemType, totalOrder: number, takeNote: string) => void;
     removeFromCart: (id: string) => void;
-    clearCart: () => void;
+    clearCart: (isClearDepth: boolean) => void;
     updateCart: (cart: CartItemType[]) => void;
     payTheBill: () => void;
     allMenuType: AllMenuType;
@@ -71,7 +71,7 @@ export const MenuDataContext = createContext<MenuData>({
     filterItem: (ids: string[]) => [],
     addToCart: (item: MenuItemType, totalOrder, takeNote) => {},
     removeFromCart: (id: string) => {},
-    clearCart: () => {},
+    clearCart: (isClearDepth: boolean) => {},
     updateCart: (cart: CartItemType[]) => {},
     payTheBill: () => {},
     updateAllMenuType: (data: AllMenuType) => {},
@@ -211,10 +211,15 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
             setCart(newCart);
         }
     }
-    const clearCart = () => {
+    const clearCart = (isClearDepth: boolean) => {
         const currentSession = getCurrentTimeOfDay().type;
-        localStorage.removeItem(`cart-${currentSession}`);
+        if (isClearDepth) {
+            localStorage.removeItem(`cart-${currentSession}`);
+            setCart([]);
+            return;
+        }
         setCart([]);
+        return;
     }
 
     const payTheBill = () => {
