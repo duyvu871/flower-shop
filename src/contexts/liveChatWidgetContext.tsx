@@ -60,7 +60,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
         if (livechatRef.current && isLiveChatLoaded) {
             //@ts-ignore
             livechatRef.current.minimize();
-            livechatRef.current.hideWidget();
+            // livechatRef.current.hideWidget();
 
         } else {
             //@ts-ignore
@@ -108,7 +108,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                             //@ts-ignore
                             if (window.Tawk_API) {
                                 //@ts-ignore
-                                window.Tawk_API.hideWidget();
+                                // window.Tawk_API.hideWidget();
                                 clearInterval(interval);
                                 setIsLiveChatLoaded(true);
                                 setCountBeforeDestroy((prev) => prev + 1);
@@ -120,7 +120,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                     })
                 });
                 //@ts-ignore
-                closeWidget();
+                // closeWidget();
             } catch (e) {
                 console.log(e);
             }
@@ -148,7 +148,8 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                             desktop : {
                                 xOffset : '15',
                                 yOffset : '15',
-                                position : 'cr'
+                                position : 'br',
+                                // width : '400px',
                             },
 
                             mobile : {

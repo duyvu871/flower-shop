@@ -17,7 +17,6 @@ async function RootLayout({children}: LayoutProps) {
         if (!session) {
             return redirect('/');
         }
-
         if (!session.user.role.includes("admin")) {
             return redirect('/');
         }
@@ -25,11 +24,7 @@ async function RootLayout({children}: LayoutProps) {
 
     return (
        <>
-           <SidebarProvider>
-               <BaseLayout>
-                {children}
-               </BaseLayout>
-           </SidebarProvider>
+           {children}
        </>
     );
 }
