@@ -18,29 +18,29 @@ import {BiFoodMenu} from "react-icons/bi";
 const sidebarItems = [
     {
         name: "Quản lý đơn hàng",
-        href: "/admin",
+        href: "/admin/dashboard/order-management",
         icon: FiMail,
     },
     {
         name: "Quản lý người dùng",
-        href: "/admin/user-management",
+        href: "/admin/dashboard/user-management",
         icon: BsPeople,
     },
     {
         name: "Quản lý món ăn",
-        href: "/admin/product-management",
+        href: "/admin/dashboard/product-management",
         icon: BiFoodMenu,
     },
     {
         name: "Quản lý đơn nạp tiền",
-        href: "/admin/deposit-management",
+        href: "/admin/dashboard/deposit-management",
         icon: AiOutlineHome,
     },
     {
-        name: "Contact",
-        href: "/contact",
+        name: "Quản lý đơn rút tiền",
+        href: "/admin/dashboard/withdrawal-management",
         icon: TiContacts,
-    },
+    }
 ];
 
 interface NextUiSidebarProps {
@@ -50,7 +50,7 @@ interface NextUiSidebarProps {
 
 function NextUiSidebar({
                            // hideSidebar, setHideSidebar
-                       }: NextUiSidebarProps) {
+}: NextUiSidebarProps) {
     const router = useRouter();
     const pathname = usePathname();
     const { isCollapsed, toggleSidebarCollapse } = useContext(SidebarContext);
@@ -63,22 +63,22 @@ function NextUiSidebar({
             </button>
             <aside className="sidebar flex flex-col items-center" data-collapse={isCollapsed}>
                 <div className="sidebar__top ">
-                    <AppLogo />
-                    <p className="sidebar__logo-name">The Brave Coders</p>
+                    <AppLogo size={60}/>
+                    <p className="sidebar__logo-name p-5 tt-xl">Trang quản lí</p>
                 </div>
                 <ul className="sidebar__list w-full">
                     {sidebarItems.map(({name, href, icon: Icon}) => {
                         return (
                             <li className="sidebar__item" key={name}>
-                                <Link
-                                    className={`sidebar__link ${
+                                <div
+                                    className={`sidebar__link flex justify-start items-center cursor-pointer ${
                                         pathname === href ? "sidebar__link--active" : ""
                                     }`}
-                                    href={href}
+                                    onClick={() => {router.push(href)}}
                                 >
                                     <span className="sidebar__icon"><Icon/></span>
                                     <span className="sidebar__name">{name}</span>
-                                </Link>
+                                </div>
                             </li>
                         );
                     })}

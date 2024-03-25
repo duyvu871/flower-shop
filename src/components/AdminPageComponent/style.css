@@ -20,7 +20,8 @@ body {
 
 .layout {
     display: flex;
-    height: fit-content;
+    /*height: fit-content;*/
+    height: 100%;
     position: relative;
     gap: 2rem;
 }
@@ -46,7 +47,7 @@ body {
     width: max-content;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    /*gap: 1rem;*/
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--color-border);

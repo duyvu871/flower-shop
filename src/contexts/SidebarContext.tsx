@@ -24,9 +24,9 @@ const SidebarProvider = ({ children }: SidebarProviderProps) => {
 
     return (
         <SidebarContext.Provider value={{ isCollapsed, toggleSidebarCollapse }}>
-    {children}
-    </SidebarContext.Provider>
-);
+            {children}
+        </SidebarContext.Provider>
+    );
 };
 
 export { SidebarContext, SidebarProvider };
