@@ -15,8 +15,8 @@ async function TableBody({page = 1, rowsPerPage = 10, keys = []}: TableBodyProps
     const data = await getUserByPagination(page, rowsPerPage);
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>
-            {data.map((user, index) => (
-                <tr className={""}>
+            {data.map((user, data_index) => (
+                <tr className={""} key={"row-"+data_index}>
                     {keys.map((key, index) => {
                         if (key === "index") {
                             return (

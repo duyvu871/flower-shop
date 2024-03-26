@@ -6,7 +6,7 @@ dotenv.config({
     path: './.env'
 });
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = process.env.NODE_ENV === "production" ? process.env.NEXTAUTH_URL : process.env.DEV_HOSTNAME||'localhost';
+const hostname = process.env.NODE_ENV === "production" ? '14.225.218.92 ': process.env.DEV_HOSTNAME||'localhost';
 console.log('hostname', hostname);
 const port = 3000;
 // when using middlewares `hostname` and `port` must be provided below

@@ -56,8 +56,8 @@ function AnalystCards({}: AnalystCardsProps) {
                         rate={item.rate.toString()+"%"}
                         levelUp={item.levelUp}
                         levelDown={item.levelDown}
-                        children={item.children}
-                    />
+                    >{item.children}
+                    </CardDataStats>
             )}
         </div>
     );

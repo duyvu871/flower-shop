@@ -73,7 +73,7 @@ function Table({}: TableProps) {
                 return;
               }
               const data = await res.json();
-              // setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
+              setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
               store.dispatch(updateUsers(data.data));
               setTotalPage(Math.ceil(data.count / 10));
               setIsLoading(false);
