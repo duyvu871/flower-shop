@@ -57,13 +57,13 @@ function NextUiSidebar({
 
 
     return (
-        <div className="sidebar__wrapper">
+        <div className="sidebar__wrapper fixed left-0 top-0">
             <button className="btn" onClick={toggleSidebarCollapse}>
                 {isCollapsed ? <MdKeyboardArrowRight/> : <MdKeyboardArrowLeft/>}
             </button>
             <aside className="sidebar flex flex-col items-center" data-collapse={isCollapsed}>
-                <div className="sidebar__top ">
-                    <AppLogo size={60}/>
+                <div className="sidebar__top cursor-pointer" onClick={() => {router.push('/admin/dashboard')}}>
+                    <AppLogo size={60} />
                     <p className="sidebar__logo-name p-5 tt-xl">Trang quản lí</p>
                 </div>
                 <ul className="sidebar__list w-full">

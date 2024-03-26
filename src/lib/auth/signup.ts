@@ -47,6 +47,8 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
         virtualVolume: 1000,
         isLoyalCustomer: false,
         total_request_withdraw: 0,
+        revenue: 0,
+        orders: 0,
         address: "",
         cart: [],
         orderHistory: [],
@@ -59,6 +61,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
             accountName: "",
         },
     }
+
     const insertUser = await usersCollection.insertOne(doc);
 
     if (!insertUser) {

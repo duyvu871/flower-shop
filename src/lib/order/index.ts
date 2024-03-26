@@ -92,7 +92,11 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
     const updateUserBalance =  await userCollection.updateOne({_id: new ObjectId(uid)}, {
-        $inc: {balance: - orderVolume},
+        $inc: {
+            balance: - orderVolume,
+            orders: orderList.reduce((acc, order) => acc + order.totalOrder, 0),
+            revenue: orderVolume
+        },
         // @ts-ignore
         $push: {
             // @ts-ignore

@@ -15,6 +15,8 @@ interface UserInterface {
     virtualVolume: number;
     total_request_withdraw: number;
     address: string;
+    orders: number;
+    revenue: number;
     cart: string[]; // Update with the actual type for the 'cart' property
     orderHistory: string[]; // Update with the actual type for the 'orderHistory' property
     transactions: string[]; // Update with the actual type for the 'transactions' property

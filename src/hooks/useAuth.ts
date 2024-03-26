@@ -22,7 +22,7 @@ export const useAuth = () => {
             setIsLogin(false);
             setUser(undefined);
         }
-    }, [session]);
+    }, [data]);
 
     return {isLogin, user, logout};
 }

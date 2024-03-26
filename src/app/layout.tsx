@@ -21,6 +21,7 @@ import { Suspense } from "react";
 // import {tw} from "@/ultis/tailwind.ultis";
 // import {Spinner} from "@nextui-org/react";
 import LoadingScreen from "@/components/LoadingScreen";
+import {headers} from "next/headers";
 
 const inter = Inter({ subsets: ['vietnamese'] })
 
@@ -36,15 +37,31 @@ export default function RootLayout({
                                    }: {
   children: React.ReactNode
 }) {
+    const header = headers();
+    const pathname = header.get("x-pathname");
+    if (pathname.includes("/admin")) {
+        return (
+            <html lang="en">
+                <body className={inter.className+ ""}>
+                    {/*<Suspense>*/}
+                        <ProviderLayout>
+                            {children}
+                        </ProviderLayout>
+                    {/*</Suspense>*/}
+                    <ToastContainer{...Toaster as ToastContainerProps}/>
+                </body>
+            </html>
+        );
+    }
   return (
       <html lang="en">
         <body className={inter.className+ ""}>
-            <Suspense>
+
                 <ProviderLayout>
                     <LoadingScreen />
                     {children}
                 </ProviderLayout>
-            </Suspense>
+
             <ToastContainer{...Toaster as ToastContainerProps}/>
         </body>
       </html>

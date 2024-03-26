@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import NextUIProvider from "@/app/NextuiProvider";
 import ReduxProviders from "@/app/ReduxProviders";
 import {LiveChatWidgetProvider} from "@/contexts/liveChatWidgetContext";
@@ -16,18 +16,38 @@ interface ProviderLayoutProps {
 };
 
 function ProviderLayout({children}: ProviderLayoutProps) {
+    const header = headers();
+    const pathname = header.get("x-pathname");
+    if (pathname.includes("/admin")) {
+        // console.log("Admin")
+        return (
+            <NextauthSessionProviders>
+                <NextUIProvider>
+                    {/*<ReduxProviders>*/}
+                        <UserDataProvider>
+                            <MenuDataProvider>
+                                {children}
+                            </MenuDataProvider>
+                        </UserDataProvider>
+                    {/*</ReduxProviders>*/}
+                </NextUIProvider>
+            </NextauthSessionProviders>
+        );
+    }
     return (
-        <NextauthSessionProviders>
-            <NextUIProvider>
-                <ReduxProviders>
-                    <UserDataProvider>
-                        <MenuDataProvider>
-                            {children}
-                        </MenuDataProvider>
-                    </UserDataProvider>
-                </ReduxProviders>
-            </NextUIProvider>
-        </NextauthSessionProviders>
+        <Suspense fallback={<div>Loading.....</div>}>
+            <NextauthSessionProviders>
+                <NextUIProvider>
+                    <ReduxProviders>
+                        <UserDataProvider>
+                            <MenuDataProvider>
+                                {children}
+                            </MenuDataProvider>
+                        </UserDataProvider>
+                    </ReduxProviders>
+                </NextUIProvider>
+            </NextauthSessionProviders>
+        </Suspense>
     );
 }
 export default ProviderLayout;

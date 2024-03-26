@@ -4,6 +4,7 @@ import {redirect} from "next/navigation";
 import {headers} from "next/headers";
 import {SidebarProvider} from "@/contexts/SidebarContext";
 import BaseLayout from "@/components/AdminPageComponent/BaseLayout";
+import ReduxProviders from "@/app/(admin)/admin/AdminReduxProviders";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -24,7 +25,9 @@ async function RootLayout({children}: LayoutProps) {
 
     return (
        <>
-           {children}
+           <ReduxProviders>
+               {children}
+           </ReduxProviders>
        </>
     );
 }

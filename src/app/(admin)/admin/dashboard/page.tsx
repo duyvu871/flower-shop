@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseLayout from "@/components/AdminPageComponent/BaseLayout";
+import MainPage from "@/components/AdminPageComponent/Dashboard/MainPage";
 
 interface PageProps {
     
@@ -8,7 +9,7 @@ interface PageProps {
 function Page({}: PageProps) {
 
     return (
-        <h1>Dashboard</h1>
+        <MainPage />
     );
 }
 

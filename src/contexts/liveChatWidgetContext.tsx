@@ -126,6 +126,9 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
             }
         }
         loadLiveChat()
+        return () => {
+            clearInterval(interval);
+        }
     }, []);
 
     return (
