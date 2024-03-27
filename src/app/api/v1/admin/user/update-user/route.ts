@@ -18,3 +18,5 @@ export async function POST(request: NextRequest) {
         return dataTemplate({error: e.error}, 400);
     }
 }
+
+export const dynamic = "force-dynamic";

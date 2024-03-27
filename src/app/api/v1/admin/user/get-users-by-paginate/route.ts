@@ -35,3 +35,5 @@ export async function GET(req: NextRequest) {
         return dataTemplate({error: e.error}, 400)
     }
 }
+
+export const dynamic = "force-dynamic";

@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const time = searchParams.get("time") as timeOrder;
     const page = searchParams.get("page") as string;
     const limit = searchParams.get("limit") || String(DBConfigs.perPage);
-    console.log(time);
+    // console.log(time);
     const menuListWithPaginate = await getMenuList(time, Number(page), Number(limit));
 
     if (!menuListWithPaginate.data) {

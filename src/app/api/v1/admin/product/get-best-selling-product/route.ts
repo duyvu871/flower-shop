@@ -39,3 +39,5 @@ export async function GET() {
         return dataTemplate({error: e.error}, 400)
     }
 }
+
+export const dynamic = "force-dynamic";

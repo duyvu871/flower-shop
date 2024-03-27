@@ -26,7 +26,7 @@ export const openModal = (_id: string, type: OpenModalAction["payload"]["type"])
         type: OPEN_MODAL,
         payload: {
             _id,
-            type: "user-management"
+            type: type
         }
     }
 }

@@ -18,25 +18,21 @@ const headerTable = [
         key: "index"
     },
     {
-        title: "Mã nguời dùng",
-        key: "userId"
-    },
-    {
-        title: "Số tiền",
-        key: "amount",
-        action: "formatCurrency"
-    },
-    {
-        title: "Đã xác nhận",
-        key: "confirmed"
-    },
-    {
-        title: "hình thức thanh toán",
-        key: "paymentMethod"
+        title: "Đơn giá",
+        key: "orderVolume"
     },
     {
         title: "Trạng thái",
-        key: "isPaid"
+        key: "status"
+    },
+    {
+        title: "Ghi chú",
+        key: "takeNote"
+    },
+    {
+        title: "Địa chỉ",
+        key: "location",
+        // action: "formatDate"
     },
     {
         title: "Ngày tạo",
@@ -64,7 +60,7 @@ function Table({}: TableProps) {
         //     return;
         // }
 
-        fetch('/api/v1/admin/deposit/get-deposit?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/admin/order/get-order?page=' + currentPage + '&limit=' + 10).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -86,13 +82,13 @@ function Table({}: TableProps) {
             setCurrentPage={setCurrentPage}
             isLoading={isLoading}
             data={currentTable}
-            type={"deposit-management"}
-            title={"Quản lý nạp tiền"}
+            type={"order-management"}
+            title={"Quản lý đơn hàng"}
             addNew={{
-                title: "Nạp tiền",
+                title: "Tạo đơn",
                 onClick: () => {}
             }}
-            listTitle={"Danh sách nạp tiền"}
+            listTitle={"Danh sách đơn"}
         >
 
         </TableTemplate>

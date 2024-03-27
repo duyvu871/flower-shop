@@ -9,6 +9,8 @@ import {closeModal} from "@/adminRedux/action/OpenModal";
 import {useSelector} from "react-redux";
 import {RootState} from "@/adminRedux/reducers";
 import UserManagement from "@/components/AdminPageComponent/Dashboard/Dialog/UserManagement";
+import DepositManagement from "@/components/AdminPageComponent/Dashboard/Dialog/DepositManagement";
+import ProductManagement from "@/components/AdminPageComponent/Dashboard/Dialog/ProductManagement";
 
 interface DialogProviderProps {
     children: React.ReactNode
@@ -16,6 +18,8 @@ interface DialogProviderProps {
 
 const modalContent = {
     'user-management': UserManagement,
+    'deposit-management': DepositManagement,
+    'product-management': ProductManagement,
 }
 
 function DialogProvider({children}: DialogProviderProps) {
@@ -23,6 +27,7 @@ function DialogProvider({children}: DialogProviderProps) {
     // const [isSaveActive, setIsSaveActive] = React.useState<boolean>(false);
     // const [isDeleteActive, setIsDeleteActive] = React.useState<boolean>(false);
     const CurrentModal = modalContent[type];
+    // console.log("type", type)
     return (
         <>
             {children}

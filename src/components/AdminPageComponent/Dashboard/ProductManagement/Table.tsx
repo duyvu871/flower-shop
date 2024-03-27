@@ -6,10 +6,14 @@ import {UserInterface} from "types/userInterface";
 import {useSelector} from "react-redux";
 import {RootState} from "@/adminRedux/reducers";
 import store from "@/adminRedux/store";
-import {updateUsers} from "@/adminRedux/action/userData";
+// import {updateUsers} from "@/adminRedux/action/userData";
 import {setCurrentTable} from "@/adminRedux/action/currentTable";
+import {MenuItemType} from "types/order";
+
+
 
 interface TableProps {
+type: string
 };
 
 const headerTable = [
@@ -18,30 +22,30 @@ const headerTable = [
         key: "index"
     },
     {
-        title: "Mã nguời dùng",
-        key: "userId"
+        title: "Ảnh",
+        key: "image"
     },
     {
-        title: "Số tiền",
-        key: "amount",
-        action: "formatCurrency"
+        title: "Tên món",
+        key: "name",
+        // action: "formatCurrency"
     },
     {
-        title: "Đã xác nhận",
-        key: "confirmed"
+        title: "Giá",
+        key: "price",
     },
     {
-        title: "hình thức thanh toán",
-        key: "paymentMethod"
+        title: "Giảm giá",
+        key: "discount",
     },
     {
-        title: "Trạng thái",
-        key: "isPaid"
+        title: "Đã bán",
+        key: "total_sold"
     },
     {
-        title: "Ngày tạo",
-        key: "createdAt",
-        action: "formatDate"
+        title: "Mô tả",
+        key: "description",
+        // action: "formatDate"
     },
     {
         title: "Action",
@@ -49,13 +53,13 @@ const headerTable = [
     }
 ]
 
-function Table({}: TableProps) {
+function Table({type}: TableProps) {
 
-    const [data, setData] = React.useState<Record<string, UserInterface[]>>({});
+    const [data, setData] = React.useState<MenuItemType[]>();
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [totalPage, setTotalPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const {currentTable} = useSelector((state: RootState) => state.currentTable);
+    // const {currentTable} = useSelector((state: RootState) => state.currentTable);
     useLayoutEffect(() => {
         setIsLoading(true);
 
@@ -64,13 +68,13 @@ function Table({}: TableProps) {
         //     return;
         // }
 
-        fetch('/api/v1/admin/deposit/get-deposit?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/info/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
             const data = await res.json();
-            setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
-            store.dispatch(setCurrentTable(data.data));
+            setData(data.data);
+            // store.dispatch(setCurrentTable(data.data));
             setTotalPage(Math.ceil(data.count / 10));
             setIsLoading(false);
             // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
@@ -85,14 +89,14 @@ function Table({}: TableProps) {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             isLoading={isLoading}
-            data={currentTable}
-            type={"deposit-management"}
-            title={"Quản lý nạp tiền"}
+            data={data}
+            type={"product-management"}
+            title={"Quản lý món"}
             addNew={{
-                title: "Nạp tiền",
+                title: "Thêm món",
                 onClick: () => {}
             }}
-            listTitle={"Danh sách nạp tiền"}
+            listTitle={"Danh sách món ăn"}
         >
 
         </TableTemplate>

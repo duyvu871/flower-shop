@@ -10,7 +10,7 @@ export function formatISODate(isoDateString: Date): string {
     const seconds = String(isoDate.getSeconds()).padStart(2, '0');
 
     const formattedDate = `${year}-${month}-${day}`;
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    const formattedTime = `${hours}:${minutes}`;
 
     return `${formattedDate} ${formattedTime}`;
 }

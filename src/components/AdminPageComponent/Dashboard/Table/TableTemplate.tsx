@@ -1,0 +1,114 @@
+"use client"
+import React, {useEffect, useLayoutEffect} from 'react';
+import TableBody from "./TableBody";
+import {Pagination} from "@nextui-org/react";
+// import {UserInterface} from "types/userInterface";
+// import {formatCurrency} from "@/ultis/currency-format";
+// import store from "@/adminRedux/store";
+// import {updateUsers} from "@/adminRedux/action/userData";
+// import {RootState} from "@/adminRedux/reducers";
+// import {useSelector} from "react-redux";
+
+interface TableProps {
+    totalPage: number;
+    currentPage: number;
+    setCurrentPage: (page: number) => void;
+    isLoading;
+    headerTable: {
+        title: string,
+        key: string,
+        action?: string
+    }[];
+    data: any[];
+    type: string;
+    title: string;
+    addNew: {
+        title: string,
+        onClick: () => void
+    };
+    listTitle: string;
+};
+
+
+function TableTemplate({
+                           totalPage,
+                           setCurrentPage,
+                           currentPage,
+                           headerTable,
+                           data,
+                           isLoading,
+                           type,
+                           listTitle,
+                           title,
+                           addNew
+}: TableProps) {
+
+    return (
+        <div className={"p-6 min-h-[calc(100vh-146px)] w-full"}>
+            <div className={"flex flex-row justify-between items-center py-4"}>
+                <h1 className={"text-2xl font-bold"}>{title}</h1>
+                <button
+                    className={"bg-primary text-white rounded-md px-4 py-2"}
+                    onClick={addNew.onClick}>
+                    {addNew.title}
+                </button>
+            </div>
+            <div className={"grid grid-cols-1"}>
+                <div
+                    className={"border rounded-lg border-default-200 bg-gray-100"}>
+                    <div
+                        className={"px-6 py-4 overflow-hidden flex flex-row justify-between items-center"}>
+                        <div
+                            className={"flex flex-row justify-between items-center"}>
+                            {listTitle}
+                        </div>
+                        <Pagination
+                            showControls
+                            total={totalPage}
+                            // initialPage={1}
+                            classNames={{
+                                forwardIcon: "text-white",
+                                item: "bg-white text-black",
+                                prev: "bg-white text-black",
+                                next: "bg-white text-black",
+                                cursor: "bg-blue-500 text-white",
+                            }}
+                            page={currentPage}
+                            onChange={(page) => {
+                                // console.log(page);
+                                setCurrentPage(page);
+                            }}
+                        />
+                    </div>
+                    <div className={"relative overflow-x-auto"}>
+                        <div className={"min-w-full inline-block align-middle"}>
+                            <div className={"overflow-hidden"}>
+                                <table className={"min-w-full divide-y divide-default-200"}>
+                                    <thead className={"bg-white "}>
+                                        <tr className={"text-start"}>
+                                            {headerTable.map((item, index) => (
+                                                <th key={index} className={"px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-break-spaces max-w-[200px] min-w-[70px] h-[70px]"}>
+                                                    {item.title}
+                                                </th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    {isLoading ? <div>Loading...</div> :  <TableBody
+                                        keys={headerTable.map(item => item.key)}
+                                        actions={headerTable.map(item => item.action)}
+                                        page={currentPage - 1}
+                                        rowsPerPage={10}
+                                        data={data || []}
+                                        type={type}
+                                    />}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default TableTemplate;
