@@ -21,7 +21,7 @@ function Categories({}: CategoriesProps) {
                         key={"category-"+ index}
                         className={"w-full flex flex-col justify-center items-center gap-2 p-6 bg-gray-50 rounded-lg border hover:border-blue-600 transition-all"}
                         onClick={() => {
-                            router.push("/admin/product-management?category="+item);
+                            router.push("/admin/dashboard/product-management/detail?type="+item.replace("-menu", ""));
                         }}
                     >
                         <PiBowlFood size={40} className={"text-blue-600 opacity-80"}/>

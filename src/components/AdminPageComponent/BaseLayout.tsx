@@ -1,5 +1,4 @@
 "use client";
-
 import NextUiSidebar from "./NextUISidebar";
 import React from "react";
 

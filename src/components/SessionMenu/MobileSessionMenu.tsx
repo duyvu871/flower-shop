@@ -35,6 +35,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
                 setIsLoaded(true);
                 setTotalItems(data.other.count);
                 updateAllMenuType(data);
+                // console.log(data)
             }
             if (allMenuType.other.data.length === totalItems && totalItems !== 0) {
                 setIsPreventFetch(false);

@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Image} from "@nextui-org/react";
 import store from "@/adminRedux/store";
 import {openModal} from "@/adminRedux/action/OpenModal";
-import {formatCurrency} from "@/ultis/currency-format";
+import {formatCurrency, formatCurrencyWithDot} from "@/ultis/currency-format";
 import {OrderStatus} from "types/order";
 import {formatISODate} from "@/ultis/timeFormat.ultis";
 import {FiEye} from "react-icons/fi";
@@ -140,7 +140,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                     if (key === "price") {
                         return (
                             <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base font-semibold"}>
-                                {formatCurrency((item[key]||0).toString())}.000đ
+                                {formatCurrencyWithDot((item[key]||0).toString())}.000đ
                             </td>
                         )
                     }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Card, CardBody, CardFooter, Image} from "@nextui-org/react";
 import {FaCartPlus} from "react-icons/fa";
 import store from "@/redux/store";
 import {openOrderModal} from "@/redux/action/openOrderModal";
-import {calculateDiscount} from "@/ultis/currency-format";
+import {calculateDiscount, formatCurrencyWithDot} from "@/ultis/currency-format";
 
 interface ShopItemCardProps {
     title: string;
@@ -16,7 +16,10 @@ interface ShopItemCardProps {
 };
 
 function ShopItemCard({title, img, price, location, dishID, totalSold, discount}: ShopItemCardProps) {
+    useEffect(() => {
+        console.log(calculateDiscount(String(price), discount))
 
+    },[])
     return (
         <Card
             shadow="sm"
@@ -36,6 +39,7 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
                    alt={title}
                    className="w-full object-cover h-[140px] hover:scale-110 transition-transform duration-300 ease-in-out"
                    src={img}
+
               />
               <div
                   className={"absolute right-0 p-3 text-xl text-white bg-orange-600 z-[20] rounded-bl-xl hover:bg-orange-500"}
@@ -48,7 +52,7 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
                 <b className={"text-start line-clamp-2 h-[40px]"}>{title}</b>
                 {/*<p className={"line-clamp-3 text-gray-500 text-start my-1 h-[60px]"}>{location}</p>*/}
                 <div className={"flex justify-between items-center w-full"}>
-                    <p className="text-default-900 text-lg font-semibold my-1">{Math.floor(Number(price) - Number(calculateDiscount(String(price), discount)))}.000đ</p>
+                    <p className="text-default-900 text-lg font-semibold my-1">{formatCurrencyWithDot(Math.floor(Number(price) - Number(calculateDiscount(String(price), discount))))}.000đ</p>
                     <p className="text-default-500 my-1">{totalSold} đã bán</p>
                 </div>
                 <div className={"cart-item"}></div>

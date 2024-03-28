@@ -22,6 +22,8 @@ import { Suspense } from "react";
 // import {Spinner} from "@nextui-org/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import {headers} from "next/headers";
+import {getServerAuthSession} from "@/lib/nextauthOptions";
+import {redirect} from "next/navigation";
 
 const inter = Inter({ subsets: ['vietnamese'] })
 
@@ -32,13 +34,16 @@ export const metadata: Metadata = {
     keywords: ["mon ngon", "dich vu nau an"]
 }
 
-export default function RootLayout({
+export default async function RootLayout({
                                      children
                                    }: {
   children: React.ReactNode
 }) {
     const header = headers();
     const pathname = header.get("x-pathname");
+    const session = getServerAuthSession();
+    const data = await session;
+
     if (pathname.includes("/admin")) {
         return (
             <html lang="en">
@@ -52,6 +57,21 @@ export default function RootLayout({
                 </body>
             </html>
         );
+    } else {
+        if (data) {
+            if (data.user.role === "admin") {
+                return (
+                    <html lang="en">
+                    <body className={inter.className+ ""}>
+                    <h1>
+                        Hãy quay lại trang admin và đăng xuất để sử dụng tính năng này, hoặc có thể sử dụng trin duyệt khác để sử dụng,
+                        Điều này cần thiết để đảm bảo an toàn cho hệ thống
+                    </h1>
+                    </body>
+                    </html>
+                )
+            }
+        }
     }
   return (
       <html lang="en">

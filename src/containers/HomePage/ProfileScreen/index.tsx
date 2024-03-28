@@ -42,7 +42,7 @@ function ProfileScreen({}: ProfileScreenProps) {
                             Khách hàng thân thiết
                             <FaMedal className={"text-gray-600"}/>
                         </span> : ""}
-                        <p className={"text-xs text-gray-400 mt-1"}>{userData.address || "29 Tan Dien, Giuc Tuong Hamlet, Kien Giang"}</p>
+                        <p className={"text-xs text-gray-400 mt-1"}>{userData.address || "Chưa có thông tin địa chỉ, cập nhập thêm tại thông tin cá nhân"}</p>
 
                     </div>
                 </div>

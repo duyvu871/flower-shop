@@ -40,7 +40,40 @@ function ProductManagement({_id}: ProductManagementProps) {
         });
     }, [_id]);
 
+    const update = async () => {
+        fetch('/api/v1/admin/product/update-product', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                productId: _id,
+                productType: productType,
+                data: {
+                    name: productName,
+                    price: price,
+                    discount: discount,
+                    description: description,
+                    image: image,
+                    type: productType
+                }
+            })
+        }).then(async (res) => {
+            const data = await res.json();
+            if (res.status !== 200) {
+                return;
+            }
+            setIsUploading(false);
+            success(data.message);
+        });
+    }
+
     const updateAfterDelete = () => {
+        if (!selectedFile) {
+            // setImage("");
+            update();
+            return;
+        }
         const storageRef = ref(storage, `images/${selectedFile.name}`);
         const uploadTask = uploadBytesResumable(storageRef, selectedFile);
         uploadTask.on('state_changed',
@@ -54,37 +87,18 @@ function ProductManagement({_id}: ProductManagementProps) {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    fetch('/api/v1/admin/product/update-product', {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            productId: _id,
-                            productType: productType,
-                            data: {
-                                name: productName,
-                                price: price,
-                                discount: discount,
-                                description: description,
-                                image: downloadURL,
-                                type: productType
-                            }
-                        })
-                    }).then(async (res) => {
-                        const data = await res.json();
-                        if (res.status !== 200) {
-                            return;
-                        }
-                        setIsUploading(false);
-                        success(data.message);
-                    });
+                    setImage(downloadURL);
+                    update();
                 });
             }
         );
     }
 
     const updateOrCreateProduct = () => {
+        if (!selectedFile) {
+            updateAfterDelete();
+            return;
+        }
         deleteFileByDownloadUrl(image).then(() => {
            updateAfterDelete();
         }).catch(() => {

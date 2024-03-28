@@ -77,8 +77,8 @@
         updatedAt: Date;
     }
     export enum TranslateMenuType {
-        "morning-menu" = "Menu sáng",
-        "afternoon-menu" = "Menu trưa",
+        "morning-menu" = "Menu trưa",
+        "afternoon-menu" = "Menu chiều",
         "evening-menu" = "Menu tối",
         "other-menu" = "Khác"
     }

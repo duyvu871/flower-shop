@@ -1,6 +1,6 @@
 "use client"
 import React, {useEffect, useLayoutEffect} from 'react';
-import {Button, Input, Spinner} from "@nextui-org/react";
+import {Button, Input, Select, SelectItem, Spinner} from "@nextui-org/react";
 import {formatCurrency} from "@/ultis/currency-format";
 import {LuPlus} from "react-icons/lu";
 import {EyeFilledIcon, EyeSlashFilledIcon} from "@nextui-org/shared-icons";
@@ -18,6 +18,11 @@ import {useSelector} from "react-redux";
 interface UserManagementProps {
     _id: string;
 };
+
+enum Status {
+    isLoyalCustomer= "Khách hàng thân thiết",
+    isNotLoyalCustomer = "Khách hàng mới",
+}
 
 function UserManagement({ _id}: UserManagementProps) {
     // const { userData, updateFullUserData } = useUserData();
@@ -68,6 +73,7 @@ function UserManagement({ _id}: UserManagementProps) {
     // const [isVisible, setIsVisible] = React.useState<boolean>(false);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [enableChangeBalance, setEnableChangeBalance] = React.useState<boolean>(false);
+    const [isLoyalCustomer, setIsLoyalCustomer] = React.useState<boolean>(false);
     const balanceRef = React.useRef<HTMLInputElement>(null);
     const handleUpdate = async () => {
         if (newPassword && confirmPassword) {
@@ -91,7 +97,8 @@ function UserManagement({ _id}: UserManagementProps) {
                     address: newAddress,
                     phone: newPhone,
                     bankingInfo: newBankingInfo,
-                    balance: newBalance
+                    balance: newBalance,
+                    isLoyalCustomer
                 }
             })
         })
@@ -106,7 +113,8 @@ function UserManagement({ _id}: UserManagementProps) {
             address: newAddress,
             phone: newPhone,
             bankingInfo: newBankingInfo,
-            balance: newBalance
+            balance: newBalance,
+            isLoyalCustomer
         } : item) as UserInterface[]))
     }
 
@@ -126,6 +134,10 @@ function UserManagement({ _id}: UserManagementProps) {
         }
         store.dispatch(deleteUser(_id))
         success("Xóa tài khoản thành công");
+    }
+
+    const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setIsLoyalCustomer(e.target.value === "isLoyalCustomer");
     }
 
     // const toggleVisibility = () => setIsVisible(!isVisible);
@@ -204,6 +216,25 @@ function UserManagement({ _id}: UserManagementProps) {
                                     setNewBalance(Number(e.target.value.replace(/\D/g, "")));
                                 }}
                             />
+                            <Select
+                                items={Object.keys(Status).map((key) => ({
+                                    value: key,
+                                    label: Status[key as keyof typeof Status],
+                                }))}
+                                selectedKeys={[isLoyalCustomer ? "isLoyalCustomer" : "isNotLoyalCustomer"]}
+                                label="Trạng thái"
+                                // placeholder=""
+                                className="max-w-xl"
+                                onChange={handleSelectionChange}
+                                variant={"bordered"}
+                                color={"primary"}
+                                showScrollIndicators={true}
+                            >
+                                {
+                                    (covan) =>
+                                        <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
+                                }
+                            </Select>
                             <Input type="text" label={"Tên người dùng"} id={"newFullName"} value={userData.fullName}
                                    disabled/>
                             <Input type="text" label={"Email"} id={"newEmail"} value={userData.email} disabled/>

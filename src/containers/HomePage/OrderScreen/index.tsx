@@ -1,6 +1,6 @@
 "use client"
 import React, {useEffect} from 'react';
-import {calculateDiscount, formatCurrency} from "@/ultis/currency-format";
+import {calculateDiscount, formatCurrency, formatCurrencyWithDot} from "@/ultis/currency-format";
 import {
     Button,
     Image,
@@ -52,10 +52,15 @@ function OrderScreen({}: OrderScreenProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [cartTemp, setCartTemp] = React.useState<CartItemType[]>([]);
     const [isPayAll, setIsPayAll] = React.useState<boolean>(false);
+    const [isLocationValid, setIsLocationValid] = React.useState<boolean>(true);
 
     const handleOrder = async () => {
         if (!data) {
             return push("/auth/signin");
+        }
+        if (!location) {
+            setIsLocationValid(false);
+            return;
         }
 
         setIsLoading(true);
@@ -182,7 +187,7 @@ function OrderScreen({}: OrderScreenProps) {
                                </div>
                                <div className={"flex flex-col gap-1 w-[60%]"}>
                                    <span className={"text-sm font-semibold line-clamp-2"}>{item.name}</span>
-                                   <span className={"font-bold"}>{price}.000đ</span>
+                                   <span className={"font-bold"}>{formatCurrencyWithDot(price)}.000đ</span>
                                </div>
                            </div>
                            <div className={" h-full flex flex-col gap-1 w-[25%] justify-end items-end"}>
@@ -233,6 +238,8 @@ function OrderScreen({}: OrderScreenProps) {
                                                     className="text-xl text-orange-600 pointer-events-none flex-shrink-0"/>
                                             }
                                             onChange={(e) => setLocation(e.target.value)}
+                                            isInvalid={!isLocationValid}
+                                            errorMessage={isLocationValid ? "" : "Vị trí không được để trống"}
                                         />
                                         <Textarea
                                             onChange={(e) => setTakeNote(e.target.value)}
@@ -242,7 +249,7 @@ function OrderScreen({}: OrderScreenProps) {
                                         />
                                     </div>
                                 ) : null}
-                                <p className={"italic text-gray-500 text-sm"}>Nếu không có thông tin gì thì vị trí sẽ được lấy theo thông tin của người dùng</p>
+                                {/*<p className={"italic text-gray-500 text-sm"}>Nếu không có thông tin gì thì vị trí sẽ được lấy theo thông tin của người dùng</p>*/}
                                 <button
                                     className={"w-full bg-orange-600 text-white mt-4 p-3 rounded-md flex flex-row justify-center items-center gap-2"}
                                     onClick={handleOrder}

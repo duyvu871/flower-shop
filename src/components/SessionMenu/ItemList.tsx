@@ -3,6 +3,7 @@ import React from "react";
 import ShopItemCard from "@/components/Card/ShopItemCard";
 
 const ItemList = ({menuData}: {menuData: MenuItemType[]})  => {
+    // console.log(menuData)
     return (
         <>
             {menuData.map((item, index) => (

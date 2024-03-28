@@ -11,9 +11,12 @@ import Link from "next/link";
 import { useContext } from "react";
 import { SidebarContext } from "@/contexts/SidebarContext";
 import { useRouter, usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import "./style.css";
 import AppLogo from "@/components/Logo";
 import {BiFoodMenu} from "react-icons/bi";
+import {IoIosLogOut} from "react-icons/io";
+
 
 const sidebarItems = [
     {
@@ -36,11 +39,12 @@ const sidebarItems = [
         href: "/admin/dashboard/deposit-management",
         icon: AiOutlineHome,
     },
-    // {
-    //     name: "Quản lý đơn rút tiền",
-    //     href: "/admin/dashboard/withdrawal-management",
-    //     icon: TiContacts,
-    // }
+    {
+        name: "Đăng xuất",
+        href: "/admin/dashboard/withdrawal-management",
+        type: "logout",
+        icon: IoIosLogOut,
+    }
 ];
 
 interface NextUiSidebarProps {
@@ -55,7 +59,6 @@ function NextUiSidebar({
     const pathname = usePathname();
     const { isCollapsed, toggleSidebarCollapse } = useContext(SidebarContext);
 
-
     return (
         <div className="sidebar__wrapper fixed left-0 top-0">
             <button className="btn" onClick={toggleSidebarCollapse}>
@@ -67,7 +70,22 @@ function NextUiSidebar({
                     <p className="sidebar__logo-name p-5 tt-xl">Trang quản lí</p>
                 </div>
                 <ul className="sidebar__list w-full">
-                    {sidebarItems.map(({name, href, icon: Icon}) => {
+                    {sidebarItems.map(({name, href, icon: Icon, type}) => {
+                        if (type === "logout") {
+                            return (
+                                <li className="sidebar__item" key={name}>
+                                    <div
+                                        className={`rounded-[0.8rem] px-[1rem] py-[0.8rem] flex justify-start items-center cursor-pointer text-danger bg-danger/10 hover:bg-danger/20`}
+                                        onClick={() => {
+                                            signOut({callbackUrl: '/'});
+                                        }}
+                                    >
+                                        <span className="sidebar__icon"><Icon/></span>
+                                        <span className="sidebar__name">{name}</span>
+                                    </div>
+                                </li>
+                            );
+                        }
                         return (
                             <li className="sidebar__item" key={name}>
                                 <div

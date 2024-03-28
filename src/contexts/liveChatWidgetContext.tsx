@@ -157,8 +157,8 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
 
                             mobile : {
                                 xOffset : 10,
-                                yOffset : 70,
-                                position : 'br',
+                                yOffset : 200,
+                                position : 'cr',
 
                             }
                         }

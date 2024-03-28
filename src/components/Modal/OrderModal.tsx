@@ -18,7 +18,7 @@ import {ObjectId} from "mongodb";
 import store from "@/redux/store";
 import {closeOrderModal} from "@/redux/action/openOrderModal";
 import {isNumber} from "@/ultis/validate.ultis";
-import {calculateDiscount} from "@/ultis/currency-format";
+import {calculateDiscount, formatCurrencyWithDot} from "@/ultis/currency-format";
 import {Textarea} from "@nextui-org/input";
 import {useMenuData} from "@/hooks/useMenuData";
 import {storeToLocalStorage} from "@/ultis/storeToLocalStorage";
@@ -131,7 +131,7 @@ function OrderModal({}: OrderModalProps) {
                                <p className={"font-semibold"}>{orderInfo.name}</p>
                                <div className={"flex flex-row justify-between my-1"}>
                                    <div className={"flex flex-col"}>
-                                       <p className={"text-default-900 font-semibold text-xl"}>{price}.000đ</p>
+                                       <p className={"text-default-900 font-semibold text-xl"}>{formatCurrencyWithDot(price)}.000đ</p>
                                        <div className={"flex flex-row gap-2 mb-2"}>
                                            <p className={"line-through text-gray-400 text-sm"}>{orderInfo.price}.000đ</p>
                                            <p className={"text-gray-400 text-sm"}>{orderInfo.total_sold} đã bán</p>

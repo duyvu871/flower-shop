@@ -70,14 +70,18 @@ export function usdtToVndIntegers(usdt: number | string, exchangeRate: number | 
 }
 
 export function calculateDiscount(price: string, discount: number | string): string {
-    return formatCurrency(
-        multiplyLargeNumbers(
+    return multiplyLargeNumbers(
             price,
             divideLargeIntegers(
                 discount.toString(),
                 '100'
             )
-        )
     );
 }
-export {divideLargeIntegers, multiplyLargeNumbers, subtractLargeIntegers, addLargeNumber};
+
+function formatCurrencyWithDot(amount: number|string) {
+    const parts = amount.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return parts.join('.');
+}
+export {divideLargeIntegers, multiplyLargeNumbers, subtractLargeIntegers, addLargeNumber, formatCurrencyWithDot};
