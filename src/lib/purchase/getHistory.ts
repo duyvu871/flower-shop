@@ -8,7 +8,7 @@ export async function getPurchaseHistory(userId: string, limit: number, page: nu
     const collection = client.db(process.env.DB_NAME).collection("purchase-orders");
     const skip = (Number(page) - 1) * 10; // 0, 10, 20, 30
     const paginate = await collection.find({
-        _id: new ObjectId(userId)
+        userId
     }).sort({createdAt: -1}).skip(skip).limit(Number(limit)).toArray();
     return {
         data: paginate,
