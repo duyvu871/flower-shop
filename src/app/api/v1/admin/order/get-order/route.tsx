@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
 
         const client = await clientPromise;
         const foodOrderCollection = client.db(process.env.DB_NAME).collection("food-orders");
-        const foodOrders = await foodOrderCollection.find().skip((Number(page) - 1) * Number(limit)).limit(Number(limit)).toArray();
+        const foodOrders = await foodOrderCollection.find().sort({createdAt: -1}).skip((Number(page) - 1) * Number(limit)).limit(Number(limit)).toArray();
         const totalFoodOrders = await foodOrderCollection.countDocuments();
         if (!foodOrders) {
             return dataTemplate({error: "Không tìm thấy đơn hàng nào"}, 404)

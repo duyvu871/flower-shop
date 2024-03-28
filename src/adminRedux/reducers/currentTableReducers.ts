@@ -36,7 +36,7 @@ export default function currentTableReducer(
             return {
                 ...state,
                 currentTable: state.currentTable.map((item) =>
-                    item._id === action.payload._id ? action.payload : item
+                    item._id === action.payload._id ? {...item, ...action.payload} : item
                 ),
             };
         case DELETE_ITEM:

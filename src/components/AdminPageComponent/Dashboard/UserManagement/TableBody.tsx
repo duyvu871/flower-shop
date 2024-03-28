@@ -15,6 +15,34 @@ interface TableBodyProps {
     data: UserInterface[];
 };
 
+const GreenBadge = ({children}) => {
+    return (
+        <span
+            className={"px-3 py-1 text-xs font-medium rounded-md bg-green-500/10 text-green-500"}>
+            {children}
+        </span>
+    )
+}
+
+const RedBadge = ({children}) => {
+    return (
+        <span
+            className={"px-3 py-1 text-xs font-medium rounded-md bg-red-500/10 text-red-500"}>
+            {children}
+        </span>
+    )
+}
+
+const GreyBadge = ({children}) => {
+    return (
+        <span
+            className={"px-3 py-1 text-xs font-medium rounded-md bg-gray-500/10 text-gray-500"}>
+            {children}
+        </span>
+    )
+
+}
+
 function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: TableBodyProps) {
 
     return (
@@ -58,9 +86,24 @@ function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: Table
                             )
                         }
 
+                        if (key === 'isLoyalCustomer') {
+                            return (
+                                <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base"}>
+                                    {user[key]
+                                        ? <GreenBadge>Khách hàng thân thiết</GreenBadge>
+                                        : <GreyBadge>Khách hàng mới</GreyBadge>
+                                    }
+                                </td>
+                            )
+                        }
+
+
                         return (
                             <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base"}>
-                            { actions[index] === 'formatCurrency' ? formatCurrency(user[key].toString()) : (user[key] || "N/A")}
+                            { actions[index] === 'formatCurrency' ?
+                                <span className={"font-semibold"}>
+                                 {formatCurrency(user[key].toString())}
+                                </span> : (user[key] || "N/A")}
                             </td>
                         )
                     })}

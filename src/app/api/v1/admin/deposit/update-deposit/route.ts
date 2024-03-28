@@ -5,24 +5,27 @@ import {ObjectId} from "mongodb";
 
 export async function POST(request: NextRequest) {
     try {
+        let depositValue = 0;
         const requestBody = await request.json();
         const {depositId, status} = requestBody;
         const client = await clientPromise;
+
         const depositCollection = client.db(process.env.DB_NAME).collection("purchase-orders");
-        const updateDeposit = await depositCollection.updateOne({_id: new ObjectId(depositId)}, {$set: {status}});
+        const updateDeposit = await depositCollection.updateOne({_id: new ObjectId(depositId)}, {$set: {isPaid: status.isPaid, confirmed: status.confirmed, updatedAt: new Date()}});
 
-        if (!updateDeposit.acknowledged) return dataTemplate("Cập nhật thất bại", 500);
-
+        if (!updateDeposit.acknowledged) return dataTemplate({message: "Cập nhật thất bại"}, 500);
         const deposit = await depositCollection.findOne({_id: new ObjectId(depositId)});
+        if (status.isPaid && status.confirmed)  depositValue = deposit.amount;
+
         const userCollection = client.db(process.env.DB_NAME).collection("users");
         const updateDepositUser = await userCollection.updateOne({_id: new ObjectId(deposit.userId)}, {
             $inc: {
-                balance: deposit.amount
+                balance: depositValue
             }
         });
-        if (!updateDepositUser.acknowledged) return dataTemplate("Cập nhật thất bại", 500);
+        if (!updateDepositUser.acknowledged) return dataTemplate({message: "Cập nhật thất bại"}, 500);
 
-        return dataTemplate("Cập nhật thành công", 200);
+        return dataTemplate({message: "Cập nhật thành công"}, 200);
     } catch (e) {
         return dataTemplate({error: e.error}, 400);
     }

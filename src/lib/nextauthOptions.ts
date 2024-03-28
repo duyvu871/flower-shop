@@ -9,7 +9,7 @@ import {UserSessionPayload} from "@/services/interface.authenticate";
 export const nextauthOptions: AuthOptions = {
     session: {
         strategy: "jwt",
-        maxAge:  30 * 60, // 30 minutes
+        maxAge:  24 * 60 * 60, // 24 hours
     },
     providers: [
         CredentialsProvider({

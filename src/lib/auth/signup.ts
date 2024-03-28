@@ -46,6 +46,7 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
             .join(''),
         virtualVolume: 1000,
         isLoyalCustomer: false,
+        status: true,
         total_request_withdraw: 0,
         revenue: 0,
         orders: 0,

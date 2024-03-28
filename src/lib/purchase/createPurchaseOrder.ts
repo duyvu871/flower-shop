@@ -4,7 +4,7 @@ import {ObjectId} from "mongodb";
 import {NextResponse} from "next/server";
 import {dataTemplate} from "@/helpers/returned_response_template";
 
-export async function createPurchaseOrder(amount: number, userId: string, isPaid: boolean, items: {id: string, quantity: number}[]) {
+export async function createPurchaseOrder(amount: number, userId: string, isPaid: boolean = false, items: {id: string, quantity: number}[]) {
     const defaultData: PurchaseOrderType = {
         _id: new ObjectId(),
         amount,

@@ -59,7 +59,8 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
             name: item.name,
             menuItem: new ObjectId(item._id),
             totalOrder: item.totalOrder,
-            takeNote: item.takeNote
+            takeNote: item.takeNote,
+            menuType
         }
     }
 

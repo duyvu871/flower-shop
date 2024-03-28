@@ -8,6 +8,8 @@ import store from "@/adminRedux/store";
 import {updateUsers} from "@/adminRedux/action/userData";
 import {RootState} from "@/adminRedux/reducers";
 import {useSelector} from "react-redux";
+import {openModal} from "@/adminRedux/action/OpenModal";
+import {TimeRange} from "@/ultis/timeFormat.ultis";
 
 interface TableProps {
 
@@ -45,6 +47,10 @@ const headerTable = [
         action: 'formatCurrency'
     },
     {
+        title: "loại khách hàng",
+        key: "isLoyalCustomer"
+    },
+    {
         title: "Trạng thái",
         key: "status"
     },
@@ -60,33 +66,80 @@ function Table({}: TableProps) {
     const [totalPage, setTotalPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const {users} = useSelector((state: RootState) => state.users);
+
+    const fetchData = async () => {
+        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+            if (res.status !== 200) {
+                return;
+            }
+            const data = await res.json();
+            setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
+            store.dispatch(updateUsers(data.data));
+            setTotalPage(Math.ceil(data.count / 10));
+            setIsLoading(false);
+            // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
+        });
+    }
+
     useLayoutEffect(() => {
+        fetchData();
+    }, [currentPage]);
+
+    useEffect(() => {
         setIsLoading(true);
 
         // if (data['user-data'+currentPage]) {
         //     setIsLoading(false);
         //     return;
         // }
-
-        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10).then(async (res) => {
-              if (res.status !== 200) {
-                return;
-              }
-              const data = await res.json();
-              setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
-              store.dispatch(updateUsers(data.data));
-              setTotalPage(Math.ceil(data.count / 10));
-              setIsLoading(false);
-              // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
-        });
-
+        // let count = 0;
+        // const interval = setInterval(() => {
+        //     count++;
+        //     if (currentPage === 1) {
+        //         // if () {
+        //         //     fetchData(currentPage);
+        //         // }
+        //         fetchData();
+        //     } else {
+        //         clearInterval(interval);
+        //     }
+        //     console.log(count)
+        // }, 15000);
+        //
+        //
+        // return () => {
+        //     clearInterval(interval);
+        // }
     }, [currentPage]);
+
+    const generateXLSX = async () => {
+        const response = await fetch('/api/v1/admin/finalization/export-user?range='+"all")
+        const fileBlob = await response.blob()
+
+        // this works and prompts for download
+        var link = document.createElement('a')  // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
+        link.href = window.URL.createObjectURL(fileBlob)
+        link.download = 'thongtindonhang-'+ "tatca" +'.xlsb'
+        link.click()
+        link.remove();
+    }
 
     return (
         <div className={"p-6 min-h-[calc(100vh-146px)] w-full"}>
             <div className={"flex flex-row justify-between items-center py-4"}>
                 <h1 className={"text-2xl font-bold"}>Quản lý khách hàng</h1>
-                <button className={"bg-primary text-white rounded-md px-4 py-2"}>Thêm khách hàng</button>
+                <div className={"flex justify-end items-center gap-4"}>
+                    <button
+                        className={"bg-primary text-white rounded-md px-4 py-2"}
+                        onClick={() => {
+                            // @ts-ignore
+                            store.dispatch(openModal("oke", "create-user"))
+                        }}
+                    >Thêm khách hàng
+                    </button>
+                    <button className={"bg-primary text-white rounded-md px-4 py-2"} onClick={generateXLSX}>Xuất file
+                    </button>
+                </div>
             </div>
             <div className={"grid grid-cols-1"}>
                 <div className={"border rounded-lg border-default-200 bg-gray-100"}>

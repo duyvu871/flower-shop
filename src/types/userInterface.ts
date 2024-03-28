@@ -9,6 +9,7 @@ interface UserInterface {
     avatar: string;
     role: "user"|"admin";
     isLoyalCustomer: boolean;
+    status: boolean;
     balance: number;
     id_index: number;
     uid: string;

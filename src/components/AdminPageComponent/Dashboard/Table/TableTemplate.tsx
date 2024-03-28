@@ -2,6 +2,7 @@
 import React, {useEffect, useLayoutEffect} from 'react';
 import TableBody from "./TableBody";
 import {Pagination} from "@nextui-org/react";
+import {tw} from "@/ultis/tailwind.ultis";
 // import {UserInterface} from "types/userInterface";
 // import {formatCurrency} from "@/ultis/currency-format";
 // import store from "@/adminRedux/store";
@@ -24,9 +25,11 @@ interface TableProps {
     title: string;
     addNew: {
         title: string,
-        onClick: () => void
+        onClick: () => void,
+        isHidden?: boolean
     };
     listTitle: string;
+    children: React.ReactNode;
 };
 
 
@@ -40,18 +43,18 @@ function TableTemplate({
                            type,
                            listTitle,
                            title,
-                           addNew
+                           addNew,
+    children
 }: TableProps) {
 
     return (
-        <div className={"p-6 min-h-[calc(100vh-146px)] w-full"}>
-            <div className={"flex flex-row justify-between items-center py-4"}>
-                <h1 className={"text-2xl font-bold"}>{title}</h1>
-                <button
-                    className={"bg-primary text-white rounded-md px-4 py-2"}
-                    onClick={addNew.onClick}>
-                    {addNew.title}
-                </button>
+        <div className={"p-6  w-full"}>
+            <div className={"flex flex-row justify-between items-center py-4 w-full"}>
+                <div className={"w-full"}><h1 className={"text-2xl font-bold"}>{title}</h1></div>
+                <div className={"flex flex-row justify-end items-center gap-4 w-full"}>
+                    <button className={tw("bg-primary text-white rounded-md px-4 py-2", addNew.isHidden ? "hidden" : "")} onClick={addNew.onClick}>{addNew.title}</button>
+                    {children}
+                </div>
             </div>
             <div className={"grid grid-cols-1"}>
                 <div

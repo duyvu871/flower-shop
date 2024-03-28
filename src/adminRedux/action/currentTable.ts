@@ -12,7 +12,7 @@ export const addItem = (item: Item) => ({
 
 export const updateItem = (updatedItem: Item) => ({
     type: UPDATE_ITEM as typeof UPDATE_ITEM,
-    payload: updatedItem,
+    payload: updatedItem
 });
 
 export const deleteItem = (itemId: string) => ({

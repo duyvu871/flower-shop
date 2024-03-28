@@ -6,6 +6,7 @@ import {openModal} from "@/adminRedux/action/OpenModal";
 import {formatCurrency} from "@/ultis/currency-format";
 import {OrderStatus} from "types/order";
 import {formatISODate} from "@/ultis/timeFormat.ultis";
+import {FiEye} from "react-icons/fi";
 
 interface TableBodyProps {
     page: number;
@@ -49,7 +50,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>
         {data.map((item, data_index) => (
-            <tr className={""} key={"row" + data_index}>
+            <tr className={"border border-gray-200 border-0 border-b-1"} key={"row" + data_index}>
                 {keys.map((key, index) => {
                     if (key === "index") {
                         return (
@@ -63,13 +64,28 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                         return (
                             <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base"}>
                                 <Button
-                                    className={"px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8"}
+                                    className={" px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8"}
                                     onClick={() => {
                                         // @ts-ignore
                                         // console.log(item._id as unknown as string, type)
                                         store.dispatch(openModal(item._id as unknown as string, type))
                                     }}
                                 >Chỉnh sửa</Button>
+                            </td>
+                        )
+                    }
+
+                    if (key === 'view') {
+                        return (
+                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base"}>
+                                <Button
+                                    className={"w-full px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8 flex justify-center items-center gap-1"}
+                                    onClick={() => {
+                                        // @ts-ignore
+                                        // console.log(item._id as unknown as string, type)
+                                        store.dispatch(openModal(item._id as unknown as string, type))
+                                    }}
+                                ><FiEye /> Xem</Button>
                             </td>
                         )
                     }
@@ -110,7 +126,12 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                     if (key === "userId") {
                         return (
                             <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-gray-600 "}>
-                                <span className={"cursor-pointer hover:text-blue-600 hover:underline"}>{item[key]}</span>
+                                <span
+                                    className={"cursor-pointer hover:text-blue-600 hover:underline"}
+                                    onClick={() => {
+                                        store.dispatch(openModal(item[key], "user-management"))
+                                    }}
+                                >{item[key]}</span>
                                 {/*{item[key]}*/}
                             </td>
                         )
@@ -119,7 +140,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                     if (key === "price") {
                         return (
                             <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base font-semibold"}>
-                                {formatCurrency(item[key].toString())}.000đ
+                                {formatCurrency((item[key]||0).toString())}.000đ
                             </td>
                         )
                     }
@@ -142,10 +163,19 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                     if (key === 'orderVolume') {
                         return (
                             <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base font-semibold"}>
-                                {formatCurrency(item[key].toString())}đ
+                                {formatCurrency((item[key]||0).toString())}đ
                             </td>
                         )
                     }
+
+                    if (key === "discount") {
+                        return (
+                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base "}>
+                                {(item[key]||0)}%
+                            </td>
+                        )
+                    }
+
 
                     if (actions[index] === "formatDate") {
                         return (
@@ -167,7 +197,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}:
                     return (
                         <td key={"td" + index} className={"px-3 py-4 whitespace-break-spaces text-base max-w-xl"}>
                             {actions[index] === 'formatCurrency'
-                                ? <span className={"font-semibold"}>{formatCurrency(item[key].toString())}đ</span>
+                                ? <span className={"font-semibold"}>{formatCurrency((item[key]||0).toString())}đ</span>
                                 : (item[key])}
                         </td>
                     )

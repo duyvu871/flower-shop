@@ -1,5 +1,6 @@
 const AppConfig = {
     mainApiUrl: 'http://localhost:3000',
+    rootPath: __dirname,
     url: {
         main: 'http://localhost:3000',
         pages: {

@@ -12,7 +12,7 @@ export function formatISODate(isoDateString: Date): string {
     const formattedDate = `${year}-${month}-${day}`;
     const formattedTime = `${hours}:${minutes}`;
 
-    return `${formattedDate} ${formattedTime}`;
+    return `${formattedDate} | ${formattedTime}`;
 }
 
 interface FormattedDate {
@@ -39,3 +39,48 @@ export function formatDate(date: Date): FormattedDate {
     return { day, month, year, time };
 }
 
+export function startTime(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all') {
+    const currentTime = new Date().getTime();
+    let startTime: Date;
+    switch (range) {
+        case 'hour':
+            startTime = new Date(currentTime - 3600 * 1000); // 1 giờ trước
+            break;
+        case 'day':
+            startTime = new Date(currentTime - 24 * 3600 * 1000); // 1 ngày trước
+            break;
+        case 'week':
+            startTime = new Date(currentTime - 7 * 24 * 3600 * 1000); // 1 tuần trước
+            break;
+        case 'month':
+            startTime = new Date(new Date().getFullYear(), new Date().getMonth() - 1, new Date().getDate()); // 1 tháng trước
+            break;
+        case 'year':
+            startTime = new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate()); // 1 năm trước
+            break;
+        case 'all':
+            startTime = new Date(0); // Thời gian bắt đầu
+            break;
+        default:
+            throw new Error('Invalid range');
+    }
+    return startTime;
+}
+
+export enum TimeRange {
+    hour = 'gio',
+    day = 'ngay',
+    week = 'tuan',
+    month = 'thang',
+    year = 'nam',
+    all = 'tat ca'
+}
+
+export enum TimeRangeLabel {
+    hour = 'Giờ',
+    day = 'Ngày',
+    week = 'Tuần',
+    month = 'Tháng',
+    year = 'Năm',
+    all = 'Tất cả'
+}

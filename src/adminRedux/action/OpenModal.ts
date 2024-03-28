@@ -15,7 +15,7 @@ export interface CloseModalAction extends Action {
     type: typeof CLOSE_MODAL;
     payload: {
         _id: string;
-        type: "user-management"| "product-management"| "order-management"| "withdrawal-management"| "deposit-management";
+        type: "user-management"| "product-management"| "order-management"| "withdrawal-management"| "deposit-management"| "create-user";
     }; //
 }
 

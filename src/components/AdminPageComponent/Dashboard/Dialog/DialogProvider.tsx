@@ -11,6 +11,10 @@ import {RootState} from "@/adminRedux/reducers";
 import UserManagement from "@/components/AdminPageComponent/Dashboard/Dialog/UserManagement";
 import DepositManagement from "@/components/AdminPageComponent/Dashboard/Dialog/DepositManagement";
 import ProductManagement from "@/components/AdminPageComponent/Dashboard/Dialog/ProductManagement";
+import OrderManagement from "@/components/AdminPageComponent/Dashboard/Dialog/OrderManagement";
+import CreateUser from "@/components/AdminPageComponent/Dashboard/Dialog/CreateUser";
+import CreateDeposit from "@/components/AdminPageComponent/Dashboard/Dialog/CreateDeposit";
+import CreateProduct from "@/components/AdminPageComponent/Dashboard/Dialog/createProduct";
 
 interface DialogProviderProps {
     children: React.ReactNode
@@ -20,6 +24,10 @@ const modalContent = {
     'user-management': UserManagement,
     'deposit-management': DepositManagement,
     'product-management': ProductManagement,
+    'order-management': OrderManagement,
+    'create-user': CreateUser,
+    'create-deposit': CreateDeposit,
+    'create-product': CreateProduct,
 }
 
 function DialogProvider({children}: DialogProviderProps) {

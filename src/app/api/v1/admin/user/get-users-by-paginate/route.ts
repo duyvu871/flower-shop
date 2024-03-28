@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
         const result = await users.find().project([
             '_id',                    'avatar',
             'fullName',               'email',
-            'phone',
+            'phone',                  'status',
             'role',                   'balance',
             'id_index',               'uid',
             'virtualVolume',          'isLoyalCustomer',
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
             'cart',                   'orderHistory',
             'transactions',           'actionHistory',
             'withDrawHistory',        'bankingInfo'
-        ]).skip((page - 1) * limit ).limit(limit).toArray();
+        ]).sort({createdAt: -1}).skip((page - 1) * limit ).limit(limit).toArray();
         const count = await users.countDocuments();
         if (result.length === 0) {
             return dataTemplate({error: "Không tìm thấy người dùng"}, 404);

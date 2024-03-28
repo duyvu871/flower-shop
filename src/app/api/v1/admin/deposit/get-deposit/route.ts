@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
         const limit = req.nextUrl.searchParams.get("limit") ? parseInt(req.nextUrl.searchParams.get("limit") as string) : 10;
         const client = await clientPromise;
         const depositCollection = client.db(process.env.DB_NAME).collection("purchase-orders");
-        const result = await depositCollection.find().skip((page - 1) * limit ).limit(limit).toArray();
+        const result = await depositCollection.find().sort({createdAt: -1}).skip((page - 1) * limit ).limit(limit).toArray();
         const count = await depositCollection.countDocuments();
         if (result.length === 0) {
             return dataTemplate({error: "Không tìm thấy đơn nạp tiền"}, 404);
