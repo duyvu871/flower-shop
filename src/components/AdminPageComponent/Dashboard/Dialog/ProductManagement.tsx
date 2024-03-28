@@ -8,6 +8,7 @@ _id: string;
 
 function ProductManagement({_id}: ProductManagementProps) {
     const {error, success} = useToast();
+    const [productType, setProductType] = useState<string>("morning"); // ["morning", "afternoon", "evening", "other"
     const [productName, setProductName] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [discount, setDiscount] = useState<number>(0);
@@ -25,20 +26,24 @@ function ProductManagement({_id}: ProductManagementProps) {
             setDiscount(data[0].discount);
             setDescription(data[0].description);
             setImage(data[0].image);
+            setProductType(data[0].type);
         });
     }, [_id])
     const updateOrCreateProduct = () => {
-        fetch('/api/v1/admin/product/update', {
+        fetch('/api/v1/admin/product/update-product', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                _id: _id,
-                name: productName,
-                price: price,
-                discount: discount,
-                description: description
+                productId: _id,
+                data: {
+                    name: productName,
+                    price: price,
+                    discount: discount,
+                    description: description
+                },
+                productType
             })
         }).then(async (res) => {
             const data = await res.json();
