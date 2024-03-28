@@ -152,6 +152,9 @@ function Table({}: TableProps) {
                         label="Phạm vi"
                         // placeholder=""
                         className="max-w-xs w-32"
+                        classNames={{
+                            base: "bg-white rounded-xl",
+                        }}
                         onChange={(e) => {
                             setRange(e.target.value as keyof typeof TimeRangeLabel);
                         }}

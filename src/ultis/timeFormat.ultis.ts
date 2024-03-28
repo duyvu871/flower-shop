@@ -1,3 +1,4 @@
+import moment from "moment";
 
 export function formatISODate(isoDateString: Date): string {
     const isoDate = new Date(isoDateString);
@@ -39,7 +40,7 @@ export function formatDate(date: Date): FormattedDate {
     return { day, month, year, time };
 }
 
-export function startTime(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all') {
+export function startTime(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all', prevSession: boolean = false) {
     const currentTime = new Date().getTime();
     let startTime: Date;
     switch (range) {
@@ -65,6 +66,33 @@ export function startTime(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'a
             throw new Error('Invalid range');
     }
     return startTime;
+}
+
+export function getPreviousCycle(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all') {
+    let startTime: Date, endTime: Date;
+
+    switch (range) {
+        case 'hour':
+            startTime = moment().subtract(1, 'hours').startOf('hour').toDate();
+            endTime = moment().subtract(1, 'hours').endOf('hour').toDate();
+            break;
+        case 'day':
+            startTime = moment().subtract(1, 'days').startOf('day').toDate();
+            endTime = moment().subtract(1, 'days').endOf('day').toDate();
+            break;
+        case 'week':
+            startTime = moment().subtract(1, 'weeks').startOf('isoWeek').toDate();
+            endTime = moment().subtract(1, 'weeks').endOf('isoWeek').toDate();
+            break;
+        case 'month':
+            startTime = moment().subtract(1, 'months').startOf('month').toDate();
+            endTime = moment().subtract(1, 'months').endOf('month').toDate();
+            break;
+        default:
+            throw new Error('Invalid range');
+    }
+
+    return { startTime, endTime };
 }
 
 export enum TimeRange {

@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
             return dataTemplate({error: "Không tìm thấy id"}, 400);
         }
         const client = await clientPromise;
-        const productCollection = client.db(process.env.DB_NAME).collection("products");
+        const productCollection = client.db(process.env.DB_NAME).collection(productType);
         const deleteProduct = await productCollection.deleteOne({_id: new ObjectId(productId)});
         if (!deleteProduct.acknowledged) {
             return dataTemplate({error: "Xóa sản phẩm thất bại"}, 500);

@@ -122,7 +122,7 @@ function Table({type, isRerender}: TableProps) {
                 title: "Thêm món",
                 onClick: () => {
                     // @ts-ignore
-                    store.dispatch(openModal("", "create-product"));
+                    store.dispatch(openModal(type+"-menu", "create-product"));
                 }
             }}
             listTitle={"Danh sách món ăn"}

@@ -36,11 +36,11 @@ const sidebarItems = [
         href: "/admin/dashboard/deposit-management",
         icon: AiOutlineHome,
     },
-    {
-        name: "Quản lý đơn rút tiền",
-        href: "/admin/dashboard/withdrawal-management",
-        icon: TiContacts,
-    }
+    // {
+    //     name: "Quản lý đơn rút tiền",
+    //     href: "/admin/dashboard/withdrawal-management",
+    //     icon: TiContacts,
+    // }
 ];
 
 interface NextUiSidebarProps {
