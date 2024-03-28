@@ -9,6 +9,7 @@ import {currencyToNumber, formatCurrency, } from "@/ultis/currency-format";
 // import {isNumber} from "@/ultis/validate.ultis";
 import {useOrder} from "@/hooks/useOrder";
 import RedirectHeader from "@/components/RedirectHeader";
+import {useUserData} from "@/hooks/useUserData";
 interface BuyCreditScreenProps {
     
 };
@@ -18,6 +19,7 @@ const PurchaseGuideMemo = memo(PurchaseGuide);
 function BuyCreditScreen({}: BuyCreditScreenProps) {
     const {createPurchaseOrder} = useOrder();
     const {error, success} = useToast();
+    const {userData} = useUserData()
     const [selectedTab, setSelectedTab] = useState<Selection>(new Set(['1']));
     const [purchaseAmount, setPurchaseAmount] = useState<number>(0);
     const [isConfirmPurchase, setIsConfirmPurchase] = useState<boolean>(false);
@@ -183,6 +185,9 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
                 >
                     <div className={"flex flex-col justify-center items-center gap-5 p-5"}>
                         <p className={"text-lg text-gray-800 font-semibold"}>
+                            ID người dùng: {userData._id as unknown as string}
+                        </p>
+                        <p className={"text-lg text-gray-800 font-semibold"}>
                             Số tiền nạp: {formatCurrency(purchaseAmount.toString())}đ
                         </p>
                         <Button
@@ -194,7 +199,7 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
                             className={"text-white flex justify-center items-center gap-2 font-bold text-md px-5 py-2 rounded-md hover:bg-green-600"}
                             // className={tw("px-5 py-2 bg-green-500 text-white font-semibold rounded-md", "hover:bg-green-600")}
                         >
-                            {isLoading ? <Spinner color={"white"} size={"sm"} /> : ""}
+                            {isLoading ? <Spinner color={"white"} size={"sm"}/> : ""}
                             Xác nhận
                         </Button>
                     </div>

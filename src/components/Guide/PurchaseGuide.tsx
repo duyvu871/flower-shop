@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from "@nextui-org/react"
 
 interface PurchaseGuideProps {
-
+// _id: string;
 };
 
 function PurchaseGuide({}: PurchaseGuideProps) {
@@ -22,7 +22,7 @@ function PurchaseGuide({}: PurchaseGuideProps) {
                 </p>
                 <span className={"text-md font-normal text-center flex flex-col "}>
                     Nội dung chuyển khoản:
-                    <p dangerouslySetInnerHTML={{__html: `&quot<strong>nap tien ngonngon + SO_TIEN_NAP + TEN_NGUOI_NAP</strong>&quot`}}>
+                    <p dangerouslySetInnerHTML={{__html: `&quot<strong>nap tien ngonngon + SO_TIEN_NAP + ID_NGUOI_NAP</strong>&quot`}}>
                     </p>
                 </span>
             </div>
