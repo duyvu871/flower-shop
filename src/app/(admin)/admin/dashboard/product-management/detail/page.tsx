@@ -14,7 +14,7 @@ function Page({}: PageProps) {
     if (type !== "morning" && type !== "afternoon" && type !== "evening" && type !== "other") return null;
     return (
         <div className={"flex flex-col justify-start items-start gap-8"}>
-            <Table type={type} isRerender={true}/>
+            <Table type={type} isRerender={true} isShowSelect={true}/>
         </div>
     );
 }

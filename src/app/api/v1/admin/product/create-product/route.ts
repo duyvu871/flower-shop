@@ -26,6 +26,8 @@ export async function POST(req: NextRequest) {
            address: data.address || "",
            total_sold: data.total_sold || 0,
            type: data.type || "",
+           createdAt: new Date(),
+           updatedAt: new Date()
        }
 
        const client = await clientPromise;

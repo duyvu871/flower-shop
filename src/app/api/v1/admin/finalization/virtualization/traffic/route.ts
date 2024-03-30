@@ -36,6 +36,7 @@ export async function GET(req: NextRequest) {
             $lte: previousTimeEnd
         }
     }).toArray();
+    console.log("count-orders", countOrder.length, countPreviousOrder.length);
     const totalOrderRate = (countOrder.length - countPreviousOrder.length) / countPreviousOrder.length*100;
 
     const thisSessionRevenue = countOrder.reduce((acc, order) => acc + order.orderVolume, 0);

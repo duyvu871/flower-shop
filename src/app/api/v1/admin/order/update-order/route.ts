@@ -17,7 +17,10 @@ export async function POST(request: NextRequest) {
         const client = await clientPromise;
         const orderCollection = client.db(process.env.DB_NAME).collection("orders");
         const updateOrder = await orderCollection.updateOne({_id: new ObjectId(orderId)}, {
-            $set: data
+            $set: {
+                ...data,
+                updatedAt: new Date()
+            }
         });
         if (!updateOrder.acknowledged) {
             return dataTemplate({error: "Cập nhật đơn hàng thất bại"}, 500);

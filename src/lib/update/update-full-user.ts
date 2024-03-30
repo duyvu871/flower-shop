@@ -18,7 +18,8 @@ export async function UpdateFullUser(userUpdate: Partial<UserInterface>, _id: Ob
     }
     const updateUser = await userCollection.updateOne({_id: new ObjectId(_id)}, {
         $set: {
-           ...updateData
+           ...updateData,
+            updatedAt: new Date()
         }
     });
     if (!updateUser) {

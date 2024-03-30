@@ -30,7 +30,7 @@ export default function currentTableReducer(
         case ADD_ITEM:
             return {
                 ...state,
-                currentTable: [...state.currentTable, action.payload],
+                currentTable: [action.payload, ...state.currentTable],
             };
         case UPDATE_ITEM:
             return {

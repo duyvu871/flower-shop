@@ -52,7 +52,10 @@ function UserManagement({ _id}: UserManagementProps) {
         orderHistory: [""],
         transactions: [""],
         actionHistory: [""],
-        withDrawHistory: [""]
+        withDrawHistory: [""],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        allowDebitLimit: 1000
     });
 
     const {success, error} = useToast();
@@ -97,7 +100,7 @@ function UserManagement({ _id}: UserManagementProps) {
                     address: newAddress,
                     phone: newPhone,
                     bankingInfo: newBankingInfo,
-                    balance: newBalance,
+                    allowDebitLimit: newBalance,
                     isLoyalCustomer
                 }
             })
@@ -105,7 +108,7 @@ function UserManagement({ _id}: UserManagementProps) {
         setIsUpdating(false);
         if (response.status !== 200) {
             // @ts-ignore
-            return success(response?.error);
+            return error(response?.error);
         }
         success("Cập nhật thông tin thành công");
         store.dispatch(updateUsers(data.users.map(item => item._id as unknown as string === _id ? {
@@ -113,7 +116,7 @@ function UserManagement({ _id}: UserManagementProps) {
             address: newAddress,
             phone: newPhone,
             bankingInfo: newBankingInfo,
-            balance: newBalance,
+            allowDebitLimit: newBalance,
             isLoyalCustomer
         } : item) as UserInterface[]))
     }
@@ -166,7 +169,7 @@ function UserManagement({ _id}: UserManagementProps) {
                 setNewPhone(data.data.phone);
                 setNewBankingInfo(data.data.bankingInfo);
                 // console.log(userData)
-                setNewBalance(data.data.balance);
+                setNewBalance(data.data.allowDebitLimit);
             });
         // } else {
         //     setUserData(userDataTemp);
@@ -196,15 +199,16 @@ function UserManagement({ _id}: UserManagementProps) {
                                 type={!enableChangeBalance ? "text" : "number"}
                                 value={!enableChangeBalance ? formatCurrency(newBalance.toString()): newBalance.toString()}
                                 classNames={{
-                                    input: "text-green-500 font-semibold text-lg",
+                                    input: "text-danger-500 font-semibold text-lg",
                                 }}
-                                color={"success"}
-                                ref={balanceRef}
+                                color={"danger"}
+                                ref={debitRef => balanceRef.current = debitRef}
                                 disabled={!enableChangeBalance}
-                                startContent={<span className={"text-sm text-gray-500 w-14"}>Số dư</span>}
+                                label={"Số nợ cho phép"}
+                                // startContent={<span className={"text-sm text-gray-500 w-20 whitespace-nowrap"}>Số nợ cho phép</span>}
                                 endContent={
                                     <span
-                                        className={"p-1 rounded bg-green-500 text-white text-xl hover:bg-green-600 cursor-pointer"}
+                                        className={"p-1 rounded bg-danger-500 text-white text-xl hover:bg-danger-600 cursor-pointer"}
                                         onClick={() => {
                                             setEnableChangeBalance(true);
                                             balanceRef.current?.focus();

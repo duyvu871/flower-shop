@@ -71,26 +71,53 @@ export function startTime(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'a
 export function getPreviousCycle(range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all') {
     let startTime: Date, endTime: Date;
 
+    const currentDate = new Date();
+
     switch (range) {
         case 'hour':
-            startTime = moment().subtract(1, 'hours').startOf('hour').toDate();
-            endTime = moment().subtract(1, 'hours').endOf('hour').toDate();
+            startTime = new Date(currentDate.getTime() - 2 * 60 * 60 * 1000); // 1 giờ trước
+            endTime = new Date(currentDate.getTime() - 60 * 60 * 1000);
             break;
         case 'day':
-            startTime = moment().subtract(1, 'days').startOf('day').toDate();
-            endTime = moment().subtract(1, 'days').endOf('day').toDate();
+            startTime = new Date(currentDate.getTime() - 2 * 24 * 60 * 60 * 1000); // 2 ngày trước
+            endTime = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000); // 1 ngày trước
             break;
         case 'week':
-            startTime = moment().subtract(1, 'weeks').startOf('isoWeek').toDate();
-            endTime = moment().subtract(1, 'weeks').endOf('isoWeek').toDate();
+            const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay() + 1);
+            startTime = new Date(firstDayOfWeek.getTime() - 2 * 7 * 24 * 60 * 60 * 1000); // 2 tuần trước
+            endTime = new Date(firstDayOfWeek.getTime() - 7 * 24 * 60 * 60 * 1000); // 2 ngày trước
             break;
         case 'month':
-            startTime = moment().subtract(1, 'months').startOf('month').toDate();
-            endTime = moment().subtract(1, 'months').endOf('month').toDate();
+            startTime = new Date(currentDate.getTime() - 2 * 30 * 24 * 60 * 60 * 1000); // 2 tháng trước
+            endTime = new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000); // 1 tháng trước
             break;
         default:
             throw new Error('Invalid range');
     }
+
+    return { startTime, endTime };
+}
+
+export function getTypeRangeTime(type: "morning"|"afternoon"|"evening") {
+    const rangeTime = {
+        morning : {
+            start: "10:30",
+            end: "11:00"
+        },
+        afternoon: {
+            start: "16:30",
+            end: "17:00"
+        },
+        evening: {
+            start: "21:00",
+            end: "23:00"
+        }
+    }
+
+    const currentDate = new Date();
+    const format = formatDate(currentDate);
+    const startTime = new Date(`${format.year}-${format.month}-${format.day} ${rangeTime[type].start}`).toISOString();
+    const endTime = new Date(`${format.year}-${format.month}-${format.day} ${rangeTime[type].end}`).toISOString();
 
     return { startTime, endTime };
 }

@@ -178,8 +178,8 @@ function ProductManagement({_id}: ProductManagementProps) {
                     onChange={handleImageChange}
                     accept={"image/*"}
                 />
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF
-                    (MAX. 800x400px).</p>
+                {/*<p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF*/}
+                {/*    (MAX. 800x400px).</p>*/}
             </div>
             <Input
                 placeholder={"Tên món"}

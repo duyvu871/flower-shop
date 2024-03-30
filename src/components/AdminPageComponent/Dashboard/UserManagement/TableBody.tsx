@@ -103,7 +103,7 @@ function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: Table
                             { actions[index] === 'formatCurrency' ?
                                 <span className={"font-semibold"}>
                                  {formatCurrency(user[key].toString())}
-                                </span> : (user[key] || "N/A")}
+                                </span> : (user[key])}
                             </td>
                         )
                     })}

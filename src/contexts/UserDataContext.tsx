@@ -21,10 +21,13 @@ export interface ExtendedUserInterface {
     updateUserData: (data: Partial<WithId<UserInterface>>, key?: keyof WithId<UserInterface>) => void;
     getWithdrawalHistory: (list: ObjectId[]) => Promise<any>;
     updateUserWithdrawalHistory: (data: OrderType) => void;
-    updateFullUserData: (data: Partial<UserInterface>) => Promise<WithId<UserInterface>&{status:number}>;
+    updateFullUserData: (data: Partial<WithId<UserInterface>>) => Promise<WithId<UserInterface>&{status:number}>;
 }
 
 const defaultUserData: WithId<UserInterface> = {
+    orders: 0,
+    revenue: 0,
+    status: true,
     _id: "" as unknown as ObjectId,
     fullName: "",
     balance: 1000,
@@ -48,6 +51,8 @@ const defaultUserData: WithId<UserInterface> = {
     transactions: [""],
     actionHistory: [""],
     withDrawHistory: [""],
+    createdAt: new Date(),
+    updatedAt: new Date()
 }
 
 export const UserDataContext = createContext<ExtendedUserInterface>({
@@ -62,7 +67,7 @@ export const UserDataContext = createContext<ExtendedUserInterface>({
     updateUserData: (data: Partial<WithId<UserInterface>>, key?: keyof WithId<UserInterface>) => {},
     getWithdrawalHistory: async (list: ObjectId[]) => {},
     updateUserWithdrawalHistory: (data: OrderType) => {},
-    updateFullUserData: async (data: Partial<UserInterface>) => ({
+    updateFullUserData: async (data: Partial<WithId<UserInterface>>) => ({
         ...defaultUserData, status: 200
     })
 });
@@ -75,7 +80,7 @@ export const UserDataProvider = ({children}: {children: ReactNode}) => {
     const [userWithdrawalHistory, setUserWithdrawalHistory] = useState<OrderType[]>([]);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     // update user data
-    const updateFullUserData = async function (data: Partial<UserInterface>) {
+    const updateFullUserData = async function (data: Partial<WithId<UserInterface>>) {
         const res = await fetch('/api/v1/auth/update/update-full-user', {
             method: 'POST',
             headers: {

@@ -97,7 +97,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
         window.Tawk_API = window.Tawk_API || {};
         //@ts-ignore
         window.Tawk_LoadStart = new Date();
-        let interval;
+        let interval: string | number | NodeJS.Timeout;
         const loadLiveChat = async () => {
             try {
                 await loadScript(convertTawkUrl(AppConfig.liveChat.linkLiveChat)).then(() => {
@@ -156,9 +156,9 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                             },
 
                             mobile : {
-                                xOffset : 10,
-                                yOffset : 200,
-                                position : 'cr',
+                                xOffset : '10',
+                                yOffset : '200',
+                                position : 'br',
 
                             }
                         }

@@ -10,7 +10,9 @@ export async function GET(req: NextRequest) {
         const limit = req.nextUrl.searchParams.get("limit") ? parseInt(req.nextUrl.searchParams.get("limit") as string) : 10;
         const client = await clientPromise;
         const users = client.db(process.env.DB_NAME).collection("users");
-        const result = await users.find().project([
+        const result = await users.find().sort({
+            createdAt: -1 // sort by date descending
+        }).project([
             '_id',                    'avatar',
             'fullName',               'email',
             'phone',                  'status',
@@ -22,7 +24,7 @@ export async function GET(req: NextRequest) {
             'cart',                   'orderHistory',
             'transactions',           'actionHistory',
             'withDrawHistory',        'bankingInfo'
-        ]).sort({createdAt: -1}).skip((page - 1) * limit ).limit(limit).toArray();
+        ]).skip((page - 1) * limit ).limit(limit).toArray();
         const count = await users.countDocuments();
         if (result.length === 0) {
             return dataTemplate({error: "Không tìm thấy người dùng"}, 404);

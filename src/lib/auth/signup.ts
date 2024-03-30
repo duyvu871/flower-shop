@@ -61,6 +61,9 @@ export async function signUp(credentials:  Record<"fullName"|"password"|"phone"|
             accountNumber: "",
             accountName: "",
         },
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        allowDebitLimit: 1000,
     }
 
     const insertUser = await usersCollection.insertOne(doc);

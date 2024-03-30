@@ -29,7 +29,13 @@ interface TableProps {
         isHidden?: boolean
     };
     listTitle: string;
+    isShowSelect?: boolean;
     children: React.ReactNode;
+    selectedItems: {
+        key: string,
+        value: boolean
+    }[];
+    setSelectedItems: ({key, value}?: {key: string; value: boolean}) => void;
 };
 
 
@@ -44,7 +50,10 @@ function TableTemplate({
                            listTitle,
                            title,
                            addNew,
-    children
+    children,
+    isShowSelect = false,
+    selectedItems,
+    setSelectedItems
 }: TableProps) {
 
     return (
@@ -89,11 +98,23 @@ function TableTemplate({
                                 <table className={"min-w-full divide-y divide-default-200"}>
                                     <thead className={"bg-white "}>
                                         <tr className={"text-start"}>
-                                            {headerTable.map((item, index) => (
-                                                <th key={index} className={"px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-break-spaces max-w-[200px] min-w-[70px] h-[70px]"}>
-                                                    {item.title}
-                                                </th>
-                                            ))}
+                                            {[(isShowSelect && {
+                                                title: "Select",
+                                                key: "selectAll"
+                                            }), ...headerTable].map((item, index) => {
+                                                if (item.title === "Select") {
+                                                    return (
+                                                        <th key={index} className={"px-6 py-3 text-xs text-gray-500"}>
+                                                            <input type="checkbox" onChange={() => {setSelectedItems()}}/>
+                                                        </th>
+                                                    )
+                                                }
+                                                return (
+                                                    <th key={index} className={"px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-break-spaces max-w-[200px] min-w-[70px] h-[70px]"}>
+                                                        {item.title}
+                                                    </th>
+                                                )
+                                            })}
                                         </tr>
                                     </thead>
                                     {isLoading ? <div>Loading...</div> :  <TableBody
@@ -103,6 +124,9 @@ function TableTemplate({
                                         rowsPerPage={10}
                                         data={data || []}
                                         type={type}
+                                        isShowSelect={isShowSelect}
+                                        selectedItems={selectedItems}
+                                        setSelectedItems={setSelectedItems}
                                     />}
                                 </table>
                             </div>

@@ -33,7 +33,7 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
     const userBalanceAfterUpdate = userData.balance - orderVolume; // update user balance
-    if (userBalanceAfterUpdate < -(globalConfig.allowedDebtLimit as number)) {
+    if (userBalanceAfterUpdate < -(userData.allowedDebtLimit as number)) {
         return dataTemplate({error: "Đã quá mức nợ cho phép"}, 400);
     }
     const menuCollections = ["morning", "afternoon", "evening", "other"]
@@ -201,13 +201,14 @@ export async function CreateWithdrawOrder(orderData: WithdrawPayload) {
 }
 
 
-export async function getMenuList(time: "morning" | "afternoon" | "evening"| "night"|"other", page: number, limit: number) {
+export async function getMenuList(time: "morning" | "afternoon" | "evening"| "night"|"other", page: number, limit: number, role: "admin"|"user" = "user") {
     const perPage = DBConfigs.perPage; // 10
     const client = await clientPromise; // connect to database
     const orderCollection = client.db(process.env.DB_NAME).collection(`${DBConfigs.menu[time]}-menu`);
     const count = await orderCollection.countDocuments(); // count total documents
     const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
-    const paginate = await orderCollection.find({}).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
+    const filter = (role === "admin") ? {} : time === "other" ? {} : {isSelect: true};
+    const paginate = await orderCollection.find(filter).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
     return {
         data: paginate,
         count,

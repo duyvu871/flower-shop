@@ -15,6 +15,12 @@ interface TableBodyProps {
     actions: string[];
     data: any[],
     type: string;
+    isShowSelect?: boolean;
+    selectedItems?: {
+        key: string,
+        value: boolean
+    }[];
+    setSelectedItems?: ({key, value} :{ key: string, value: boolean }) => void;
 };
 
 const GreenBadge = ({children}) => {
@@ -45,12 +51,15 @@ const GreyBadge = ({children}) => {
 
 }
 
-function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type}: TableBodyProps) {
+function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, isShowSelect, selectedItems, setSelectedItems}: TableBodyProps) {
     console.log(type)
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>
         {data.map((item, data_index) => (
             <tr className={"border border-gray-200 border-0 border-b-1"} key={"row" + data_index}>
+                {isShowSelect && <td className={"px-6 py-4 whitespace-nowrap text-base"}>
+                    <input type="checkbox" onChange={() => setSelectedItems(selectedItems[data_index])} checked={selectedItems[data_index].value}/>
+                </td>}
                 {keys.map((key, index) => {
                     if (key === "index") {
                         return (

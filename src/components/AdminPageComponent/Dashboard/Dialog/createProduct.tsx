@@ -137,8 +137,8 @@ function ProductManagement({_id}: ProductManagementProps) {
                     onChange={handleImageChange}
                     accept={"image/*"}
                 />
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF
-                    (MAX. 800x400px).</p>
+                {/*<p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF*/}
+                {/*    (MAX. 800x400px).</p>*/}
             </div>
             <Input placeholder={"Tên món"} onChange={e => setProductName(e.target.value)}/>
             <Input placeholder={"Giá"} type={"number"} endContent={<div>.000đ</div>} onChange={e => setPrice(Number(e.target.value))}/>

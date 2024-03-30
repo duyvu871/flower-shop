@@ -132,37 +132,60 @@ function Table({}: TableProps) {
         >
             {
                 <>
-                {/*// <div className={"flex justify-center items-center min-w-44"}>*/}
-                    <Select
-                        items={Object.keys(TimeRangeLabel).map((key) => ({
-                            value: key,
-                            label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
-                        }))}
-                        selectedKeys={[range]}
-                        label="Phạm vi"
-                        // placeholder=""
-                        className="max-w-xs w-32"
-                        classNames={{
-                            base: "bg-white rounded-xl",
-                        }}
-                        onChange={(e) => {
-                            setRange(e.target.value as keyof typeof TimeRangeLabel);
-                        }}
-                        variant={"bordered"}
-                        color={"primary"}
-                        showScrollIndicators={true}
-                    >
-                        {
-                            (covan) =>
-                                <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
-                        }
-                    </Select>
-                    {/*<Link href={'api/v1/admin/finalization/export-order?range='+range} passHref={true}>*/}
-                        <button className={"bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"} onClick={generateXLSX}>
-                            Xuất file
-                        </button>
-                    {/*</Link>*/}
-                {/*// </div>*/}
+                    <div className={"flex justify-center items-center gap-1"}>
+                        <Select
+                            items={Object.keys(TimeRangeLabel).map((key) => ({
+                                value: key,
+                                label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
+                            }))}
+                            selectedKeys={[range]}
+                            label="Phạm vi"
+                            // placeholder=""
+                            className="max-w-xs w-32"
+                            classNames={{
+                                base: "bg-white rounded-xl",
+                            }}
+                            onChange={(e) => {
+                                setRange(e.target.value as keyof typeof TimeRangeLabel);
+                            }}
+                            variant={"bordered"}
+                            color={"primary"}
+                            showScrollIndicators={true}
+                        >
+                            {
+                                (covan) =>
+                                    <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
+                            }
+                        </Select>
+                        <button className={"bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"} onClick={generateXLSX}>Xuất file</button>
+                    </div>
+                    <div className={"flex justify-center items-center"}>
+                        <Select
+                            items={Object.keys(TimeRangeLabel).map((key) => ({
+                                value: key,
+                                label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
+                            }))}
+                            selectedKeys={[range]}
+                            label="Phạm vi"
+                            // placeholder=""
+                            className="max-w-xs w-32"
+                            classNames={{
+                                base: "bg-white rounded-xl",
+                            }}
+                            onChange={(e) => {
+                                setRange(e.target.value as keyof typeof TimeRangeLabel);
+                            }}
+                            variant={"bordered"}
+                            color={"primary"}
+                            showScrollIndicators={true}
+                        >
+                            {
+                                (covan) =>
+                                    <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
+                            }
+                        </Select>\
+                        <button className={"bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"} onClick={() => {}}>lọc</button>
+                    </div>
             </>
             }
         </TableTemplate>

@@ -28,6 +28,9 @@ interface UserInterface {
         accountNumber: string;
         accountName: string;
     };
+    createdAt: Date;
+    updatedAt: Date;
+    allowDebitLimit: number;
 }
 
 interface UserPayload {

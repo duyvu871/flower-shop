@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
         const productCollection = client.db(process.env.DB_NAME).collection(productType);
         const updateProduct = await productCollection.updateOne({_id: new ObjectId(productId)}, {
             $set: {
-                ...data
+                ...data,
+                updatedAt: new Date()
             }
         });
         if (!updateProduct.acknowledged) {
