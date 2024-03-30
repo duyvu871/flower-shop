@@ -184,7 +184,7 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
                     }}
                 >
                     <div className={"flex flex-col justify-center items-center gap-5 p-5"}>
-                        <p className={"text-lg text-gray-800 font-semibold"}>
+                        <p className={"text-lg text-gray-800 font-semibold select-auto"}>
                             ID người dùng: {userData._id as unknown as string}
                         </p>
                         <p className={"text-lg text-gray-800 font-semibold"}>

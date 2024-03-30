@@ -89,7 +89,21 @@ function CartModal({}: CartModalProps) {
                 return {...acc, [item._id as unknown as string]: item.totalOrder};
             }, {});
         });
-        setTotalPayment(calculateCart(cart));
+        // @ts-ignore
+        const selectedItems = cart.filter(item => item.delete_or_select);
+        if (selectedItems.length !== 0) {
+            setDeleteItems((prev) => {
+                return selectedItems.reduce((acc, item) => {
+                    // @ts-ignore
+                    return {...acc, [item._id as unknown as string]: !!item.delete_or_select};
+                }, {});
+            });
+            setTotalPayment(calculateCart(selectedItems));
+        } else {
+            setTotalPayment(calculateCart(cart));
+
+        }
+
     }, [cart]);
 
     useEffect(() => {

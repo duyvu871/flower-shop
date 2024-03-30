@@ -38,7 +38,7 @@ function OrderScreen({}: OrderScreenProps) {
     const OrderID = useSearchParams().get("order_id");
     const totalOrder = useSearchParams().get("total_order");
     const takeNoteFromSearchParams = useSearchParams().get("take_note");
-    const {cart, clearCart, getItemById, findItem} = useMenuData();
+    const {cart, clearCart, getItemById, findItem, updateCart} = useMenuData();
     const {userData, updateUserData} = useUserData();
     const {createOrder} = useOrder();
     const {data} = useSession();
@@ -62,9 +62,13 @@ function OrderScreen({}: OrderScreenProps) {
             setIsLocationValid(false);
             return;
         }
-
+        const cartSelected = window.localStorage.getItem("");
         setIsLoading(true);
-        const response = await createOrder(cartTemp, location||userData.address, takeNote);
+        // console.log(cart)
+        // @ts-ignore
+        const selectedItems = cartTemp.filter(item => item.delete_or_select);
+
+        const response = await createOrder(selectedItems.length === 0 ? selectedItems : cartTemp, location||userData.address, takeNote);
         setIsLoading(false);
         if (response.status !== 200) {
             error(response.error);
@@ -73,7 +77,12 @@ function OrderScreen({}: OrderScreenProps) {
         if (isImmediately) {
             localStorage.removeItem("order-immediately");
         } else {
-            clearCart(true);
+            if (selectedItems.length !== 0) {
+                // @ts-ignore
+                updateCart(cart.filter(item => !item?.delete_or_select));
+            } else {
+                clearCart(true);
+            }
         }
         success(response.message);
         updateUserData({balance: response.balance}, "balance");
@@ -99,25 +108,48 @@ function OrderScreen({}: OrderScreenProps) {
 
     useEffect(() => {
         let total = 0;
-        if (isPayAll) {
-            cartTemp.forEach(item => {
-                //@ts-ignore
-                if (item.delete_or_select) {
-                    total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
-                }
-            })
+        // @ts-ignore
+        const selectedItems = cartTemp.filter(item => item.delete_or_select);
+        if (selectedItems.length !== 0) {
+            selectedItems.forEach(item => {
+                total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
+            });
         } else {
             cartTemp.forEach(item => {
                 total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
             });
         }
+        // if (isPayAll) {
+        //     cartTemp.forEach(item => {
+        //         //@ts-ignore
+        //         if (item.delete_or_select) {
+        //             total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
+        //         }
+        //     })
+        // // @ts-ignore
+        //
+        // } else {
+        //     cartTemp.forEach(item => {
+        //         total += Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount))) * item.totalOrder;
+        //     });
+        // }
         setTotalPrice(total);
+        console.log(total)
+        console.log(cartTemp)
     }, [cartTemp]);
+
     useEffect(() => {
         store.dispatch({type: "CLOSE_CART_MODAL"});
         if (!isImmediately) {
-            setCartTemp(cart);
+            // @ts-ignore
+            const selectedItems = cart.filter(item => item.delete_or_select);
+            if (selectedItems.length !== 0) {
+                setCartTemp(selectedItems)
+            } else {
+                setCartTemp(cartTemp);
+            }
         } else {
+
             setCartTemp(
                 isImmediately.toString() === "true"
                     ? [JSON.parse(localStorage.getItem("order-immediately")||"{}")]
@@ -126,7 +158,6 @@ function OrderScreen({}: OrderScreenProps) {
         const isPayAll = localStorage.getItem("isPayAll");
         setIsPayAll(isPayAll === "true");
     }, [cart]);
-
 
     useEffect(() => {
         const getItem = async () => {
@@ -169,8 +200,12 @@ function OrderScreen({}: OrderScreenProps) {
            <div className={"flex flex-col justify-center items-center p-3 max-w-xl"}>
                {cartTemp.map((item, index) => {
                    const price = Math.floor(Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)));
-                   //@ts-ignore
-                   if (!item.delete_or_select && isPayAll) return null;
+                   // //@ts-ignore
+                   // if (
+                   //     // @ts-ignore
+                   //     !item.delete_or_select
+                   //     // && isPayAll
+                   // ) return null;
 
                    return (
                        <div key={index} className={"w-full flex flex-row justify-between items-start gap-2 my-1"}>

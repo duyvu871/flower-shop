@@ -93,7 +93,7 @@ function ProfileCard({}: ProfileCardProps) {
                             <ModalHeader className={"flex flex-col gap-1"}>
                             </ModalHeader>
                             <ModalBody className={"flex flex-col justify-center items-center gap-1"}>
-                                <h1 className={"font-bold"}>Tài khoản của quý khách hện đang âm, hãy thanh toán số nợ sớm nhất có thể </h1>
+                                <h1 className={"font-bold"}>Tài khoản của quý khách hiện đang âm, hãy thanh toán số nợ sớm nhất có thể </h1>
                             </ModalBody>
                             <ModalFooter>
 

@@ -33,9 +33,13 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
     //     return dataTemplate({error: "Số dư không đủ"}, 400);
     // }
     const userBalanceAfterUpdate = userData.balance - orderVolume; // update user balance
-    if (userBalanceAfterUpdate < -(userData.allowedDebtLimit as number)) {
+    console.log("userBalanceAfterUpdate", userBalanceAfterUpdate);
+    console.log("orderVolume", orderVolume);
+    console.log("allowedDebitLimit", userData.allowDebitLimit);
+    if (userBalanceAfterUpdate < -(userData.allowDebitLimit as number)) {
         return dataTemplate({error: "Đã quá mức nợ cho phép"}, 400);
     }
+
     const menuCollections = ["morning", "afternoon", "evening", "other"]
         .reduce((acc, cur) => ({
             ...acc,

@@ -132,25 +132,25 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
            </NavbarContent>
            <NavbarContent justify="center" className={""}>
                <NavbarItem>
-                   <Select
-                       items={Object.keys(StoreLocation).map((key) => ({
-                           value: key,
-                           label: StoreLocation[key as keyof typeof StoreLocation],
-                       }))}
-                       selectedKeys={[location]}
-                       label="Chọn chi nhánh"
-                       // placeholder="Chọn cửa hàng"
-                       className="max-w-xs w-44"
-                       onChange={handleSelectionChange}
-                       variant={"bordered"}
-                       color={"warning"}
-                       showScrollIndicators={true}
-                   >
-                       {
-                           (location) =>
-                               <SelectItem key={location.value} value={location.value}>{location.label}</SelectItem>
-                       }
-                   </Select>
+                   {/*<Select*/}
+                   {/*    items={Object.keys(StoreLocation).map((key) => ({*/}
+                   {/*        value: key,*/}
+                   {/*        label: StoreLocation[key as keyof typeof StoreLocation],*/}
+                   {/*    }))}*/}
+                   {/*    selectedKeys={[location]}*/}
+                   {/*    label="Chọn chi nhánh"*/}
+                   {/*    // placeholder="Chọn cửa hàng"*/}
+                   {/*    className="max-w-xs w-44"*/}
+                   {/*    onChange={handleSelectionChange}*/}
+                   {/*    variant={"bordered"}*/}
+                   {/*    color={"warning"}*/}
+                   {/*    showScrollIndicators={true}*/}
+                   {/*>*/}
+                   {/*    {*/}
+                   {/*        (location) =>*/}
+                   {/*            <SelectItem key={location.value} value={location.value}>{location.label}</SelectItem>*/}
+                   {/*    }*/}
+                   {/*</Select>*/}
                </NavbarItem>
            </NavbarContent>
            <NavbarContent justify="center" className={"hidden md:flex"}>

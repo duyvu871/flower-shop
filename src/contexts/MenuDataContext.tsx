@@ -229,7 +229,7 @@ export const MenuDataProvider = ({children}: {children: React.ReactNode}) => {
     useLayoutEffect(() => {
         try {
             // getMenuData();
-            const currentSession = getCurrentTimeOfDay().type;
+            const currentSession = getCurrentTimeOfDay().type || "evening";
             const cartData = localStorage.getItem("cart-" + currentSession);
             if (cartData) {
                 setCart(JSON.parse(cartData));

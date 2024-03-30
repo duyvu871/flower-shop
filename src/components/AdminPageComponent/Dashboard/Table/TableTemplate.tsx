@@ -74,6 +74,9 @@ function TableTemplate({
                             className={"flex flex-row justify-between items-center"}>
                             {listTitle}
                         </div>
+                        <div className={"flex "}>
+
+                        </div>
                         <Pagination
                             showControls
                             total={totalPage}

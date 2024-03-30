@@ -71,7 +71,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, 
 
                     if (key === "action") {
                         return (
-                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base"}>
+                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base cursor-pointer"}>
                                 <Button
                                     className={" px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8"}
                                     onClick={() => {
@@ -86,7 +86,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, 
 
                     if (key === 'view') {
                         return (
-                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base"}>
+                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap text-base cursor-pointer"}>
                                 <Button
                                     className={"w-full px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8 flex justify-center items-center gap-1"}
                                     onClick={() => {

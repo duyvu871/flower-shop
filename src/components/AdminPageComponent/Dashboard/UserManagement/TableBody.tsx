@@ -60,7 +60,7 @@ function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: Table
 
                         if (key === "action") {
                             return (
-                                <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base"}>
+                                <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base cursor-pointer"}>
                                     <Button
                                         className={"px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8"}
                                         onClick={() => {store.dispatch(openModal(user._id as unknown as string, "user-management"))}}
