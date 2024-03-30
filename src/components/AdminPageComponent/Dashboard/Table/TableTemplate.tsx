@@ -55,7 +55,10 @@ function TableTemplate({
     selectedItems,
     setSelectedItems
 }: TableProps) {
-
+    const headers = (isShowSelect ? [{
+        title: "Select",
+        key: "selectAll"
+    }, ...headerTable] : headerTable);
     return (
         <div className={"p-6  w-full"}>
             <div className={"flex flex-row justify-between items-center py-4 w-full"}>
@@ -101,10 +104,7 @@ function TableTemplate({
                                 <table className={"min-w-full divide-y divide-default-200"}>
                                     <thead className={"bg-white "}>
                                         <tr className={"text-start"}>
-                                            {[(isShowSelect && {
-                                                title: "Select",
-                                                key: "selectAll"
-                                            }), ...headerTable].map((item, index) => {
+                                            {headers.map((item, index) => {
                                                 if (item.title === "Select") {
                                                     return (
                                                         <th key={index} className={"px-6 py-3 text-xs text-gray-500"}>
