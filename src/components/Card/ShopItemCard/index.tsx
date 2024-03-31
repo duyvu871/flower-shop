@@ -16,10 +16,6 @@ interface ShopItemCardProps {
 };
 
 function ShopItemCard({title, img, price, location, dishID, totalSold, discount}: ShopItemCardProps) {
-    useEffect(() => {
-        console.log(calculateDiscount(String(price), discount))
-
-    },[])
     return (
         <Card
             shadow="sm"

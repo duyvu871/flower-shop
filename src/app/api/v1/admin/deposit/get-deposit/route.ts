@@ -6,9 +6,13 @@ export async function GET(req: NextRequest) {
     try {
         const page = req.nextUrl.searchParams.get("page") ? parseInt(req.nextUrl.searchParams.get("page") as string) : 0;
         const limit = req.nextUrl.searchParams.get("limit") ? parseInt(req.nextUrl.searchParams.get("limit") as string) : 10;
+        const filterKey = req.nextUrl.searchParams.get("filterKey") ? req.nextUrl.searchParams.get("filterKey") as string : "createdAt";
+        const filterOrder = req.nextUrl.searchParams.get("filterOrder") ? req.nextUrl.searchParams.get("filterOrder") as string : "desc";
         const client = await clientPromise;
         const depositCollection = client.db(process.env.DB_NAME).collection("purchase-orders");
-        const result = await depositCollection.find().sort({createdAt: -1}).skip((page - 1) * limit ).limit(limit).toArray();
+        const result = await depositCollection.find().sort({
+            [filterKey]: filterOrder === "asc" ? 1 : -1
+        }).skip((page - 1) * limit ).limit(limit).toArray();
         const count = await depositCollection.countDocuments();
         if (result.length === 0) {
             return dataTemplate({error: "Không tìm thấy đơn nạp tiền"}, 404);

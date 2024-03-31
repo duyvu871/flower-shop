@@ -29,10 +29,10 @@ function ProfileScreen({}: ProfileScreenProps) {
                         size="lg"
                         // name={userData.fullName}
                         src={userData.avatar}
-                        className={"text-white font-bold uppercase cursor-pointer"}
-                        classNames={{
-                            base: "w-14 h-14",
-                        }}
+                        className={"text-white cursor-pointer aspect-square w-[50px] h-[45px]"}
+                        // classNames={{
+                        //     base: "w-[40px] h-[40px]",
+                        // }}
                     />
                     <div className={"flex flex-col justify-center items-start"}>
                         <p className={"font-bold text-md text-gray-700"}>{userData.fullName || "Nguyễn Thị T"}</p>

@@ -11,6 +11,21 @@ import {setCurrentTable} from "@/adminRedux/action/currentTable";
 import {Select, SelectItem} from "@nextui-org/react";
 import {TimeRange, TimeRangeLabel} from "@/ultis/timeFormat.ultis";
 import {openModal} from "@/adminRedux/action/OpenModal";
+import {MenuItemType, PurchaseOrderType} from "types/order";
+import {ObjectId} from "mongodb";
+
+const defaultTableData: PurchaseOrderType = {
+    _id: "" as unknown as ObjectId,
+    userId: "",
+    amount: 0,
+    paymentMethod: "bank",
+    isPaid: false,
+    createdAt: new Date(),
+    confirmed: false,
+    updatedAt: new Date(),
+    status: "pending",
+    items: []
+}
 
 interface TableProps {
 };
@@ -18,37 +33,45 @@ interface TableProps {
 const headerTable = [
     {
         title: "STT",
-        key: "index"
+        key: "index",
+        isSort: false
     },
     {
         title: "Mã nguời dùng",
-        key: "userId"
+        key: "userId",
+        isSort: false
     },
     {
         title: "Số tiền",
         key: "amount",
-        action: "formatCurrency"
+        action: "formatCurrency",
+        isSort: true
     },
     {
         title: "hình thức thanh toán",
-        key: "paymentMethod"
+        key: "paymentMethod",
+        isSort: false
     },
     {
         title: "Trạng thái",
-        key: "isPaid"
+        key: "isPaid",
+        isSort: false
     },
     {
         title: "Ngày tạo",
         key: "createdAt",
-        action: "formatDate"
+        action: "formatDate",
+        isSort: true
     },
     {
         title: "Đã xác nhận",
-        key: "confirmed"
+        key: "confirmed",
+        isSort: false
     },
     {
         title: "Action",
-        key: "action"
+        key: "action",
+        isSort: false
     }
 ]
 
@@ -59,11 +82,14 @@ function Table({}: TableProps) {
     const [totalPage, setTotalPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const {currentTable} = useSelector((state: RootState) => state.currentTable);
-
+    const [currentSort, setCurrentSort] = React.useState<{ key: keyof MenuItemType, order: "asc" | "desc" }>({
+        key: "createdAt" as unknown as keyof MenuItemType,
+        order: "desc"
+    });
 
     const [range, setRange] = React.useState<keyof typeof TimeRangeLabel>("all");
     const fetchData = async (page: number) => {
-        fetch('/api/v1/admin/deposit/get-deposit?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/admin/deposit/get-deposit?page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -90,7 +116,7 @@ function Table({}: TableProps) {
 
     useLayoutEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, currentSort]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -138,7 +164,12 @@ function Table({}: TableProps) {
                     store.dispatch(openModal("" as unknown as string, "create-deposit"))
                 }
             }}
+            selectedItems={[]}
+            setSelectedItems={() => {}}
             listTitle={"Danh sách nạp tiền"}
+            currentSort={currentSort}
+            setCurrentSort={setCurrentSort as any}
+            defaultTableData={defaultTableData}
         >
             {
                 <>

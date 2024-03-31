@@ -12,8 +12,19 @@ import {MenuItemType, TranslateMenuType} from "types/order";
 import {updateUsers} from "@/adminRedux/action/userData";
 import {openModal} from "@/adminRedux/action/OpenModal";
 import {useToast} from "@/hooks/useToast";
+import {ObjectId} from "mongodb";
 
-
+const defaultTableData: MenuItemType = {
+    _id: "" as unknown as ObjectId,
+    name: "",
+    price: 0,
+    discount: 0,
+    total_sold: 0,
+    description: "",
+    image: "",
+    type: "morning-menu",
+    address: ""
+}
 
 interface TableProps {
 type: string;
@@ -24,28 +35,34 @@ isShowSelect: boolean;
 const headerTable = [
     {
         title: "STT",
-        key: "index"
+        key: "index",
+        isSort: false
     },
     {
         title: "Ảnh",
-        key: "image"
+        key: "image",
+        isSort: false,
     },
     {
         title: "Tên món",
         key: "name",
+        isSort: false
         // action: "formatCurrency"
     },
     {
         title: "Giá",
         key: "price",
+        isSort: true
     },
     {
         title: "Giảm giá",
         key: "discount",
+        isSort: true
     },
     {
         title: "Đã bán",
-        key: "total_sold"
+        key: "total_sold",
+        isSort: true
     },
     {
         title: "Mô tả",
@@ -67,8 +84,12 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
     // const {currentTable} = useSelector((state: RootState) => state.currentTable);
     const [selectedItems, setSelectedItems] = React.useState<{key: string, value: boolean}[]>([]);
     const [toggleValue, setToggleValue] = React.useState<boolean>(false);
+    const [currentSort, setCurrentSort] = React.useState<{ key: keyof MenuItemType, order: "asc" | "desc" }>({
+        key: "price" as unknown as keyof MenuItemType,
+        order: "desc"
+    });
     const fetchData = async (page: number) => {
-        fetch('/api/v1/admin/product/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/admin/product/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -115,7 +136,7 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
 
     useLayoutEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, currentSort]);
 
     useEffect(() => {
         // setIsLoading(true);
@@ -188,6 +209,9 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
                 }
 
             }}
+            currentSort={currentSort}
+            setCurrentSort={setCurrentSort as any}
+            defaultTableData={defaultTableData}
         >
             <></>
         </TableTemplate>

@@ -62,13 +62,13 @@ function OrderScreen({}: OrderScreenProps) {
             setIsLocationValid(false);
             return;
         }
-        const cartSelected = window.localStorage.getItem("");
+        // const cartSelected = window.localStorage.getItem("");
         setIsLoading(true);
         // console.log(cart)
         // @ts-ignore
         const selectedItems = cartTemp.filter(item => item.delete_or_select);
-
-        const response = await createOrder(selectedItems.length === 0 ? selectedItems : cartTemp, location||userData.address, takeNote);
+        console.log(cartTemp)
+        const response = await createOrder(selectedItems.length !== 0 ? selectedItems : cartTemp, location||userData.address, takeNote);
         setIsLoading(false);
         if (response.status !== 200) {
             error(response.error);

@@ -1,12 +1,13 @@
 "use client";
 import React, {useContext, createContext, useEffect, useLayoutEffect, useRef} from "react";
 import AppConfig from "@/configs/app.config";
-import {global} from "styled-jsx/css";
+// import {global} from "styled-jsx/css";
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import {useUserData} from "@/hooks/useUserData";
-import useMediaQuery from "@/hooks/useMediaQuery";
+// import useMediaQuery from "@/hooks/useMediaQuery";
 import {tw} from "@/ultis/tailwind.ultis";
 import {timeout} from "@/helpers/delayAction";
+import {usePathname, useRouter, redirect,RedirectType} from "next/navigation";
 
 export interface LivechatWidgetContextType {
     openWidget: (liveChatWidget?: any) => void;
@@ -25,6 +26,8 @@ export const LivechatWidgetContext = createContext<LivechatWidgetContextType>({
 export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) => {
     // const isMobile = useMediaQuery(400);
     const {userData} = useUserData();
+    const pathName = usePathname();
+    const router = useRouter()
     const [isWidgetOpen, setIsWidgetOpen] = React.useState<boolean>(false);
     const [isLiveChatLoaded, setIsLiveChatLoaded] = React.useState<boolean>(false);
     const livechatRef = useRef<any>();
@@ -45,27 +48,34 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
     const openWidget = (liveChatWidget?: any) => {
         setIsWidgetOpen(true);
         //@ts-ignore
-        if (livechatRef.current && isLiveChatLoaded) {
-            //@ts-ignore
-            livechatRef.current.maximize();
-        } else {
-            //@ts-ignore
-            // LC_API.open_chat_window()
-        }
+        // if (livechatRef.current && isLiveChatLoaded) {
+        //     //@ts-ignore
+        //     livechatRef.current.maximize();
+        //     if (pathName === "/cham-soc-khach-hang") {
+        //         //@ts-ignore
+        //         router.push("/cham-soc-khach-hang")
+        //     }
+        // } else {
+        //     //@ts-ignore
+        //     // LC_API.open_chat_window()
+        // }
+        console.log("open widget")
+
+        redirect("https://t.me/menucommanau", RedirectType.replace)
     }
 
     const closeWidget = (liveChatWidget?: any) => {
         setIsWidgetOpen(false);
         //@ts-ignore
-        if (livechatRef.current && isLiveChatLoaded) {
-            //@ts-ignore
-            livechatRef.current.minimize();
-            // livechatRef.current.hideWidget();
-
-        } else {
-            //@ts-ignore
-            // LC_API.hide_chat_window()
-        }
+        // if (livechatRef.current && isLiveChatLoaded) {
+        //     //@ts-ignore
+        //     livechatRef.current.minimize();
+        //     // livechatRef.current.hideWidget();
+        //
+        // } else {
+        //     //@ts-ignore
+        //     // LC_API.hide_chat_window()
+        // }
     }
 
     const onload = () => {
@@ -108,7 +118,7 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                             //@ts-ignore
                             if (window.Tawk_API) {
                                 //@ts-ignore
-                                // window.Tawk_API.hideWidget();
+                                window.Tawk_API.hideWidget();
                                 clearInterval(interval);
                                 setIsLiveChatLoaded(true);
                                 setCountBeforeDestroy((prev) => prev + 1);
@@ -120,12 +130,12 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
                     })
                 });
                 //@ts-ignore
-                // closeWidget();
+                closeWidget();
             } catch (e) {
                 console.log(e);
             }
         }
-        loadLiveChat()
+        // loadLiveChat()
         return () => {
             clearInterval(interval);
         }

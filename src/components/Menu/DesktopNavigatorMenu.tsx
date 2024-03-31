@@ -245,18 +245,22 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                       />
                </NavbarItem>
                <NavbarItem className={"cursor-pointer"}>
-                   <RiCustomerService2Line
-                       size={24}
-                       className={"text-orange-600"}
-                       onClick={() => {
-                           // toggleWidget(!isOpened)
-                           setIsOpenChatWidget((isOpened) => !isOpened);
-                           if (isOpenChatWidget) {
-                               openWidget();
-                           } else {
-                               closeWidget();
-                           }
-                       }}/>
+                   <Link href={"https://t.me/menucommanau"} isExternal={true}>
+                       <RiCustomerService2Line
+                           size={24}
+                           className={"text-orange-600"}
+                           onClick={() => {
+                               // toggleWidget(!isOpened)
+                               // setIsOpenChatWidget((isOpened) => !isOpened);
+                               // if (isOpenChatWidget) {
+                               //     openWidget();
+                               // } else {
+                               //     closeWidget();
+                               // }
+                               // openWidget();
+                           }}/>
+                   </Link>
+
                </NavbarItem>
                 <NavbarItem className={"cursor-pointer"}>
                     {/*<Link href={"/cart"}>*/}

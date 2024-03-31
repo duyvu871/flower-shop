@@ -21,17 +21,20 @@ function SettingProfile({}: SettingProfileProps) {
         {
             iconStart: <HiOutlineBanknotes size={25} className={"text-green-500"}/>,
             title: "Nạp tiền",
-            action: () => {push("/buy-credit")}
+            action: () => {push("/buy-credit")},
+            type: "action"
         },
         {
             iconStart: <RiBankCardFill size={25} className={"text-green-500"}/>,
             title: "Rút tiền",
-            action: () => {push("/withdraw")}
+            action: () => {push("/withdraw")},
+            type: "action"
         },
         {
             iconStart: <TbClockDollar size={25} className={"text-green-500"}/>,
             title: "Đơn nạp tiền",
-            action: () => {push("/profile/purchase-history")}
+            action: () => {push("/profile/purchase-history")},
+            type: "action"
         },
         {
             iconStart: <CgNotes size={25} className={"text-blue-400"} />,
@@ -40,17 +43,20 @@ function SettingProfile({}: SettingProfileProps) {
                 <p className={"text-xs text-gray-400"}>Xem lịch sử đặt món</p>
                 <TfiAngleRight />
             </>,
-            action: () => {push("/profile/order-history")}
+            action: () => {push("/profile/order-history")},
+            type: "action"
         },
         {
             iconStart: <CgProfile size={25}/>,
             title: "Thông tin cá nhân",
-            action: () => {push("/profile/thong-tin-ca-nhan")}
+            action: () => {push("/profile/thong-tin-ca-nhan")},
+            type: "action"
         },
         {
             iconStart: <RiCustomerService2Line size={25} />,
             title: "Liên hệ cskh",
-            action: () => {openWidget()}
+            action: () => "https://t.me/menucommanau",
+            type: "link"
         },
         {
             iconStart: <PiSignOutBold size={25} className={"text-red-500"}/>,
@@ -63,7 +69,8 @@ function SettingProfile({}: SettingProfileProps) {
                     });
                 }
             },
-            iconEnd: <></>
+            iconEnd: <></>,
+            type: "action"
         }
     ]
     return (
@@ -75,6 +82,7 @@ function SettingProfile({}: SettingProfileProps) {
                     iconEnd={item.iconEnd}
                     title={item.title}
                     action={item.action}
+                    type={item.type as "action"|"link"}
                 />
             ))}
         </div>

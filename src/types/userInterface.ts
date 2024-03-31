@@ -31,6 +31,7 @@ interface UserInterface {
     createdAt: Date;
     updatedAt: Date;
     allowDebitLimit: number;
+    telegram: string;
 }
 
 interface UserPayload {

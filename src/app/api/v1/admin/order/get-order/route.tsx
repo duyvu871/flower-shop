@@ -9,10 +9,13 @@ export async function GET(req: NextRequest) {
         const searchParams = new URL(req.url).searchParams;
         const page = searchParams.get("page") as string;
         const limit = searchParams.get("limit") || String(DBConfigs.perPage);
-
+        const filterKey = req.nextUrl.searchParams.get("filterKey") ? req.nextUrl.searchParams.get("filterKey") as string : "createdAt";
+        const filterOrder = req.nextUrl.searchParams.get("filterOrder") ? req.nextUrl.searchParams.get("filterOrder") as string : "desc";
         const client = await clientPromise;
         const foodOrderCollection = client.db(process.env.DB_NAME).collection("food-orders");
-        const foodOrders = await foodOrderCollection.find().sort({createdAt: -1}).skip((Number(page) - 1) * Number(limit)).limit(Number(limit)).toArray();
+        const foodOrders = await foodOrderCollection.find().sort({
+            [filterKey]: filterOrder === "asc" ? 1 : -1
+        }).skip((Number(page) - 1) * Number(limit)).limit(Number(limit)).toArray();
         const totalFoodOrders = await foodOrderCollection.countDocuments();
         if (!foodOrders) {
             return dataTemplate({error: "Không tìm thấy đơn hàng nào"}, 404)

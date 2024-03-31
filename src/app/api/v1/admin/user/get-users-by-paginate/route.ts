@@ -8,10 +8,12 @@ export async function GET(req: NextRequest) {
     try {
         const page = req.nextUrl.searchParams.get("page") ? parseInt(req.nextUrl.searchParams.get("page") as string) : 0;
         const limit = req.nextUrl.searchParams.get("limit") ? parseInt(req.nextUrl.searchParams.get("limit") as string) : 10;
+        const filterKey = req.nextUrl.searchParams.get("filterKey") ? req.nextUrl.searchParams.get("filterKey") as string : "createdAt";
+        const filterOrder = req.nextUrl.searchParams.get("filterOrder") ? req.nextUrl.searchParams.get("filterOrder") as string : "desc";
         const client = await clientPromise;
         const users = client.db(process.env.DB_NAME).collection("users");
         const result = await users.find().sort({
-            createdAt: -1 // sort by date descending
+            [filterKey]: filterOrder === "asc" ? 1 : -1
         }).project([
             '_id',                    'avatar',
             'fullName',               'email',

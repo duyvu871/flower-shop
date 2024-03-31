@@ -1,18 +1,29 @@
 "use client";
 import React, {useEffect} from 'react';
 // import {useAdminApi} from "@/hooks/useAdminApi";
-import {Button} from "@nextui-org/react";
+import {Button, Link} from "@nextui-org/react";
 import store from "@/adminRedux/store";
 import {openModal} from "@/adminRedux/action/OpenModal";
 import {UserInterface} from "types/userInterface";
 import {formatCurrency} from "@/ultis/currency-format";
+import {FaSort} from "react-icons/fa";
 
 interface TableBodyProps {
     page: number;
     rowsPerPage: number;
-    keys: string[];
+    keys: (keyof UserInterface & any)[];
     actions: string[];
     data: UserInterface[];
+    isSorts: {
+        key: keyof UserInterface;
+        order: "asc"|"desc";
+        isSort: boolean;
+    }[];
+    defaultSort: {
+        key: keyof UserInterface;
+        order: "asc"|"desc";
+    };
+    changeSort: (key: keyof UserInterface, order: "asc"|"desc") => void;
 };
 
 const GreenBadge = ({children}) => {
@@ -43,8 +54,8 @@ const GreyBadge = ({children}) => {
 
 }
 
-function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: TableBodyProps) {
-
+function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions, isSorts, defaultSort, changeSort}: TableBodyProps) {
+    const FaSortClassName = "text-gray-400 cursor-pointer";
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>
             {data.map((user, data_index) => (
@@ -52,7 +63,7 @@ function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: Table
                     {keys.map((key, index) => {
                         if (key === "index") {
                             return (
-                                <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base"}>
+                                <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base "}>
                                     {page*rowsPerPage + data_index + 1}
                                 </td>
                             )
@@ -97,13 +108,20 @@ function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions}: Table
                             )
                         }
 
+                        if (key === 'telegram') {
+                            return (
+                                <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base w-24"}>
+                                    <Link href={user[key] as string} isExternal={true}>{user[key]}</Link>
+                                </td>
+                            )
+                        }
 
                         return (
                             <td key={"td" + index} className={"px-6 py-4 whitespace-nowrap text-base"}>
                             { actions[index] === 'formatCurrency' ?
                                 <span className={"font-semibold"}>
                                  {formatCurrency(user[key].toString())}
-                                </span> : (user[key])}
+                                </span> : <span>{(user[key])}</span>}
                             </td>
                         )
                     })}

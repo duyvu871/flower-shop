@@ -8,6 +8,7 @@ import {EyeFilledIcon, EyeSlashFilledIcon} from "@nextui-org/shared-icons";
 import {formatCurrency} from "@/ultis/currency-format";
 import {LuPlus} from "react-icons/lu";
 import {useRouter} from "next/navigation";
+import {tw} from "@/ultis/tailwind.ultis";
 
 interface UserInfoScreenProps {
 
@@ -47,6 +48,7 @@ function UserInfoScreen({}: UserInfoScreenProps) {
             bankingInfo: newBankingInfo
         });
         setIsUpdating(false);
+        // @ts-ignore
         if (response.status !== 200) {
             // @ts-ignore
             return success(response?.error);
@@ -69,12 +71,12 @@ function UserInfoScreen({}: UserInfoScreenProps) {
                         type="text"
                         value={formatCurrency(userData.balance.toString())+"VND"}
                         classNames={{
-                            input: "text-green-500 font-semibold text-lg",
+                            input: userData.balance < 0 ? "text-danger-500 font-semibold text-lg" : "text-success-500 font-semibold text-lg"
                         }}
-                        color={"success"}
+                        color={userData.balance < 0 ? "danger" : "success"}
                         disabled
                         startContent={<span className={"text-sm text-gray-500 w-14"}>Số dư</span>}
-                        endContent={<span className={"p-1 rounded bg-green-500 text-white text-xl hover:bg-green-600"} onClick={()=> push("/buy-credit")}><LuPlus /></span>}
+                        endContent={<span className={tw("p-1 rounded text-white text-xl cursor-pointer", userData.balance < 0 ? "bg-danger-500 hover:bg-danger-600" : "bg-success-500 hover:bg-success-600")} onClick={()=> push("/buy-credit")}><LuPlus /></span>}
                     />
                     <Input type="text" label={"Tên người dùng"} id={"newFullName"} value={userData.fullName} disabled/>
                     <Input type="text" label={"Email"} id={"newEmail"} value={userData.email} disabled/>

@@ -3,6 +3,8 @@ import React, {useEffect, useLayoutEffect} from 'react';
 import TableBody from "./TableBody";
 import {Pagination} from "@nextui-org/react";
 import {tw} from "@/ultis/tailwind.ultis";
+import {FaSort} from "react-icons/fa";
+import {UserInterface} from "types/userInterface";
 // import {UserInterface} from "types/userInterface";
 // import {formatCurrency} from "@/ultis/currency-format";
 // import store from "@/adminRedux/store";
@@ -18,7 +20,8 @@ interface TableProps {
     headerTable: {
         title: string,
         key: string,
-        action?: string
+        action?: string,
+        isSort?: boolean
     }[];
     data: any[];
     type: string;
@@ -36,6 +39,12 @@ interface TableProps {
         value: boolean
     }[];
     setSelectedItems: ({key, value}?: {key: string; value: boolean}) => void;
+    currentSort: {
+        key: keyof any,
+        order: "asc" | "desc"
+    };
+    setCurrentSort: (sort: { key: keyof UserInterface, order: "asc" | "desc" }) => void;
+    defaultTableData: any;
 };
 
 
@@ -53,7 +62,10 @@ function TableTemplate({
     children,
     isShowSelect = false,
     selectedItems,
-    setSelectedItems
+    setSelectedItems,
+    currentSort,
+    setCurrentSort,
+    defaultTableData
 }: TableProps) {
     const headers = (isShowSelect ? [{
         title: "Select",
@@ -113,14 +125,42 @@ function TableTemplate({
                                                     )
                                                 }
                                                 return (
-                                                    <th key={index} className={"px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-break-spaces max-w-[200px] min-w-[70px] h-[70px]"}>
-                                                        {item.title}
+                                                    <th key={index}
+                                                        className={"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap "}>
+                                                        <div
+                                                            className={"flex flex-row justify-center items-center gap-1"}>
+                                                        <span>
+                                                            {item.title}
+                                                        </span>
+                                                            {item.isSort && <FaSort
+                                                                className={"cursor-pointer hover:text-blue-600 hover:scale-110"}
+                                                                onClick={() => {
+                                                                    if (currentSort.key === item.key && defaultTableData[item.key] !== undefined) {
+                                                                        if (currentSort.order === "asc") {
+                                                                            setCurrentSort({
+                                                                                key: item.key as keyof UserInterface,
+                                                                                order: "desc"
+                                                                            });
+                                                                        } else {
+                                                                            setCurrentSort({
+                                                                                key: item.key as keyof UserInterface,
+                                                                                order: "asc"
+                                                                            });
+                                                                        }
+                                                                    } else {
+                                                                        setCurrentSort({
+                                                                            key: item.key as keyof UserInterface,
+                                                                            order: "desc"
+                                                                        });
+                                                                    }
+                                                                }}/>}
+                                                        </div>
                                                     </th>
                                                 )
                                             })}
                                         </tr>
                                     </thead>
-                                    {isLoading ? <div>Loading...</div> :  <TableBody
+                                    {isLoading ? <div>Loading...</div> : <TableBody
                                         keys={headerTable.map(item => item.key)}
                                         actions={headerTable.map(item => item.action)}
                                         page={currentPage - 1}

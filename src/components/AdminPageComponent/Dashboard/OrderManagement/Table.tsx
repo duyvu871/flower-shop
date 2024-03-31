@@ -11,40 +11,65 @@ import {setCurrentTable} from "@/adminRedux/action/currentTable";
 import {TimeRange, TimeRangeLabel} from "@/ultis/timeFormat.ultis";
 import {Button, Select, SelectItem} from "@nextui-org/react";
 import Link from "next/link";
+import {MenuItemType, OrderType} from "types/order";
+import {ObjectId} from "mongodb";
 
 interface TableProps {
 };
 
+const defaultTableData: OrderType = {
+    _id: "" as unknown as ObjectId,
+    orderVolume: 0,
+    status: 'pending',
+    takeNote: "",
+    location: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    orderList: [],
+    promotions: 0,
+    receive: 0,
+    handlerId: "" as unknown as ObjectId,
+    isHandled: false,
+    userId: "" as unknown as ObjectId
+}
+
 const headerTable = [
     {
         title: "STT",
-        key: "index"
+        key: "index",
+        isSort: false
     },
     {
         title: "Đơn giá",
-        key: "orderVolume"
+        key: "orderVolume",
+        isSort: true
     },
     {
         title: "Trạng thái",
-        key: "status"
+        key: "status",
+        isSort: false
     },
     {
         title: "Ghi chú",
-        key: "takeNote"
+        key: "takeNote",
+        isSort: false
     },
     {
         title: "Địa chỉ",
         key: "location",
+        isSort: false
         // action: "formatDate"
     },
     {
         title: "Ngày tạo",
         key: "createdAt",
-        action: "formatDate"
+        action: "formatDate",
+        isSort: true
     },
     {
         title: "Xem chi tiết",
-        key: "view"
+        key: "view",
+        isSort: false
     }
 ]
 
@@ -56,8 +81,12 @@ function Table({}: TableProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const {currentTable} = useSelector((state: RootState) => state.currentTable);
     const [range, setRange] = React.useState<keyof typeof TimeRangeLabel>("all");
+    const [currentSort, setCurrentSort] = React.useState<{ key: keyof MenuItemType, order: "asc" | "desc" }>({
+        key: "createdAt" as unknown as keyof MenuItemType,
+        order: "desc"
+    });
     const fetchData = async (page: number) => {
-        fetch('/api/v1/admin/order/get-order?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/admin/order/get-order?page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -84,7 +113,7 @@ function Table({}: TableProps) {
 
     useLayoutEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, currentSort]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -128,7 +157,13 @@ function Table({}: TableProps) {
                 onClick: () => {},
                 isHidden: true
             }}
+            selectedItems={[]}
+            setSelectedItems={() => {}}
             listTitle={"Danh sách đơn"}
+            currentSort={currentSort}
+            setCurrentSort={setCurrentSort as any}
+            defaultTableData={defaultTableData}
+
         >
             {
                 <>

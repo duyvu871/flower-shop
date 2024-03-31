@@ -10,55 +10,111 @@ import {RootState} from "@/adminRedux/reducers";
 import {useSelector} from "react-redux";
 import {openModal} from "@/adminRedux/action/OpenModal";
 import {TimeRange} from "@/ultis/timeFormat.ultis";
+import {FaSort} from "react-icons/fa";
+import {ObjectId} from "mongodb";
 
 interface TableProps {
 
 };
 
+const defaultUser: UserInterface = {
+    _id: "" as unknown as ObjectId,
+    fullName: "",
+    email: "",
+    phone: "",
+    balance: 0,
+    orders: 0,
+    revenue: 0,
+    isLoyalCustomer: false,
+    telegram: "",
+    status: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    avatar: "",
+    role: "user",
+    id_index: 0,
+    uid: "",
+    virtualVolume: 0,
+    total_request_withdraw: 0,
+    address: "",
+    cart: [],
+    orderHistory: [],
+    transactions: [],
+    actionHistory: [],
+    withDrawHistory: [],
+    bankingInfo: {
+        bank: "",
+        accountNumber: "",
+        accountName: "",
+    },
+    allowDebitLimit: 0,
+
+}
+
 const headerTable = [
     {
         title: "STT",
-        key: "index"
+        key: "index",
+        isSort: true,
     },
     {
         title: "Tên người dùng",
-        key: "fullName"
+        key: "fullName",
+        isSort: true,
     },
     {
         title: "Email",
-        key: "email"
+        key: "email",
+        isSort: false,
     },
     {
         title: "Số điện thoại",
-        key: "phone"
+        key: "phone",
+        isSort: false,
     },
     {
         title: "Số dư",
         key: "balance",
-        action: 'formatCurrency'
+        action: 'formatCurrency',
+        isSort: true,
     },
     {
         title: "Số đơn",
-        key: "orders"
+        key: "orders",
+        isSort: true,
     },
     {
         title: "Doanh thu",
         key: "revenue",
-        action: 'formatCurrency'
+        action: 'formatCurrency',
+        isSort: true,
     },
     {
         title: "loại khách hàng",
-        key: "isLoyalCustomer"
+        key: "isLoyalCustomer",
+        isSort: false,
+    },
+    {
+        title: "telegram",
+        key: "telegram",
+        isSort: false,
     },
     {
         title: "Trạng thái",
-        key: "status"
+        key: "status",
+        isSort: false,
     },
     {
         title: "Action",
-        key: "action"
+        key: "action",
+        isSort: false,
     }
 ];
+
+const defaultSort = {
+    key: "createdAt",
+    order: "desc"
+}
 
 function Table({}: TableProps) {
     const [data, setData] = React.useState<Record<string, UserInterface[]>>({});
@@ -66,9 +122,15 @@ function Table({}: TableProps) {
     const [totalPage, setTotalPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const {users} = useSelector((state: RootState) => state.users);
-
+    const [currentSort, setCurrentSort] = React.useState<{
+        key: keyof UserInterface,
+        order: "asc" | "desc"
+    }>({
+        key: "createdAt",
+        order: "desc"
+    });
     const fetchData = async () => {
-        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10).then(async (res) => {
+        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -83,7 +145,7 @@ function Table({}: TableProps) {
 
     useLayoutEffect(() => {
         fetchData();
-    }, [currentPage]);
+    }, [currentPage, currentSort]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -147,6 +209,9 @@ function Table({}: TableProps) {
                         <div className={"flex flex-row justify-between items-center"}>
                             Danh sách khách hàng
                         </div>
+                        <div className={""}>
+
+                        </div>
                         <Pagination
                             showControls
                             total={totalPage}
@@ -172,8 +237,32 @@ function Table({}: TableProps) {
                                     <thead className={"bg-white"}>
                                         <tr className={"text-start"}>
                                             {headerTable.map((item, index) => (
-                                                <th key={index} className={"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap"}>
-                                                    {item.title}
+                                                <th key={index} className={"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap "}>
+                                                    <div className={"flex flex-row justify-center items-center gap-1"}>
+                                                        <span>
+                                                            {item.title}
+                                                        </span>
+                                                        {item.isSort && <FaSort className={"cursor-pointer hover:text-blue-600 hover:scale-110"} onClick={() => {
+                                                            if (currentSort.key === item.key && defaultUser[item.key] !== undefined) {
+                                                                if (currentSort.order === "asc") {
+                                                                    setCurrentSort({
+                                                                        key: item.key as keyof UserInterface,
+                                                                        order: "desc"
+                                                                    });
+                                                                } else {
+                                                                    setCurrentSort({
+                                                                        key: item.key as keyof UserInterface,
+                                                                        order: "asc"
+                                                                    });
+                                                                }
+                                                            } else {
+                                                                setCurrentSort({
+                                                                    key: item.key as keyof UserInterface,
+                                                                    order: "desc"
+                                                                });
+                                                            }
+                                                        }}/>}
+                                                    </div>
                                                 </th>
                                             ))}
                                         </tr>
@@ -181,6 +270,18 @@ function Table({}: TableProps) {
                                     {isLoading ? <div>Loading...</div> :  <TableBody
                                         keys={headerTable.map(item => item.key)}
                                         actions={headerTable.map(item => item.action)}
+                                        isSorts={headerTable.map(item => ({
+                                            key: item.key,
+                                            order: item.isSort ? "asc" : "desc",
+                                            isSort: item.isSort
+                                        })) as {key: keyof UserInterface, order: "asc" | "desc", isSort: boolean}[]}
+                                        defaultSort={defaultSort as {key: keyof UserInterface, order: "asc" | "desc"}}
+                                        changeSort={(key: keyof UserInterface, order) => {
+                                            setCurrentSort({
+                                                key,
+                                                order
+                                            });
+                                        }}
                                         page={currentPage - 1}
                                         rowsPerPage={10}
                                         data={users || []}

@@ -10,8 +10,10 @@ export async function GET(req: NextRequest) {
     const time = searchParams.get("time") as timeOrder;
     const page = searchParams.get("page") as string;
     const limit = searchParams.get("limit") || String(DBConfigs.perPage);
+    const filterKey = req.nextUrl.searchParams.get("filterKey") ? req.nextUrl.searchParams.get("filterKey") as string : "price";
+    const filterOrder = req.nextUrl.searchParams.get("filterOrder") ? req.nextUrl.searchParams.get("filterOrder") as string : "desc";
     // console.log(time);
-    const menuListWithPaginate = await getMenuList(time, Number(page), Number(limit), 'admin');
+    const menuListWithPaginate = await getMenuList(time, Number(page), Number(limit), 'admin', {filterKey, filterOrder});
 
     if (!menuListWithPaginate.data) {
         return NextResponse.json({error: "Xảy ra lỗi gì đó ở menu session"}, {status: 404});

@@ -55,7 +55,8 @@ function UserManagement({ _id}: UserManagementProps) {
         withDrawHistory: [""],
         createdAt: new Date(),
         updatedAt: new Date(),
-        allowDebitLimit: 1000
+        allowDebitLimit: 1000,
+        telegram: ""
     });
 
     const {success, error} = useToast();
@@ -69,6 +70,7 @@ function UserManagement({ _id}: UserManagementProps) {
         accountNumber: "",
         bank: ""
     });
+    const [newTelegramLink, setNewTelegramLink] = React.useState<string>("");
     const [newAddress, setNewAddress] = React.useState<string>("");
     const [newPhone, setNewPhone] = React.useState<string>("");
     const [newBalance, setNewBalance] = React.useState<number>(0);
@@ -117,7 +119,8 @@ function UserManagement({ _id}: UserManagementProps) {
             phone: newPhone,
             bankingInfo: newBankingInfo,
             allowDebitLimit: newBalance,
-            isLoyalCustomer
+            isLoyalCustomer,
+            telegram: newTelegramLink
         } : item) as UserInterface[]))
     }
 
@@ -169,6 +172,7 @@ function UserManagement({ _id}: UserManagementProps) {
                 setNewPhone(data.data.phone);
                 setNewBankingInfo(data.data.bankingInfo);
                 // console.log(userData)
+                setNewTelegramLink(data.data.telegram);
                 setNewBalance(data.data.allowDebitLimit);
             });
         // } else {
@@ -242,6 +246,12 @@ function UserManagement({ _id}: UserManagementProps) {
                             <Input type="text" label={"Tên người dùng"} id={"newFullName"} value={userData.fullName}
                                    disabled/>
                             <Input type="text" label={"Email"} id={"newEmail"} value={userData.email} disabled/>
+                            <Input
+                                type="text"
+                                placeholder={"telegram"}
+                                // id={"newBankingInfo"}
+                                value={newTelegramLink}
+                                onChange={(e) => setNewTelegramLink(e.target.value)}/>
                         </div>
                         <div className={"w-full flex flex-col justify-center items-start gap-2"}>
                             <h1 className={"text-xl font-semibold text-start text-gray-500"}>Thông tin liên hệ</h1>

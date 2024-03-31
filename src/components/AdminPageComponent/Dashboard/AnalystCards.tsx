@@ -42,8 +42,8 @@ function AnalystCards({}: AnalystCardsProps) {
                     title: "Tổng số đơn hàng",
                     value: data.data?.order.value || 0,
                     rate: data.data?.order.rate || 0,
-                    levelUp: false,
-                    levelDown: true,
+                    levelUp: data.data?.order.type === "increase",
+                    levelDown: !(data.data?.order.type === "increase"),
                     children: <CiShoppingCart className={"text-blue-600"}/>
                 },
                 {
