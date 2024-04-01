@@ -52,7 +52,7 @@ const GreyBadge = ({children}) => {
 }
 
 function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, isShowSelect, selectedItems, setSelectedItems}: TableBodyProps) {
-    console.log(type)
+    // console.log(type)
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>
         {data.map((item, data_index) => (
@@ -95,6 +95,21 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, 
                                         store.dispatch(openModal(item._id as unknown as string, type))
                                     }}
                                 ><FiEye /> Xem</Button>
+                            </td>
+                        )
+                    }
+
+                    if (key === "orderList") {
+                        return (
+                            <td key={"td" + index} className={"px-3 py-4 whitespace-nowrap "}>
+                               <div className={"flex flex-col justify-start items-center"}>
+                                   {item[key].map((order, index) => (
+                                        <div key={"order"+index} className={"flex flex-row justify-start items-center gap-1 w-full"}>
+                                            <span className={"text-base font-semibold line-clamp-2"}>{order.name}</span>
+                                            <span className={"text-base"}>x{order.totalOrder}</span>
+                                        </div>
+                                      ))}
+                               </div>
                             </td>
                         )
                     }
@@ -204,7 +219,7 @@ function TableBody({page = 1, rowsPerPage = 10, keys = [], data, actions, type, 
 
 
                     return (
-                        <td key={"td" + index} className={"px-3 py-4 whitespace-break-spaces text-base max-w-xl"}>
+                        <td key={"td" + index} className={"px-3 py-4 whitespace-break-spaces text-base max-w-xl "}>
                             {actions[index] === 'formatCurrency'
                                 ? <span className={"font-semibold"}>{formatCurrency((item[key]||0).toString())}đ</span>
                                 : (item[key])}

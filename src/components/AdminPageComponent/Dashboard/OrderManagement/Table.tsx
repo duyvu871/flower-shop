@@ -45,6 +45,11 @@ const headerTable = [
         isSort: true
     },
     {
+        key: "orderList",
+        title: "Danh sách món",
+        isSort: false
+    },
+    {
         title: "Trạng thái",
         key: "status",
         isSort: false

@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect, useLayoutEffect} from 'react';
 import TableBody from "./TableBody";
-import {Pagination} from "@nextui-org/react";
+import {Input, Pagination} from "@nextui-org/react";
 import {UserInterface} from "types/userInterface";
 import {formatCurrency} from "@/ultis/currency-format";
 import store from "@/adminRedux/store";
@@ -12,6 +12,8 @@ import {openModal} from "@/adminRedux/action/OpenModal";
 import {TimeRange} from "@/ultis/timeFormat.ultis";
 import {FaSort} from "react-icons/fa";
 import {ObjectId} from "mongodb";
+import {IoIosSearch} from "react-icons/io";
+import {bgWhite} from "next/dist/lib/picocolors";
 
 interface TableProps {
 
@@ -55,7 +57,7 @@ const headerTable = [
     {
         title: "STT",
         key: "index",
-        isSort: true,
+        isSort: false,
     },
     {
         title: "Tên người dùng",
@@ -205,12 +207,34 @@ function Table({}: TableProps) {
             </div>
             <div className={"grid grid-cols-1"}>
                 <div className={"border rounded-lg border-default-200 bg-gray-100"}>
-                    <div className={"px-6 py-4 overflow-hidden flex flex-row justify-between items-center"}>
-                        <div className={"flex flex-row justify-between items-center"}>
+                    <div className={"px-6 py-4 overflow-hidden flex flex-row justify-between items-center gap-4"}>
+                        <div className={"flex flex-row justify-between items-center whitespace-nowrap"}>
                             Danh sách khách hàng
                         </div>
                         <div className={""}>
-
+                            <Input
+                                classNames={{
+                                    base: " min-w-[250px] max-w-[300px] h-10",
+                                    mainWrapper: "h-full bg-gray-100",
+                                    input: "text-small",
+                                    inputWrapper: "h-full font-normal outline-none text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                                }}
+                                className={"w-full outline-none bg-white"}
+                                placeholder="Tìm kiếm khách hàng..."
+                                size="sm"
+                                color={"primary"}
+                                // value={searchValue}
+                                startContent={<IoIosSearch size={18} />}
+                                type="search"
+                                // ref={searchRef}
+                                // onChange={(e) => setSearchValue(e.target.value)}
+                                // onKeyUp={(e) => {
+                                //     if (e.key === "Enter") {
+                                //         console.log(searchValue);
+                                //     }
+                                //     console.log(e.key)
+                                // }}
+                            />
                         </div>
                         <Pagination
                             showControls

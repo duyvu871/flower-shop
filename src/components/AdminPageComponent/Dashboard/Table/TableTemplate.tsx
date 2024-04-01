@@ -1,10 +1,11 @@
 "use client"
 import React, {useEffect, useLayoutEffect} from 'react';
 import TableBody from "./TableBody";
-import {Pagination} from "@nextui-org/react";
+import {Input, Pagination} from "@nextui-org/react";
 import {tw} from "@/ultis/tailwind.ultis";
 import {FaSort} from "react-icons/fa";
 import {UserInterface} from "types/userInterface";
+import {IoIosSearch} from "react-icons/io";
 // import {UserInterface} from "types/userInterface";
 // import {formatCurrency} from "@/ultis/currency-format";
 // import store from "@/adminRedux/store";
@@ -90,7 +91,28 @@ function TableTemplate({
                             {listTitle}
                         </div>
                         <div className={"flex "}>
-
+                            <Input
+                                classNames={{
+                                    base: "min-w-[250px] max-w-[300px] h-10",
+                                    mainWrapper: "h-full",
+                                    input: "text-small",
+                                    inputWrapper: "h-full font-normal outline-none text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                                }}
+                                className={"w-full outline-none"}
+                                placeholder={"Tìm kiếm " + listTitle.toLowerCase() + "..."}
+                                size="sm"
+                                // value={searchValue}
+                                startContent={<IoIosSearch size={18} />}
+                                type="search"
+                                // ref={searchRef}
+                                // onChange={(e) => setSearchValue(e.target.value)}
+                                // onKeyUp={(e) => {
+                                //     if (e.key === "Enter") {
+                                //         console.log(searchValue);
+                                //     }
+                                //     console.log(e.key)
+                                // }}
+                            />
                         </div>
                         <Pagination
                             showControls
@@ -117,6 +139,15 @@ function TableTemplate({
                                     <thead className={"bg-white "}>
                                         <tr className={"text-start"}>
                                             {headers.map((item, index) => {
+                                                if (index === 0 && !isShowSelect) {
+                                                    return (
+                                                        <th key={index}
+                                                            className={"px-6 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap"}>
+                                                            {item.title}
+                                                        </th>
+                                                    )
+                                                }
+
                                                 if (item.title === "Select") {
                                                     return (
                                                         <th key={index} className={"px-6 py-3 text-xs text-gray-500"}>
@@ -126,9 +157,9 @@ function TableTemplate({
                                                 }
                                                 return (
                                                     <th key={index}
-                                                        className={"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap "}>
+                                                        className={"px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap min-w-[120px]"}>
                                                         <div
-                                                            className={"flex flex-row justify-center items-center gap-1"}>
+                                                            className={"flex flex-row justify-start items-center gap-1"}>
                                                         <span>
                                                             {item.title}
                                                         </span>
