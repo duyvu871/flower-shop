@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {Button, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
 import store from "@/redux/store";
 import {RootState} from "@/redux/reducers";
@@ -27,16 +27,24 @@ function CartModal({}: CartModalProps) {
     const orderValueRef = React.useRef<HTMLInputElement>(null);
 
     const handlePayToBill = () => {
-
+        updateCartState([...cart]);
         push("/order");
         console.log("pay to bill");
+        store.dispatch({type: 'CLOSE_CART_MODAL'})
+
     }
-    const handleDeleteList = (itemId: string) => {
+    const handleDeleteList = (itemId: string, value?: boolean) => {
         setDeleteItems((prevCheckedItems) => ({
             ...prevCheckedItems,
             [itemId]: !prevCheckedItems[itemId],
         }));
-        updateCart('delete_or_select', !deleteItems[itemId], itemId);
+        if (value === undefined) {
+            updateCart('delete_or_select', !deleteItems[itemId], itemId);
+            // @ts-ignore
+            storeToLocalStorage("isPayAll", !!cart.find(item => item.delete_or_select === true));
+            return;
+        }
+        updateCart('delete_or_select', value, itemId);
         // @ts-ignore
         storeToLocalStorage("isPayAll", !!cart.find(item => item.delete_or_select === true));
     };
@@ -84,6 +92,7 @@ function CartModal({}: CartModalProps) {
     }
 
     useEffect(() => {
+
         setOrderQuantity((prev) => {
             return cart.reduce((acc, item) => {
                 return {...acc, [item._id as unknown as string]: item.totalOrder};
@@ -99,29 +108,57 @@ function CartModal({}: CartModalProps) {
                 }, {});
             });
             setTotalPayment(calculateCart(selectedItems));
+            setIsPreventDelete(false);
         } else {
             setTotalPayment(calculateCart(cart));
-
+            setIsPreventDelete(true);
+            // console.log("cart", cart)
         }
 
     }, [cart]);
 
+
+    // useEffect(() => {
+    //     const checkedItems = Object.entries(deleteItems).filter(([_, value]) => value).map(([key, _]) => key);
+    //     if (checkedItems.length > 0) {
+    //         setIsPreventDelete(false);
+    //     } else {
+    //         setIsPreventDelete(true);
+    //     }
+    // }, [cart]);
+
     useEffect(() => {
-        const checkedItems = Object.entries(deleteItems).filter(([_, value]) => value).map(([key, _]) => key);
-        if (checkedItems.length > 0) {
-            setIsPreventDelete(false);
-        } else {
-            setIsPreventDelete(true);
+        if (!isCartModalOpen) {
+            const checkedItems = Object.entries(deleteItems).filter(([_, value]) => value).map(([key, _]) => key);
+            console.log("checkedItems", checkedItems)
+            console.log("cart", cart)
+            setDeleteItems((prev) => {
+                return cart.reduce((acc, item, index) => {
+                    // @ts-ignore
+                    if (item?.delete_or_select === undefined || checkedItems.length === 0) {
+                        // @ts-ignore
+                        cart[index].delete_or_select = cart[index].delete_or_select === undefined ? true : cart[index].delete_or_select;
+                        // @ts-ignore
+                        handleDeleteList(item._id as unknown as string, cart[index].delete_or_select);
+                    }
+                    // @ts-ignore
+                    return {...acc, [item._id as unknown as string]: item?.delete_or_select !== undefined ? item.delete_or_select : true};}, {});
+            });
+            return;
         }
-    }, [deleteItems]);
+        // }
+    }, [isCartModalOpen]);
 
     return (
         <Modal
             isOpen={isCartModalOpen}
             onClose={() => store.dispatch({type: 'CLOSE_CART_MODAL'})}
             placement={'top-center'}
-            onOpenChange={() => {
-            }}
+            // onOpenChange={(e) => {
+            //     console.log(e)
+            //     console.log("cart", cart)
+            //
+            // }}
             className={"z-[999]"}
             closeButton={<></>}
             scrollBehavior={"inside"}

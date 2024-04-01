@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
            return dataTemplate({error: "Cập nhật món thất bại"}, 500);
        }
 
-       return dataTemplate({message: "Cập nhật món thành công"}, 200);
+       return dataTemplate({message: "Cập nhật món thành công", data: productDefault}, 200);
    } catch (e: any) {
 
    }

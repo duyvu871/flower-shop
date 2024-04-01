@@ -132,7 +132,7 @@ function Table({}: TableProps) {
         order: "desc"
     });
     const fetchData = async () => {
-        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
+        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +currentSort.key + "&filterOrder=" +currentSort.order + "&search="  ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }

@@ -65,7 +65,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
         if (pathname !== "/") {
             push("/");
         } else {
-            store.dispatch(changeScreen("home"));
+            window.scrollTo({top: 0, behavior: "smooth"});
         }
     }
     const handleSelectionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -125,9 +125,9 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
            }}
        >
            <NavbarContent justify="start">
-               <NavbarBrand onClick={logoAction} className={"cursor-pointer flex"}>
+               <NavbarBrand onClick={logoAction} className={"cursor-pointer flex gap-1"}>
                    <Logo size={50}/>
-                   <p className={"text-xl font-bold text-inherit hidden sm:block"}>NgonNgon</p>
+                   <p className={"text-xl font-bold text-inherit hidden sm:block"}>commanau</p>
                </NavbarBrand>
            </NavbarContent>
            <NavbarContent justify="center" className={""}>

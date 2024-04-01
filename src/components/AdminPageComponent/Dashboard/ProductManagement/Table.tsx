@@ -139,30 +139,30 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
     }, [currentPage, currentSort]);
 
     useEffect(() => {
-        // setIsLoading(true);
+        setIsLoading(true);
 
-        // if (data['user-data'+currentPage]) {
-        //     setIsLoading(false);
-        //     return;
-        // }
-        // let count = 0;
-        // const interval = setInterval(() => {
-        //     count++;
-        //     if (currentPage === 1 && isRerender) {
-        //         // if () {
-        //         //     fetchData(currentPage);
-        //         // }
-        //         fetchData(currentPage);
-        //     } else {
-        //         clearInterval(interval);
-        //     }
-        //     console.log(count)
-        // }, 15000);
+        if (data['user-data'+currentPage]) {
+            setIsLoading(false);
+            return;
+        }
+        let count = 0;
+        const interval = setInterval(() => {
+            count++;
+            if (currentPage === 1 && isRerender) {
+                // if () {
+                //     fetchData(currentPage);
+                // }
+                fetchData(currentPage);
+            } else {
+                clearInterval(interval);
+            }
+            console.log(count)
+        }, 15000);
 
 
-        // return () => {
-        //     clearInterval(interval);
-        // }
+        return () => {
+            clearInterval(interval);
+        }
     }, [currentPage]);
 
     return (

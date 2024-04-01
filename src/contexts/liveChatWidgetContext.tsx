@@ -150,30 +150,30 @@ export const LiveChatWidgetProvider = ({children}: {children: React.ReactNode}) 
         }}>
             {children}
             <div className={tw(isWidgetOpen ? "": "hidden")}>
-                <TawkMessengerReact
-                    ref={livechatRef}
-                    onload={onload}
-                    className={"text-red"}
-                    propertyId={AppConfig.liveChat.license}
-                    widgetId="livechat-widget"
-                    customStyle={{
-                        visibility : {
-                            desktop : {
-                                xOffset : '15',
-                                yOffset : '15',
-                                position : 'br',
-                                // width : '400px',
-                            },
+                {/*<TawkMessengerReact*/}
+                {/*    ref={livechatRef}*/}
+                {/*    onload={onload}*/}
+                {/*    className={"text-red"}*/}
+                {/*    propertyId={AppConfig.liveChat.license}*/}
+                {/*    widgetId="livechat-widget"*/}
+                {/*    customStyle={{*/}
+                {/*        visibility : {*/}
+                {/*            desktop : {*/}
+                {/*                xOffset : '15',*/}
+                {/*                yOffset : '15',*/}
+                {/*                position : 'br',*/}
+                {/*                // width : '400px',*/}
+                {/*            },*/}
 
-                            mobile : {
-                                xOffset : '10',
-                                yOffset : '200',
-                                position : 'br',
+                {/*            mobile : {*/}
+                {/*                xOffset : '10',*/}
+                {/*                yOffset : '200',*/}
+                {/*                position : 'br',*/}
 
-                            }
-                        }
-                    }}
-                />
+                {/*            }*/}
+                {/*        }*/}
+                {/*    }}*/}
+                {/*/>*/}
             </div>
         </LivechatWidgetContext.Provider>
     )

@@ -4,7 +4,8 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
     images: {
-        unoptimized: true,
+        // unoptimized: true,
+        minimumCacheTTL: 60,
     },
 
 };

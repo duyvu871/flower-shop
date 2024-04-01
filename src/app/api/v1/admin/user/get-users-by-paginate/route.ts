@@ -10,9 +10,18 @@ export async function GET(req: NextRequest) {
         const limit = req.nextUrl.searchParams.get("limit") ? parseInt(req.nextUrl.searchParams.get("limit") as string) : 10;
         const filterKey = req.nextUrl.searchParams.get("filterKey") ? req.nextUrl.searchParams.get("filterKey") as string : "createdAt";
         const filterOrder = req.nextUrl.searchParams.get("filterOrder") ? req.nextUrl.searchParams.get("filterOrder") as string : "desc";
+        const searchString = req.nextUrl.searchParams.get("search") || "";
+        const regex = new RegExp(["", searchString.split(" ").map(item => `(?=.*${item})`).join("|"), ""].join(""), "i");
+
+        const filters = searchString ? {} : {
+            fullName: {
+                $regex: regex
+            },
+        }
+
         const client = await clientPromise;
         const users = client.db(process.env.DB_NAME).collection("users");
-        const result = await users.find().sort({
+        const result = await users.find(filters).sort({
             [filterKey]: filterOrder === "asc" ? 1 : -1
         }).project([
             '_id',                    'avatar',

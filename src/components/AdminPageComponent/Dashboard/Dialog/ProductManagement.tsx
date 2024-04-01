@@ -40,7 +40,14 @@ function ProductManagement({_id}: ProductManagementProps) {
         });
     }, [_id]);
 
-    const update = async () => {
+    const update = async ({
+        productName,
+        price,
+        discount,
+        description,
+        image,
+        productType
+                          }) => {
         fetch('/api/v1/admin/product/update-product', {
             method: "POST",
             headers: {
@@ -71,7 +78,15 @@ function ProductManagement({_id}: ProductManagementProps) {
     const updateAfterDelete = () => {
         if (!selectedFile) {
             // setImage("");
-            update();
+            console.log("no file")
+            update({
+                productName,
+                price,
+                discount,
+                description,
+                image,
+                productType
+            });
             return;
         }
         const storageRef = ref(storage, `images/${selectedFile.name}`);
@@ -88,7 +103,14 @@ function ProductManagement({_id}: ProductManagementProps) {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setImage(downloadURL);
-                    update();
+                    update({
+                        productName,
+                        price,
+                        discount,
+                        description,
+                        image: downloadURL,
+                        productType
+                    });
                 });
             }
         );
@@ -99,8 +121,8 @@ function ProductManagement({_id}: ProductManagementProps) {
             updateAfterDelete();
             return;
         }
-        deleteFileByDownloadUrl(image).then(() => {
-           updateAfterDelete();
+        deleteFileByDownloadUrl(image).then((e) => {
+            updateAfterDelete();
         }).catch(() => {
             updateAfterDelete();
         });

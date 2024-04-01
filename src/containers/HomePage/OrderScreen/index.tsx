@@ -67,7 +67,7 @@ function OrderScreen({}: OrderScreenProps) {
         // console.log(cart)
         // @ts-ignore
         const selectedItems = cartTemp.filter(item => item.delete_or_select);
-        console.log(cartTemp)
+        // console.log(selectedItems)
         const response = await createOrder(selectedItems.length !== 0 ? selectedItems : cartTemp, location||userData.address, takeNote);
         setIsLoading(false);
         if (response.status !== 200) {
@@ -80,8 +80,13 @@ function OrderScreen({}: OrderScreenProps) {
             if (selectedItems.length !== 0) {
                 // @ts-ignore
                 updateCart(cart.filter(item => !item?.delete_or_select));
+                // console.log(cart.filter(item => !item?.delete_or_select))
             } else {
-                clearCart(true);
+
+                const uniqueItems = cart.filter(item1 => !selectedItems.some(item2 => item2._id === item1._id));
+                // console.log(uniqueItems);
+                // clearCart(true);
+                updateCart(uniqueItems);
             }
         }
         success(response.message);
@@ -89,11 +94,12 @@ function OrderScreen({}: OrderScreenProps) {
         // console.log(response)
         success("Đã trừ "+ formatCurrency(response.orderData.orderVolume.toString()) + "đ từ tài khoản của bạn");
         setIsOpen(false);
-
+        setCartTemp([]);
     }
     const handleClearCart = () => {
         if (!isImmediately) {
-            clearCart(false);
+            // clearCart(false);
+            setCartTemp([]);
         } else {
             localStorage.removeItem("order-immediately");
             push("/");
@@ -134,22 +140,22 @@ function OrderScreen({}: OrderScreenProps) {
         //     });
         // }
         setTotalPrice(total);
-        console.log(total)
-        console.log(cartTemp)
+        // console.log(total)
+        // console.log(cartTemp)
     }, [cartTemp]);
 
     useEffect(() => {
-        store.dispatch({type: "CLOSE_CART_MODAL"});
+        // store.dispatch({type: "CLOSE_CART_MODAL"});
         if (!isImmediately) {
             // @ts-ignore
             const selectedItems = cart.filter(item => item.delete_or_select);
+            // console.log(selectedItems)
             if (selectedItems.length !== 0) {
                 setCartTemp(selectedItems)
             } else {
                 setCartTemp(cartTemp);
             }
         } else {
-
             setCartTemp(
                 isImmediately.toString() === "true"
                     ? [JSON.parse(localStorage.getItem("order-immediately")||"{}")]
@@ -160,6 +166,7 @@ function OrderScreen({}: OrderScreenProps) {
     }, [cart]);
 
     useEffect(() => {
+        console.log(isImmediately, OrderID, totalOrder, takeNoteFromSearchParams)
         const getItem = async () => {
                 const item = await getItemById([OrderID as string])
                 if (item) {
@@ -194,6 +201,10 @@ function OrderScreen({}: OrderScreenProps) {
             }
         }
     }, [isImmediately, OrderID]);
+
+    useEffect(() => {
+        store.dispatch({type: 'CLOSE_CART_MODAL'})
+    }, []);
 
     return (
         <div className={"w-full h-full flex flex-col justify-center items-center"}>
