@@ -241,9 +241,9 @@ export type GetMenuListType = Await<ReturnType<typeof getMenuList>>;
 
 export async function getAllMenuList() {
     // const client = clientPromise;
-    const morningMenu = getMenuList("morning", 1, 2);
-    const afternoonMenu = getMenuList("afternoon", 1, 2);
-    const eveningMenu = getMenuList("evening", 1, 2);
+    const morningMenu = getMenuList("morning", 1, 10);
+    const afternoonMenu = getMenuList("afternoon", 1, 10);
+    const eveningMenu = getMenuList("evening", 1, 10);
     // const nightMenu = getMenuList("night", 1, 10);
     const otherMenu = getMenuList("other", 1, 10);
     const result = await Promise.all([morningMenu, afternoonMenu, eveningMenu, otherMenu]);

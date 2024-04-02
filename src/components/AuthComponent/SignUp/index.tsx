@@ -305,10 +305,20 @@ export default function SignInForm() {
                         >
                             Đăng Ký
                         </Button>
-                        <Spacer y={6}/>
-                        <div className={"flex justify-start"}>
+                        <Spacer y={3}/>
+                        <div className={"flex justify-start h-[2px] w-full bg-gray-200"}>
 
                         </div>
+                        <Spacer y={3}/>
+
+                        <Button
+                            onClick={() => push("/auth/signin")}
+                            className={"w-full bg-orange-600 text-white"}
+                            color="primary"
+                            variant="flat"
+                        >
+                            Đăng Nhập
+                        </Button>
                         <div>
                             Bằng việc đăng nhập, đăng ký, bạn đã đồng ý với các <a href="#" className={"text-orange-600"}>điều
                             khoản sử dụng</a> của chúng tôi

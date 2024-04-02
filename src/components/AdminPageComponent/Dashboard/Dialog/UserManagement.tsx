@@ -1,6 +1,6 @@
 "use client"
 import React, {useEffect, useLayoutEffect} from 'react';
-import {Button, Input, Select, SelectItem, Spinner} from "@nextui-org/react";
+import {Button, Input, Select, SelectItem, Spacer, Spinner} from "@nextui-org/react";
 import {formatCurrency} from "@/ultis/currency-format";
 import {LuPlus} from "react-icons/lu";
 import {EyeFilledIcon, EyeSlashFilledIcon} from "@nextui-org/shared-icons";
@@ -301,6 +301,7 @@ function UserManagement({ _id}: UserManagementProps) {
                     </div>
                 )}
             </div>
+            <Spacer y={2}/>
             <div className={"flex flex-row gap-2"}>
                 <Button className={"bg-blue-600 text-white"} disabled={isUpdating} onClick={handleUpdate}>Lưu</Button>
                 <Button className={"bg-red-500 text-white"} onClick={() => deleteAccount()}>Xóa</Button>
