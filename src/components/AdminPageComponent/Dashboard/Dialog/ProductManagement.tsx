@@ -1,11 +1,21 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {Input, Spacer, Textarea, Image, CircularProgress} from "@nextui-org/react";
+import {
+    Input,
+    Spacer,
+    Textarea,
+    Image,
+    CircularProgress,
+    ModalContent,
+    ModalHeader,
+    ModalBody, ModalFooter, Modal
+} from "@nextui-org/react";
 import {useToast} from "@/hooks/useToast";
 import {deleteFileByDownloadUrl} from "@/helpers/firebase";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import {storage} from "@/firebase/firebase";
 import {tw} from "@/ultis/tailwind.ultis";
 import store from "@/adminRedux/store";
+import {closeModal} from "@/adminRedux/action/OpenModal";
 
 interface ProductManagementProps {
 _id: string;
@@ -24,6 +34,7 @@ function ProductManagement({_id}: ProductManagementProps) {
     const [preview, setPreview] = useState<string | undefined>(undefined)
     const [processPercent, setProcessPercent] = useState<number>(0);
     const [isUploading, setIsUploading] = useState<boolean>(false);
+    const [isPreviewImage, setIsPreviewImage] = useState<boolean>(false);
 
     useLayoutEffect(()=> {
         fetch('/api/v1/info/search-by-id?ids=' + _id).then(async (res) => {
@@ -172,69 +183,99 @@ function ProductManagement({_id}: ProductManagementProps) {
     }, [selectedFile])
 
     return (
-        <div className={"flex flex-col justify-center items-center gap-4"}>
-            <div className={tw("w-full flex justify-center items-center", isUploading ? "" : "hidden")}>
-                <CircularProgress
-                    aria-label="Loading..."
-                    size="lg"
-                    value={Number(processPercent.toFixed(0))}
-                    color="success"
-                    showValueLabel={true}
+        <>
+            <div className={"flex flex-col justify-center items-center gap-4"}>
+                <div className={tw("w-full flex justify-center items-center", isUploading ? "" : "hidden")}>
+                    <CircularProgress
+                        aria-label="Loading..."
+                        size="lg"
+                        value={Number(processPercent.toFixed(0))}
+                        color="success"
+                        showValueLabel={true}
+                    />
+                </div>
+                <div className={"w-full flex justify-center items-center"}>
+                    {
+                        isShowImage && preview ? <Image src={preview} width={200} height={200} className={"cursor-pointer"} onClick={() => setIsPreviewImage(true)}/> :
+                            <Image src={image} width={200} height={200} className={"cursor-pointer"} onClick={() => setIsPreviewImage(true)}/>
+                    }
+                </div>
+                <div className="flex flex-col items-center justify-center w-full">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                           htmlFor="file_input">Upload
+                        file</label>
+                    {/*<input*/}
+                    {/*    className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal leading-[2.15] text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"*/}
+                    {/*    aria-describedby="file_input_help" id="file_input" type="file"/>*/}
+                    <input
+                        type={"file"}
+                        className={"hover:bg-gray-100 relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal leading-[2.15] text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white border-gray-200"}
+                        onChange={handleImageChange}
+                        accept={"image/*"}
+                    />
+                    {/*<p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF*/}
+                    {/*    (MAX. 800x400px).</p>*/}
+                </div>
+                <Input
+                    placeholder={"Tên món"}
+                    type={"text"}
+                    value={productName}
+                    onChange={(e) => setProductName(e.target.value)}/>
+                <Input
+                    placeholder={"Giá"}
+                    type={"number"}
+                    endContent={<div>.000đ</div>}
+                    value={price.toString()}
+                    onChange={(e) => setPrice(Number(e.target.value))}
                 />
-            </div>
-            <div className={"w-full flex justify-center items-center"}>
-                {
-                    isShowImage && preview ? <Image src={preview} width={200} height={200}/> :
-                        <Image src={image} width={200} height={200}/>
-                }
-            </div>
-            <div className="flex flex-col items-center justify-center w-full">
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload
-                    file</label>
-                {/*<input*/}
-                {/*    className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal leading-[2.15] text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"*/}
-                {/*    aria-describedby="file_input_help" id="file_input" type="file"/>*/}
-                <input
-                    type={"file"}
-                    className={"hover:bg-gray-100 relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal leading-[2.15] text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white border-gray-200"}
-                    onChange={handleImageChange}
-                    accept={"image/*"}
+                <Input
+                    placeholder={"Giảm giá"}
+                    type={"number"}
+                    endContent={<div>%</div>}
+                    value={discount.toString()}
+                    onChange={(e) => setDiscount(Number(e.target.value))}
                 />
-                {/*<p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF*/}
-                {/*    (MAX. 800x400px).</p>*/}
+                <Textarea
+                    placeholder={"Mô tả"}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <Spacer y={1}/>
+                <div className={"flex justify-center items-center gap-2"}>
+                    <button className={"bg-primary text-white rounded-md px-4 py-2"} onClick={updateOrCreateProduct}>Cập
+                        nhật
+                    </button>
+                    <button className={"bg-red-500 text-white rounded-md px-4 py-2"} onClick={deleteProduct}>Xóa
+                    </button>
+                </div>
             </div>
-            <Input
-                placeholder={"Tên món"}
-                type={"text"}
-                value={productName}
-                onChange={(e) => setProductName(e.target.value)}/>
-            <Input
-                placeholder={"Giá"}
-                type={"number"}
-                endContent={<div>.000đ</div>}
-                value={price.toString()}
-                onChange={(e) => setPrice(Number(e.target.value))}
-            />
-            <Input
-                placeholder={"Giảm giá"}
-                type={"number"}
-                endContent={<div>%</div>}
-                value={discount.toString()}
-                onChange={(e) => setDiscount(Number(e.target.value))}
-            />
-            <Textarea
-                placeholder={"Mô tả"}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            <Spacer y={1}/>
-            <div className={"flex justify-center items-center gap-2"}>
-                <button className={"bg-primary text-white rounded-md px-4 py-2"} onClick={updateOrCreateProduct}>Cập
-                    nhật
-                </button>
-                <button className={"bg-red-500 text-white rounded-md px-4 py-2"} onClick={deleteProduct}>Xóa</button>
-            </div>
-        </div>
+            <Modal
+                isOpen={isPreviewImage}
+                onClose={() => setIsPreviewImage(false)}
+                placement={'auto'}
+                onOpenChange={() => {}}
+                className={"z-[999] "}
+                size={"5xl"}
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className={"flex flex-col gap-1"}>
+
+                            </ModalHeader>
+                            <ModalBody className={"flex flex-col gap-1 justify-center items-center"}>
+                                {
+                                    isShowImage && preview ? <Image src={preview} width={1000} height={1000}/> :
+                                        <Image src={image} width={1000} height={1000}/>
+                                }
+                            </ModalBody>
+                            <ModalFooter>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
+        </>
     );
 }
 

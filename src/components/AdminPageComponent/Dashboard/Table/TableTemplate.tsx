@@ -46,6 +46,9 @@ interface TableProps {
     };
     setCurrentSort: (sort: { key: keyof UserInterface, order: "asc" | "desc" }) => void;
     defaultTableData: any;
+    searchValue?: string;
+    setSearchValue?: (value: string) => void;
+    searchRef?: React.RefObject<HTMLInputElement>;
 };
 
 
@@ -66,7 +69,10 @@ function TableTemplate({
     setSelectedItems,
     currentSort,
     setCurrentSort,
-    defaultTableData
+    defaultTableData,
+    searchValue,
+    setSearchValue,
+    searchRef
 }: TableProps) {
     const headers = (isShowSelect ? [{
         title: "Select",
@@ -91,28 +97,32 @@ function TableTemplate({
                             {listTitle}
                         </div>
                         <div className={"flex "}>
-                            <Input
-                                classNames={{
-                                    base: "min-w-[250px] max-w-[300px] h-10",
-                                    mainWrapper: "h-full",
-                                    input: "text-small",
-                                    inputWrapper: "h-full font-normal outline-none text-default-500 bg-default-400/20 dark:bg-default-500/20",
-                                }}
-                                className={"w-full outline-none"}
-                                placeholder={"Tìm kiếm " + listTitle.toLowerCase() + "..."}
-                                size="sm"
-                                // value={searchValue}
-                                startContent={<IoIosSearch size={18} />}
-                                type="search"
-                                // ref={searchRef}
-                                // onChange={(e) => setSearchValue(e.target.value)}
-                                // onKeyUp={(e) => {
-                                //     if (e.key === "Enter") {
-                                //         console.log(searchValue);
-                                //     }
-                                //     console.log(e.key)
-                                // }}
-                            />
+                            {
+                                searchValue !== undefined && (
+                                    <Input
+                                        classNames={{
+                                            base: "min-w-[250px] max-w-[300px] h-10",
+                                            mainWrapper: "h-full",
+                                            input: "text-small",
+                                            inputWrapper: "h-full font-normal outline-none text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                                        }}
+                                        className={"w-full outline-none"}
+                                        placeholder={"Tìm kiếm " + listTitle.toLowerCase() + "..."}
+                                        size="sm"
+                                        value={searchValue}
+                                        startContent={<IoIosSearch size={18} />}
+                                        type="search"
+                                        ref={searchRef}
+                                        onChange={(e) => setSearchValue(e.target.value)}
+                                        // onKeyUp={(e) => {
+                                        //     if (e.key === "Enter") {
+                                        //         console.log(searchValue);
+                                        //     }
+                                        //     console.log(e.key)
+                                        // }}
+                                    />
+                                )
+                            }
                         </div>
                         <Pagination
                             showControls

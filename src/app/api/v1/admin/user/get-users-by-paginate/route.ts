@@ -13,11 +13,13 @@ export async function GET(req: NextRequest) {
         const searchString = req.nextUrl.searchParams.get("search") || "";
         const regex = new RegExp(["", searchString.split(" ").map(item => `(?=.*${item})`).join("|"), ""].join(""), "i");
 
-        const filters = searchString ? {} : {
+        const filters = !searchString ? {} : {
             fullName: {
                 $regex: regex
             },
         }
+
+        // console.log(searchString)
 
         const client = await clientPromise;
         const users = client.db(process.env.DB_NAME).collection("users");

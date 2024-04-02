@@ -14,6 +14,7 @@ import {FaSort} from "react-icons/fa";
 import {ObjectId} from "mongodb";
 import {IoIosSearch} from "react-icons/io";
 import {bgWhite} from "next/dist/lib/picocolors";
+import {useDebounce} from "@uidotdev/usehooks";
 
 interface TableProps {
 
@@ -131,8 +132,13 @@ function Table({}: TableProps) {
         key: "createdAt",
         order: "desc"
     });
+
+    const [searchValue, setSearchValue] = React.useState<string>("");
+    const debouncedSearchValue = useDebounce(searchValue, 800);
+    const searchRef = React.useRef<HTMLInputElement>(null);
+
     const fetchData = async () => {
-        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +currentSort.key + "&filterOrder=" +currentSort.order + "&search="  ).then(async (res) => {
+        fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +currentSort.key + "&filterOrder=" +currentSort.order + "&search=" +  debouncedSearchValue).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -152,29 +158,57 @@ function Table({}: TableProps) {
     useEffect(() => {
         setIsLoading(true);
 
-        // if (data['user-data'+currentPage]) {
-        //     setIsLoading(false);
-        //     return;
-        // }
-        // let count = 0;
-        // const interval = setInterval(() => {
-        //     count++;
-        //     if (currentPage === 1) {
-        //         // if () {
-        //         //     fetchData(currentPage);
-        //         // }
-        //         fetchData();
-        //     } else {
-        //         clearInterval(interval);
-        //     }
-        //     console.log(count)
-        // }, 15000);
-        //
-        //
-        // return () => {
-        //     clearInterval(interval);
-        // }
+        if (data['user-data'+currentPage]) {
+            setIsLoading(false);
+            return;
+        }
+        let count = 0;
+        const interval = setInterval(() => {
+            count++;
+            if (currentPage === 1) {
+                // if () {
+                //     fetchData(currentPage);
+                // }
+                fetchData();
+            } else {
+                clearInterval(interval);
+            }
+            console.log(count)
+        }, 45000);
+
+
+        return () => {
+            clearInterval(interval);
+        }
     }, [currentPage]);
+
+    useEffect(() => {
+
+        const search = async () => {
+            let result = {};
+            if (debouncedSearchValue) {
+                setIsLoading(true);
+                const searchResponse = await  fetch('/api/v1/admin/user/get-users-by-paginate?page=' + currentPage + '&limit=' + 10 +"&filterKey=" +defaultSort.key + "&filterOrder=" +defaultSort.order + "&search=" +  debouncedSearchValue).then(async (res) => {
+                    if (res.status !== 200) {
+                        setData((prev) => ({...prev, ['user-data'+currentPage]: []}));
+                        setIsLoading(false);
+                        return;
+                    }
+                    const data = await res.json();
+                    setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
+                    store.dispatch(updateUsers(data.data));
+                    setTotalPage(Math.ceil(data.count / 10));
+                    setIsLoading(false);
+                    // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
+                });
+                searchRef.current?.blur();
+            } else {
+                fetchData();
+            }
+        }
+        search();
+    }, [debouncedSearchValue]);
+
 
     const generateXLSX = async () => {
         const response = await fetch('/api/v1/admin/finalization/export-user?range='+"all")
@@ -223,11 +257,11 @@ function Table({}: TableProps) {
                                 placeholder="Tìm kiếm khách hàng..."
                                 size="sm"
                                 color={"primary"}
-                                // value={searchValue}
+                                value={searchValue}
                                 startContent={<IoIosSearch size={18} />}
                                 type="search"
-                                // ref={searchRef}
-                                // onChange={(e) => setSearchValue(e.target.value)}
+                                ref={searchRef}
+                                onChange={(e) => setSearchValue(e.target.value)}
                                 // onKeyUp={(e) => {
                                 //     if (e.key === "Enter") {
                                 //         console.log(searchValue);

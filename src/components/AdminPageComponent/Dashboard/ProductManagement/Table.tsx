@@ -13,6 +13,7 @@ import {updateUsers} from "@/adminRedux/action/userData";
 import {openModal} from "@/adminRedux/action/OpenModal";
 import {useToast} from "@/hooks/useToast";
 import {ObjectId} from "mongodb";
+import {useDebounce} from "@uidotdev/usehooks";
 
 const defaultTableData: MenuItemType = {
     _id: "" as unknown as ObjectId,
@@ -88,8 +89,28 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
         key: "price" as unknown as keyof MenuItemType,
         order: "desc"
     });
+    const [searchValue, setSearchValue] = React.useState<string>("");
+    const debouncedSearchValue = useDebounce(searchValue, 800);
+    const searchRef = React.useRef<HTMLInputElement>(null);
     const fetchData = async (page: number) => {
-        fetch('/api/v1/admin/product/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
+        await fetch('/api/v1/admin/product/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
+            if (res.status !== 200) {
+                return;
+            }
+            const data = await res.json();
+            setData(data.data);
+            // store.dispatch(setCurrentTable(data.data));
+            setTotalPage(Math.ceil(data.count / 10));
+            setSelectedItems(data.data.map((item) => {
+                return {key: item._id as unknown as string, value: item.isSelect}
+            }));
+            setIsLoading(false);
+            // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
+        });
+    }
+
+    const searchPaginate = async (page: number, searchValue: string) => {
+        await fetch('/api/v1/admin/product/get-food-delivery?time='+ type +'&page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order + "&search=" + searchValue).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
@@ -141,29 +162,34 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
     useEffect(() => {
         setIsLoading(true);
 
-        if (data['user-data'+currentPage]) {
-            setIsLoading(false);
-            return;
-        }
         let count = 0;
         const interval = setInterval(() => {
             count++;
-            if (currentPage === 1 && isRerender) {
-                // if () {
-                //     fetchData(currentPage);
-                // }
+            if (currentPage === 1 && isRerender && debouncedSearchValue === "") {
                 fetchData(currentPage);
             } else {
                 clearInterval(interval);
             }
             console.log(count)
-        }, 15000);
-
+        }, 20000);
 
         return () => {
             clearInterval(interval);
         }
     }, [currentPage]);
+
+    useEffect(() => {
+
+        const search = async () => {
+            let result = {};
+            if (debouncedSearchValue) {
+                setIsLoading(true);
+                const searchResponse = await searchPaginate(currentPage, debouncedSearchValue);
+                searchRef.current?.blur();
+            }
+        }
+        search();
+    }, [debouncedSearchValue]);
 
     return (
         <TableTemplate
@@ -212,6 +238,9 @@ function Table({type, isRerender, isShowSelect}: TableProps) {
             currentSort={currentSort}
             setCurrentSort={setCurrentSort as any}
             defaultTableData={defaultTableData}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            searchRef={searchRef}
         >
             <></>
         </TableTemplate>

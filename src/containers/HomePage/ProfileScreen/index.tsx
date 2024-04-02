@@ -29,13 +29,13 @@ function ProfileScreen({}: ProfileScreenProps) {
                         size="lg"
                         // name={userData.fullName}
                         src={userData.avatar}
-                        className={"text-white cursor-pointer aspect-square w-[50px] h-[45px]"}
+                        className={"text-white cursor-pointer aspect-square w-[50px] h-[50px]"}
                         // classNames={{
                         //     base: "w-[40px] h-[40px]",
                         // }}
                     />
                     <div className={"flex flex-col justify-center items-start"}>
-                        <p className={"font-bold text-md text-gray-700"}>{userData.fullName || "Nguyễn Thị T"}</p>
+                        <p className={"font-bold text-md text-gray-700"}>{userData.fullName || ""}</p>
                         {userData.isLoyalCustomer ?
                             <span
                                 className={"flex flex-row justify-center items-center gap-1 bg-gray-200 rounded-full p-1 px-2 text-[10px]"}>

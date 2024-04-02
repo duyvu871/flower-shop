@@ -36,9 +36,8 @@ export async function CreateOrder(cart: CartItemType[], uid: string, location: s
     // console.log("userBalanceAfterUpdate", userBalanceAfterUpdate);
     // console.log("orderVolume", orderVolume);
     // console.log("allowedDebitLimit", userData.allowDebitLimit);
-    if (userBalanceAfterUpdate < 0 && userData.isLoyalCustomer) {
+    if (userBalanceAfterUpdate < 0 && !userData.isLoyalCustomer) {
         return dataTemplate({error: "Số dư không đủ"}, 400);
-
     }
     if (userBalanceAfterUpdate < -(userData.allowDebitLimit as number)) {
         return dataTemplate({error: "Đã quá mức nợ cho phép"}, 400);
@@ -214,15 +213,18 @@ export async function getMenuList(
     page: number,
     limit: number,
     role: "admin"|"user" = "user",
-    {filterKey, filterOrder}:{filterKey: string, filterOrder: string} = {filterKey: "createdAt", filterOrder: "desc"}
+    {filterKey, filterOrder}:{filterKey: string, filterOrder: string} = {filterKey: "createdAt", filterOrder: "desc"},
+    searchValue: string = ""
 ) {
     const perPage = DBConfigs.perPage; // 10
     const client = await clientPromise; // connect to database
     const orderCollection = client.db(process.env.DB_NAME).collection(`${DBConfigs.menu[time]}-menu`);
     const count = await orderCollection.countDocuments(); // count total documents
     const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
-    const filter = (role === "admin") ? {
-    } : time === "other" ? {} : {isSelect: true};
+    const regex = new RegExp(["", searchValue.split(" ").map(item => `(?=.*${item})`).join("|"), ""].join(""), "i");
+    const filter = (role === "admin")
+        ? searchValue ? {name: {$regex: regex}} : {}
+        : time === "other" ? {} : {isSelect: true};
     const paginate = await orderCollection.find(filter).sort({
         [filterKey]: filterOrder === "asc" ? 1 : -1
     }).skip(skip).limit(Number(limit)).toArray(); // 10, 10, 10, 10
