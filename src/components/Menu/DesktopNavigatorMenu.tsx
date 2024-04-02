@@ -167,7 +167,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                    </NavbarItem>
                ))}
            </NavbarContent>
-           <NavbarContent justify="end">
+           <NavbarContent justify="center">
                <NavbarItem className={"hidden lg:flex"}>
                    <div className={tw("absolute top-[55px] bg-gray-100 rounded-xl p-5", isOpenSearchDropdown ? "" : "hidden")}>
 
@@ -267,7 +267,7 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                     <OrderCart/>
                     {/*</Link>*/}
                 </NavbarItem>
-               <NavbarItem className={"hidden lg:flex"}>
+               <NavbarItem className={"hidden md:flex"}>
                    {isLogin ? (
                        <AvatarTriggerDropdown
                             userData={extractProperties(userData, ["fullName", "email"])}
@@ -284,9 +284,14 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                           />
 
                    ): (
-                       <Link href={"/auth/signin"} >
-                           <Button className={"bg-orange-600 text-white"}>Đăng nhập</Button>
-                       </Link>
+                       <div className={"flex justify-center items-center gap-2"}>
+                           <Link href={"/auth/signin"} >
+                               <Button className={"bg-gray-400/10 text-orange-600"}>Đăng nhập</Button>
+                           </Link>
+                           <Link href={"/auth/signup"} >
+                               <Button className={"bg-orange-600 text-white"}>Đăng Ký</Button>
+                           </Link>
+                       </div>
                    )}
                </NavbarItem>
            </NavbarContent>
