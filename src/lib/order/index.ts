@@ -213,7 +213,7 @@ export async function getMenuList(
     page: number,
     limit: number,
     role: "admin"|"user" = "user",
-    {filterKey, filterOrder}:{filterKey: string, filterOrder: string} = {filterKey: "createdAt", filterOrder: "desc"},
+    {filterKey, filterOrder}:{filterKey: string, filterOrder: string} = {filterKey: "createdAt", filterOrder: "asc"},
     searchValue: string = ""
 ) {
     const perPage = DBConfigs.perPage; // 10
