@@ -1,26 +1,29 @@
-"use client"
-import React, {useEffect, useLayoutEffect} from 'react';
+"use client";
+import React, { useEffect, useLayoutEffect } from "react";
 // import TableBody from "./TableBody";
 import TableTemplate from "@/components/AdminPageComponent/Dashboard/Table/TableTemplate";
-import {UserInterface} from "types/userInterface";
-import {useSelector} from "react-redux";
-import {RootState} from "@/adminRedux/reducers";
+import { UserInterface } from "types/userInterface";
+import { useSelector } from "react-redux";
+import { RootState } from "@/adminRedux/reducers";
 import store from "@/adminRedux/store";
-import {updateUsers} from "@/adminRedux/action/userData";
-import {setCurrentTable} from "@/adminRedux/action/currentTable";
-import {TimeRange, TimeRangeLabel} from "@/ultis/timeFormat.ultis";
-import {Button, Select, SelectItem} from "@nextui-org/react";
+import { updateUsers } from "@/adminRedux/action/userData";
+import { setCurrentTable } from "@/adminRedux/action/currentTable";
+import {
+    TimeRange,
+    TimeRangeLabel,
+    orderTimeRangeSummary,
+} from "@/ultis/timeFormat.ultis";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import Link from "next/link";
-import {MenuItemType, OrderType} from "types/order";
-import {ObjectId} from "mongodb";
+import { MenuItemType, OrderType } from "types/order";
+import { ObjectId } from "mongodb";
 
-interface TableProps {
-};
+interface TableProps {}
 
 const defaultTableData: OrderType = {
     _id: "" as unknown as ObjectId,
     orderVolume: 0,
-    status: 'pending',
+    status: "pending",
     takeNote: "",
     location: "",
     createdAt: new Date(),
@@ -30,91 +33,125 @@ const defaultTableData: OrderType = {
     receive: 0,
     handlerId: "" as unknown as ObjectId,
     isHandled: false,
-    userId: "" as unknown as ObjectId
-}
+    userId: "" as unknown as ObjectId,
+    takeOrderName: "",
+    fullName: "",
+};
 
 const headerTable = [
     {
         title: "STT",
         key: "index",
-        isSort: false
+        isSort: false,
     },
     {
         title: "Đơn giá",
         key: "orderVolume",
-        isSort: true
+        isSort: true,
     },
     {
         key: "orderList",
         title: "Danh sách món",
-        isSort: false
+        isSort: false,
     },
     {
         title: "Trạng thái",
         key: "status",
-        isSort: false
+        isSort: false,
     },
+    {
+        title: "Tên người dùng",
+        key: "fullName",
+        isSort: false,
+    },
+    // {
+    //     title: "Tên người nhận",
+    //     key: "takeOrderName",
+    //     isSort: false,
+    // },
     {
         title: "Ghi chú",
         key: "takeNote",
-        isSort: false
+        isSort: false,
     },
-    {
-        title: "Địa chỉ",
-        key: "location",
-        isSort: false
-        // action: "formatDate"
-    },
+    // {
+    //     title: "Địa chỉ",
+    //     key: "location",
+    //     isSort: false,
+    //     // action: "formatDate"
+    // },
     {
         title: "Ngày tạo",
         key: "createdAt",
         action: "formatDate",
-        isSort: true
+        isSort: true,
     },
     {
         title: "Xem chi tiết",
         key: "view",
-        isSort: false
-    }
-]
+        isSort: false,
+    },
+];
 
 function Table({}: TableProps) {
-
     const [data, setData] = React.useState<Record<string, UserInterface[]>>({});
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [totalPage, setTotalPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const {currentTable} = useSelector((state: RootState) => state.currentTable);
-    const [range, setRange] = React.useState<keyof typeof TimeRangeLabel>("all");
-    const [currentSort, setCurrentSort] = React.useState<{ key: keyof MenuItemType, order: "asc" | "desc" }>({
+    const { currentTable } = useSelector(
+        (state: RootState) => state.currentTable,
+    );
+    const [range, setRange] =
+        React.useState<keyof typeof TimeRangeLabel>("all");
+    const [currentSort, setCurrentSort] = React.useState<{
+        key: keyof MenuItemType;
+        order: "asc" | "desc";
+    }>({
         key: "createdAt" as unknown as keyof MenuItemType,
-        order: "desc"
+        order: "desc",
     });
+    const [orderTimeRange, setOrderTimeRange] =
+        React.useState<keyof typeof orderTimeRangeSummary>("morning");
+
     const fetchData = async (page: number) => {
-        fetch('/api/v1/admin/order/get-order?page=' + currentPage + '&limit=' + 10 + "&filterKey=" + currentSort.key + "&filterOrder=" +currentSort.order ).then(async (res) => {
+        fetch(
+            "/api/v1/admin/order/get-order?page=" +
+                currentPage +
+                "&limit=" +
+                10 +
+                "&filterKey=" +
+                currentSort.key +
+                "&filterOrder=" +
+                currentSort.order,
+        ).then(async (res) => {
             if (res.status !== 200) {
                 return;
             }
             const data = await res.json();
-            setData((prev) => ({...prev, ['user-data'+currentPage]: data.data}));
+            setData((prev) => ({
+                ...prev,
+                ["user-data" + currentPage]: data.data,
+            }));
             store.dispatch(setCurrentTable(data.data));
             setTotalPage(Math.ceil(data.count / 10));
             setIsLoading(false);
             // window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
         });
-    }
+    };
 
     const generateXLSX = async () => {
-        const response = await fetch('/api/v1/admin/finalization/export-order?range='+range)
-        const fileBlob = await response.blob()
+        const response = await fetch(
+            "/api/v1/admin/finalization/export-order?range=" + range,
+        );
+        const fileBlob = await response.blob();
 
         // this works and prompts for download
-        var link = document.createElement('a')  // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
-        link.href = window.URL.createObjectURL(fileBlob)
-        link.download = 'thongtindonhang-'+ TimeRange[range] +'.xlsb'
-        link.click()
+        var link = document.createElement("a"); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
+        link.href = window.URL.createObjectURL(fileBlob);
+        link.download = "thongtindonhang-" + TimeRange[range] + ".xlsb";
+        link.click();
         link.remove();
-    }
+    };
 
     useLayoutEffect(() => {
         fetchData(currentPage);
@@ -138,13 +175,12 @@ function Table({}: TableProps) {
             } else {
                 clearInterval(interval);
             }
-            console.log(count)
+            console.log(count);
         }, 15000);
-
 
         return () => {
             clearInterval(interval);
-        }
+        };
     }, [currentPage]);
 
     return (
@@ -160,7 +196,7 @@ function Table({}: TableProps) {
             addNew={{
                 title: "Tạo đơn",
                 onClick: () => {},
-                isHidden: true
+                isHidden: true,
             }}
             selectedItems={[]}
             setSelectedItems={() => {}}
@@ -168,7 +204,50 @@ function Table({}: TableProps) {
             currentSort={currentSort}
             setCurrentSort={setCurrentSort as any}
             defaultTableData={defaultTableData}
-
+            summaryOption={
+                <div className={"flex justify-center items-center gap-2"}>
+                    <Select
+                        items={Object.keys(orderTimeRangeSummary).map(
+                            (key) => ({
+                                value: key,
+                                label: orderTimeRangeSummary[
+                                    key as keyof typeof orderTimeRangeSummary
+                                ],
+                            }),
+                        )}
+                        selectedKeys={[orderTimeRange]}
+                        label="Tổng hợp theo thời gian"
+                        // placeholder=""
+                        className="max-w-xs w-52"
+                        classNames={{
+                            base: "bg-white rounded-xl",
+                        }}
+                        onChange={(e) => {
+                            setOrderTimeRange(
+                                e.target
+                                    .value as keyof typeof orderTimeRangeSummary,
+                            );
+                        }}
+                        variant={"bordered"}
+                        color={"primary"}
+                        showScrollIndicators={true}
+                    >
+                        {(covan) => (
+                            <SelectItem key={covan.value} value={covan.value}>
+                                {covan.label}
+                            </SelectItem>
+                        )}
+                    </Select>
+                    <button
+                        className={
+                            "bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"
+                        }
+                        onClick={generateXLSX}
+                    >
+                        Lọc
+                    </button>
+                </div>
+            }
         >
             {
                 <>
@@ -176,7 +255,9 @@ function Table({}: TableProps) {
                         <Select
                             items={Object.keys(TimeRangeLabel).map((key) => ({
                                 value: key,
-                                label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
+                                label: TimeRangeLabel[
+                                    key as keyof typeof TimeRangeLabel
+                                ],
                             }))}
                             selectedKeys={[range]}
                             label="Phạm vi"
@@ -186,24 +267,40 @@ function Table({}: TableProps) {
                                 base: "bg-white rounded-xl",
                             }}
                             onChange={(e) => {
-                                setRange(e.target.value as keyof typeof TimeRangeLabel);
+                                setRange(
+                                    e.target
+                                        .value as keyof typeof TimeRangeLabel,
+                                );
                             }}
                             variant={"bordered"}
                             color={"primary"}
                             showScrollIndicators={true}
                         >
-                            {
-                                (covan) =>
-                                    <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
-                            }
+                            {(covan) => (
+                                <SelectItem
+                                    key={covan.value}
+                                    value={covan.value}
+                                >
+                                    {covan.label}
+                                </SelectItem>
+                            )}
                         </Select>
-                        <button className={"bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"} onClick={generateXLSX}>Xuất file</button>
+                        <button
+                            className={
+                                "bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"
+                            }
+                            onClick={generateXLSX}
+                        >
+                            Xuất file
+                        </button>
                     </div>
                     <div className={"flex justify-center items-center"}>
                         <Select
                             items={Object.keys(TimeRangeLabel).map((key) => ({
                                 value: key,
-                                label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
+                                label: TimeRangeLabel[
+                                    key as keyof typeof TimeRangeLabel
+                                ],
                             }))}
                             selectedKeys={[range]}
                             label="Phạm vi"
@@ -213,20 +310,35 @@ function Table({}: TableProps) {
                                 base: "bg-white rounded-xl",
                             }}
                             onChange={(e) => {
-                                setRange(e.target.value as keyof typeof TimeRangeLabel);
+                                setRange(
+                                    e.target
+                                        .value as keyof typeof TimeRangeLabel,
+                                );
                             }}
                             variant={"bordered"}
                             color={"primary"}
                             showScrollIndicators={true}
                         >
-                            {
-                                (covan) =>
-                                    <SelectItem key={covan.value} value={covan.value}>{covan.label}</SelectItem>
+                            {(covan) => (
+                                <SelectItem
+                                    key={covan.value}
+                                    value={covan.value}
+                                >
+                                    {covan.label}
+                                </SelectItem>
+                            )}
+                        </Select>
+                        \
+                        <button
+                            className={
+                                "bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"
                             }
-                        </Select>\
-                        <button className={"bg-primary text-white whitespace-nowrap rounded-md px-4 py-2"} onClick={() => {}}>lọc</button>
+                            onClick={() => {}}
+                        >
+                            lọc
+                        </button>
                     </div>
-            </>
+                </>
             }
         </TableTemplate>
     );

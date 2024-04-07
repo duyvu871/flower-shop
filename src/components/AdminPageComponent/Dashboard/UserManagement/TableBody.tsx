@@ -54,7 +54,7 @@ const GreyBadge = ({children}) => {
 
 }
 
-function TableBody({page = 0, rowsPerPage = 10, keys = [], data, actions, isSorts, defaultSort, changeSort}: TableBodyProps) {
+function TableBody({page = 0, rowsPerPage = 10, keys = [], data = [], actions, isSorts, defaultSort, changeSort}: TableBodyProps) {
     const FaSortClassName = "text-gray-400 cursor-pointer";
     return (
         <tbody className={'className={"divide-y divide-default-200"}'}>

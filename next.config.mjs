@@ -6,8 +6,7 @@ const nextConfig = {
     images: {
         // unoptimized: true,
         minimumCacheTTL: 60,
-    },
-
+    }
 };
 
 export default nextConfig;

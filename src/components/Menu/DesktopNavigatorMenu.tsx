@@ -282,7 +282,6 @@ function DesktopNavigatorMenu({isShow}: DesktopNavigatorMenuProps) {
                                     className={"text-white font-bold uppercase cursor-pointer"}/>
                             }
                           />
-
                    ): (
                        <div className={"flex justify-center items-center gap-2"}>
                            <Link href={"/auth/signin"} >
