@@ -24,87 +24,85 @@ import { CartItemType } from '@/contexts/MenuDataContext';
 
 interface CartModalProps {}
 
-const CartItem = memo(
-	({
-		item,
-		index,
-		handleDeleteList,
-		handleItemQuantity,
-		deleteItems,
-		minusTotalOrder,
-		orderValueRef,
-		orderQuantity,
-		plusTotalOrder,
-	}: {
-		item: CartItemType;
-		index: number;
-		handleDeleteList: (itemId: string, value?: boolean) => void;
-		handleItemQuantity: (itemId: string, quantity: string) => void;
-		deleteItems: Record<string, boolean>;
-		minusTotalOrder: (itemId: string) => void;
-		orderValueRef: React.RefObject<HTMLInputElement>;
-		orderQuantity: Record<string, number>;
-		plusTotalOrder: (itemId: string) => void;
-	}) => {
-		const price = Math.floor(
-			Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)),
-		);
-		return (
-			<div key={index} className={'w-full flex flex-row justify-between items-start gap-2 my-1'}>
-				<div className={'flex flex-row justify-center items-start gap-2 w-[70%]'}>
-					<div>
-						<input
-							type='checkbox'
-							onChange={e => {
-								handleDeleteList(item._id as unknown as string);
-							}}
-							checked={deleteItems[item._id as unknown as string]}
-							className={'mr-1 p-1 w-5 aspect-square text-orange-600 bg-orange-600 accent-orange-600'}
-						/>
-					</div>
-					<div className={'w-[30%] overflow-hidden'}>
-						<Image
-							src={item.image}
-							width={200}
-							height={200}
-							alt={item.name}
-							className={'object-cover aspect-square'}
-							radius={'none'}
-						/>
-					</div>
-					<div className={'flex flex-col gap-1 w-[60%]'}>
-						<span className={'text-sm font-semibold line-clamp-2'}>{item.name}</span>
-						<span className={'font-bold'}>{price}.000đ</span>
-					</div>
+const CartItem = memo(function CartItemMemo({
+	item,
+	index,
+	handleDeleteList,
+	handleItemQuantity,
+	deleteItems,
+	minusTotalOrder,
+	orderValueRef,
+	orderQuantity,
+	plusTotalOrder,
+}: {
+	item: CartItemType;
+	index: number;
+	handleDeleteList: (itemId: string, value?: boolean) => void;
+	handleItemQuantity: (itemId: string, quantity: string) => void;
+	deleteItems: Record<string, boolean>;
+	minusTotalOrder: (itemId: string) => void;
+	orderValueRef: React.RefObject<HTMLInputElement>;
+	orderQuantity: Record<string, number>;
+	plusTotalOrder: (itemId: string) => void;
+}) {
+	const price = Math.floor(
+		Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)),
+	);
+	return (
+		<div key={index} className={'w-full flex flex-row justify-between items-start gap-2 my-1'}>
+			<div className={'flex flex-row justify-center items-start gap-2 w-[70%]'}>
+				<div>
+					<input
+						type='checkbox'
+						onChange={e => {
+							handleDeleteList(item._id as unknown as string);
+						}}
+						checked={deleteItems[item._id as unknown as string]}
+						className={'mr-1 p-1 w-5 aspect-square text-orange-600 bg-orange-600 accent-orange-600'}
+					/>
 				</div>
-				<div className={' h-full flex flex-col gap-1 w-[25%] justify-end items-end'}>
-					<span className={'text-sm font-semibold'}>Số lượng: {item.totalOrder}</span>
-					<div className={'flex flex-row justify-between'}>
-						<button
-							onClick={() => minusTotalOrder(item._id as unknown as string)}
-							className={'rounded text-orange-600 border-orange-600 border-2  w-fit text-sm px-1'}>
-							-
-						</button>
-						<input
-							className={'w-8 text-center outline-none'}
-							type={'text'}
-							pattern={'[0-9]*'}
-							inputMode={'numeric'}
-							ref={orderValueRef}
-							value={orderQuantity[item._id as unknown as string]}
-							onChange={e => handleItemQuantity(item._id as unknown as string, e.target.value)}
-						/>
-						<button
-							onClick={() => plusTotalOrder(item._id as unknown as string)}
-							className={'rounded bg-orange-600 border-orange-600 border-2 text-white w-fit text-sm px-1'}>
-							+
-						</button>
-					</div>
+				<div className={'w-[30%] overflow-hidden'}>
+					<Image
+						src={item.image}
+						width={200}
+						height={200}
+						alt={item.name}
+						className={'object-cover aspect-square'}
+						radius={'none'}
+					/>
+				</div>
+				<div className={'flex flex-col gap-1 w-[60%]'}>
+					<span className={'text-sm font-semibold line-clamp-2'}>{item.name}</span>
+					<span className={'font-bold'}>{price}.000đ</span>
 				</div>
 			</div>
-		);
-	},
-);
+			<div className={' h-full flex flex-col gap-1 w-[25%] justify-end items-end'}>
+				<span className={'text-sm font-semibold'}>Số lượng: {item.totalOrder}</span>
+				<div className={'flex flex-row justify-between'}>
+					<button
+						onClick={() => minusTotalOrder(item._id as unknown as string)}
+						className={'rounded text-orange-600 border-orange-600 border-2  w-fit text-sm px-1'}>
+						-
+					</button>
+					<input
+						className={'w-8 text-center outline-none'}
+						type={'text'}
+						pattern={'[0-9]*'}
+						inputMode={'numeric'}
+						ref={orderValueRef}
+						value={orderQuantity[item._id as unknown as string]}
+						onChange={e => handleItemQuantity(item._id as unknown as string, e.target.value)}
+					/>
+					<button
+						onClick={() => plusTotalOrder(item._id as unknown as string)}
+						className={'rounded bg-orange-600 border-orange-600 border-2 text-white w-fit text-sm px-1'}>
+						+
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+});
 
 function CartModal({}: CartModalProps) {
 	const { push } = useRouter();
