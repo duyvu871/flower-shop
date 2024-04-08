@@ -109,7 +109,10 @@ function OrderScreen({}: OrderScreenProps) {
 		setIsLoading(false);
 		if (response.status !== 200) {
 			error(response.error);
-			if (response.error === 'Số dư chính không đủ') {
+			if (
+				response.error === 'Số dư chính không đủ' ||
+				response.error === 'Số dư không đủ, vui lòng nạp thêm'
+			) {
 				setIsOpenConfirmUsingVirtualVolume(true);
 			}
 			return;
@@ -450,12 +453,12 @@ function OrderScreen({}: OrderScreenProps) {
 				<ModalContent>
 					{onClose => (
 						<>
-							<ModalHeader className={'flex flex-col gap-1'}>
+							<ModalHeader className={'flex flex-col gap-2'}>
 								<span className={'text-xl font-semibold'}>
 									Tài khoản của quý khách hiện đang không đủ để thanh toán đơn hàng, quý khách có muốn sử
 									dụng dịch vụ số dư nợ của chúng tôi không?
 								</span>
-								<span className={'text-xl font-semibold'}>
+								<span className={'text-md font-semibold'}>
 									Vui lòng xác nhận để được tư vấn về dịch vụ công nợ của chúng tôi
 								</span>
 							</ModalHeader>
