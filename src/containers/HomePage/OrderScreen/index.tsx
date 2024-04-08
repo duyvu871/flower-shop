@@ -207,7 +207,7 @@ function OrderScreen({}: OrderScreenProps) {
 	}, [cart]);
 
 	useEffect(() => {
-		console.log(isImmediately, OrderID, totalOrder, takeNoteFromSearchParams);
+		// console.log(isImmediately, OrderID, totalOrder, takeNoteFromSearchParams);
 		const getItem = async () => {
 			const item = await getItemById([OrderID as string]);
 			if (item) {
@@ -246,9 +246,10 @@ function OrderScreen({}: OrderScreenProps) {
 
 	return (
 		<div
-			className={
-				'w-full h-full flex flex-col justify-center items-center md:pt-[50px] md:flex-row md:justify-around md:items-start gap-4'
-			}>
+			className={tw(
+				'w-full h-full flex flex-col justify-center items-center md:pt-[50px] md:justify-around  gap-4',
+				totalPrice > 0 ? 'md:flex-row md:items-start' : 'flex-col justify-center items-center',
+			)}>
 			<div className={'flex flex-col justify-center items-center p-3 max-w-xl'}>
 				{cartTemp.map((item, index) => {
 					// console.log(item);
@@ -263,7 +264,9 @@ function OrderScreen({}: OrderScreenProps) {
 					// ) return null;
 
 					return (
-						<div key={index} className={'w-full flex flex-row justify-between items-start gap-2 my-1 '}>
+						<div
+							key={index}
+							className={tw('w-full flex flex-row justify-between items-start gap-2 my-1 ')}>
 							<div className={'flex flex-row justify-center items-start gap-2 w-[70%]'}>
 								<div className={'w-[30%] overflow-hidden'}>
 									<Image
