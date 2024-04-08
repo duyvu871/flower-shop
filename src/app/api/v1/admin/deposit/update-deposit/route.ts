@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
 		let depositUpdateData =
 			deposit.type === 'balance'
-				? { balance: depositValue }
+				? { balance: user.balance + depositValue }
 				: depositValue - user.virtualVolume > 0
 					? {
 							virtualVolume: 0,
