@@ -1,5 +1,5 @@
 import { OrderType, OrderWithDrawType } from 'types/order';
-import { ObjectId } from 'mongodb';
+import { InferIdType, ObjectId, WithId } from 'mongodb';
 import DBConfigs from '@/configs/database.config';
 import { CartItemType } from '@/contexts/MenuDataContext';
 import { calculateCart } from '@/helpers/calculateCart';
@@ -8,6 +8,7 @@ import { getGlobalConfig } from '@/lib/globalConfig';
 import clientPromise from '@/lib/mongodb';
 import { Await } from '@/helpers/helpers-type';
 import { NextResponse } from 'next/server';
+import { UserInterface } from 'types/userInterface';
 
 type WithdrawPayload = {
 	volume: number;
@@ -31,7 +32,9 @@ export async function CreateOrder(
 		return dataTemplate({ error: 'Hệ thống đang bận, vui lòng thử lại sau' }, 500);
 	}
 	// get user data
-	const userData = await userCollection.findOne({ _id: new ObjectId(uid) }); // get user data
+	const userData = (await userCollection.findOne({
+		_id: new ObjectId(uid),
+	})) as WithId<UserInterface>; // get user data
 	// check user data
 	if (!userData) {
 		return dataTemplate({ error: 'Không tìm thấy người dùng trong hệ thống' }, 404);
@@ -41,19 +44,63 @@ export async function CreateOrder(
 	// calculate order volume
 	const orderVolume = calculateCart(cart) * 1000;
 	// store user balance after update
-	const userBalanceAfterUpdate = currentWallet - orderVolume;
-	const excessVolume = Math.abs(userBalanceAfterUpdate);
+	let userBalanceAfterUpdate = currentWallet - orderVolume;
+	let excessVolume: number =
+		userData.balance + (userData.allowDebitLimit - userData.virtualVolume) - orderVolume;
+	let finalUpdateBalance = {
+		balance: userBalanceAfterUpdate < 0 ? 0 : userBalanceAfterUpdate,
+		virtualVolume: userBalanceAfterUpdate < 0 ? userBalanceAfterUpdate : 0,
+	};
 	// check user balance after update and is use virtual volume
-	if (userBalanceAfterUpdate < 0 && isUseVirtualVolume) {
-		return dataTemplate({ error: 'Số dư trong ví ảo không đủ để thanh toán' }, 400);
+
+	if (excessVolume < 0) {
+		return dataTemplate({ error: 'Số dư không đủ, vui lòng nạp thêm' }, 400);
 	}
 
-	if (userBalanceAfterUpdate < 0 && !userData.isLoyalCustomer) {
-		return dataTemplate({ error: 'Số dư không đủ' }, 400);
+	if (isUseVirtualVolume) {
+		if (userData.balance < orderVolume) {
+			finalUpdateBalance = {
+				balance: 0,
+				virtualVolume: userData.virtualVolume + (orderVolume - userData.balance),
+			};
+		} else {
+			finalUpdateBalance = {
+				balance: userData.balance - orderVolume,
+				virtualVolume: userData.virtualVolume,
+			};
+		}
+	} else {
+		if (orderVolume > userData.balance) {
+			return dataTemplate({ error: 'Số dư chính không đủ' }, 400);
+		} else {
+			finalUpdateBalance = {
+				balance: userData.balance - orderVolume,
+				virtualVolume: userData.virtualVolume,
+			};
+		}
 	}
-	if (userBalanceAfterUpdate < -(userData.allowDebitLimit as number)) {
-		return dataTemplate({ error: 'Đã quá mức nợ cho phép' }, 400);
-	}
+
+	// if (currentWallet - orderVolume < 0 && !isUseVirtualVolume) {
+	// 	return dataTemplate({ error: 'Số dư không đủ' }, 400);
+	// }
+	//
+	// if (excessVolume <= userData.allowDebitLimit && isUseVirtualVolume) {
+	// }
+	//
+	// if (excessVolume > userData.allowDebitLimit && isUseVirtualVolume) {
+	// 	return dataTemplate({ error: 'Đã quá mức nợ cho phép' }, 400);
+	// }
+	//
+	// if (userBalanceAfterUpdate < 0 && isUseVirtualVolume) {
+	// 	return dataTemplate({ error: 'Số dư trong ví ảo không đủ để thanh toán' }, 400);
+	// }
+	//
+	// // if (userBalanceAfterUpdate < 0 && !userData.isLoyalCustomer) {
+	// // 	return dataTemplate({ error: 'Số dư không đủ' }, 400);
+	// // }
+	// if (userBalanceAfterUpdate < -(userData.allowDebitLimit as number)) {
+	// 	return dataTemplate({ error: 'Đã quá mức nợ cho phép' }, 400);
+	// }
 
 	const menuCollections = ['morning', 'afternoon', 'evening', 'other'].reduce(
 		(acc, cur) => ({
@@ -118,9 +165,10 @@ export async function CreateOrder(
 	const updateUserBalance = await userCollection.updateOne(
 		{ _id: new ObjectId(uid) },
 		{
+			$set: finalUpdateBalance,
 			$inc: {
-				balance: userBalanceAfterUpdate < 0 ? 0 : userBalanceAfterUpdate,
-				virtualVolume: userBalanceAfterUpdate < 0 ? userBalanceAfterUpdate : 0,
+				// balance: userBalanceAfterUpdate < 0 ? 0 : userBalanceAfterUpdate,
+				// virtualVolume: userBalanceAfterUpdate < 0 ? userBalanceAfterUpdate : 0,
 				orders: 1,
 				// orderList.reduce(
 				//     (acc, order) => acc + order.totalOrder,

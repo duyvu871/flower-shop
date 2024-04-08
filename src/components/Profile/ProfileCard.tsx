@@ -3,6 +3,7 @@ import {
 	Avatar,
 	Button,
 	Image,
+	Input,
 	Modal,
 	ModalBody,
 	ModalContent,
@@ -84,24 +85,28 @@ function ProfileCard({}: ProfileCardProps) {
 										className={'w-full'}>
 										{isShowVirtualVolume ? 'Ẩn' : 'Hiện'} số dư nợ
 									</Switch>
+									{isShowVirtualVolume ? (
+										<div className={'flex flex-col justify-center items-center'}>
+											<p className={'text-sm text-gray-400'}>Số nợ cho phép</p>
+											<p className={'text-2xl font-bold flex gap-1'}>
+												<span className={'text-red-500'}>
+													{formatCurrency(userData.allowDebitLimit.toString())}
+												</span>
+												<span>vnđ</span>
+											</p>
+										</div>
+									) : null}
 									{/*<h1 className={"text-md font-semibold"}>{userData.fullName}</h1>*/}
+									<p className={'text-sm text-gray-400'}>Số dư hiện tại</p>
 									<div className={'flex flex-row justify-start items-center gap-2'}>
 										<span onClick={() => setIsShowBalance(!isShowBalance)}>
-											{isShowBalance ? (
-												<FaEyeSlash className={'text-xl'} />
-											) : (
-												<FaEye className={'text-xl'} />
-											)}
+											{isShowBalance ? <FaEyeSlash className={'text-xl'} /> : <FaEye className={'text-xl'} />}
 										</span>
 										<p className={'text-2xl font-bold flex gap-1'}>
 											{isShowBalance ? (
-												<span
-													className={tw(isShowVirtualVolume ? 'text-red-500' : 'text-green-500')}>
+												<span className={tw(isShowVirtualVolume ? 'text-red-500' : 'text-green-500')}>
 													{formatCurrency(
-														(isShowVirtualVolume
-															? userData.virtualVolume
-															: userData.balance
-														).toString(),
+														(isShowVirtualVolume ? userData.virtualVolume : userData.balance).toString(),
 													)}
 												</span>
 											) : (
@@ -110,7 +115,7 @@ function ProfileCard({}: ProfileCardProps) {
 											<span>vnđ</span>
 										</p>
 									</div>
-									<p className={'text-sm text-gray-400'}>Số dư hiện tại</p>
+
 									{isNegativeBalance ? (
 										<span className={'bg-red-500 rounded-full px-2 p-1 text-white text-xs'}>
 											Số dư đang âm
@@ -127,7 +132,7 @@ function ProfileCard({}: ProfileCardProps) {
 			<Modal
 				isOpen={isPopupOpen}
 				onClose={() => setIsPopupOpen(false)}
-				placement={'auto'}
+				placement={'center'}
 				onOpenChange={() => {}}
 				className={'z-[999]'}>
 				<ModalContent>

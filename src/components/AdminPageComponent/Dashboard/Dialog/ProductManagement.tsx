@@ -95,7 +95,8 @@ function ProductManagement({ _id }: ProductManagementProps) {
 			});
 			return;
 		}
-		const storageRef = ref(storage, `images/${_id}.${selectedFile.type}`);
+		console.log(selectedFile.name.split('.').pop());
+		const storageRef = ref(storage, `images/${_id}.${selectedFile.name.split('.').pop()}`);
 		const uploadTask = uploadBytesResumable(storageRef, selectedFile);
 		uploadTask.on(
 			'state_changed',

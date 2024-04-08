@@ -15,7 +15,7 @@ import {
 import { useMenuData } from '@/hooks/useMenuData';
 import { useOrder } from '@/hooks/useOrder';
 import { FaLocationDot } from 'react-icons/fa6';
-import { FaLocationArrow, FaUser } from 'react-icons/fa';
+import { FaCheckCircle, FaLocationArrow, FaUser } from 'react-icons/fa';
 // import store from "@/redux/store";
 // import {closeOrderModal} from "@/redux/action/openOrderModal";
 // import {isNumber} from "@/ultis/validate.ultis";
@@ -27,9 +27,16 @@ import { useUserData } from '@/hooks/useUserData';
 import { useToast } from '@/hooks/useToast';
 import store from '@/redux/store';
 import { CartItemType } from '@/contexts/MenuDataContext';
+import { MdCreditCard } from 'react-icons/md';
+import { tw } from '@/ultis/tailwind.ultis';
 // import {MenuItemType} from "types/order";
 
 interface OrderScreenProps {}
+
+const icon = {
+	balance: <MdCreditCard size={26} />,
+	virtualVolume: <MdCreditCard size={26} />,
+};
 
 function OrderScreen({}: OrderScreenProps) {
 	const isImmediately = useSearchParams().get('immediately');
@@ -55,6 +62,11 @@ function OrderScreen({}: OrderScreenProps) {
 	const [owner, setOwner] = React.useState<string>('');
 	const [isOwnerValid, setIsOwnerValid] = React.useState<boolean>(true);
 
+	const [isOpenConfirmUsingVirtualVolume, setIsOpenConfirmUsingVirtualVolume] =
+		React.useState<boolean>(false);
+	const [currentPaymentMethod, setCurrentPaymentMethod] = React.useState<
+		'balance' | 'virtualVolume'
+	>('balance');
 	const handleOrder = async () => {
 		let isValid = true;
 		if (!data) {
@@ -91,10 +103,14 @@ function OrderScreen({}: OrderScreenProps) {
 			location || userData.address,
 			takeNote,
 			owner,
+			currentPaymentMethod === 'virtualVolume',
 		);
 		setIsLoading(false);
 		if (response.status !== 200) {
 			error(response.error);
+			if (response.error === 'Số dư chính không đủ') {
+				setIsOpenConfirmUsingVirtualVolume(true);
+			}
 			return;
 		}
 		if (isImmediately) {
@@ -178,17 +194,16 @@ function OrderScreen({}: OrderScreenProps) {
 				}
 			}
 		} else {
-			setCartTemp(
-				isImmediately.toString() === 'true'
-					? [JSON.parse(localStorage.getItem('order-immediately') || '{}')]
-					: cart,
-			);
+			// const order = localStorage.getItem('order-immediately');
+			// if (!order) {
+			// }
+			// setCartTemp(isImmediately.toString() === 'true' ? (order ? [JSON.parse(order)] : []) : cart);
 		}
 		// const isPayAll = ;
 	}, [cart]);
 
 	useEffect(() => {
-		// console.log(isImmediately, OrderID, totalOrder, takeNoteFromSearchParams);
+		console.log(isImmediately, OrderID, totalOrder, takeNoteFromSearchParams);
 		const getItem = async () => {
 			const item = await getItemById([OrderID as string]);
 			if (item) {
@@ -226,9 +241,13 @@ function OrderScreen({}: OrderScreenProps) {
 	}, []);
 
 	return (
-		<div className={'w-full h-full flex flex-col justify-center items-center'}>
+		<div
+			className={
+				'w-full h-full flex flex-col justify-center items-center md:pt-[50px] md:flex-row md:justify-around md:items-start gap-4'
+			}>
 			<div className={'flex flex-col justify-center items-center p-3 max-w-xl'}>
 				{cartTemp.map((item, index) => {
+					// console.log(item);
 					const price = Math.floor(
 						Number(item.price) - Number(calculateDiscount(String(item.price), item.discount)),
 					);
@@ -267,38 +286,70 @@ function OrderScreen({}: OrderScreenProps) {
 					);
 				})}
 			</div>
-			<div className={'flex flex-col justify-center items-center gap-2 pb-[90px]'}>
-				<div className={''}>
-					{totalPrice > 0 ? (
-						<span className={'text-xl font-bold'}>
-							Tổng cộng: {formatCurrency(totalPrice.toString())}
-							,000đ
-						</span>
-					) : (
-						'Không có sản phẩm nào trong giỏ hàng'
-					)}
+			<div className={tw('flex flex-col justify-center items-start gap-4')}>
+				<div
+					className={tw(
+						'flex flex-col w-full justify-start items-start max-w-xl gap-2',
+						totalPrice > 0 ? '' : 'hidden',
+					)}>
+					<div className={'w-full text-start text-lg font-semibold'}>Phương thức thanh toán</div>
+					<div className={'w-full flex flex-col justify-start items-center gap-2'}>
+						{['balance', 'virtualVolume'].map((item, index) => (
+							<div
+								key={index}
+								className={tw(
+									'w-full flex justify-start items-center gap-1 rounded-md p-2 cursor-pointer transition-all',
+									currentPaymentMethod === item ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-600',
+								)}
+								onClick={() => setCurrentPaymentMethod(item as 'balance' | 'virtualVolume')}>
+								{icon[item]}
+								<div>{item === 'balance' ? 'Thanh toán bằng tiền mặt' : 'Thanh toán bằng số dư ảo'}</div>
+								{currentPaymentMethod === item ? (
+									<FaCheckCircle
+										className={tw(
+											currentPaymentMethod === item
+												? 'bg-orange-600-500 text-white'
+												: 'bg-gray-200 text-gray-600',
+										)}
+									/>
+								) : null}
+							</div>
+						))}
+					</div>
 				</div>
-				<div className={'flex flex-row justify-center items-center gap-2'}>
-					{totalPrice > 0 ? (
-						<>
-							<Button
-								className={'bg-green-500 text-white rounded-md p-2'}
-								onClick={() => {
-									setIsOpen(true);
-								}}>
-								Đặt món
-							</Button>
-							<Button
-								className={'bg-red-500 text-white rounded-md p-2'}
-								onClick={() => {
-									handleClearCart();
-								}}>
-								Hủy đơn hàng
-							</Button>
-						</>
-					) : (
-						''
-					)}
+				<div className={'flex flex-col justify-center items-center gap-2 pb-[90px]'}>
+					<div className={''}>
+						{totalPrice > 0 ? (
+							<span className={'text-xl font-bold'}>
+								Tổng cộng: {formatCurrency(totalPrice.toString())}
+								,000đ
+							</span>
+						) : (
+							'Không có sản phẩm nào trong giỏ hàng'
+						)}
+					</div>
+					<div className={'flex flex-row justify-center items-center gap-2'}>
+						{totalPrice > 0 ? (
+							<>
+								<Button
+									className={'bg-green-500 text-white rounded-md p-2'}
+									onClick={() => {
+										setIsOpen(true);
+									}}>
+									Đặt món
+								</Button>
+								<Button
+									className={'bg-red-500 text-white rounded-md p-2'}
+									onClick={() => {
+										handleClearCart();
+									}}>
+									Hủy đơn hàng
+								</Button>
+							</>
+						) : (
+							''
+						)}
+					</div>
 				</div>
 			</div>
 			<Modal
@@ -380,6 +431,42 @@ function OrderScreen({}: OrderScreenProps) {
 									<span>Xác nhận</span>
 									<FaLocationArrow />
 								</button>
+							</ModalBody>
+							<ModalFooter></ModalFooter>
+						</>
+					)}
+				</ModalContent>
+			</Modal>
+			<Modal
+				isOpen={isOpenConfirmUsingVirtualVolume}
+				onClose={() => setIsOpenConfirmUsingVirtualVolume(false)}
+				placement={'auto'}
+				onOpenChange={() => {}}
+				className={'z-[999]'}>
+				<ModalContent>
+					{onClose => (
+						<>
+							<ModalHeader className={'flex flex-col gap-1'}>
+								<span className={'text-xl font-bold'}>Xác nhận sử dụng số dư ảo</span>
+							</ModalHeader>
+							<ModalBody className={'flex flex-col gap-1'}>
+								<div className={'flex flex-row w-full justify-center items-center'}>
+									<Button
+										className={'bg-green-500 text-white rounded-md p-2'}
+										onClick={() => {
+											setCurrentPaymentMethod('virtualVolume');
+											setIsOpenConfirmUsingVirtualVolume(false);
+										}}>
+										Đồng ý
+									</Button>
+									<Button
+										className={'bg-red-500 text-white rounded-md p-2'}
+										onClick={() => {
+											setIsOpenConfirmUsingVirtualVolume(false);
+										}}>
+										Hủy
+									</Button>
+								</div>
 							</ModalBody>
 							<ModalFooter></ModalFooter>
 						</>
