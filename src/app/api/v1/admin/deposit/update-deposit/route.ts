@@ -32,12 +32,24 @@ export async function POST(request: NextRequest) {
 		if (!updateDeposit.acknowledged) return dataTemplate({ message: 'Cập nhật thất bại' }, 500);
 
 		const userCollection = client.db(process.env.DB_NAME).collection('users');
-		const depositUpdateData =
-			deposit.type === 'balance' ? { balance: depositValue } : { virtualVolume: depositValue };
+		const user = await userCollection.findOne({ _id: new ObjectId(deposit.userId) });
+		if (!user) return dataTemplate({ error: 'Không tìm thấy người dùng' }, 404);
+
+		let depositUpdateData =
+			deposit.type === 'balance'
+				? { balance: depositValue }
+				: depositValue - user.virtualVolume > 0
+					? {
+							virtualVolume: 0,
+							balance: user.balance + depositValue - user.virtualVolume,
+						}
+					: { virtualVolume: user.virtualVolume - depositValue };
+
+		console.log(depositUpdateData);
 		const updateDepositUser = await userCollection.updateOne(
 			{ _id: new ObjectId(deposit.userId) },
 			{
-				$inc: {
+				$set: {
 					...depositUpdateData,
 				},
 			},

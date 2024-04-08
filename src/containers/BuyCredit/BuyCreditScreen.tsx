@@ -51,6 +51,9 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [paymentMethod, setPaymentMethod] = useState<keyof typeof PaymentMethod>('balance');
 	const handlePurchase = async () => {
+		if (isPurchaseSuccess) {
+			return;
+		}
 		let readyToPurchase = true;
 		if (purchaseAmount === 0) {
 			setIsPurchaseError({
