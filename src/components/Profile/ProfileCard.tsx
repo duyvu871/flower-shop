@@ -117,9 +117,7 @@ function ProfileCard({}: ProfileCardProps) {
 									</div>
 
 									{isNegativeBalance ? (
-										<span className={'bg-red-500 rounded-full px-2 p-1 text-white text-xs'}>
-											Số dư đang âm
-										</span>
+										<span className={'bg-red-500 rounded-full px-2 p-1 text-white text-xs'}>Đang nợ</span>
 									) : (
 										''
 									)}

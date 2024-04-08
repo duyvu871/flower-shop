@@ -29,6 +29,7 @@ import store from '@/redux/store';
 import { CartItemType } from '@/contexts/MenuDataContext';
 import { MdCreditCard } from 'react-icons/md';
 import { tw } from '@/ultis/tailwind.ultis';
+import Link from 'next/link';
 // import {MenuItemType} from "types/order";
 
 interface OrderScreenProps {}
@@ -286,10 +287,13 @@ function OrderScreen({}: OrderScreenProps) {
 					);
 				})}
 			</div>
-			<div className={tw('flex flex-col justify-center items-start gap-4')}>
+			<div
+				className={tw(
+					'flex flex-col justify-start items-start gap-4 md:justify-center w-full px-[25px] md:w-fit',
+				)}>
 				<div
 					className={tw(
-						'flex flex-col w-full justify-start items-start max-w-xl gap-2',
+						'flex flex-col justify-start items-start max-w-xl gap-2',
 						totalPrice > 0 ? '' : 'hidden',
 					)}>
 					<div className={'w-full text-start text-lg font-semibold'}>Phương thức thanh toán</div>
@@ -447,18 +451,26 @@ function OrderScreen({}: OrderScreenProps) {
 					{onClose => (
 						<>
 							<ModalHeader className={'flex flex-col gap-1'}>
-								<span className={'text-xl font-bold'}>Xác nhận sử dụng số dư ảo</span>
+								<span className={'text-xl font-semibold'}>
+									Tài khoản của quý khách hiện đang không đủ để thanh toán đơn hàng, quý khách có muốn sử
+									dụng dịch vụ số dư nợ của chúng tôi không?
+								</span>
+								<span className={'text-xl font-semibold'}>
+									Vui lòng xác nhận để được tư vấn về dịch vụ công nợ của chúng tôi
+								</span>
 							</ModalHeader>
 							<ModalBody className={'flex flex-col gap-1'}>
-								<div className={'flex flex-row w-full justify-center items-center'}>
-									<Button
-										className={'bg-green-500 text-white rounded-md p-2'}
-										onClick={() => {
-											setCurrentPaymentMethod('virtualVolume');
-											setIsOpenConfirmUsingVirtualVolume(false);
-										}}>
-										Đồng ý
-									</Button>
+								<div className={'flex flex-row w-full justify-center items-center gap-2'}>
+									<Link href={'https://t.me/menucommanau'} target={'_blank'}>
+										<Button
+											className={'bg-green-500 text-white rounded-md p-2'}
+											onClick={() => {
+												setCurrentPaymentMethod('virtualVolume');
+												// setIsOpenConfirmUsingVirtualVolume(false);
+											}}>
+											Đồng ý
+										</Button>
+									</Link>
 									<Button
 										className={'bg-red-500 text-white rounded-md p-2'}
 										onClick={() => {
