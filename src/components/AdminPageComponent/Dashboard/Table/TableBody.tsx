@@ -136,7 +136,7 @@ function TableBody({
 							return (
 								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap '}>
 									<div className={'flex flex-col justify-start items-center'}>
-										{item[key].map((order, index) => (
+										{(item[key] || []).map((order, index) => (
 											<div
 												key={'order' + index}
 												className={'flex flex-row justify-start items-center gap-1 w-full'}>
