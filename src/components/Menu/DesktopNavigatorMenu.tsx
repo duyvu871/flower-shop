@@ -284,7 +284,7 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 				<NavbarItem className={'hidden md:flex'}>
 					{isLogin ? (
 						<AvatarTriggerDropdown
-							userData={extractProperties(userData, ['fullName', 'email'])}
+							userData={userData}
 							avatarIcon={
 								<Avatar
 									showFallback

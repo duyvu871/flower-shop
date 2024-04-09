@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { signOut } from 'next-auth/react';
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import { CiSettings } from 'react-icons/ci';
@@ -9,27 +9,42 @@ import { CgProfile } from 'react-icons/cg';
 import { useLiveChatWidget } from '@/hooks/useLiveChatWidget';
 import store from '@/redux/store';
 import { GrTransaction } from 'react-icons/gr';
+import { UserInterface } from 'types/userInterface';
+import { tw } from '@/ultis/tailwind.ultis';
+import { formatCurrency } from '@/ultis/currency-format';
 
 interface AvatarTriggerDropdownProps {
 	avatarIcon: React.ReactNode;
-	userData: {
-		fullName: string;
-		email: string;
-	};
+	userData: UserInterface;
 }
 
 function AvatarTriggerDropdown({ avatarIcon, userData }: AvatarTriggerDropdownProps) {
 	const { openWidget } = useLiveChatWidget();
-
+	const [isNegativeBalance, setIsNegativeBalance] = React.useState<boolean>(false);
+	useEffect(() => {
+		if (userData) {
+			setIsNegativeBalance(userData.balance <= 0);
+		}
+	}, [userData]);
 	return (
 		<Dropdown placement='bottom-end'>
 			<DropdownTrigger>{avatarIcon}</DropdownTrigger>
 			<DropdownMenu aria-label='Profile Actions' variant='flat'>
-				<DropdownItem key='profile' className='h-14 gap-2' showDivider>
+				<DropdownItem key='profile' className='h-14 gap-2 ' showDivider>
 					<p className='font-semibold'>Đăng nhập với:</p>
 					<p className='font-semibold'>{userData.email}</p>
+					<div className={'flex justify-start items-center w-full'}>
+						<p className={'font-semibold'}>Số dư:</p>
+						<p
+							className={tw('font-semibold', isNegativeBalance ? 'text-danger-500' : 'text-success-500')}>
+							{isNegativeBalance
+								? '-' + formatCurrency(userData.virtualVolume.toString())
+								: formatCurrency(userData.balance.toString())}
+							đ
+						</p>
+					</div>
 				</DropdownItem>
-				<DropdownItem key='profile' endContent={<CgProfile size={20} />} href={'/profile'}>
+				<DropdownItem key='profile-direct' endContent={<CgProfile size={20} />} href={'/profile'}>
 					Thông tin của tôi
 				</DropdownItem>
 				<DropdownItem
@@ -39,7 +54,7 @@ function AvatarTriggerDropdown({ avatarIcon, userData }: AvatarTriggerDropdownPr
 					Đơn hàng
 				</DropdownItem>
 				<DropdownItem
-					key='analytics'
+					key='payment-history'
 					endContent={<GrTransaction size={20} className={'text-gray-500'} />}
 					href={'/profile/order-history'}>
 					Lịch sử thanh toán

@@ -194,7 +194,8 @@ export async function CreateOrder(
 	return dataTemplate(
 		{
 			message: 'Yêu cầu đơn hàng đã được thêm vào hệ thống',
-			balance: userBalanceAfterUpdate,
+			balance: finalUpdateBalance.balance,
+			virtualVolume: finalUpdateBalance.virtualVolume,
 			orderData: orderDataInsert,
 		},
 		200,

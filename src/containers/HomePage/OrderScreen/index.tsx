@@ -132,7 +132,7 @@ function OrderScreen({}: OrderScreenProps) {
 			}
 		}
 		success(response.message);
-		updateUserData({ balance: response.balance }, 'balance');
+		updateUserData({ balance: response.balance, virtualVolume: response.virtualVolume });
 		// console.log(response)
 		success(
 			'Đã trừ ' + formatCurrency(response.orderData.orderVolume.toString()) + 'đ từ tài khoản của bạn',
@@ -313,7 +313,7 @@ function OrderScreen({}: OrderScreenProps) {
 								)}
 								onClick={() => setCurrentPaymentMethod(item as 'balance' | 'virtualVolume')}>
 								{icon[item]}
-								<div>{item === 'balance' ? 'Thanh toán bằng tiền mặt' : 'Thanh toán sử dụng '}</div>
+								<div>{item === 'balance' ? 'Thanh toán bằng tiền mặt' : 'Thanh toán với nợ'}</div>
 								{currentPaymentMethod === item ? (
 									<FaCheckCircle
 										className={tw(
