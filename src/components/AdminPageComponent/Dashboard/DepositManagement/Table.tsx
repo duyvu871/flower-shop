@@ -57,11 +57,11 @@ const headerTable = [
 		key: 'isPaid',
 		isSort: false,
 	},
-	{
-		title: 'Loại tài khoản',
-		key: 'type',
-		action: 'depositType',
-	},
+	// {
+	// 	title: 'Loại tài khoản',
+	// 	key: 'type',
+	// 	action: 'depositType',
+	// },
 	{
 		title: 'Ngày tạo',
 		key: 'createdAt',

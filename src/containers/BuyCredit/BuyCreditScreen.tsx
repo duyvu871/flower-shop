@@ -49,7 +49,7 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
 		message: '',
 	});
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [paymentMethod, setPaymentMethod] = useState<keyof typeof PaymentMethod>('balance');
+	const [paymentMethod, setPaymentMethod] = useState<keyof typeof PaymentMethod>('virtualVolume');
 	const handlePurchase = async () => {
 		if (isPurchaseSuccess) {
 			return;
@@ -168,27 +168,27 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
 							</div>
 						}
 					/>
-					<Select
-						items={Object.keys(PaymentMethod).map(key => ({
-							value: key,
-							label: PaymentMethod[key as keyof typeof PaymentMethod],
-						}))}
-						selectedKeys={[paymentMethod]}
-						label='Loại tài khoản'
-						// placeholder="Chọn cửa hàng"
-						className='max-w-xs w-44'
-						onChange={e => {
-							setPaymentMethod(e.target.value as keyof typeof PaymentMethod);
-						}}
-						variant={'bordered'}
-						color={'warning'}
-						showScrollIndicators={true}>
-						{location => (
-							<SelectItem key={location.value} value={location.value}>
-								{location.label}
-							</SelectItem>
-						)}
-					</Select>
+					{/*<Select*/}
+					{/*	items={Object.keys(PaymentMethod).map(key => ({*/}
+					{/*		value: key,*/}
+					{/*		label: PaymentMethod[key as keyof typeof PaymentMethod],*/}
+					{/*	}))}*/}
+					{/*	selectedKeys={[paymentMethod]}*/}
+					{/*	label='Loại tài khoản'*/}
+					{/*	// placeholder="Chọn cửa hàng"*/}
+					{/*	className='max-w-xs w-44'*/}
+					{/*	onChange={e => {*/}
+					{/*		setPaymentMethod(e.target.value as keyof typeof PaymentMethod);*/}
+					{/*	}}*/}
+					{/*	variant={'bordered'}*/}
+					{/*	color={'warning'}*/}
+					{/*	showScrollIndicators={true}>*/}
+					{/*	{location => (*/}
+					{/*		<SelectItem key={location.value} value={location.value}>*/}
+					{/*			{location.label}*/}
+					{/*		</SelectItem>*/}
+					{/*	)}*/}
+					{/*</Select>*/}
 					<div className={'flex flex-col justify-center items-start'}>
 						<Checkbox
 							defaultSelected={isConfirmPurchase}

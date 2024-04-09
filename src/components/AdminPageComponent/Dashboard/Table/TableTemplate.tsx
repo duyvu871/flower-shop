@@ -18,7 +18,7 @@ interface TableProps {
 	totalPage: number;
 	currentPage: number;
 	setCurrentPage: (page: number) => void;
-	isLoading;
+	isLoading: boolean;
 	headerTable: {
 		title: string;
 		key: string;

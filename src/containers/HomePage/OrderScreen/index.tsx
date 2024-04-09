@@ -313,7 +313,7 @@ function OrderScreen({}: OrderScreenProps) {
 								)}
 								onClick={() => setCurrentPaymentMethod(item as 'balance' | 'virtualVolume')}>
 								{icon[item]}
-								<div>{item === 'balance' ? 'Thanh toán bằng tiền mặt' : 'Thanh toán bằng số dư ảo'}</div>
+								<div>{item === 'balance' ? 'Thanh toán bằng tiền mặt' : 'Thanh toán sử dụng '}</div>
 								{currentPaymentMethod === item ? (
 									<FaCheckCircle
 										className={tw(
