@@ -9,12 +9,14 @@ import { PiSignOutBold } from 'react-icons/pi';
 import { signOut } from 'next-auth/react';
 import { HiOutlineBanknotes } from 'react-icons/hi2';
 import { useLiveChatWidget } from '@/hooks/useLiveChatWidget';
+import { useMenuData } from '@/hooks/useMenuData';
 
 interface SettingProfileProps {}
 
 function SettingProfile({}: SettingProfileProps) {
 	const { push } = useRouter();
 	const { openWidget } = useLiveChatWidget();
+	const { clearCart } = useMenuData();
 	const handler = [
 		{
 			iconStart: <HiOutlineBanknotes size={25} className={'text-green-500'} />,
@@ -83,6 +85,7 @@ function SettingProfile({}: SettingProfileProps) {
 				const isConfirm = confirm('Bạn có chắc chắn muốn đăng xuất?');
 				if (isConfirm) {
 					signOut().then(() => {
+						clearCart(true);
 						push('/');
 					});
 				}

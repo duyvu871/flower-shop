@@ -36,7 +36,7 @@ function ProfileCard({}: ProfileCardProps) {
 		// if (!userData) {
 		//     setIsS
 		// };
-		if (userData.balance <= 0) {
+		if (userData.balance <= 0 && userData.virtualVolume > 0) {
 			setIsShowVirtualVolume(true);
 			setIsNegativeBalance(true);
 			setIsPopupOpen(true);

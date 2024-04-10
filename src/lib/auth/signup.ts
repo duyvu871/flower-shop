@@ -44,7 +44,7 @@ export async function signUp(
 			.split('')
 			.map(char => char.charCodeAt(0).toLocaleString()[0])
 			.join(''),
-		virtualVolume: 1000,
+		virtualVolume: 0,
 		isLoyalCustomer: false,
 		status: true,
 		total_request_withdraw: 0,

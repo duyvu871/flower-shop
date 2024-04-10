@@ -12,6 +12,7 @@ import { GrTransaction } from 'react-icons/gr';
 import { UserInterface } from 'types/userInterface';
 import { tw } from '@/ultis/tailwind.ultis';
 import { formatCurrency } from '@/ultis/currency-format';
+import { useMenuData } from '@/hooks/useMenuData';
 
 interface AvatarTriggerDropdownProps {
 	avatarIcon: React.ReactNode;
@@ -20,6 +21,7 @@ interface AvatarTriggerDropdownProps {
 
 function AvatarTriggerDropdown({ avatarIcon, userData }: AvatarTriggerDropdownProps) {
 	const { openWidget } = useLiveChatWidget();
+	const { clearCart } = useMenuData();
 	const [isNegativeBalance, setIsNegativeBalance] = React.useState<boolean>(false);
 	useEffect(() => {
 		if (userData) {
@@ -79,7 +81,11 @@ function AvatarTriggerDropdown({ avatarIcon, userData }: AvatarTriggerDropdownPr
 					color='danger'
 					className={'text-danger'}
 					endContent={<FaSignOutAlt />}
-					onClick={() => signOut()}>
+					onClick={() => {
+						signOut().then(() => {
+							clearCart(true);
+						});
+					}}>
 					Đăng xuất
 				</DropdownItem>
 			</DropdownMenu>

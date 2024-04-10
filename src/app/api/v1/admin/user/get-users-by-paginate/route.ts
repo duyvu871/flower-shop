@@ -3,6 +3,7 @@ import { dataTemplate } from '@/helpers/returned_response_template';
 import clientPromise from '@/lib/mongodb';
 import { UserInterface } from 'types/userInterface';
 import { revalidatePath } from 'next/cache';
+import { Document } from 'mongodb';
 
 export async function GET(req: NextRequest) {
 	try {
@@ -39,41 +40,80 @@ export async function GET(req: NextRequest) {
 					},
 				};
 
+		const projectList = [
+			'_id',
+			'avatar',
+			'fullName',
+			'email',
+			'phone',
+			'status',
+			'role',
+			'balance',
+			'id_index',
+			'uid',
+			'virtualVolume',
+			'isLoyalCustomer',
+			'total_request_withdraw',
+			'revenue',
+			'orders',
+			'address',
+			'cart',
+			'orderHistory',
+			'transactions',
+			'actionHistory',
+			'withDrawHistory',
+			'bankingInfo',
+		];
 		// console.log(searchString)
 		const client = await clientPromise;
 		const users = client.db(process.env.DB_NAME).collection('users');
-		const result = await users
-			.find(filters)
-			.sort({
-				[filterKey]: filterOrder === 'asc' ? 1 : -1,
-			})
-			.project([
-				'_id',
-				'avatar',
-				'fullName',
-				'email',
-				'phone',
-				'status',
-				'role',
-				'balance',
-				'id_index',
-				'uid',
-				'virtualVolume',
-				'isLoyalCustomer',
-				'total_request_withdraw',
-				'revenue',
-				'orders',
-				'address',
-				'cart',
-				'orderHistory',
-				'transactions',
-				'actionHistory',
-				'withDrawHistory',
-				'bankingInfo',
-			])
-			.skip((page - 1) * limit)
-			.limit(limit)
-			.toArray();
+
+		let result: Document[];
+
+		if (filterKey === 'balance') {
+			result = await users
+				.aggregate([
+					{
+						$addFields: {
+							sortField: {
+								$cond: {
+									if: { $eq: ['$balance', 0] }, // if balance = 0
+									then: '$virtualVolume', // then use virtualVolume
+									else: '$balance', // else use balance
+								},
+							},
+						},
+					},
+					{
+						$sort: {
+							balance: filterOrder === 'asc' ? 1 : -1,
+							virtualVolume: filterOrder === 'asc' ? -1 : 1,
+						},
+					},
+					{
+						$project: {
+							...projectList.reduce((acc, cur) => {
+								acc[cur] = 1;
+								return acc;
+							}, {}),
+						},
+					},
+				])
+				.skip((page - 1) * limit)
+				.limit(limit)
+				.toArray();
+		} else {
+			result = await users
+				.find(filters)
+				.sort({
+					[filterKey]: filterOrder === 'asc' ? 1 : -1,
+				})
+				.project(projectList)
+				.skip((page - 1) * limit)
+				.limit(limit)
+				.toArray();
+		}
+
 		const count = await users.countDocuments();
 		if (result.length === 0) {
 			return dataTemplate({ error: 'Không tìm thấy người dùng' }, 404);

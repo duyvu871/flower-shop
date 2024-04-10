@@ -7,6 +7,7 @@ import { EyeFilledIcon, EyeSlashFilledIcon } from '@nextui-org/shared-icons';
 import { useToast } from '@/hooks/useToast';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import NormalField from '@/components/InputField/NormalField';
 
 interface FormState {
 	fullName: string;
@@ -129,42 +130,39 @@ export default function SignInForm() {
 			<div className={'w-[600px] bg-white p-2 mobile:p-5 py-10 rounded-xl'}>
 				<p className={'text-[24px] font-bold text-center mb-8 text-gray-800'}>Đăng Ký</p>
 				<div className={'px-4'}>
-					<div className={'flex flex-col justify-center items-start md:flex-row gap-4'}>
-						<Input
+					<div className={'flex w-full flex-col justify-between items-center gap-2'}>
+						<NormalField
 							type='text'
-							autoSave={'on'}
-							spellCheck={false}
-							autoCapitalize={'off'}
-							// value={formState.fullName}
-							label='Tên đăng nhập'
-							variant={'bordered'}
-							// labelPlacement={"outside"}
-							isInvalid={!!formState.fullNameError}
-							className='text-gray-800'
-							color={!!formState.fullNameError ? 'danger' : 'primary'}
-							errorMessage={formState.fullNameError}
-							onValueChange={value => {
+							placeholder='Tên đăng nhập'
+							// isInvalid={!!formState.fullNameError}
+							// color={!!formState.fullNameError ? 'danger' : 'primary'}
+							// errorMessage={formState.fullNameError}
+							validate={{
+								status: !!formState.fullNameError ? 'ALERT' : 'SUCCESS',
+								message: formState.fullNameError,
+							}}
+							setFieldValue={value => {
 								if (value === '') {
 									forceFormState('fullNameError', 'Tên đầy đủ không được bỏ trống');
 									return;
 								} else forceFormState('fullNameError', '');
 								forceFormState('fullName', value);
 							}}
+							className='max-w-xl w-full border border-gray-500/50 rounded-xl bg-gray-0'
+							wrapperClassName='bg-gray-0'
+							inputClassName='bg-gray-0 block'
 						/>
-						<Input
+						<NormalField
 							type='text'
-							autoSave={'off'}
-							spellCheck={false}
-							// value={formState.phoneNumber}
-							label='Số điện thoại'
-							variant={'bordered'}
-							// color={"primary"}
-							// labelPlacement={"outside"}
-							className='text-gray-800'
-							isInvalid={!!formState.phoneNumberError}
-							color={!!formState.phoneNumberError ? 'danger' : 'primary'}
-							errorMessage={formState.phoneNumberError}
-							onValueChange={value => {
+							placeholder='Số điện thoại'
+							// isInvalid={!!formState.phoneNumberError}
+							// color={!!formState.phoneNumberError ? 'danger' : 'primary'}
+							// errorMessage={formState.phoneNumberError}
+							validate={{
+								status: !!formState.phoneNumberError ? 'ALERT' : 'SUCCESS',
+								message: formState.phoneNumberError,
+							}}
+							setFieldValue={value => {
 								if (value === '') {
 									forceFormState('phoneNumberError', 'Vui lòng nhập số điện thoại');
 									return;
@@ -175,22 +173,23 @@ export default function SignInForm() {
 								forceFormState('phoneNumberError', '');
 								forceFormState('phoneNumber', value);
 							}}
+							className='max-w-xl w-full border border-gray-500/50 rounded-xl bg-gray-0'
+							wrapperClassName='bg-gray-0'
+							inputClassName='bg-gray-0 block'
 						/>
 					</div>
-					<Spacer y={4} />
-					<Input
-						autoComplete={'off'}
-						spellCheck={false}
-						autoSave={'off'}
-						fullWidth
-						type='text'
-						label='Tài khoản'
-						variant='bordered'
+					<Spacer y={3} />
+					<NormalField
+						type={'text'}
 						placeholder='email'
-						isInvalid={!!formState.emailError}
-						color={!!formState.emailError ? 'danger' : 'primary'}
-						errorMessage={formState.emailError}
-						onValueChange={value => {
+						// isInvalid={!!formState.emailError}
+						// color={!!formState.emailError ? 'danger' : 'primary'}
+						// errorMessage={formState.emailError}
+						validate={{
+							status: !!formState.emailError ? 'ALERT' : 'SUCCESS',
+							message: formState.emailError,
+						}}
+						setFieldValue={value => {
 							if (value === '') {
 								forceFormState('emailError', 'vui lòng nhập email');
 								return;
@@ -201,21 +200,22 @@ export default function SignInForm() {
 							forceFormState('emailError', '');
 							forceFormState('email', value);
 						}}
-						className='max-w-xl text-gray-800'
+						className='max-w-xl border border-gray-500/50 rounded-xl bg-gray-0'
+						wrapperClassName='bg-gray-0'
+						inputClassName='bg-gray-0 block'
 					/>
 					<Spacer y={4} />
-					<Input
-						autoComplete={'off'}
-						autoSave={'off'}
-						spellCheck={false}
-						label='Mật khẩu'
-						variant='bordered'
+					<NormalField
 						placeholder='Nhập mật khẩu'
 						// value={formState.password}
-						isInvalid={!!formState.passwordError}
-						color={!!formState.passwordError ? 'danger' : 'primary'}
-						errorMessage={formState.passwordError}
-						endContent={
+						// isInvalid={!!formState.passwordError}
+						// color={!!formState.passwordError ? 'danger' : 'primary'}
+						// errorMessage={formState.passwordError}
+						validate={{
+							status: !!formState.passwordError ? 'ALERT' : 'SUCCESS',
+							message: formState.passwordError,
+						}}
+						customChildren={
 							<button className='focus:outline-none' type='button' onClick={toggleVisibility}>
 								{isVisible ? (
 									<EyeSlashFilledIcon className='text-2xl text-default-400 pointer-events-none' />
@@ -225,7 +225,7 @@ export default function SignInForm() {
 							</button>
 						}
 						type={isVisible ? 'text' : 'password'}
-						onValueChange={value => {
+						setFieldValue={value => {
 							if (value === '') {
 								forceFormState('passwordError', 'Vui lòng nhập mật khẩu');
 								return;
@@ -236,21 +236,21 @@ export default function SignInForm() {
 							forceFormState('passwordError', '');
 							forceFormState('password', value);
 						}}
-						className='max-w-xl text-gray-800'
+						className='max-w-xl border border-gray-500/50 rounded-xl bg-gray-0'
+						wrapperClassName='bg-gray-0'
+						inputClassName='bg-gray-0 block'
 					/>
 					<Spacer y={4} />
-					<Input
-						autoComplete={'off'}
-						autoSave={'off'}
-						spellCheck={false}
-						label='Nhập lại mật khẩu'
-						variant='bordered'
+					<NormalField
 						placeholder='Nhập lại mật khẩu'
 						// value={formState.retypePassword}
-						isInvalid={!!formState.retypePasswordError}
-						color={!!formState.retypePasswordError ? 'danger' : 'primary'}
-						errorMessage={formState.retypePasswordError}
-						endContent={
+						validate={{
+							status: !!formState.retypePasswordError ? 'ALERT' : 'SUCCESS',
+							message: formState.retypePasswordError,
+						}}
+						// color={!!formState.retypePasswordError ? 'danger' : 'primary'}
+						// errorMessage={formState.retypePasswordError}
+						customChildren={
 							<button className='focus:outline-none' type='button' onClick={toggleRetypeVisibility}>
 								{isRetypeVisible ? (
 									<EyeSlashFilledIcon className='text-2xl text-default-400 pointer-events-none' />
@@ -260,7 +260,7 @@ export default function SignInForm() {
 							</button>
 						}
 						type={isRetypeVisible ? 'text' : 'password'}
-						onValueChange={value => {
+						setFieldValue={value => {
 							// console.log(formState.retypePassword, formState.password)
 							if (value === '') {
 								forceFormState('retypePasswordError', 'Vui lòng nhập mật khẩu');
@@ -275,7 +275,9 @@ export default function SignInForm() {
 							forceFormState('retypePasswordError', '');
 							forceFormState('retypePassword', value);
 						}}
-						className='max-w-xl text-gray-800'
+						className='max-w-xl border border-gray-500/50 rounded-xl bg-gray-0'
+						wrapperClassName='bg-gray-0'
+						inputClassName='bg-gray-0 block'
 					/>
 					<Spacer y={4} />
 					<div className={'flex justify-between items-start'}>

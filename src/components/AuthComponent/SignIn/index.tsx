@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/useToast';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useAuth } from '@/hooks/useAuth';
+import NormalField from '@/components/InputField/NormalField';
 
 export default function SignInForm() {
 	// const {isLogin, user} = useAuth();
@@ -73,41 +74,30 @@ export default function SignInForm() {
 	return (
 		<div className={'flex justify-center items-start h-full bg-gray-100 p-5 mobile:p-10'}>
 			<div className={'w-[600px] bg-white p-2 mobile:p-5 py-10 rounded-xl'}>
-				<p className={'text-[24px] font-bold text-center mb-8 text-gray-800'}>Đăng nhập</p>
+				<p className={'text-[24px] font-bold text-center mb-6 text-gray-800'}>Đăng nhập</p>
 				<div className={'px-4'}>
-					<Input
-						autoComplete={'off'}
-						spellCheck={false}
-						autoCapitalize={'off'}
-						fullWidth
-						value={value}
-						type='text'
-						label='Tài khoản'
-						variant='bordered'
-						placeholder='Tên đăng nhập'
-						// isInvalid={isInvalid}
-						// color={isInvalid ? "danger" : "primary"}
-						color={'primary'}
-						// errorMessage={isInvalid && "Vui lòng nhập đúng định dạng tài khoản"}
-						onValueChange={value => {
-							// setEmail(value);
+					<p className={'text-[18px] font-semibold text-gray-800 p-2'}>Tên đăng nhập</p>
+					<NormalField
+						setFieldValue={value => {
 							setFullName(value);
 							setValue(value);
 						}}
-						className='max-w-xl text-gray-800'
+						type='text'
+						placeholder='Tên đăng nhập'
+						className='max-w-xl border border-gray-500/50 rounded-xl bg-gray-50'
+						wrapperClassName='bg-gray-50'
+						inputClassName='bg-gray-50'
 					/>
-					<Spacer y={6} />
-					<Input
-						autoComplete={'off'}
-						spellCheck={false}
-						label='Mật khẩu'
-						variant='bordered'
+					{/*<Spacer y={6} />*/}
+					<p className={'text-[18px] font-semibold  text-gray-800 p-2'}>Mật khẩu</p>
+					<NormalField
 						placeholder='Nhập mật khẩu'
-						value={password}
-						isInvalid={isInvalidPassword}
-						color={isInvalidPassword ? 'danger' : 'primary'}
-						errorMessage={isInvalidPassword && 'Hãy nhập mật khẩu có độ dài lớn hơn 6 ký tự'}
-						endContent={
+						setFieldValue={value => setPassword(value)}
+						validate={{
+							status: 'SUCCESS',
+							message: '',
+						}}
+						customChildren={
 							<button className='focus:outline-none' type='button' onClick={toggleVisibility}>
 								{isVisible ? (
 									<EyeSlashFilledIcon className='text-2xl text-default-400 pointer-events-none' />
@@ -117,8 +107,9 @@ export default function SignInForm() {
 							</button>
 						}
 						type={isVisible ? 'text' : 'password'}
-						onValueChange={value => setPassword(value)}
-						className='max-w-xl text-gray-800'
+						className='max-w-xl border border-gray-500/50 rounded-xl bg-gray-50'
+						wrapperClassName='bg-gray-50'
+						inputClassName='bg-gray-50'
 					/>
 					<Spacer y={6} />
 					<div className={'flex justify-between items-start gap-2'}>
