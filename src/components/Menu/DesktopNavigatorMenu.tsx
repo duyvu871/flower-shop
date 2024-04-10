@@ -134,7 +134,7 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 			<NavbarContent justify='start'>
 				<NavbarBrand onClick={logoAction} className={'cursor-pointer flex gap-1'}>
 					<Logo size={50} />
-					<p className={'text-xl font-bold text-inherit hidden sm:block'}>commanau</p>
+					<p className={'text-xl font-bold text-inherit sm:block'}>commanau</p>
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent justify='center' className={''}>

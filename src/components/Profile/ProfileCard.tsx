@@ -136,7 +136,7 @@ function ProfileCard({}: ProfileCardProps) {
 				onClose={() => setIsPopupOpen(false)}
 				placement={'center'}
 				onOpenChange={() => {}}
-				className={'z-[999]'}>
+				className={'z-[999] mx-4'}>
 				<ModalContent>
 					{onClose => (
 						<>

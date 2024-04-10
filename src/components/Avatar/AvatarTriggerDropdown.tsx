@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { signOut } from 'next-auth/react';
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import { CiSettings } from 'react-icons/ci';
-import { TbReport } from 'react-icons/tb';
+import { TbMoneybag, TbReport } from 'react-icons/tb';
 import { RiCustomerService2Line } from 'react-icons/ri';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
@@ -58,6 +58,12 @@ function AvatarTriggerDropdown({ avatarIcon, userData }: AvatarTriggerDropdownPr
 					endContent={<GrTransaction size={20} className={'text-gray-500'} />}
 					href={'/profile/order-history'}>
 					Lịch sử thanh toán
+				</DropdownItem>
+				<DropdownItem
+					key='debit-margin'
+					endContent={<TbMoneybag size={20} className={'text-gray-500'} />}
+					href={'/profile/debit-margin'}>
+					Ký quỹ nợ
 				</DropdownItem>
 				<DropdownItem
 					key='customer-service'
