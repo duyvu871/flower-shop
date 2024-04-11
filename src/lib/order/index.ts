@@ -9,6 +9,7 @@ import clientPromise from '@/lib/mongodb';
 import { Await } from '@/helpers/helpers-type';
 import { NextResponse } from 'next/server';
 import { UserInterface } from 'types/userInterface';
+import { NotificationForAdmin } from '@/services/notification_for_admin';
 
 type WithdrawPayload = {
 	volume: number;
@@ -190,6 +191,23 @@ export async function CreateOrder(
 	if (!updateUserBalance) {
 		return dataTemplate({ error: 'Lỗi khi cập nhật số dư' }, 500);
 	}
+	// create notification service
+	const notification = new NotificationForAdmin();
+	// send notification to admin
+	await notification.sendNotificationToAdmin(
+		'create',
+		new Date(),
+		{
+			title: 'Tạo đơn hàng',
+			desc: `Tạo đơn hàng giá trị ${orderVolume} cho ${userData.fullName} thành công`,
+			content: `Tạo đơn hàng cho ${userData.fullName} thành công`,
+		},
+		{
+			userId: uid,
+			referrerId: orderDataInsert._id as unknown as string,
+		},
+		'order',
+	);
 
 	return dataTemplate(
 		{

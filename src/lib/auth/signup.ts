@@ -4,6 +4,7 @@ import { extractProperties } from '@/helpers/extractProperties';
 import { uid } from 'uid';
 import { UserInterface } from 'types/userInterface';
 import { ObjectId } from 'mongodb';
+import { NotificationForAdmin } from '@/services/notification_for_admin';
 
 export async function signUp(
 	credentials: Record<'fullName' | 'password' | 'phone' | 'email', string> | undefined,
@@ -73,6 +74,20 @@ export async function signUp(
 	if (!insertUser) {
 		throw new Error('Insert user failed');
 	}
-
+	const notification = new NotificationForAdmin();
+	await notification.sendNotificationToAdmin(
+		'create',
+		new Date(),
+		{
+			title: 'Tạo tài khoản',
+			desc: `Tạo tài khoản ${doc.fullName} thành công`,
+			content: `Tạo tài khoản ${doc.fullName} thành công`,
+		},
+		{
+			userId: doc._id.toString(),
+			referrerId: doc._id.toString(),
+		},
+		'user',
+	);
 	return extractProperties(doc, ['id_index', 'fullName', 'role', 'balance', 'uid', '_id']);
 }

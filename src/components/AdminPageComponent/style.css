@@ -23,7 +23,7 @@ body {
     /*height: fit-content;*/
     height: 100%;
     position: relative;
-    gap: 2rem;
+    /*gap: 2rem;*/
 }
 
 .layout__main-content {

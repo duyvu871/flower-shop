@@ -3,6 +3,7 @@ import { PurchaseOrderType } from 'types/order';
 import { ObjectId } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { dataTemplate } from '@/helpers/returned_response_template';
+import { NotificationForAdmin } from '@/services/notification_for_admin';
 
 export async function createPurchaseOrder(
 	amount: number,
@@ -40,5 +41,20 @@ export async function createPurchaseOrder(
 		return dataTemplate({ error: 'Lỗi khi tạo đơn nạp' }, 500);
 	}
 
+	const notification = new NotificationForAdmin();
+	await notification.sendNotificationToAdmin(
+		'create',
+		new Date(),
+		{
+			title: 'đơn nạp mới',
+			desc: `Người dùng ${user.fullName} vừa tạo đơn nạp mới với số tiền ${amount}`,
+			content: `Người dùng ${user.fullName} vừa tạo đơn nạp mới với số tiền ${amount}`,
+		},
+		{
+			userId: user._id.toString(),
+			referrerId: defaultData._id.toString(),
+		},
+		'deposit',
+	);
 	return dataTemplate({ data: defaultData, message: 'Tạo đơn nạp thành công' }, 200);
 }
