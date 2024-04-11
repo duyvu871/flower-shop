@@ -163,6 +163,7 @@ function AdminNavbar({}: AdminNavbarProps) {
 								if (index === notifications.length) {
 									return (
 										<DropdownSection
+											key={'notify-' + index}
 											itemClasses={{
 												base: ['data-[hover=true]:bg-blue-100', 'data-[hover=true]:text-blue-600'],
 												// wrapper: ['data-[hover=true]:bg-red-100', 'data-[hover=true]:text-blue-600'],
