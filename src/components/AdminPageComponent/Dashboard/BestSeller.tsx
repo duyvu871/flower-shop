@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAdminApi } from '@/hooks/useAdminApi';
 import { Image } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface BestSellerProps {}
 
@@ -20,7 +22,9 @@ async function BestSeller({}: BestSellerProps) {
 			{/*// <div className={"flex flex-col justify-center items-start gap-4"}>*/}
 			<div className={'w-full flex justify-between items-center'}>
 				<h1 className={'font-bold text-xl'}>Bán chạy</h1>
-				<div className={' text-blue-600 text-sm cursor-pointer font-semibold'}>Xem thêm</div>
+				<Link href={'/admin/dashboard/product-management'}>
+					<div className={' text-blue-600 text-sm cursor-pointer font-semibold'}>Xem thêm</div>
+				</Link>
 			</div>
 			<div
 				className={'w-full grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7'}>

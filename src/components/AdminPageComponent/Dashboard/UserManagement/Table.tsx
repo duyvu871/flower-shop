@@ -290,7 +290,12 @@ function Table({}: TableProps) {
 								startContent={<IoIosSearch size={18} />}
 								type='search'
 								ref={searchRef}
-								onChange={e => setSearchValue(e.target.value)}
+								onChange={e => {
+									if (currentPage !== 1) {
+										setCurrentPage(1);
+									}
+									setSearchValue(e.target.value);
+								}}
 								// onKeyUp={(e) => {
 								//     if (e.key === "Enter") {
 								//         console.log(searchValue);
@@ -312,7 +317,7 @@ function Table({}: TableProps) {
 							}}
 							page={currentPage}
 							onChange={page => {
-								console.log(page);
+								// console.log(page);
 								setCurrentPage(page);
 							}}
 						/>

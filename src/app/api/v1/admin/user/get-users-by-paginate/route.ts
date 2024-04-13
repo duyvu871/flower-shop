@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 			? {}
 			: {
 					fullName: {
-						$regex: regex,
+						$regex: '.*' + searchString + '.*',
 					},
 				};
 
@@ -69,57 +69,62 @@ export async function GET(req: NextRequest) {
 		const users = client.db(process.env.DB_NAME).collection('users');
 
 		let result: Document[];
-
+		let countDocuments: number;
 		if (filterKey === 'balance') {
-			result = await users
-				.aggregate([
-					{
-						$addFields: {
-							sortField: {
-								$cond: {
-									if: { $eq: ['$balance', 0] }, // if balance = 0
-									then: '$virtualVolume', // then use virtualVolume
-									else: '$balance', // else use balance
-								},
+			const pipeline = [
+				{
+					$addFields: {
+						sortField: {
+							$cond: {
+								if: { $eq: ['$balance', 0] }, // if balance = 0
+								then: '$virtualVolume', // then use virtualVolume
+								else: '$balance', // else use balance
 							},
 						},
 					},
-					{
-						$sort: {
-							balance: filterOrder === 'asc' ? 1 : -1,
-							virtualVolume: filterOrder === 'asc' ? -1 : 1,
-						},
+				},
+				{
+					$sort: {
+						balance: filterOrder === 'asc' ? 1 : -1,
+						virtualVolume: filterOrder === 'asc' ? -1 : 1,
 					},
-					{
-						$project: {
-							...projectList.reduce((acc, cur) => {
-								acc[cur] = 1;
-								return acc;
-							}, {}),
-						},
+				},
+				{
+					$project: {
+						...projectList.reduce((acc, cur) => {
+							acc[cur] = 1;
+							return acc;
+						}, {}),
 					},
-				])
+				},
+			];
+			const searchResult = users.aggregate(pipeline);
+
+			result = await searchResult
 				.skip((page - 1) * limit)
 				.limit(limit)
 				.toArray();
+			// console.log(pipeline);
+			const count = await searchResult.toArray();
+			countDocuments = count.length;
+			// console.log('countDocuments', count);
 		} else {
-			result = await users
-				.find(filters)
-				.sort({
-					[filterKey]: filterOrder === 'asc' ? 1 : -1,
-				})
+			const searchResult = users.find(filters).sort({
+				[filterKey]: filterOrder === 'asc' ? 1 : -1,
+			});
+			countDocuments = await searchResult.count();
+			result = await searchResult
 				.project(projectList)
 				.skip((page - 1) * limit)
 				.limit(limit)
 				.toArray();
 		}
-
-		const count = await users.countDocuments();
+		// console.log('countDocuments', countDocuments);
+		const count = countDocuments || (await users.countDocuments());
 		if (result.length === 0) {
 			return dataTemplate({ error: 'Không tìm thấy người dùng' }, 404);
 		}
 		revalidatePath('/admin/dashboard');
-
 		return dataTemplate({ data: result as UserInterface[], count }, 200);
 	} catch (e) {
 		console.log(e);

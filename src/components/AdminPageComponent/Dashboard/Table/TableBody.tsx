@@ -7,6 +7,9 @@ import { formatCurrency, formatCurrencyWithDot } from '@/ultis/currency-format';
 import { OrderStatus } from 'types/order';
 import { formatISODate } from '@/ultis/timeFormat.ultis';
 import { FiEye } from 'react-icons/fi';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
+import { MdContentCopy } from 'react-icons/md';
+import Copy from '@/components/CopyToClipBoard';
 
 interface TableBodyProps {
 	page: number;
@@ -52,6 +55,25 @@ const GreyBadge = ({ children }) => {
 	);
 };
 
+const UidElement = ({ id }: { id: string }) => {
+	const [copiedText, copy] = useCopyToClipboard();
+
+	return (
+		<div className={'flex justify-center items-center gap-3'}>
+			<span
+				className={'cursor-pointer hover:text-blue-600 hover:underline'}
+				onClick={() => {
+					store.dispatch(openModal(id, 'user-management'));
+				}}>
+				{id}
+			</span>
+			<span>
+				<Copy text={id} />
+			</span>
+		</div>
+	);
+};
+
 function TableBody({
 	page = 1,
 	rowsPerPage = 10,
@@ -64,6 +86,7 @@ function TableBody({
 	setSelectedItems,
 }: TableBodyProps) {
 	// console.log(type)
+
 	return (
 		<tbody className={'className={"divide-y divide-default-200"}'}>
 			{data.map((item, data_index) => (
@@ -74,6 +97,7 @@ function TableBody({
 								type='checkbox'
 								onChange={() => setSelectedItems(selectedItems[data_index])}
 								checked={selectedItems[data_index].value}
+								className='h-4 w-4 text-blue-600 bg-blue-500 border-gray-300 rounded transition-all'
 							/>
 						</td>
 					)}
@@ -194,13 +218,7 @@ function TableBody({
 						if (key === 'userId') {
 							return (
 								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-gray-600 '}>
-									<span
-										className={'cursor-pointer hover:text-blue-600 hover:underline'}
-										onClick={() => {
-											store.dispatch(openModal(item[key], 'user-management'));
-										}}>
-										{item[key]}
-									</span>
+									<UidElement id={item[key] as string} />
 									{/*{item[key]}*/}
 								</td>
 							);

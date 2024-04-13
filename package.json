@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set DEV_HOSTNAME=192.168.81.37&&set PORT=3000&&node --max-old-space-size=2048 server.js",
+    "dev": "set DEV_HOSTNAME=192.168.81.36&&set PORT=3000&&node --max-old-space-size=2048 server.js",
     "build": "next build",
     "start": "set NODE_ENV=production && next build && next start"
   },
@@ -26,6 +26,7 @@
     "next-auth": "^4.24.6",
     "prettier": "^3.2.5",
     "react": "^18",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-infinite-scroller": "^1.2.6",
@@ -35,12 +36,14 @@
     "redux": "^5.0.1",
     "tailwind-merge": "^2.2.1",
     "uid": "^2.0.2",
+    "usehooks-ts": "^3.1.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.11.24",
     "@types/react": "^18",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18",
     "@types/react-infinite-scroller": "^1.2.5",
     "autoprefixer": "^10.0.1",
