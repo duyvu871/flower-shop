@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 // import TableBody from "./TableBody";
 import TableTemplate from '@/components/AdminPageComponent/Dashboard/Table/TableTemplate';
 import { UserInterface } from 'types/userInterface';
@@ -105,7 +105,8 @@ function Table({}: TableProps) {
 	});
 	const [orderTimeRange, setOrderTimeRange] =
 		React.useState<keyof typeof orderTimeRangeSummary>('morning');
-
+	const [exportTimeRange, setExportTimeRange] =
+		useState<keyof typeof orderTimeRangeSummary>('morning');
 	const fetchData = async (page: number) => {
 		fetch(
 			'/api/v1/admin/order/get-order?page=' +
@@ -132,10 +133,10 @@ function Table({}: TableProps) {
 		});
 	};
 
-	const generateXLSX = async () => {
+	const generateXLSX = async (range: string) => {
 		const response = await fetch('/api/v1/admin/finalization/export-order?range=' + range);
 		const fileBlob = await response.blob();
-
+		// console.log(fileBlob);
 		// this works and prompts for download
 		var link = document.createElement('a'); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
 		link.href = window.URL.createObjectURL(fileBlob);
@@ -202,7 +203,7 @@ function Table({}: TableProps) {
 							value: key,
 							label: orderTimeRangeSummary[key as keyof typeof orderTimeRangeSummary],
 						}))}
-						selectedKeys={[orderTimeRange]}
+						selectedKeys={[exportTimeRange]}
 						label='Tổng hợp theo thời gian'
 						// placeholder=""
 						className='max-w-xs w-52'
@@ -210,7 +211,7 @@ function Table({}: TableProps) {
 							base: 'bg-white rounded-xl',
 						}}
 						onChange={e => {
-							setOrderTimeRange(e.target.value as keyof typeof orderTimeRangeSummary);
+							setExportTimeRange(e.target.value as keyof typeof orderTimeRangeSummary);
 						}}
 						variant={'bordered'}
 						color={'primary'}
@@ -221,14 +222,14 @@ function Table({}: TableProps) {
 							</SelectItem>
 						)}
 					</Select>
-					<button
-						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
-						onClick={generateXLSX}>
+					<button className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}>
 						Lọc
 					</button>
 					<button
 						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
-						onClick={generateXLSX}>
+						onClick={() => {
+							generateXLSX(exportTimeRange);
+						}}>
 						Xuất file
 					</button>
 				</div>
@@ -262,7 +263,9 @@ function Table({}: TableProps) {
 						</Select>
 						<button
 							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
-							onClick={generateXLSX}>
+							onClick={() => {
+								generateXLSX(orderTimeRange);
+							}}>
 							Xuất file
 						</button>
 					</div>

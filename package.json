@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set DEV_HOSTNAME=192.168.81.36&&set PORT=3000&&node --max-old-space-size=2048 server.js",
+    "dev": "set DEV_HOSTNAME=192.168.73.52&&set PORT=3000&&node --max-old-space-size=2048 server.js",
     "build": "next build",
     "start": "set NODE_ENV=production && next build && next start"
   },
