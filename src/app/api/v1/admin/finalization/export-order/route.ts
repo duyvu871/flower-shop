@@ -7,7 +7,7 @@ import clientPromise from '@/lib/mongodb';
 import { formatISODate, getEndTime, startTime } from '@/ultis/timeFormat.ultis';
 import { OrderType } from 'types/order';
 import * as process from 'process';
-import { ObjectId } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 
 export async function GET(req: NextRequest) {
 	const session = getServerAuthSession();
@@ -33,7 +33,17 @@ export async function GET(req: NextRequest) {
 	const endTime = getEndTime(range as 'morning' | 'afternoon' | 'evening');
 	const client = await clientPromise;
 	const orderCollection = client.db(process.env.DB_NAME).collection('food-orders');
-	let foodDeliveryCollection = client.db(process.env.DB_NAME).collection(`${range}-menu`);
+	// let foodDeliveryCollection = client.db(process.env.DB_NAME).collection(`${range}-menu`);
+	const menuCollections: Record<string, Collection<Document>> = [
+		'morning',
+		'afternoon',
+		'evening',
+		'other',
+	].reduce(
+		(acc, curr) => ({ ...acc, [curr]: client.db(process.env.DB_NAME).collection(`${curr}-menu`) }),
+		{},
+	);
+
 	const allOrders = await orderCollection
 		.find({
 			createdAt: {
@@ -46,17 +56,21 @@ export async function GET(req: NextRequest) {
 	console.log('start:', timeStart);
 	console.log('end:', endTime);
 	const foods: Record<string, any> = {};
+	const validRange = range === 'morning' || range === 'afternoon' || range === 'evening';
+
 	const orderResult = allOrders.map(async (order, index) => {
 		const orderList = order.orderList as OrderType['orderList'];
 		const foodsIds = orderList
 			.filter(item => {
-				return item.menuType.split('-')[0] === range;
+				// check menuType because some old order does have it
+				if (item?.menuType) return item.menuType.split('-')[0] === range;
+				else return true;
 			})
 			.map(item => ({
 				menuItem: item.menuItem,
 				totalOrder: item.totalOrder,
+				menuType: item.menuType,
 			}));
-		const validRange = range === 'morning' || range === 'afternoon' || range === 'evening';
 		// calculate volume of valid order items
 		let totalVolume = 0;
 		for (let i = 0; i < foodsIds.length; i++) {
@@ -64,7 +78,9 @@ export async function GET(req: NextRequest) {
 			if (foods[foodsIds[i].menuItem.toString()]) {
 				totalVolume += foodsIds[i].totalOrder * foods[foodsIds[i].menuItem.toString()].price * 1000; //
 			} else {
-				foods[foodsIds[i].menuItem.toString()] = await foodDeliveryCollection.findOne({
+				foods[foodsIds[i].menuItem.toString()] = await menuCollections[
+					foodsIds[i].menuType.split('-')[0]
+				].findOne({
 					_id: new ObjectId(foodsIds[i].menuItem),
 				});
 				totalVolume += foodsIds[i].totalOrder * foods[foodsIds[i].menuItem.toString()].price * 1000;

@@ -264,7 +264,7 @@ function Table({}: TableProps) {
 						<button
 							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
 							onClick={() => {
-								generateXLSX(orderTimeRange);
+								generateXLSX(range);
 							}}>
 							Xuất file
 						</button>

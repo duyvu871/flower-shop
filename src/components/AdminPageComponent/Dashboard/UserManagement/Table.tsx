@@ -185,7 +185,7 @@ function Table({}: TableProps) {
 			} else {
 				clearInterval(interval);
 			}
-			console.log(count);
+			// console.log(count);
 		}, 45000);
 
 		return () => {
@@ -254,7 +254,9 @@ function Table({}: TableProps) {
 				<h1 className={'text-2xl font-bold'}>Quản lý khách hàng</h1>
 				<div className={'flex justify-end items-center gap-4'}>
 					<button
-						className={'bg-primary text-white rounded-md px-4 py-2 flex justify-center items-center'}
+						className={
+							'bg-primary text-white rounded-md px-4 py-2 flex justify-center items-center'
+						}
 						onClick={() => {
 							// @ts-ignore
 							store.dispatch(openModal('oke', 'create-user'));
@@ -269,7 +271,10 @@ function Table({}: TableProps) {
 			</div>
 			<div className={'grid grid-cols-1'}>
 				<div className={'border rounded-lg border-default-200 bg-gray-50'}>
-					<div className={'px-6 py-4 overflow-hidden flex flex-row justify-between items-center gap-4'}>
+					<div
+						className={
+							'px-6 py-4 overflow-hidden flex flex-row justify-between items-center gap-4'
+						}>
 						<div className={'flex flex-row justify-between items-center whitespace-nowrap'}>
 							Danh sách khách hàng
 						</div>
@@ -340,7 +345,10 @@ function Table({}: TableProps) {
 															<FaSort
 																className={'cursor-pointer hover:text-blue-600 hover:scale-110'}
 																onClick={() => {
-																	if (currentSort.key === item.key && defaultUser[item.key] !== undefined) {
+																	if (
+																		currentSort.key === item.key &&
+																		defaultUser[item.key] !== undefined
+																	) {
 																		if (currentSort.order === 'asc') {
 																			setCurrentSort({
 																				key: item.key as keyof UserInterface,

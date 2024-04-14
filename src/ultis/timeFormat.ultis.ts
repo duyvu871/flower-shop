@@ -187,7 +187,7 @@ export enum TimeRange {
 	month = 'thang',
 	year = 'nam',
 	all = 'tat ca',
-	morning = 'sang',
+	morning = 'trua',
 	afternoon = 'chieu',
 	evening = 'toi',
 }

@@ -30,7 +30,7 @@ function Copy({ childrenProps, customIcon, text }: CopyToClipBoardProps) {
 		<div className={'relative'}>
 			<div
 				className={tw(
-					'absolute px-2 py-1 bg-white shadow text-md font-semibold top-[-36px] transition-all',
+					'absolute px-2 py-1 bg-white shadow rounded text-md font-semibold top-[-36px] transition-all',
 					isOpen ? '' : 'hidden',
 				)}>
 				Copied!

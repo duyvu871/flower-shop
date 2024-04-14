@@ -27,6 +27,8 @@ import store from '@/adminRedux/store';
 import { deleteUser, updateUsers } from '@/adminRedux/action/userData';
 import { RootState } from '@/adminRedux/reducers';
 import { useSelector } from 'react-redux';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Copy from '@/components/CopyToClipBoard';
 
 interface UserManagementProps {
 	_id: string;
@@ -198,13 +200,23 @@ function UserManagement({ _id }: UserManagementProps) {
 	return (
 		<>
 			<div className={'flex flex-col justify-center items-center gap-4'}>
+				<div className={'flex justify-center items-center w-full'}>
+					<span className={'text-xl font-bold'}>ID: </span>
+					<Spacer x={2} />
+					<div className={'flex justify-center items-center gap-2'}>
+						<span className={'text-xl'}>{_id}</span>
+						<Copy text={_id} />
+					</div>
+				</div>
 				<div className={'w-full flex justify-center items-center'}>
 					{isLoading ? (
 						<Spinner size={'lg'} color={'primary'} />
 					) : (
 						<div
-							className={'w-full flex flex-col justify-center item-center gap-2 p-5 max-w-[800px]'}>
-							<div className={'flex flex-col justify-center items-start gap-2'}>
+							className={
+								'w-full flex flex-col justify-center item-center gap-4 p-5 max-w-[800px] md:flex-row'
+							}>
+							<div className={'w-full flex flex-col justify-center items-start gap-2'}>
 								<h1 className={'text-xl font-semibold text-start text-gray-500'}>
 									Thông tin cá nhân
 								</h1>
@@ -282,71 +294,73 @@ function UserManagement({ _id }: UserManagementProps) {
 									onChange={e => setNewTelegramLink(e.target.value)}
 								/>
 							</div>
-							<div className={'w-full flex flex-col justify-center items-start gap-2'}>
-								<h1 className={'text-xl font-semibold text-start text-gray-500'}>
-									Thông tin liên hệ
-								</h1>
-								<div className={'w-full flex flex-col justify-center items-center gap-2'}>
+							<div className={'w-full flex flex-col justify-center items-center'}>
+								<div className={'w-full flex flex-col justify-center items-start gap-2'}>
+									<h1 className={'text-xl font-semibold text-start text-gray-500'}>
+										Thông tin liên hệ
+									</h1>
+									<div className={'w-full flex flex-col justify-center items-center gap-2'}>
+										<Input
+											type='text'
+											label={'Số điện thoại'}
+											id={'newPhone'}
+											value={newPhone}
+											onChange={e => setNewPhone(e.target.value)}
+											disabled
+										/>
+									</div>
+									<div className={'w-full flex flex-col justify-center items-center gap-2'}>
+										<Input
+											type='text'
+											label={'Địa chỉ'}
+											id={'newAddress'}
+											value={newAddress}
+											onChange={e => setNewAddress(e.target.value)}
+											disabled
+										/>
+									</div>
+								</div>
+								<div className={'w-full flex flex-col justify-center items-start gap-2'}>
+									<h1 className={'text-xl font-semibold text-start text-gray-500'}>
+										Thông tin ngân hàng
+									</h1>
 									<Input
 										type='text'
-										label={'Số điện thoại'}
-										id={'newPhone'}
-										value={newPhone}
-										onChange={e => setNewPhone(e.target.value)}
-										disabled
+										placeholder={'Tên tài khoản'}
+										id={'newBankingInfo'}
+										value={newBankingInfo.accountName}
+										onChange={e =>
+											setNewBankingInfo({
+												...newBankingInfo,
+												accountName: e.target.value,
+											})
+										}
 									/>
-								</div>
-								<div className={'w-full flex flex-col justify-center items-center gap-2'}>
 									<Input
 										type='text'
-										label={'Địa chỉ'}
-										id={'newAddress'}
-										value={newAddress}
-										onChange={e => setNewAddress(e.target.value)}
-										disabled
+										placeholder={'Số tài khoản'}
+										id={'newBankingInfo'}
+										value={newBankingInfo.accountNumber}
+										onChange={e =>
+											setNewBankingInfo({
+												...newBankingInfo,
+												accountNumber: e.target.value,
+											})
+										}
+									/>
+									<Input
+										type='text'
+										placeholder={'Ngân hàng'}
+										id={'newBankingInfo'}
+										value={newBankingInfo.bank}
+										onChange={e =>
+											setNewBankingInfo({
+												...newBankingInfo,
+												bank: e.target.value,
+											})
+										}
 									/>
 								</div>
-							</div>
-							<div className={'flex flex-col justify-center items-start gap-2'}>
-								<h1 className={'text-xl font-semibold text-start text-gray-500'}>
-									Thông tin ngân hàng
-								</h1>
-								<Input
-									type='text'
-									placeholder={'Tên tài khoản'}
-									id={'newBankingInfo'}
-									value={newBankingInfo.accountName}
-									onChange={e =>
-										setNewBankingInfo({
-											...newBankingInfo,
-											accountName: e.target.value,
-										})
-									}
-								/>
-								<Input
-									type='text'
-									placeholder={'Số tài khoản'}
-									id={'newBankingInfo'}
-									value={newBankingInfo.accountNumber}
-									onChange={e =>
-										setNewBankingInfo({
-											...newBankingInfo,
-											accountNumber: e.target.value,
-										})
-									}
-								/>
-								<Input
-									type='text'
-									placeholder={'Ngân hàng'}
-									id={'newBankingInfo'}
-									value={newBankingInfo.bank}
-									onChange={e =>
-										setNewBankingInfo({
-											...newBankingInfo,
-											bank: e.target.value,
-										})
-									}
-								/>
 							</div>
 							{/*<div className={"w-full flex justify-center items-center p-5"}>*/}
 							{/*    <Button color={"success"} className={"text-white"} disabled={isUpdating} onClick={handleUpdate}>*/}
