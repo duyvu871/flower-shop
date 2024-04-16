@@ -20,6 +20,7 @@ import { currencyToNumber, formatCurrency } from '@/ultis/currency-format';
 import { useOrder } from '@/hooks/useOrder';
 import RedirectHeader from '@/components/RedirectHeader';
 import { useUserData } from '@/hooks/useUserData';
+import Copy from '@/components/CopyToClipBoard';
 interface BuyCreditScreenProps {}
 
 enum PaymentMethod {
@@ -117,7 +118,9 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
 
 	return (
 		<div
-			className={'flex flex-col justify-center items-center px-2 pb-[90px] pt-[70px] w-full h-full'}>
+			className={
+				'flex flex-col justify-center items-center px-2 pb-[90px] pt-[70px] w-full h-full'
+			}>
 			<Accordion
 				variant='shadow'
 				defaultExpandedKeys={['1']}
@@ -229,10 +232,14 @@ function BuyCreditScreen({}: BuyCreditScreenProps) {
 					classNames={{
 						title: 'text-gray-600 font-bold',
 					}}>
-					<div className={'flex flex-col justify-center items-center gap-5 p-5'}>
-						<p className={'text-lg text-gray-800 font-semibold select-auto'}>
-							ID người dùng: {userData._id as unknown as string}
-						</p>
+					<div
+						className={'flex flex-col justify-center items-center gap-5 p-5 pt-8 overflow-hidden'}>
+						<div className={'flex justify-center items-center gap-1 w-full'}>
+							<p className={'text-lg text-gray-800 font-semibold select-auto'}>
+								ID: {userData._id as unknown as string}
+							</p>
+							<Copy text={userData._id as unknown as string} />
+						</div>
 						<p className={'text-lg text-gray-800 font-semibold'}>
 							Số tiền nạp: {formatCurrency(purchaseAmount.toString())}đ
 						</p>
