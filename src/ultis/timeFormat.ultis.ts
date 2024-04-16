@@ -41,7 +41,17 @@ export function formatDate(date: Date): FormattedDate {
 }
 
 export function startTime(
-	range: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all' | 'morning' | 'afternoon' | 'evening',
+	range:
+		| 'hour'
+		| 'day'
+		| 'week'
+		| 'month'
+		| 'year'
+		| 'all'
+		| 'morning'
+		| 'afternoon'
+		| 'evening'
+		| 'other',
 	prevSession: boolean = false,
 ) {
 	const currentDate = new Date(); // get current date
@@ -91,13 +101,18 @@ export function startTime(
 				`${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`,
 			);
 			break;
+		case 'other':
+			startTime = new Date(
+				`${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`,
+			);
+			break;
 		default:
 			throw new Error('Invalid range');
 	}
 	return startTime;
 }
 
-export function getEndTime(range: 'morning' | 'afternoon' | 'evening') {
+export function getEndTime(range: 'morning' | 'afternoon' | 'evening' | 'other') {
 	const currentDate = new Date(); // get current date
 	const currentTime = currentDate.getTime(); // get current time
 	const currentDayFormat = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`; // get f

@@ -61,9 +61,9 @@ const headerTable = [
 		isSort: false,
 	},
 	// {
-	//     title: "Tên người nhận",
-	//     key: "takeOrderName",
-	//     isSort: false,
+	// 	title: 'order-list',
+	// 	key: 'orderList',
+	// 	isSort: false,
 	// },
 	{
 		title: 'Ghi chú',
@@ -107,8 +107,11 @@ function Table({}: TableProps) {
 		React.useState<keyof typeof orderTimeRangeSummary>('morning');
 	const [exportTimeRange, setExportTimeRange] =
 		useState<keyof typeof orderTimeRangeSummary>('morning');
+	const [isRealTime, setIsRealTime] = useState<boolean>(true);
+
 	const fetchData = async (page: number) => {
-		fetch(
+		// if (!isRealTime) return;
+		return await fetch(
 			'/api/v1/admin/order/get-order?page=' +
 				currentPage +
 				'&limit=' +
@@ -122,14 +125,8 @@ function Table({}: TableProps) {
 				return;
 			}
 			const data = await res.json();
-			setData(prev => ({
-				...prev,
-				['user-data' + currentPage]: data.data,
-			}));
-			store.dispatch(setCurrentTable(data.data));
-			setTotalPage(Math.ceil(data.count / 10));
 			setIsLoading(false);
-			// window.localStorage.setItem('temp-user-data', JSON.stringify(data.data));
+			return data;
 		});
 	};
 
@@ -143,6 +140,30 @@ function Table({}: TableProps) {
 		link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsb';
 		link.click();
 		link.remove();
+	};
+
+	const filterData = async () => {
+		const response = await fetch(
+			'/api/v1/admin/order/filter-order?range=' +
+				exportTimeRange +
+				'&page=' +
+				currentPage +
+				'&limit=' +
+				10 +
+				'&filterKey=' +
+				currentSort.key +
+				'&filterOrder=' +
+				currentSort.order,
+		);
+		const data = await response.json();
+		setData(prev => ({
+			...prev,
+			['user-data' + currentPage]: data.data,
+		}));
+		store.dispatch(setCurrentTable(data.data));
+		setTotalPage(Math.ceil(data.count / 10));
+		setIsLoading(false);
+		setIsRealTime(false);
 	};
 
 	useLayoutEffect(() => {
@@ -159,21 +180,28 @@ function Table({}: TableProps) {
 		let count = 0;
 		const interval = setInterval(() => {
 			count++;
-			if (currentPage === 1) {
+			if (currentPage === 1 && isRealTime) {
 				// if () {
 				//     fetchData(currentPage);
 				// }
-				fetchData(currentPage);
+				fetchData(currentPage).then(data => {
+					if (isRealTime) {
+						store.dispatch(setCurrentTable(data.data));
+						setTotalPage(Math.ceil(data.count / 10));
+					} else {
+						clearInterval(interval);
+					}
+				});
 			} else {
 				clearInterval(interval);
 			}
-			console.log(count);
+			// console.log(count);
 		}, 15000);
 
 		return () => {
 			clearInterval(interval);
 		};
-	}, [currentPage]);
+	}, [currentPage, isRealTime]);
 
 	return (
 		<TableTemplate
@@ -198,6 +226,19 @@ function Table({}: TableProps) {
 			defaultTableData={defaultTableData}
 			summaryOption={
 				<div className={'flex justify-center items-center gap-2'}>
+					<button
+						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+						onClick={() => {
+							setIsRealTime(true);
+							setIsLoading(true);
+							fetchData(currentPage).then(data => {
+								store.dispatch(setCurrentTable(data.data));
+								setTotalPage(Math.ceil(data.count / 10));
+								setIsLoading(false);
+							});
+						}}>
+						{'Tải lại'}
+					</button>
 					<Select
 						items={Object.keys(orderTimeRangeSummary).map(key => ({
 							value: key,
@@ -222,8 +263,17 @@ function Table({}: TableProps) {
 							</SelectItem>
 						)}
 					</Select>
-					<button className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}>
-						Lọc
+					<button
+						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+						onClick={() => {
+							// if (isRealTime) {
+							setIsLoading(true);
+							filterData().then(_ => {
+								setIsRealTime(false);
+								setIsLoading(false);
+							});
+						}}>
+						{'Lọc'}
 					</button>
 					<button
 						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}

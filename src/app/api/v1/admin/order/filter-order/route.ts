@@ -8,6 +8,7 @@ import { formatISODate, getEndTime, startTime } from '@/ultis/timeFormat.ultis';
 import { OrderType } from 'types/order';
 import * as process from 'process';
 import { Collection, ObjectId } from 'mongodb';
+import DBConfigs from '@/configs/database.config';
 
 export async function GET(req: NextRequest) {
 	const session = getServerAuthSession();
@@ -29,9 +30,18 @@ export async function GET(req: NextRequest) {
 			| 'afternoon'
 			| 'evening'
 			| 'other') || 'all';
+	const page = req.nextUrl.searchParams.get('page') as string;
+	const limit = req.nextUrl.searchParams.get('limit') || String(DBConfigs.perPage);
+	const filterKey = req.nextUrl.searchParams.get('filterKey')
+		? (req.nextUrl.searchParams.get('filterKey') as string)
+		: 'createdAt';
+	const filterOrder = req.nextUrl.searchParams.get('filterOrder')
+		? (req.nextUrl.searchParams.get('filterOrder') as string)
+		: 'desc';
+
 	console.log(range);
 	const timeStart = startTime(range);
-	const endTime = getEndTime(range as 'morning' | 'afternoon' | 'evening' | 'other');
+	const endTime = getEndTime(range as 'morning' | 'afternoon' | 'evening');
 	const client = await clientPromise;
 	const orderCollection = client.db(process.env.DB_NAME).collection('food-orders');
 	// let foodDeliveryCollection = client.db(process.env.DB_NAME).collection(`${range}-menu`);
@@ -44,35 +54,35 @@ export async function GET(req: NextRequest) {
 		(acc, curr) => ({ ...acc, [curr]: client.db(process.env.DB_NAME).collection(`${curr}-menu`) }),
 		{},
 	);
-
-	const allOrders = await orderCollection
-		.find({
-			createdAt: {
-				$gte: timeStart,
-				$lte: endTime,
-			},
+	const filterOrders = orderCollection.find({
+		createdAt: {
+			$gte: timeStart,
+			$lte: endTime,
+		},
+	});
+	const allOrders = (await filterOrders
+		.sort({
+			[filterKey]: filterOrder === 'asc' ? 1 : -1,
 		})
-		.toArray();
+		.skip((Number(page) - 1) * Number(limit))
+		.limit(Number(limit))
+		.toArray()) as OrderType[]; // get all orders
+	const count = await filterOrders.count(); // count all orders
 	// console.log(allOrders.length);
 	console.log('start:', timeStart);
 	console.log('end:', endTime);
-	const foods: Record<string, any> = {};
+	const foods: Record<string, any> = {}; // store all food items
 	const validRange =
 		range === 'morning' || range === 'afternoon' || range === 'evening' || range === 'other';
 
-	const orderResult = allOrders.map(async (order, index) => {
-		const orderList = order.orderList as OrderType['orderList'];
-		const foodsIds = orderList
-			.filter(item => {
-				// check menuType because some old order does have it
-				if (item?.menuType) return item.menuType.split('-')[0] === range;
-				else return true;
-			})
-			.map(item => ({
-				menuItem: item.menuItem,
-				totalOrder: item.totalOrder,
-				menuType: item.menuType,
-			}));
+	const orderResult: Promise<OrderType>[] = allOrders.map(async (order, index) => {
+		const orderList = order.orderList as OrderType['orderList']; // get order list
+		const foodsIds = orderList.filter(item => {
+			// check menuType because some old order does have it
+			if (item?.menuType) return item.menuType.split('-')[0] === range;
+			else return true;
+		}); // filter order items by menuType
+
 		// calculate volume of valid order items
 		let totalVolume = 0;
 		for (let i = 0; i < foodsIds.length; i++) {
@@ -84,62 +94,22 @@ export async function GET(req: NextRequest) {
 					foodsIds[i].menuType.split('-')[0]
 				].findOne({
 					_id: new ObjectId(foodsIds[i].menuItem),
-				});
+				}); // get food item
+				// calculate volume of valid order items
 				totalVolume += foodsIds[i].totalOrder * foods[foodsIds[i].menuItem.toString()].price * 1000;
 			}
 			// console.log(i);
 		}
 		// console.log('totalVolume', foods);
 		return {
-			// STT: index + 1,
-			'Mã người dùng': String(order.userId),
-			'Số đơn': order.orderList.reduce((acc: any, cur: { menuType: string; totalOrder: any }) => {
-				if (validRange) {
-					return cur.menuType.split('-')[0] === range ? acc + cur.totalOrder : acc;
-				} else {
-					return acc + cur.totalOrder;
-				}
-			}, 0),
-			'Danh sách món': order.orderList
-				.map(item => {
-					if (validRange) {
-						return item.menuType.split('-')[0] === range
-							? item.name + ' x' + item.totalOrder + ' \n'
-							: '';
-					} else {
-						return item.name + ' x' + item.totalOrder + ' \n';
-					}
-				})
-				.join(''),
-			'Tổng tiền': validRange ? totalVolume : order.orderVolume,
-			'Ghi chú': order.takeNote || '',
-			'Địa chỉ': order.location || '',
-			'Trạng thái': order.status === 'approved' ? 'Đã duyệt' : 'Chưa duyệt',
-			'Thời gian tạo': formatISODate(order.createdAt),
-			'Thời gian cập nhật': formatISODate(order.updatedAt),
+			...order,
+			orderList: foodsIds,
+			orderVolume: totalVolume,
+			createdAt: order.createdAt,
 		};
 	});
-	// console.log(allOrders);
-	// allOrders.forEach(item => {
-	// 	if (item.createdAt > new Date('2024-03-31T16:28:45.392Z')) console.log(item.createdAt);
-	// });
-	const exportData = await Promise.all(orderResult);
-	const exportService = new ExportService();
-	const buffer = await exportService.exportDataForVisualization(
-		exportData
-			.filter(item => item['Số đơn'] !== 0)
-			.map((item, index) => ({ STT: index + 1, ...item })),
-		'donhang',
-	);
-	const headers = new Headers();
-	headers.append(
-		'Content-Disposition',
-		'attachment; filename="thongtindonhang-' + range + '.xlsx"',
-	);
-	headers.append('Content-Type', 'application/vnd.ms-excel');
 
-	return new Response(buffer, {
-		headers,
-		// status: 200,
-	});
+	const exportData = await Promise.all(orderResult);
+
+	return dataTemplate({ data: exportData.filter(item => item.orderVolume > 0), count }, 200);
 }

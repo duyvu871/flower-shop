@@ -6,7 +6,7 @@ import { tw } from '@/ultis/tailwind.ultis';
 import { FaPlus, FaSort } from 'react-icons/fa';
 import { UserInterface } from 'types/userInterface';
 import { IoIosSearch } from 'react-icons/io';
-import { TimeRangeLabel } from '@/ultis/timeFormat.ultis';
+import { orderTimeRangeSummary, TimeRangeLabel } from '@/ultis/timeFormat.ultis';
 // import {UserInterface} from "types/userInterface";
 // import {formatCurrency} from "@/ultis/currency-format";
 // import store from "@/adminRedux/store";
@@ -185,10 +185,26 @@ function TableTemplate({
 														</th>
 													);
 												}
-
+												if (item.key === 'orderList') {
+													return (
+														<>
+															{Object.keys(orderTimeRangeSummary).map((key, index) => (
+																<th
+																	key={index}
+																	className={
+																		'px-6 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap'
+																	}>
+																	{orderTimeRangeSummary[key as keyof typeof orderTimeRangeSummary]}
+																</th>
+															))}
+														</>
+													);
+												}
 												if (item.key === 'takeNote') {
 													return (
-														<th key={index} className={'px-6 py-3 text-xs text-gray-500 min-w-[300px]'}>
+														<th
+															key={index}
+															className={'px-6 py-3 text-xs text-gray-500 min-w-[300px]'}>
 															{item.title}
 														</th>
 													);
@@ -206,7 +222,10 @@ function TableTemplate({
 																<FaSort
 																	className={'cursor-pointer hover:text-blue-600 hover:scale-110'}
 																	onClick={() => {
-																		if (currentSort.key === item.key && defaultTableData[item.key] !== undefined) {
+																		if (
+																			currentSort.key === item.key &&
+																			defaultTableData[item.key] !== undefined
+																		) {
 																			if (currentSort.order === 'asc') {
 																				setCurrentSort({
 																					key: item.key as keyof UserInterface,

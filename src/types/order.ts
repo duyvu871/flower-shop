@@ -9,7 +9,7 @@ export interface OrderType {
 		menuItem: ObjectId;
 		totalOrder: number;
 		takeNote: string;
-		menuType: 'morning-menu' | 'afternoon-menu' | 'evening-menu';
+		menuType: 'morning-menu' | 'afternoon-menu' | 'evening-menu' | 'other-menu';
 	}[];
 	fullName: string;
 	takeOrderName: string;

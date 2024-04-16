@@ -107,7 +107,7 @@ function SearchScreen({}: SearchScreenProps) {
 							<p className={'text-xl font-semibold text-center'}>
 								{searchResult[key].length ? TranslateMenuType[key] : ''}
 							</p>
-							<div className={'flex flex-col justify-center items-center pl-2'}>
+							<div className={'flex flex-col justify-center items-center pl-2 w-full'}>
 								{searchResult[key].map((item, index) => {
 									storeItemToLocalStorage(item);
 									return (

@@ -4,12 +4,15 @@ import { Button, Image } from '@nextui-org/react';
 import store from '@/adminRedux/store';
 import { openModal } from '@/adminRedux/action/OpenModal';
 import { formatCurrency, formatCurrencyWithDot } from '@/ultis/currency-format';
-import { OrderStatus } from 'types/order';
-import { formatISODate } from '@/ultis/timeFormat.ultis';
+import { OrderStatus, OrderType } from 'types/order';
+import { formatISODate, orderTimeRangeSummary } from '@/ultis/timeFormat.ultis';
 import { FiEye } from 'react-icons/fi';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
-import { MdContentCopy } from 'react-icons/md';
+// import { MdContentCopy } from 'react-icons/md';
 import Copy from '@/components/CopyToClipBoard';
+import { groupBy } from '@/ultis/array-method';
+
+(orderTimeRangeSummary as any).other = 'Khác';
 
 interface TableBodyProps {
 	page: number;
@@ -112,9 +115,13 @@ function TableBody({
 
 						if (key === 'action') {
 							return (
-								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-base cursor-pointer'}>
+								<td
+									key={'td' + index}
+									className={'px-3 py-4 whitespace-nowrap text-base cursor-pointer'}>
 									<Button
-										className={' px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8'}
+										className={
+											' px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8'
+										}
 										onClick={() => {
 											// @ts-ignore
 											// console.log(item._id as unknown as string, type)
@@ -134,7 +141,9 @@ function TableBody({
 
 						if (key === 'view') {
 							return (
-								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-base cursor-pointer'}>
+								<td
+									key={'td' + index}
+									className={'px-3 py-4 whitespace-nowrap text-base cursor-pointer'}>
 									<Button
 										className={
 											'w-full px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8 flex justify-center items-center gap-1'
@@ -157,21 +166,31 @@ function TableBody({
 						}
 
 						if (key === 'orderList') {
+							const orderList = (item[key] as OrderType['orderList']) || [];
+							const groupByMenuType = groupBy(orderList, 'menuType') as Record<
+								OrderType['orderList'][number]['menuType'],
+								OrderType['orderList']
+							>;
+							// console.log(groupByMenuType);
 							return (
-								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap '}>
-									<div className={'flex flex-col justify-start items-center'}>
-										{(item[key] || []).map((order, index) => (
-											<div
-												key={'order' + index}
-												className={'flex flex-row justify-start items-center gap-1 w-full'}>
-												<span className={'text-base font-semibold line-clamp-2 text-gray-500'}>
-													{order.name}
-												</span>
-												<span className={'text-base'}>x{order.totalOrder}</span>
-											</div>
-										))}
-									</div>
-								</td>
+								<>
+									{Object.keys(orderTimeRangeSummary).map(
+										(key: keyof typeof orderTimeRangeSummary, index) => (
+											<td
+												key={'td' + index}
+												className={'px-3 py-4 whitespace-break-spaces gap-1 text-base'}>
+												{(groupByMenuType[`${key}-menu`] || []).map((order, index) => (
+													<div
+														key={index}
+														className={'flex flex-row justify-center whitespace-nowrap gap-1'}>
+														<span>{order.name}</span>
+														<span>x{order.totalOrder}</span>
+													</div>
+												))}
+											</td>
+										),
+									)}
+								</>
 							);
 						}
 
@@ -203,14 +222,22 @@ function TableBody({
 						if (key === 'isPaid') {
 							return (
 								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap '}>
-									{item[key] ? <GreenBadge>Đã thanh toán</GreenBadge> : <RedBadge>Chưa thanh toán</RedBadge>}
+									{item[key] ? (
+										<GreenBadge>Đã thanh toán</GreenBadge>
+									) : (
+										<RedBadge>Chưa thanh toán</RedBadge>
+									)}
 								</td>
 							);
 						}
 						if (key === 'confirmed') {
 							return (
 								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap '}>
-									{item[key] ? <GreenBadge>Đã xác nhận</GreenBadge> : <RedBadge>Chưa xác nhận</RedBadge>}
+									{item[key] ? (
+										<GreenBadge>Đã xác nhận</GreenBadge>
+									) : (
+										<RedBadge>Chưa xác nhận</RedBadge>
+									)}
 								</td>
 							);
 						}
@@ -226,7 +253,9 @@ function TableBody({
 
 						if (key === 'price') {
 							return (
-								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-base font-semibold'}>
+								<td
+									key={'td' + index}
+									className={'px-3 py-4 whitespace-nowrap text-base font-semibold'}>
 									{formatCurrencyWithDot((item[key] || 0).toString())}
 									.000đ
 								</td>
@@ -235,7 +264,9 @@ function TableBody({
 
 						if (key === 'image') {
 							return (
-								<td key={'td' + index} className={'px-3 py-4 flex justify-center items-center text-base'}>
+								<td
+									key={'td' + index}
+									className={'px-3 py-4 flex justify-center items-center text-base'}>
 									<Image
 										shadow='sm'
 										radius='lg'
@@ -250,7 +281,9 @@ function TableBody({
 
 						if (key === 'orderVolume') {
 							return (
-								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-base font-semibold'}>
+								<td
+									key={'td' + index}
+									className={'px-3 py-4 whitespace-nowrap text-base font-semibold'}>
 									{formatCurrency((item[key] || 0).toString())}đ
 								</td>
 							);
@@ -281,9 +314,13 @@ function TableBody({
 						}
 
 						return (
-							<td key={'td' + index} className={'px-3 py-4 whitespace-break-spaces text-base max-w-xl '}>
+							<td
+								key={'td' + index}
+								className={'px-3 py-4 whitespace-break-spaces text-base max-w-xl '}>
 								{actions[index] === 'formatCurrency' ? (
-									<span className={'font-semibold'}>{formatCurrency((item[key] || 0).toString())}đ</span>
+									<span className={'font-semibold'}>
+										{formatCurrency((item[key] || 0).toString())}đ
+									</span>
 								) : (
 									item[key]
 								)}
