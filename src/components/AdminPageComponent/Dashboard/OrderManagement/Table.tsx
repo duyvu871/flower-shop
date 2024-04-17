@@ -167,7 +167,10 @@ function Table({}: TableProps) {
 	};
 
 	useLayoutEffect(() => {
-		fetchData(currentPage);
+		fetchData(currentPage).then(data => {
+			store.dispatch(setCurrentTable(data.data));
+			setTotalPage(Math.ceil(data.count / 10));
+		});
 	}, [currentPage, currentSort]);
 
 	useEffect(() => {
