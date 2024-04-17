@@ -126,7 +126,7 @@ function AdminNavbar({}: AdminNavbarProps) {
 			} else {
 				clearInterval(interval);
 			}
-			console.log(count);
+			// console.log(count);
 		}, 20000);
 
 		return () => {
@@ -173,7 +173,10 @@ function AdminNavbar({}: AdminNavbarProps) {
 												isReadOnly
 												classNames={{
 													base: ['data-[hover=true]:bg-white', 'data-[hover=true]:text-blue-600'],
-													wrapper: ['data-[hover=true]:bg-red-100', 'data-[hover=true]:text-blue-600'],
+													wrapper: [
+														'data-[hover=true]:bg-red-100',
+														'data-[hover=true]:text-blue-600',
+													],
 												}}>
 												<div className='flex justify-center items-center gap-2'>
 													<Pagination

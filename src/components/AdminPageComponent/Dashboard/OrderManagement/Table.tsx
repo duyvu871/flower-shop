@@ -247,6 +247,7 @@ function Table({}: TableProps) {
 							base: 'bg-white rounded-xl',
 						}}
 						onChange={e => {
+							console.log(Object.keys(orderTimeRangeSummary));
 							setExportTimeRange(e.target.value as keyof typeof orderTimeRangeSummary);
 						}}
 						variant={'bordered'}

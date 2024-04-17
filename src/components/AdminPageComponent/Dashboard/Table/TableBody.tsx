@@ -179,14 +179,18 @@ function TableBody({
 											<td
 												key={'td' + index}
 												className={'px-3 py-4 whitespace-break-spaces gap-1 text-base'}>
-												{(groupByMenuType[`${key}-menu`] || []).map((order, index) => (
-													<div
-														key={index}
-														className={'flex flex-row justify-center whitespace-nowrap gap-1'}>
-														<span>{order.name}</span>
-														<span>x{order.totalOrder}</span>
-													</div>
-												))}
+												<div className={'flex flex-col justify-center items-start gap-1'}>
+													{(groupByMenuType[`${key}-menu`] || []).map((order, index) => (
+														<div
+															key={index}
+															className={
+																'flex flex-row justify-center items-start whitespace-nowrap gap-1'
+															}>
+															<span>{order.name}</span>
+															<span>x{order.totalOrder}</span>
+														</div>
+													))}
+												</div>
 											</td>
 										),
 									)}

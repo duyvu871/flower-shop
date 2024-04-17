@@ -205,6 +205,7 @@ export enum TimeRange {
 	morning = 'trua',
 	afternoon = 'chieu',
 	evening = 'toi',
+	other = 'khac',
 }
 
 export enum TimeRangeLabel {

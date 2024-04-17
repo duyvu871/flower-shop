@@ -62,17 +62,11 @@ export async function GET(req: NextRequest) {
 
 	const orderResult = allOrders.map(async (order, index) => {
 		const orderList = order.orderList as OrderType['orderList'];
-		const foodsIds = orderList
-			.filter(item => {
-				// check menuType because some old order does have it
-				if (item?.menuType) return item.menuType.split('-')[0] === range;
-				else return true;
-			})
-			.map(item => ({
-				menuItem: item.menuItem,
-				totalOrder: item.totalOrder,
-				menuType: item.menuType,
-			}));
+		const foodsIds = orderList.filter(item => {
+			// check menuType because some old order does have it
+			if (item?.menuType) return item.menuType.split('-')[0] === range;
+			else return true;
+		});
 		// calculate volume of valid order items
 		let totalVolume = 0;
 		for (let i = 0; i < foodsIds.length; i++) {
