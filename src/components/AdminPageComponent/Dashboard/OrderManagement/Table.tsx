@@ -175,18 +175,10 @@ function Table({}: TableProps) {
 
 	useEffect(() => {
 		setIsLoading(true);
-
-		// if (data['user-data'+currentPage]) {
-		//     setIsLoading(false);
-		//     return;
-		// }
 		let count = 0;
 		const interval = setInterval(() => {
 			count++;
 			if (currentPage === 1 && isRealTime) {
-				// if () {
-				//     fetchData(currentPage);
-				// }
 				fetchData(currentPage).then(data => {
 					if (isRealTime) {
 						store.dispatch(setCurrentTable(data.data));

@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
 			}
 			// console.log(i);
 		}
-		// console.log('totalVolume', foods);
+
 		return {
 			...order,
 			orderList: foodsIds,

@@ -119,13 +119,13 @@ export function getEndTime(range: 'morning' | 'afternoon' | 'evening' | 'other')
 	let endTime: Date;
 	switch (range) {
 		case 'morning':
-			endTime = new Date(`${currentDayFormat} 09:30`);
+			endTime = new Date(`${currentDayFormat} 23:59`);
 			break;
 		case 'afternoon':
-			endTime = new Date(`${currentDayFormat} 15:30`);
+			endTime = new Date(`${currentDayFormat} 23:59`);
 			break;
 		case 'evening':
-			endTime = new Date(`${currentDayFormat} 20:30`);
+			endTime = new Date(`${currentDayFormat} 23:59`);
 			break;
 		default:
 			endTime = currentDate;
