@@ -222,4 +222,5 @@ export enum orderTimeRangeSummary {
 	afternoon = 'Chiều',
 	evening = 'Tối',
 	other = 'Khác',
+	all = 'Tất cả',
 }

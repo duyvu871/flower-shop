@@ -239,13 +239,13 @@ export async function GET(req: NextRequest) {
 	worksheet['!merges'] = mergeCells();
 
 	// append sheet to workbook
-	utils.book_append_sheet(workbook, worksheet, 'Tất cả');
+	utils.book_append_sheet(workbook, worksheet, orderTimeRangeSummary[range]);
 	const buffer = await write(workbook, {
 		type: 'buffer',
 		bookType: 'xlsx',
 	});
 	const headers = new Headers();
-	headers.append('Content-Disposition', 'attachment; filename="thongtindonhang' + '.xlsx"');
+	headers.append('Content-Disposition', 'attachment; filename="thongtindonhang.xlsx"');
 	headers.append('Content-Type', 'application/vnd.ms-excel');
 
 	// await client.close();
