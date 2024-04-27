@@ -5,6 +5,7 @@ import { uid } from 'uid';
 import { UserInterface } from 'types/userInterface';
 import { ObjectId } from 'mongodb';
 import { NotificationForAdmin } from '@/services/notification_for_admin';
+import { checkValidFullName, isContainSpecialCharacter } from '@/ultis/validate.ultis';
 
 export async function signUp(
 	credentials: Record<'fullName' | 'password' | 'phone' | 'email', string> | undefined,
@@ -30,6 +31,11 @@ export async function signUp(
 	if (user) {
 		throw new Error('Tài khoản đã tồn tại');
 	}
+
+	checkValidFullName(fullName, message => {
+		if (message) throw new Error(message);
+		return true;
+	});
 
 	const doc: UserInterface = {
 		_id: new ObjectId(),

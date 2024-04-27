@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/useToast';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import NormalField from '@/components/InputField/NormalField';
+import { checkValidFullName } from '@/ultis/validate.ultis';
 
 interface FormState {
 	fullName: string;
@@ -115,6 +116,20 @@ export default function SignInForm() {
 			return error('Mật khẩu không trùng khớp');
 		} else {
 			setFormState({ ...formState, retypePasswordError: '' });
+		}
+
+		const validName = checkValidFullName(fullName, message => {
+			if (message === '') {
+				setFormState({ ...formState, fullNameError: '' });
+				return;
+				// return success('Tên hợp lệ');
+			}
+			setFormState({ ...formState, fullNameError: message });
+			return error(message);
+		});
+
+		if (!validName) {
+			return;
 		}
 
 		if (type === 'submit') {

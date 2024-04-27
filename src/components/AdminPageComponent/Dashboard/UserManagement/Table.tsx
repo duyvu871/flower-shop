@@ -177,7 +177,7 @@ function Table({}: TableProps) {
 		let count = 0;
 		const interval = setInterval(() => {
 			count++;
-			if (currentPage === 1) {
+			if (currentPage === 1 && searchValue === '') {
 				// if () {
 				//     fetchData(currentPage);
 				// }
@@ -191,7 +191,7 @@ function Table({}: TableProps) {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [currentPage]);
+	}, [currentPage, searchValue]);
 
 	useEffect(() => {
 		const search = async () => {

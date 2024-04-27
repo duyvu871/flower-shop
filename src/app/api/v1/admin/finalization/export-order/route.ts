@@ -81,9 +81,7 @@ export async function GET(req: NextRequest) {
 				});
 				totalVolume += foodsIds[i].totalOrder * foods[foodsIds[i].menuItem.toString()].price * 1000;
 			}
-			// console.log(i);
 		}
-		// console.log('totalVolume', foods);
 		return {
 			// STT: index + 1,
 			'Mã người dùng': String(order.userId),

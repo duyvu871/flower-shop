@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Input, Spacer } from '@nextui-org/react';
 import { EyeFilledIcon, EyeSlashFilledIcon } from '@nextui-org/shared-icons';
 import { useToast } from '@/hooks/useToast';
+import { checkValidFullName } from '@/ultis/validate.ultis';
 
 interface CreateUserProps {}
 
@@ -87,6 +88,20 @@ function CreateUser({}: CreateUserProps) {
 			setFormState({ ...formState, retypePasswordError: '' });
 		}
 
+		const validName = checkValidFullName(fullName, message => {
+			if (message === '') {
+				setFormState({ ...formState, fullNameError: '' });
+				return;
+				// return success('Tên hợp lệ');
+			}
+			setFormState({ ...formState, fullNameError: message });
+			return error(message);
+		});
+
+		if (!validName) {
+			return;
+		}
+
 		if (type === 'submit') {
 			await sendSignUpRequest();
 		}
@@ -118,12 +133,12 @@ function CreateUser({}: CreateUserProps) {
 	};
 
 	return (
-		<div className={'flex flex-col justify-center items-center w-full'}>
+		<div className={'flex flex-col justify-center items-center w-full px-20'}>
 			<div className={'pb-4'}>
 				<h1 className={'text-2xl font-bold'}>Tạo tài khoản</h1>
 			</div>
 			<div className={'flex flex-col justify-center items-center w-full'}>
-				<div className={'flex flex-col justify-center items-start md:flex-row gap-4'}>
+				<div className={'w-full flex flex-col justify-center items-start md:flex-row gap-4'}>
 					<Input
 						type='text'
 						autoSave={'on'}
@@ -143,6 +158,7 @@ function CreateUser({}: CreateUserProps) {
 							} else forceFormState('fullNameError', '');
 							forceFormState('fullName', value);
 						}}
+						className={'w-full'}
 					/>
 					<Input
 						type='text'
@@ -167,6 +183,7 @@ function CreateUser({}: CreateUserProps) {
 							forceFormState('phoneNumberError', '');
 							forceFormState('phoneNumber', value);
 						}}
+						className={'w-full'}
 					/>
 				</div>
 				<Spacer y={4} />
@@ -277,7 +294,7 @@ function CreateUser({}: CreateUserProps) {
 				className={'w-full bg-orange-600 text-white'}
 				color='primary'
 				variant='flat'>
-				Đăng Ký
+				Tạo tài khoản
 			</Button>
 		</div>
 	);

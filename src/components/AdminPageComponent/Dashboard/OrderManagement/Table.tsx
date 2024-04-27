@@ -13,6 +13,10 @@ import { Button, Select, SelectItem } from '@nextui-org/react';
 import Link from 'next/link';
 import { MenuItemType, OrderType } from 'types/order';
 import { ObjectId } from 'mongodb';
+import NormalField from '@/components/InputField/NormalField';
+import DatePicker from '@/components/DatePicker';
+import { formatDate } from 'date-fns';
+import { startTime as getStartTime, getEndTime } from '@/ultis/timeFormat.ultis';
 
 interface TableProps {}
 
@@ -107,6 +111,9 @@ function Table({}: TableProps) {
 		React.useState<keyof typeof orderTimeRangeSummary>('morning');
 	const [exportTimeRange, setExportTimeRange] =
 		useState<keyof typeof orderTimeRangeSummary>('morning');
+	const [startTime, setStartTime] = useState<Date>(new Date());
+	const [endTime, setEndTime] = useState<Date>(new Date());
+
 	const [isRealTime, setIsRealTime] = useState<boolean>(true);
 
 	const fetchData = async (page: number) => {
@@ -130,14 +137,22 @@ function Table({}: TableProps) {
 		});
 	};
 
-	const generateXLSX = async (range: string) => {
-		const response = await fetch('/api/v1/admin/finalization/export-order?range=' + range);
+	const generateXLSX = async (range: string, start?: Date, end?: Date) => {
+		console.log(range, start, end);
+		const response = await fetch(
+			'/api/v1/admin/finalization/export-order-with-date?start=' +
+				formatDate(start || startTime, "yyyy-MM-dd'T'HH:mm:ss.SSS") +
+				'&end=' +
+				formatDate(end || endTime, "yyyy-MM-dd'T'HH:mm:ss.SSS") +
+				'&range=' +
+				range,
+		);
 		const fileBlob = await response.blob();
 		// console.log(fileBlob);
 		// this works and prompts for download
 		var link = document.createElement('a'); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
 		link.href = window.URL.createObjectURL(fileBlob);
-		link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsb';
+		link.download = 'thongtindonhang' + '.xlsx';
 		link.click();
 		link.remove();
 	};
@@ -274,7 +289,11 @@ function Table({}: TableProps) {
 					<button
 						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
 						onClick={() => {
-							generateXLSX(exportTimeRange);
+							generateXLSX(
+								exportTimeRange,
+								getStartTime(exportTimeRange),
+								getEndTime(exportTimeRange),
+							);
 						}}>
 						Xuất file
 					</button>
@@ -283,34 +302,39 @@ function Table({}: TableProps) {
 			{
 				<>
 					<div className={'flex justify-center items-center gap-1'}>
-						<Select
-							items={Object.keys(TimeRangeLabel).map(key => ({
-								value: key,
-								label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],
-							}))}
-							selectedKeys={[range]}
-							label='Phạm vi'
-							// placeholder=""
-							className='max-w-xs w-32'
-							classNames={{
-								base: 'bg-white rounded-xl',
-							}}
-							onChange={e => {
-								setRange(e.target.value as keyof typeof TimeRangeLabel);
-							}}
-							variant={'bordered'}
-							color={'primary'}
-							showScrollIndicators={true}>
-							{covan => (
-								<SelectItem key={covan.value} value={covan.value}>
-									{covan.label}
-								</SelectItem>
-							)}
-						</Select>
+						<div className={'flex justify-center items-center mr-8'}>
+							<DatePicker setSelectedDate={setStartTime} selectedDate={startTime} />
+							<span className={'mx-2'}>-</span>
+							<DatePicker setSelectedDate={setEndTime} selectedDate={endTime} />
+						</div>
+						{/*<Select*/}
+						{/*	items={Object.keys(TimeRangeLabel).map(key => ({*/}
+						{/*		value: key,*/}
+						{/*		label: TimeRangeLabel[key as keyof typeof TimeRangeLabel],*/}
+						{/*	}))}*/}
+						{/*	selectedKeys={[range]}*/}
+						{/*	label='Phạm vi'*/}
+						{/*	// placeholder=""*/}
+						{/*	className='max-w-xs w-32'*/}
+						{/*	classNames={{*/}
+						{/*		base: 'bg-white rounded-xl',*/}
+						{/*	}}*/}
+						{/*	onChange={e => {*/}
+						{/*		setRange(e.target.value as keyof typeof TimeRangeLabel);*/}
+						{/*	}}*/}
+						{/*	variant={'bordered'}*/}
+						{/*	color={'primary'}*/}
+						{/*	showScrollIndicators={true}>*/}
+						{/*	{covan => (*/}
+						{/*		<SelectItem key={covan.value} value={covan.value}>*/}
+						{/*			{covan.label}*/}
+						{/*		</SelectItem>*/}
+						{/*	)}*/}
+						{/*</Select>*/}
 						<button
 							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
 							onClick={() => {
-								generateXLSX(range);
+								generateXLSX('all');
 							}}>
 							Xuất file
 						</button>

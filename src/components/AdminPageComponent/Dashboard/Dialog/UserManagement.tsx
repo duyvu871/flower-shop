@@ -99,6 +99,8 @@ function UserManagement({ _id }: UserManagementProps) {
 
 	const [openConfirmDelete, setOpenConfirmDelete] = React.useState<boolean>(false);
 	const [confirmDelete, setConfirmDelete] = React.useState<boolean>(false);
+	const [isLoadingUpdate, setIsLoadingUpdate] = React.useState<boolean>(false);
+
 	const handleUpdate = async () => {
 		if (newPassword && confirmPassword) {
 			if (newPassword !== confirmPassword) {
@@ -316,7 +318,7 @@ function UserManagement({ _id }: UserManagementProps) {
 											id={'newAddress'}
 											value={newAddress}
 											onChange={e => setNewAddress(e.target.value)}
-											disabled
+											// disabled
 										/>
 									</div>
 								</div>
@@ -407,7 +409,9 @@ function UserManagement({ _id }: UserManagementProps) {
 										onClick={() => {
 											deleteAccount();
 											setOpenConfirmDelete(false);
-										}}>
+										}}
+										disabled={isUpdating}>
+										{isLoadingUpdate ? <Spinner size={'sm'} color={'white'} /> : ''}
 										Xác nhận
 									</Button>
 									<Button color={'danger'} onClick={() => setOpenConfirmDelete(false)}>
