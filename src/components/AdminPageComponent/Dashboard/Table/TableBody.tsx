@@ -178,16 +178,18 @@ function TableBody({
 										(key: keyof typeof orderTimeRangeSummary, index) => (
 											<td
 												key={'td' + index}
-												className={'px-3 py-4 whitespace-break-spaces gap-1 text-base'}>
-												<div className={'flex flex-col justify-center items-start gap-1'}>
+												className={'h-[inherit] whitespace-break-spaces gap-1 text-base'}>
+												<div className={'h-full w-full justify-around items-start gap-2'}>
 													{(groupByMenuType[`${key}-menu`] || []).map((order, index) => (
 														<div
 															key={index}
 															className={
-																'flex flex-row justify-center items-start whitespace-nowrap gap-1'
+																'h-full w-full flex flex-row justify-between items-start whitespace-nowrap gap-1 p-2'
 															}>
-															<span>{order.name}</span>
-															<span>x{order.totalOrder}</span>
+															<span className={'h-full'}>{order.name}</span>
+															<span className={'h-full w-14 pl-3 border-l-[1px] border-gray-800'}>
+																{order.totalOrder}
+															</span>
 														</div>
 													))}
 												</div>

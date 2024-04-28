@@ -292,6 +292,7 @@ function Table({}: TableProps) {
 							generateXLSX(
 								exportTimeRange,
 								getStartTime(exportTimeRange),
+								//@ts-ignore
 								getEndTime(exportTimeRange),
 							);
 						}}>
