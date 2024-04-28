@@ -38,63 +38,63 @@ const defaultTableData: OrderType = {
 	fullName: '',
 };
 
-const headerTable = [
-	{
-		title: 'STT',
-		key: 'index',
-		isSort: false,
-	},
-	{
-		title: 'Đơn giá',
-		key: 'orderVolume',
-		isSort: true,
-	},
-	{
-		key: 'orderList',
-		title: 'Danh sách món',
-		currentFilter: '',
-		isSort: false,
-	},
-	{
-		title: 'Trạng thái',
-		key: 'status',
-		isSort: false,
-	},
-	{
-		title: 'Tên người dùng',
-		key: 'fullName',
-		isSort: false,
-	},
-	// {
-	// 	title: 'order-list',
-	// 	key: 'orderList',
-	// 	isSort: false,
-	// },
-	{
-		title: 'Ghi chú',
-		key: 'takeNote',
-		isSort: false,
-	},
-	// {
-	//     title: "Địa chỉ",
-	//     key: "location",
-	//     isSort: false,
-	//     // action: "formatDate"
-	// },
-	{
-		title: 'Ngày tạo',
-		key: 'createdAt',
-		action: 'formatDate',
-		isSort: true,
-	},
-	{
-		title: 'Xem chi tiết',
-		key: 'view',
-		isSort: false,
-	},
-];
-
 function Table({}: TableProps) {
+	const headerTable = [
+		{
+			title: 'STT',
+			key: 'index',
+			isSort: false,
+		},
+		{
+			title: 'Đơn giá',
+			key: 'orderVolume',
+			isSort: true,
+		},
+		{
+			key: 'orderList',
+			title: 'Danh sách món',
+			currentFilter: '',
+			isSort: false,
+		},
+		{
+			title: 'Trạng thái',
+			key: 'status',
+			isSort: false,
+		},
+		{
+			title: 'Tên người dùng',
+			key: 'fullName',
+			isSort: false,
+		},
+		// {
+		// 	title: 'order-list',
+		// 	key: 'orderList',
+		// 	isSort: false,
+		// },
+		{
+			title: 'Ghi chú',
+			key: 'takeNote',
+			isSort: false,
+		},
+		// {
+		//     title: "Địa chỉ",
+		//     key: "location",
+		//     isSort: false,
+		//     // action: "formatDate"
+		// },
+		{
+			title: 'Ngày tạo',
+			key: 'createdAt',
+			action: 'formatDate',
+			isSort: true,
+		},
+		{
+			title: 'Xem chi tiết',
+			key: 'view',
+			isSort: false,
+		},
+	];
+
 	const [data, setData] = React.useState<Record<string, UserInterface[]>>({});
 	const [currentPage, setCurrentPage] = React.useState<number>(1);
 	const [totalPage, setTotalPage] = React.useState<number>(1);
@@ -306,10 +306,13 @@ function Table({}: TableProps) {
 			{
 				<>
 					<div className={'flex justify-center items-center gap-1'}>
-						<div className={'flex justify-center items-center mr-8'}>
+						<div className={'flex justify-center items-center mr-8 relative'}>
 							<DatePicker setSelectedDate={setStartTime} selectedDate={startTime} />
 							<span className={'mx-2'}>-</span>
 							<DatePicker setSelectedDate={setEndTime} selectedDate={endTime} />
+							<span className={'mx-2 text-gray-600 text-xs italic absolute top-10'}>
+								thời gian tính từ 0 giờ ngày hiển thị
+							</span>
 						</div>
 						{/*<Select*/}
 						{/*	items={Object.keys(TimeRangeLabel).map(key => ({*/}

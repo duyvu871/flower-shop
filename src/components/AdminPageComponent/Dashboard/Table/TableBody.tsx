@@ -27,6 +27,7 @@ interface TableBodyProps {
 		value: boolean;
 	}[];
 	setSelectedItems?: ({ key, value }: { key: string; value: boolean }) => void;
+	specialFilter?: string;
 }
 
 enum PaymentMethod {
@@ -87,9 +88,10 @@ function TableBody({
 	isShowSelect,
 	selectedItems,
 	setSelectedItems,
+	specialFilter,
 }: TableBodyProps) {
 	// console.log(type)
-
+	console.log(specialFilter);
 	return (
 		<tbody className={'className={"divide-y divide-default-200"}'}>
 			{data.map((item, data_index) => (
@@ -174,8 +176,15 @@ function TableBody({
 							// console.log(groupByMenuType);
 							return (
 								<>
-									{Object.keys(orderTimeRangeSummary).map(
-										(key: keyof typeof orderTimeRangeSummary, index) => (
+									{Object.keys(orderTimeRangeSummary)
+										.filter(orderKey =>
+											!specialFilter
+												? true
+												: specialFilter === 'all'
+													? true
+													: specialFilter === orderKey,
+										)
+										.map((key: keyof typeof orderTimeRangeSummary, index) => (
 											<td
 												key={'td' + index}
 												className={'h-[inherit] whitespace-break-spaces gap-1 text-base'}>
@@ -194,8 +203,7 @@ function TableBody({
 													))}
 												</div>
 											</td>
-										),
-									)}
+										))}
 								</>
 							);
 						}

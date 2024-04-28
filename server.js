@@ -1,43 +1,46 @@
-const { createServer } = require('http')
-const { parse } = require('url')
-const next = require('next')
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 const dotenv = require('dotenv');
 dotenv.config({
-    path: './.env'
+	path: process.env.NODE_ENV === 'production' ? './.env' : './env.local',
 });
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = process.env.NODE_ENV === "production" ? '14.225.218.92 ': process.env.DEV_HOSTNAME||'localhost';
+const hostname =
+	process.env.NODE_ENV === 'production' ? 'commanau.com ' : process.env.DEV_HOSTNAME || 'localhost';
 console.log('hostname', hostname);
-console.log(process.env.NODE_ENV)
+console.log(process.env.NODE_ENV);
 const port = process.env.PORT || 3000;
 // when using middlewares `hostname` and `port` must be provided below
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-    createServer(async (req, res) => {
-        try {
-            // Be sure to pass `true` as the second argument to `url.parse`.
-            // This tells it to parse the query portion of the URL.
-            const parsedUrl = parse(req.url, true);
-            const { pathname, query } = parsedUrl;
+	createServer(async (req, res) => {
+		try {
+			// Be sure to pass `true` as the second argument to `url.parse`.
+			// This tells it to parse the query portion of the URL.
+			const parsedUrl = parse(req.url, true);
+			const { pathname, query } = parsedUrl;
 
-            if (pathname === '/a') {
-                await app.render(req, res, '/a', query);
-            } else if (pathname === '/b') {
-                await app.render(req, res, '/b', query);
-            } else {
-                await handle(req, res, parsedUrl);
-            }
-        } catch (err) {
-            console.error('Error occurred handling', req.url, err);
-            res.statusCode = 500;
-            res.end('internal server error');
-        }
-    }).once('error', (err) => {
-        console.error(err);
-        process.exit(1);
-    }).listen(port, () => {
-        console.log(`> Ready on http://${hostname}:${port}`);
-    });
+			if (pathname === '/a') {
+				await app.render(req, res, '/a', query);
+			} else if (pathname === '/b') {
+				await app.render(req, res, '/b', query);
+			} else {
+				await handle(req, res, parsedUrl);
+			}
+		} catch (err) {
+			console.error('Error occurred handling', req.url, err);
+			res.statusCode = 500;
+			res.end('internal server error');
+		}
+	})
+		.once('error', err => {
+			console.error(err);
+			process.exit(1);
+		})
+		.listen(port, () => {
+			console.log(`> Ready on http://${hostname}:${port}`);
+		});
 });

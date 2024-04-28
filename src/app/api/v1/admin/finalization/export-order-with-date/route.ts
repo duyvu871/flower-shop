@@ -18,6 +18,7 @@ import { utils, write } from 'xlsx';
 import { object } from 'prop-types';
 import { cli } from 'yaml/dist/cli';
 import { UserInterface } from 'types/userInterface';
+import { all } from 'deepmerge';
 
 export async function GET(req: NextRequest) {
 	const session = getServerAuthSession();
@@ -230,6 +231,7 @@ export async function GET(req: NextRequest) {
 				return mergeData;
 			});
 	};
+
 	// create new workbook
 	const workbook = utils.book_new();
 	// create new worksheet

@@ -262,7 +262,10 @@ export async function CreateWithdrawOrder(orderData: WithdrawPayload) {
 
 	const userData = await userCollection.findOne({ _id: new ObjectId(uid) });
 	if (!userData) {
-		return NextResponse.json({ error: 'Không tìm thấy người dùng trong hệ thống' }, { status: 404 });
+		return NextResponse.json(
+			{ error: 'Không tìm thấy người dùng trong hệ thống' },
+			{ status: 404 },
+		);
 	}
 	if (userData.balance < volume) {
 		return NextResponse.json({ error: 'Số dư không đủ' }, { status: 400 });
@@ -336,7 +339,7 @@ export async function getMenuList(
 	const perPage = DBConfigs.perPage; // 10
 	const client = await clientPromise; // connect to database
 	const orderCollection = client.db(process.env.DB_NAME).collection(`${DBConfigs.menu[time]}-menu`);
-	const count = await orderCollection.countDocuments(); // count total documents
+
 	const skip = (Number(page) - 1) * perPage; // 0, 10, 20, 30
 	const regex = new RegExp(
 		[
@@ -349,14 +352,10 @@ export async function getMenuList(
 		].join(''),
 		'i',
 	);
+
 	const filter =
-		role === 'admin'
-			? searchValue
-				? { name: { $regex: regex } }
-				: {}
-			: time === 'other'
-				? {}
-				: { isSelect: true };
+		role === 'admin' ? (searchValue ? { name: { $regex: regex } } : {}) : { isSelect: true };
+	const count = await orderCollection.countDocuments(filter); // count total documents
 	const paginate = await orderCollection
 		.find(filter)
 		.sort({

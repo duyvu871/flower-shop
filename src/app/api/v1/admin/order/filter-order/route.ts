@@ -78,6 +78,7 @@ export async function GET(req: NextRequest) {
 	const orderResult: Promise<OrderType>[] = allOrders.map(async (order, index) => {
 		const orderList = order.orderList as OrderType['orderList']; // get order list
 		const foodsIds = orderList.filter(item => {
+			if (range === 'all') return true;
 			// check menuType because some old order does have it
 			if (item?.menuType) return item.menuType.split('-')[0] === range;
 			else return true;

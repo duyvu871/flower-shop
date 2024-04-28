@@ -191,7 +191,13 @@ function TableTemplate({
 															{Object.keys(orderTimeRangeSummary)
 																.filter(timeLabel =>
 																	// @ts-ignore
-																	!item?.currentFilter ? true : item.currentFilter === timeLabel,
+																	!item?.currentFilter
+																		? true
+																		: // @ts-ignore
+																			item.currentFilter === 'all'
+																			? true
+																			: // @ts-ignore
+																				item.currentFilter === timeLabel,
 																)
 																.map((key, index) => (
 																	<th
@@ -274,6 +280,10 @@ function TableTemplate({
 											isShowSelect={isShowSelect}
 											selectedItems={selectedItems}
 											setSelectedItems={setSelectedItems}
+											specialFilter={
+												// @ts-ignore
+												headerTable.find(item => item.key === 'orderList')?.currentFilter || ''
+											}
 										/>
 									)}
 								</table>
