@@ -55,8 +55,14 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 			if (!isPreventFetch) return;
 			const data = await getMenuData(currentPagination, 10, 'other');
 			if (data) {
+				const tempOtherData = [...allMenuType.other.data];
+				const checkData = data.data.filter(item => {
+					const isExist = tempOtherData.find(data => data._id === item._id);
+					return !isExist;
+				});
+
 				const combinedOtherData = {
-					data: [...allMenuType.other.data, ...data.data],
+					data: [...allMenuType.other.data, ...checkData],
 					count: data.count,
 					page: data.page,
 					limit: data.limit,
