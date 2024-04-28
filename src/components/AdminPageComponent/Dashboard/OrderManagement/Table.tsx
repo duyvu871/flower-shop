@@ -52,6 +52,7 @@ const headerTable = [
 	{
 		key: 'orderList',
 		title: 'Danh sách món',
+		currentFilter: '',
 		isSort: false,
 	},
 	{
@@ -179,6 +180,8 @@ function Table({}: TableProps) {
 		setTotalPage(Math.ceil(data.count / 10));
 		setIsLoading(false);
 		setIsRealTime(false);
+		const orderListIndex = headerTable.findIndex(item => item.key === 'orderList');
+		headerTable[orderListIndex].currentFilter = exportTimeRange;
 	};
 
 	useLayoutEffect(() => {
@@ -262,7 +265,7 @@ function Table({}: TableProps) {
 							base: 'bg-white rounded-xl',
 						}}
 						onChange={e => {
-							console.log(Object.keys(orderTimeRangeSummary));
+							// console.log(Object.keys(orderTimeRangeSummary));
 							setExportTimeRange(e.target.value as keyof typeof orderTimeRangeSummary);
 						}}
 						variant={'bordered'}

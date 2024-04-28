@@ -188,15 +188,24 @@ function TableTemplate({
 												if (item.key === 'orderList') {
 													return (
 														<>
-															{Object.keys(orderTimeRangeSummary).map((key, index) => (
-																<th
-																	key={index}
-																	className={
-																		'px-6 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap'
-																	}>
-																	{orderTimeRangeSummary[key as keyof typeof orderTimeRangeSummary]}
-																</th>
-															))}
+															{Object.keys(orderTimeRangeSummary)
+																.filter(timeLabel =>
+																	// @ts-ignore
+																	!item?.currentFilter ? true : item.currentFilter === timeLabel,
+																)
+																.map((key, index) => (
+																	<th
+																		key={index}
+																		className={
+																			'px-6 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap'
+																		}>
+																		{
+																			orderTimeRangeSummary[
+																				key as keyof typeof orderTimeRangeSummary
+																			]
+																		}
+																	</th>
+																))}
 														</>
 													);
 												}
