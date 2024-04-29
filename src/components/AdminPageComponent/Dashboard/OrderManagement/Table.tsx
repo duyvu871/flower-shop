@@ -77,12 +77,12 @@ function Table({}: TableProps) {
 			key: 'takeNote',
 			isSort: false,
 		},
-		// {
-		//     title: "Địa chỉ",
-		//     key: "location",
-		//     isSort: false,
-		//     // action: "formatDate"
-		// },
+		{
+			title: 'Địa chỉ',
+			key: 'location',
+			isSort: false,
+			// action: "formatDate"
+		},
 		{
 			title: 'Ngày tạo',
 			key: 'createdAt',

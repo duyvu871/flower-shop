@@ -187,6 +187,10 @@ export async function GET(req: NextRequest) {
 			...itemCounts,
 			{
 				t: 's',
+				v: userData[userId]?.address || 'không có địa chỉ',
+			},
+			{
+				t: 's',
 				v: takeNotes.filter(takeNote => !!takeNote).join('\n, '),
 			},
 		];
@@ -206,9 +210,10 @@ export async function GET(req: NextRequest) {
 					new Array(menuCollectionByTarget[item].length).fill(orderTimeRangeSummary[item]),
 				)
 				.flat(),
+			'Địa chỉ',
 			'Ghi chú',
 		],
-		['Món', ...menuItemList.map(item => item.name), ''],
+		['Món', ...menuItemList.map(item => item.name), 'Địa chỉ', 'Ghi chú'],
 		[
 			'Tổng',
 			...menuItemList.map(item => calculateTotalOrder[item._id.toString() + item.type] || ''),
@@ -249,7 +254,28 @@ export async function GET(req: NextRequest) {
 	const worksheet = utils.aoa_to_sheet(sheetData);
 	// merge menu type
 	if (!worksheet['!merges']) worksheet['!merges'] = [];
-	worksheet['!merges'] = mergeCells();
+	worksheet['!merges'] = mergeCells().concat([
+		{
+			s: {
+				r: 0,
+				c: menuItemList.length + 1,
+			},
+			e: {
+				r: 1,
+				c: menuItemList.length + 1,
+			},
+		},
+		{
+			s: {
+				r: 0,
+				c: menuItemList.length + 2,
+			},
+			e: {
+				r: 1,
+				c: menuItemList.length + 2,
+			},
+		},
+	]);
 
 	// append sheet to workbook
 	utils.book_append_sheet(workbook, worksheet, orderTimeRangeSummary[range]);
