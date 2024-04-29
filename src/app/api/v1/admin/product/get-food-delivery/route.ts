@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 		time,
 		Number(page),
 		Number(limit),
-		'user',
+		'admin',
 		{ filterKey, filterOrder },
 		search,
 	);
