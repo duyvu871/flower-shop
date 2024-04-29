@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 		if (!deleteUser.deletedCount) {
 			return dataTemplate({ error: 'Không tìm thấy người dùng' }, 404);
 		}
-		await deleteKey(`user-${userId}`);
+		await deleteKey(`user:${userId}`);
 		return dataTemplate({ message: 'Xóa người dùng thành công' }, 200);
 	} catch (e) {
 		return dataTemplate({ error: e.error }, 400);

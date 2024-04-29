@@ -31,10 +31,10 @@ export async function GET(req: NextRequest) {
 			.toArray();
 		const handleFoodOrders = await Promise.all(
 			foodOrders.map(async order => {
-				let userPayload = (await getKey(`user-${order.userId}`)) as string | null | any;
+				let userPayload = (await getKey(`user:${order.userId}`)) as string | null | any;
 				if (!userPayload) {
 					userPayload = await userCollection.findOne({ _id: order.userId });
-					await setKey(`user-${order.userId}`, JSON.stringify(userPayload), 60 * 60);
+					await setKey(`user:${order.userId}`, JSON.stringify(userPayload), 60 * 60);
 				}
 				const userParsed = JSON.parse(userPayload) as UserInterface;
 				return {

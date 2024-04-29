@@ -30,7 +30,7 @@ export async function UpdateFullUser(userUpdate: Partial<UserInterface>, _id: Ob
 		throw new Error('Update user failed');
 	}
 	await setKey(
-		`user-${_id}`,
+		`user:${_id}`,
 		JSON.stringify({
 			...user,
 			...updateData,
