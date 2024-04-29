@@ -52,6 +52,7 @@ export type MenuItemType = {
 	discount: number;
 	type: 'morning-menu' | 'afternoon-menu' | 'evening-menu' | 'other-menu';
 	delete_or_select?: boolean;
+	isSelect?: boolean;
 };
 export interface PurchaseOrderType {
 	_id: ObjectId;

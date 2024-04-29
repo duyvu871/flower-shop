@@ -193,10 +193,13 @@ function TableBody({
 														<div
 															key={index}
 															className={
-																'h-full w-full flex flex-row justify-between items-start whitespace-nowrap gap-1 p-2'
+																'h-full w-full flex flex-row justify-between items-center whitespace-nowrap gap-1 p-2'
 															}>
-															<span className={'h-full'}>{order.name}</span>
-															<span className={'h-full w-14 pl-3 border-l-[1px] border-gray-800'}>
+															<span className={'h-full font-bold'}>{order.name}</span>
+															<span
+																className={
+																	'h-full w-8 aspect-square flex justify-center items-center ml-3 rounded border-[1px] border-gray-300 bg-gray-100 font-bold'
+																}>
 																{order.totalOrder}
 															</span>
 														</div>

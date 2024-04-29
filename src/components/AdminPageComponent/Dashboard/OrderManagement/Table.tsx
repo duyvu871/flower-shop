@@ -17,6 +17,7 @@ import NormalField from '@/components/InputField/NormalField';
 import DatePicker from '@/components/DatePicker';
 import { formatDate } from 'date-fns';
 import { startTime as getStartTime, getEndTime } from '@/ultis/timeFormat.ultis';
+import { Time } from '@internationalized/date';
 
 interface TableProps {}
 
@@ -153,7 +154,7 @@ function Table({}: TableProps) {
 		// this works and prompts for download
 		var link = document.createElement('a'); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
 		link.href = window.URL.createObjectURL(fileBlob);
-		link.download = 'thongtindonhang' + '.xlsx';
+		link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsx';
 		link.click();
 		link.remove();
 	};
@@ -258,7 +259,7 @@ function Table({}: TableProps) {
 							label: orderTimeRangeSummary[key as keyof typeof orderTimeRangeSummary],
 						}))}
 						selectedKeys={[exportTimeRange]}
-						label='Tổng hợp theo thời gian'
+						label='Thời gian (hôm nay)'
 						// placeholder=""
 						className='max-w-xs w-52'
 						classNames={{

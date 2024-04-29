@@ -64,9 +64,10 @@ export async function GET(req: NextRequest) {
 		const data = (await menuCollections[collection]
 			.find({})
 			.toArray()) as unknown as MenuItemType[];
+
 		return {
 			type: collection,
-			data,
+			data: data.filter(item => item.isSelect),
 		};
 	});
 
@@ -162,10 +163,10 @@ export async function GET(req: NextRequest) {
 
 	const userOrderFormated = Object.keys(userOrder).map(userId => {
 		const storeOrder: Record<string, number> = {};
-		let takeNote: string[] = [];
+		let takeNotes: string[] = [];
 		const orders = userOrder[userId];
 		orders.forEach(order => {
-			takeNote.push(order.takeNote);
+			takeNotes.push(order.takeNote);
 			order.orderList.forEach(item => {
 				const quantityOrderId = item.menuItem.toString() + item.menuType;
 				if (!storeOrder[quantityOrderId]) storeOrder[quantityOrderId] = 0;
@@ -178,7 +179,17 @@ export async function GET(req: NextRequest) {
 				: '',
 		);
 
-		return [userData[userId].fullName, ...itemCounts, takeNote.join('\n')];
+		return [
+			{
+				t: 's',
+				v: userData[userId]?.fullName || 'người dùng không tồn tại',
+			},
+			...itemCounts,
+			{
+				t: 's',
+				v: takeNotes.filter(takeNote => !!takeNote).join('\n, '),
+			},
+		];
 	});
 	const sheetData = [
 		[
