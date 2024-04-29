@@ -26,13 +26,9 @@ export async function GET(req: NextRequest) {
 			.skip((Number(page) - 1) * Number(limit))
 			.limit(Number(limit))
 			.toArray();
-		const totalNotificationOrders = notifications.reduce((acc: number, cur: any) => {
-			if (cur.isRead === false) {
-				return acc + 1;
-			} else {
-				return acc;
-			}
-		}, 0);
+		const totalNotificationOrders = await notificationCollection.countDocuments({
+			isRead: false,
+		});
 
 		if (!notifications) {
 			return dataTemplate({ error: 'Không tìm thấy thông báo nào' }, 404);
