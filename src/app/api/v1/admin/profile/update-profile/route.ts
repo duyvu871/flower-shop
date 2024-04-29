@@ -4,6 +4,7 @@ import { getServerAuthSession } from '@/lib/nextauthOptions';
 import { UserInterface } from 'types/userInterface';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
+import { setKey } from '@/lib/redis-cache';
 
 export async function POST(request: NextRequest) {
 	try {

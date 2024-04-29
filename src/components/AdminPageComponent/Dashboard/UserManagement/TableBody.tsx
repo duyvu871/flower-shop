@@ -65,7 +65,7 @@ function TableBody({
 	return (
 		<tbody className={'className={"divide-y divide-default-200"}'}>
 			{data.map((user, data_index) => (
-				<tr className={''} key={'row' + data_index}>
+				<tr className={''} key={'row-user-' + data_index}>
 					{keys.map((key, index) => {
 						if (key === 'index') {
 							return (
@@ -77,9 +77,13 @@ function TableBody({
 
 						if (key === 'action') {
 							return (
-								<td key={'td' + index} className={'px-6 py-4 whitespace-nowrap text-base cursor-pointer'}>
+								<td
+									key={'td' + index}
+									className={'px-6 py-4 whitespace-nowrap text-base cursor-pointer'}>
 									<Button
-										className={'px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8'}
+										className={
+											'px-3 py-1 text-xs font-medium rounded-md bg-blue-500/10 text-blue-500 h-8'
+										}
 										onClick={() => {
 											store.dispatch(openModal(user._id as unknown as string, 'user-management'));
 										}}>
@@ -98,7 +102,9 @@ function TableBody({
 											'font-semibold ',
 											isShowVirtualVolume ? 'text-red-500' : 'text-success-500',
 										)}>
-										{formatCurrency((isShowVirtualVolume ? -user['virtualVolume'] : user[key]).toString())}
+										{formatCurrency(
+											(isShowVirtualVolume ? -user['virtualVolume'] : user[key]).toString(),
+										)}
 									</span>
 								</td>
 							);
@@ -109,11 +115,16 @@ function TableBody({
 								<td key={'td' + index} className={'px-6 py-4 whitespace-nowrap '}>
 									{user[key] ? (
 										<span
-											className={'px-3 py-1 text-xs font-medium rounded-md bg-green-500/10 text-green-500'}>
+											className={
+												'px-3 py-1 text-xs font-medium rounded-md bg-green-500/10 text-green-500'
+											}>
 											Active
 										</span>
 									) : (
-										<span className={'px-3 py-1 text-xs font-medium rounded-md bg-red-500/10 text-red-500'}>
+										<span
+											className={
+												'px-3 py-1 text-xs font-medium rounded-md bg-red-500/10 text-red-500'
+											}>
 											Block
 										</span>
 									)}

@@ -91,11 +91,11 @@ function TableBody({
 	specialFilter,
 }: TableBodyProps) {
 	// console.log(type)
-	console.log(specialFilter);
+	// console.log(specialFilter);
 	return (
 		<tbody className={'className={"divide-y divide-default-200"}'}>
 			{data.map((item, data_index) => (
-				<tr className={'border-gray-200 border-0 border-b-1'} key={'row' + data_index}>
+				<tr className={'border-gray-200 border-0 border-b-1'} key={'row-' + data_index}>
 					{isShowSelect && (
 						<td className={'px-6 py-4 whitespace-nowrap text-base'}>
 							<input
