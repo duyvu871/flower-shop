@@ -110,7 +110,7 @@ export function startTime(
 	return startTime;
 }
 
-export function getEndTime(range: 'morning' | 'afternoon' | 'evening' | 'other') {
+export function getEndTime(range: 'morning' | 'afternoon' | 'evening' | 'other' | 'all') {
 	const currentDate = new Date(); // get current date
 	const currentTime = currentDate.getTime(); // get current time
 	const currentDayFormat = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`; // get f

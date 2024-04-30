@@ -39,9 +39,12 @@ export async function GET(req: NextRequest) {
 		? (req.nextUrl.searchParams.get('filterOrder') as string)
 		: 'desc';
 
-	console.log(range);
-	const timeStart = startTime(range);
-	const endTime = getEndTime(range as 'morning' | 'afternoon' | 'evening');
+	// console.log(range);
+	const start = req.nextUrl.searchParams.get('start');
+	const end = req.nextUrl.searchParams.get('end');
+	const timeStart = start ? new Date(start) : new Date();
+	const endTime = end ? new Date(end) : new Date();
+
 	const client = await clientPromise;
 	const orderCollection = client.db(process.env.DB_NAME).collection('food-orders');
 	// let foodDeliveryCollection = client.db(process.env.DB_NAME).collection(`${range}-menu`);
@@ -67,7 +70,12 @@ export async function GET(req: NextRequest) {
 		.skip((Number(page) - 1) * Number(limit))
 		.limit(Number(limit))
 		.toArray()) as OrderType[]; // get all orders
-	const count = await filterOrders.count(); // count all orders
+	const count = await orderCollection.countDocuments({
+		createdAt: {
+			$gte: timeStart,
+			$lte: endTime,
+		},
+	}); // count all orders
 	// console.log(allOrders.length);
 	console.log('start:', timeStart);
 	console.log('end:', endTime);
@@ -87,7 +95,7 @@ export async function GET(req: NextRequest) {
 		// calculate volume of valid order items
 		let totalVolume = 0;
 		for (let i = 0; i < foodsIds.length; i++) {
-			if (!validRange) break;
+			if (!validRange && range !== 'all') break;
 			if (foods[foodsIds[i].menuItem.toString()]) {
 				totalVolume += foodsIds[i].totalOrder * foods[foodsIds[i].menuItem.toString()].price * 1000; //
 			} else {

@@ -53,7 +53,7 @@ const handleEventConnect = (instanceRedis: Redis) => {
 	});
 	instanceRedis.on(statusConnectRedis.ERROR, (error: Error) => {
 		console.log(`Redis is error: ${error}`);
-		retryConnect(1);
+		handleConnectTimeout();
 	});
 };
 

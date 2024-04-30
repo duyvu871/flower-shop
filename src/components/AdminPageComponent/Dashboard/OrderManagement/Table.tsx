@@ -13,6 +13,7 @@ import {
 	TimeRangeLabel,
 	orderTimeRangeSummary,
 	formatISODate,
+	startTime,
 } from '@/ultis/timeFormat.ultis';
 import { Button, Select, SelectItem } from '@nextui-org/react';
 import Link from 'next/link';
@@ -22,7 +23,6 @@ import NormalField from '@/components/InputField/NormalField';
 import DatePicker from '@/components/DatePicker';
 import { formatDate } from 'date-fns';
 import { startTime as getStartTime, getEndTime } from '@/ultis/timeFormat.ultis';
-import { Time } from '@internationalized/date';
 
 interface TableProps {}
 
@@ -180,7 +180,7 @@ function Table({}: TableProps) {
 		link.remove();
 	};
 
-	const filterData = async () => {
+	const filterData = async (start?: Date, end?: Date) => {
 		const response = await fetch(
 			'/api/v1/admin/order/filter-order?range=' +
 				exportTimeRange +
@@ -191,7 +191,11 @@ function Table({}: TableProps) {
 				'&filterKey=' +
 				currentSort.key +
 				'&filterOrder=' +
-				currentSort.order,
+				currentSort.order +
+				'&start=' +
+				formatDate(start, "yyyy-MM-dd'T'HH:mm:ss.SSS") +
+				'&end=' +
+				formatDate(end, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
 		);
 		const data = await response.json();
 		setData(prev => ({
@@ -304,7 +308,7 @@ function Table({}: TableProps) {
 						onClick={() => {
 							// if (isRealTime) {
 							setIsLoading(true);
-							filterData().then(_ => {
+							filterData(getStartTime(exportTimeRange), getEndTime(exportTimeRange)).then(_ => {
 								setIsRealTime(false);
 								setIsLoading(false);
 							});
@@ -360,6 +364,17 @@ function Table({}: TableProps) {
 						{/*		</SelectItem>*/}
 						{/*	)}*/}
 						{/*</Select>*/}
+						<button
+							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+							onClick={() => {
+								setIsLoading(true);
+								filterData(startTime, endTime).then(_ => {
+									setIsRealTime(false);
+									setIsLoading(false);
+								});
+							}}>
+							Lọc
+						</button>
 						<button
 							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
 							onClick={() => {
