@@ -8,7 +8,12 @@ import { RootState } from '@/adminRedux/reducers';
 import store from '@/adminRedux/store';
 import { updateUsers } from '@/adminRedux/action/userData';
 import { setCurrentTable } from '@/adminRedux/action/currentTable';
-import { TimeRange, TimeRangeLabel, orderTimeRangeSummary } from '@/ultis/timeFormat.ultis';
+import {
+	TimeRange,
+	TimeRangeLabel,
+	orderTimeRangeSummary,
+	formatISODate,
+} from '@/ultis/timeFormat.ultis';
 import { Button, Select, SelectItem } from '@nextui-org/react';
 import Link from 'next/link';
 import { MenuItemType, OrderType } from 'types/order';
@@ -154,7 +159,23 @@ function Table({}: TableProps) {
 		// this works and prompts for download
 		var link = document.createElement('a'); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
 		link.href = window.URL.createObjectURL(fileBlob);
-		link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsx';
+		// link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsx';
+		if (range === 'all') {
+			link.download =
+				'thong_tin_don_hang_' +
+				`[${formatISODate(startTime)
+					.replaceAll('|', '_')
+					.replaceAll(':', 'h')
+					.replaceAll(' ', '')}]` +
+				'_den_' +
+				`[${formatISODate(endTime)
+					.replaceAll('|', '_')
+					.replaceAll(':', 'h')
+					.replaceAll(' ', '')}]` +
+				'.xlsx';
+		} else {
+			link.download = 'thongtindonhang-' + TimeRange[range] + '.xlsx';
+		}
 		link.click();
 		link.remove();
 	};
