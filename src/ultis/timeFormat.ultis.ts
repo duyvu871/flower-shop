@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export function formatISODate(isoDateString: Date): string {
 	const isoDate = new Date(isoDateString);
 

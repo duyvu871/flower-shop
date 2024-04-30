@@ -309,7 +309,7 @@ function Table({}: TableProps) {
 					<div className={'flex justify-center items-center gap-1'}>
 						<div className={'flex justify-center items-center mr-8 relative'}>
 							<DatePicker setSelectedDate={setStartTime} selectedDate={startTime} />
-							<span className={'mx-2'}>-</span>
+							<span className={'mx-2 text-xl'}>-</span>
 							<DatePicker setSelectedDate={setEndTime} selectedDate={endTime} />
 							<span className={'mx-2 text-gray-600 text-xs italic absolute top-10'}>
 								thời gian tính từ 0 giờ ngày hiển thị

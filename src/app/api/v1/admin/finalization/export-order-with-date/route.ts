@@ -15,10 +15,7 @@ import { MenuItemType, OrderType } from 'types/order';
 import * as process from 'process';
 import { Collection, ObjectId } from 'mongodb';
 import { utils, write } from 'xlsx';
-import { object } from 'prop-types';
-import { cli } from 'yaml/dist/cli';
 import { UserInterface } from 'types/userInterface';
-import { all } from 'deepmerge';
 
 export async function GET(req: NextRequest) {
 	const session = getServerAuthSession();
