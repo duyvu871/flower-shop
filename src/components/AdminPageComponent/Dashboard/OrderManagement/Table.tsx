@@ -23,6 +23,9 @@ import NormalField from '@/components/InputField/NormalField';
 import DatePicker from '@/components/DatePicker';
 import { formatDate } from 'date-fns';
 import { startTime as getStartTime, getEndTime } from '@/ultis/timeFormat.ultis';
+import { LuFilter } from 'react-icons/lu';
+import { FaFileExport } from 'react-icons/fa';
+import { TbReload } from 'react-icons/tb';
 
 interface TableProps {}
 
@@ -122,6 +125,14 @@ function Table({}: TableProps) {
 	const [endTime, setEndTime] = useState<Date>(new Date());
 
 	const [isRealTime, setIsRealTime] = useState<boolean>(true);
+	const [isFilter, setIsFilter] = useState<boolean>(false);
+	const [currentFilter, setCurrentFilter] = useState<{
+		start: Date;
+		end: Date;
+	}>({
+		start: new Date(),
+		end: new Date(),
+	});
 
 	const fetchData = async (page: number) => {
 		// if (!isRealTime) return;
@@ -197,6 +208,10 @@ function Table({}: TableProps) {
 				'&end=' +
 				formatDate(end, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
 		);
+		setCurrentFilter({
+			start: start || startTime,
+			end: end || endTime,
+		});
 		const data = await response.json();
 		setData(prev => ({
 			...prev,
@@ -211,10 +226,22 @@ function Table({}: TableProps) {
 	};
 
 	useLayoutEffect(() => {
-		fetchData(currentPage).then(data => {
-			store.dispatch(setCurrentTable(data.data));
-			setTotalPage(Math.ceil(data.count / 10));
-		});
+		if (isRealTime) {
+			setIsLoading(true);
+			fetchData(currentPage).then(data => {
+				store.dispatch(setCurrentTable(data.data));
+				setTotalPage(Math.ceil(data.count / 10));
+				setIsLoading(false);
+			});
+		} else {
+			if (isFilter) {
+				setIsLoading(true);
+				setIsRealTime(false);
+				filterData(currentFilter.start, currentFilter.end).then(_ => {
+					setIsLoading(false);
+				});
+			}
+		}
 	}, [currentPage, currentSort]);
 
 	useEffect(() => {
@@ -266,7 +293,9 @@ function Table({}: TableProps) {
 			summaryOption={
 				<div className={'flex justify-center items-center gap-2'}>
 					<button
-						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+						className={
+							'flex justify-center items-center gap-1 bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'
+						}
 						onClick={() => {
 							setIsRealTime(true);
 							setIsLoading(true);
@@ -276,6 +305,7 @@ function Table({}: TableProps) {
 								setIsLoading(false);
 							});
 						}}>
+						<TbReload />
 						{'Tải lại'}
 					</button>
 					<Select
@@ -304,19 +334,25 @@ function Table({}: TableProps) {
 						)}
 					</Select>
 					<button
-						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+						className={
+							'flex justify-center items-center gap-1  bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'
+						}
 						onClick={() => {
 							// if (isRealTime) {
 							setIsLoading(true);
 							filterData(getStartTime(exportTimeRange), getEndTime(exportTimeRange)).then(_ => {
 								setIsRealTime(false);
+								setIsFilter(true);
 								setIsLoading(false);
 							});
 						}}>
+						<LuFilter />
 						{'Lọc'}
 					</button>
 					<button
-						className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+						className={
+							'flex justify-center items-center gap-1 bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'
+						}
 						onClick={() => {
 							generateXLSX(
 								exportTimeRange,
@@ -325,6 +361,7 @@ function Table({}: TableProps) {
 								getEndTime(exportTimeRange),
 							);
 						}}>
+						<FaFileExport />
 						Xuất file
 					</button>
 				</div>
@@ -337,7 +374,7 @@ function Table({}: TableProps) {
 							<span className={'mx-2 text-xl'}>-</span>
 							<DatePicker setSelectedDate={setEndTime} selectedDate={endTime} />
 							<span className={'mx-2 text-gray-600 text-xs italic absolute top-10'}>
-								thời gian tính từ 0 giờ ngày hiển thị
+								{/*thời gian tính từ 0 giờ ngày hiển thị*/}
 							</span>
 						</div>
 						{/*<Select*/}
@@ -365,21 +402,28 @@ function Table({}: TableProps) {
 						{/*	)}*/}
 						{/*</Select>*/}
 						<button
-							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+							className={
+								'flex justify-center items-center gap-1  bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'
+							}
 							onClick={() => {
 								setIsLoading(true);
 								filterData(startTime, endTime).then(_ => {
 									setIsRealTime(false);
+									setIsFilter(true);
 									setIsLoading(false);
 								});
 							}}>
+							<LuFilter />
 							Lọc
 						</button>
 						<button
-							className={'bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'}
+							className={
+								'flex justify-center items-center gap-1  bg-primary text-white whitespace-nowrap rounded-md px-4 py-2'
+							}
 							onClick={() => {
 								generateXLSX('all');
 							}}>
+							<FaFileExport />
 							Xuất file
 						</button>
 					</div>
