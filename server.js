@@ -38,7 +38,7 @@ app.prepare().then(() => {
 	})
 		.once('error', err => {
 			console.error(err);
-			process.exit(1);
+			process.exit(1); // exit with error
 		})
 		.listen(port, () => {
 			console.log(`> Ready on http://${hostname}:${port}`);

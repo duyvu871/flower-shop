@@ -59,6 +59,7 @@ const handleEventConnect = (instanceRedis: Redis) => {
 
 const initRedis = () => {
 	const instanceRedis = new Redis({
+		enableAutoPipelining: true,
 		host: process.env.REDIS_HOST,
 		port: parseInt(process.env.REDIS_PORT),
 		password: process.env.REDIS_PASSWORD,
@@ -73,5 +74,9 @@ const closeRedis = () => {
 		client.instanceRedis.disconnect();
 	}
 };
+
+process.on('exit', function () {
+	closeRedis();
+});
 
 export { initRedis, getRedis, closeRedis };
