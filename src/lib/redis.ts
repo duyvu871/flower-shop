@@ -71,6 +71,7 @@ const initRedis = () => {
 const getRedis = () => client;
 const closeRedis = () => {
 	if (client.instanceRedis) {
+		console.log('Close Redis');
 		client.instanceRedis.disconnect();
 	}
 };

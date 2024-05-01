@@ -1,7 +1,7 @@
 import clientPromise from '@/lib/mongodb';
 import { PurchaseOrderType } from 'types/order';
 import { ObjectId } from 'mongodb';
-import { NextResponse } from 'next/server';
+// import { NextResponse } from 'next/server';
 import { dataTemplate } from '@/helpers/returned_response_template';
 import { NotificationForAdmin } from '@/services/notification_for_admin';
 
@@ -26,6 +26,7 @@ export async function createPurchaseOrder(
 		_id: new ObjectId(),
 		amount,
 		paymentMethod: 'bank',
+		userName: user.fullName,
 		userId,
 		status: 'pending',
 		isPaid: false,

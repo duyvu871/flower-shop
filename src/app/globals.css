@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+*:root {
+    --tw-backdrop-blur: blur(4px);
+}
 
 *, *::before, *::after {
     box-sizing: border-box;

@@ -70,7 +70,7 @@ export async function signUp(
 		},
 		createdAt: new Date(),
 		updatedAt: new Date(),
-		allowDebitLimit: 0,
+		allowDebitLimit: 100000,
 		isUseVirtualVolume: false,
 		telegram: '',
 	};

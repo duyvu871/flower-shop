@@ -11,6 +11,7 @@ import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 // import { MdContentCopy } from 'react-icons/md';
 import Copy from '@/components/CopyToClipBoard';
 import { groupBy } from '@/ultis/array-method';
+import { MdContentCopy } from 'react-icons/md';
 
 (orderTimeRangeSummary as any).other = 'Khác';
 
@@ -59,20 +60,20 @@ const GreyBadge = ({ children }) => {
 	);
 };
 
-const UidElement = ({ id }: { id: string }) => {
+const UidElement = ({ id, userName }: { id: string; userName: string }) => {
 	const [copiedText, copy] = useCopyToClipboard();
 
 	return (
-		<div className={'flex justify-center items-center gap-3'}>
+		<div className={'flex justify-around items-center gap-3'}>
 			<span
 				className={'cursor-pointer hover:text-blue-600 hover:underline'}
 				onClick={() => {
 					store.dispatch(openModal(id, 'user-management'));
 				}}>
-				{id}
+				{userName}
 			</span>
 			<span>
-				<Copy text={id} />
+				<Copy text={id} tooltipText={'Đã sao chép ID'} />
 			</span>
 		</div>
 	);
@@ -93,9 +94,9 @@ function TableBody({
 	// console.log(type)
 	// console.log(specialFilter);
 	return (
-		<tbody className={'className={"divide-y divide-default-200"}'}>
+		<tbody className={'divide-y divide-default-200'}>
 			{data.map((item, data_index) => (
-				<tr className={'border-gray-200 border-0 border-b-1'} key={'row-' + data_index}>
+				<tr className={'border-gray-200 border-0 border-b-1 select-auto'} key={'row-' + data_index}>
 					{isShowSelect && (
 						<td className={'px-6 py-4 whitespace-nowrap text-base'}>
 							<input
@@ -262,7 +263,7 @@ function TableBody({
 						if (key === 'userId') {
 							return (
 								<td key={'td' + index} className={'px-3 py-4 whitespace-nowrap text-gray-600 '}>
-									<UidElement id={item[key] as string} />
+									<UidElement id={item[key] as string} userName={item.userName} />
 									{/*{item[key]}*/}
 								</td>
 							);

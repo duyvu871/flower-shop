@@ -44,6 +44,9 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 			if (allMenuType.other.data.length === totalItems && totalItems !== 0) {
 				setIsPreventFetch(false);
 			}
+			if (allMenuType.other.data.length === 0) {
+				setIsPreventFetch(false);
+			}
 		})();
 		// console.log(allMenuType)
 	}, []);
@@ -126,9 +129,17 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
 					<h1>Các món khác</h1>
 				</div>
-				<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4'}>
-					<ItemList menuData={allMenuType.other.data as MenuItemType[]} />
-				</div>
+				{allMenuType.other.data.length > 0 ? (
+					<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4'}>
+						<ItemList menuData={allMenuType.other.data as MenuItemType[]} />
+					</div>
+				) : (
+					isLoaded && (
+						<div className={'w-full flex justify-center items-center p-3'}>
+							<p className={'text-md'}>Hiện chưa có món ăn nào của mục này</p>
+						</div>
+					)
+				)}
 			</InfiniteScroll>
 		</>
 	);

@@ -11,9 +11,10 @@ interface CopyToClipBoardProps {
 	childrenProps?: ButtonProps;
 	customIcon?: React.ReactNode;
 	text: string;
+	tooltipText?: string;
 }
 
-function Copy({ childrenProps, customIcon, text }: CopyToClipBoardProps) {
+function Copy({ childrenProps, customIcon, text, tooltipText }: CopyToClipBoardProps) {
 	const [textToCopy, setTextToCopy] = useState<CopyValue>(text);
 	const [isCopied, setIsCopied] = useState<boolean>(false);
 	const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -33,7 +34,7 @@ function Copy({ childrenProps, customIcon, text }: CopyToClipBoardProps) {
 					'absolute px-2 py-1 bg-white shadow rounded text-md font-semibold top-[-36px] transition-all',
 					isOpen ? '' : 'hidden',
 				)}>
-				Copied!
+				{tooltipText ? tooltipText : 'Copied!'}
 			</div>
 			<CopyToClipboard
 				text={textToCopy}

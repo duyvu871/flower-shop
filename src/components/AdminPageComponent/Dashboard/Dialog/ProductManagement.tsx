@@ -10,6 +10,7 @@ import {
 	ModalBody,
 	ModalFooter,
 	Modal,
+	Spinner,
 } from '@nextui-org/react';
 import { useToast } from '@/hooks/useToast';
 import { deleteFileByDownloadUrl } from '@/helpers/firebase';
@@ -82,6 +83,8 @@ function ProductManagement({ _id }: ProductManagementProps) {
 	};
 
 	const updateAfterDelete = () => {
+		if (productName) error('Vui lòng điền tên món');
+		// if (price) error('Vui lòng điền giá');
 		if (!selectedFile) {
 			// setImage("");
 			console.log('no file');
@@ -148,6 +151,10 @@ function ProductManagement({ _id }: ProductManagementProps) {
 	};
 
 	const deleteProduct = () => {
+		const isDelete = confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');
+		if (!isDelete) {
+			return;
+		}
 		fetch('/api/v1/admin/product/delete-product', {
 			method: 'POST',
 			headers: {
@@ -184,39 +191,54 @@ function ProductManagement({ _id }: ProductManagementProps) {
 	return (
 		<>
 			<div className={'flex flex-col justify-center items-center gap-4'}>
-				<div className={tw('w-full flex justify-center items-center', isUploading ? '' : 'hidden')}>
-					<CircularProgress
-						aria-label='Loading...'
-						size='lg'
-						value={Number(processPercent.toFixed(0))}
-						color='success'
-						showValueLabel={true}
-					/>
-				</div>
-				<div className={'w-full flex justify-center items-center'}>
+				<div
+					className={tw(
+						'relative w-[400px] h-[200px] bg-gray-200 overflow-hidden rounded-xl flex justify-center items-center cursor-pointer',
+						// isShowImage ? '' : 'hidden',
+					)}
+					onClick={() => {}}>
 					{isShowImage && preview ? (
 						<Image
 							src={preview}
-							width={200}
-							height={200}
-							className={'cursor-pointer'}
+							width={400}
+							height={400}
+							className={'cursor-pointer object-cover'}
 							onClick={() => setIsPreviewImage(true)}
 						/>
 					) : (
 						<Image
 							src={image}
-							width={200}
-							height={200}
-							className={'cursor-pointer'}
+							width={400}
+							height={400}
+							className={'cursor-pointer object-cover'}
 							onClick={() => setIsPreviewImage(true)}
 						/>
 					)}
+					<div
+						className={tw(
+							'absolute transition-all  h-full w-full flex justify-center items-center rounded-xl',
+							isUploading ? 'z-[90] backdrop-filter ' : ' invisible',
+						)}
+						style={{
+							backdropFilter: 'blur(5px)',
+						}}>
+						<CircularProgress
+							aria-label='Loading...'
+							size='lg'
+							value={Number(processPercent.toFixed(0))}
+							color='success'
+							classNames={{
+								value: 'text-white',
+							}}
+							showValueLabel={true}
+						/>
+					</div>
 				</div>
 				<div className='flex flex-col items-center justify-center w-full'>
 					<label
 						className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
 						htmlFor='file_input'>
-						Upload file
+						Chọn ảnh
 					</label>
 					{/*<input*/}
 					{/*    className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal leading-[2.15] text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"*/}
@@ -241,6 +263,8 @@ function ProductManagement({ _id }: ProductManagementProps) {
 				<Input
 					placeholder={'Giá'}
 					type={'number'}
+					min={0}
+					max={1000000}
 					endContent={<div>.000đ</div>}
 					value={price.toString()}
 					onChange={e => setPrice(Number(e.target.value))}
@@ -248,6 +272,8 @@ function ProductManagement({ _id }: ProductManagementProps) {
 				<Input
 					placeholder={'Giảm giá'}
 					type={'number'}
+					min={0}
+					max={100}
 					endContent={<div>%</div>}
 					value={discount.toString()}
 					onChange={e => setDiscount(Number(e.target.value))}
@@ -260,8 +286,12 @@ function ProductManagement({ _id }: ProductManagementProps) {
 				<Spacer y={1} />
 				<div className={'flex justify-center items-center gap-2'}>
 					<button
-						className={'bg-primary text-white rounded-md px-4 py-2'}
-						onClick={updateOrCreateProduct}>
+						className={
+							'flex justify-center items-center gap-1 bg-primary text-white rounded-md px-4 py-2'
+						}
+						onClick={updateOrCreateProduct}
+						disabled={isUploading}>
+						{isUploading ? <Spinner color={'white'} /> : ''}
 						Cập nhật
 					</button>
 					<button className={'bg-red-500 text-white rounded-md px-4 py-2'} onClick={deleteProduct}>

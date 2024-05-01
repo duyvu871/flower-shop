@@ -60,6 +60,7 @@ export interface PurchaseOrderType {
 	status: 'pending' | 'approved' | 'rejected';
 	paymentMethod: 'cash' | 'credit' | 'paypal' | 'zalo' | 'momo' | 'bank' | 'other';
 	userId: string;
+	userName: string;
 	isPaid: boolean;
 	confirmed: boolean;
 	items: { id: string; quantity: number }[];

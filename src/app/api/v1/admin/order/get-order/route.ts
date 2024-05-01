@@ -36,10 +36,16 @@ export async function GET(req: NextRequest) {
 					userPayload = await userCollection.findOne({ _id: order.userId });
 					await setKey(`user:${order.userId}`, JSON.stringify(userPayload), 60 * 60);
 				}
-				const userParsed = JSON.parse(userPayload) as UserInterface;
+				const userParsed = JSON.parse(userPayload) as UserInterface | null;
+				if (!userParsed) {
+					return {
+						...order,
+						location: 'Không tìm thấy địa chỉ',
+					};
+				}
 				return {
 					...order,
-					location: userParsed.address,
+					location: userParsed?.address,
 				};
 			}),
 		);

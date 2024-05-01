@@ -17,21 +17,32 @@ import 'react-multi-carousel/lib/styles.css';
 // import CartModal from "@/components/Modal/CartModal";
 import React from 'react';
 import ProviderLayout from '@/components/ProviderLayout';
-import { Suspense } from 'react';
+// import { Suspense } from 'react';
 // import {tw} from "@/ultis/tailwind.ultis";
 // import {Spinner} from "@nextui-org/react";
 import LoadingScreen from '@/components/LoadingScreen';
 import { headers } from 'next/headers';
 import { getServerAuthSession } from '@/lib/nextauthOptions';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 const inter = Inter({ subsets: ['vietnamese'] });
 
 export const metadata: Metadata = {
-	title: 'Mon ngon den cho moi nha',
+	title: 'Cơm má nấu, ngon như má nấu',
 	description: '',
 	// viewport: 'width=device-width, initial-scale=1',
-	keywords: ['mon ngon', 'dich vu nau an'],
+	keywords: [
+		'mon ngon',
+		'dich vu nau an',
+		'commanau',
+		'commanau.vn',
+		'commanau.com',
+		'cơm má nấu',
+		'cơm',
+		'má nấu',
+		'cơm má nấu',
+	],
+	applicationName: 'Cơm má nấu',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

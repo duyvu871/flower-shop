@@ -203,7 +203,7 @@ function TableTemplate({
 																	<th
 																		key={index}
 																		className={
-																			'px-6 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap'
+																			'text-start px-3 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap'
 																		}>
 																		{
 																			orderTimeRangeSummary[
@@ -219,7 +219,9 @@ function TableTemplate({
 													return (
 														<th
 															key={index}
-															className={'px-6 py-3 text-xs text-gray-500 min-w-[300px]'}>
+															className={
+																'text-start px-3 py-3 text-xs text-gray-500 font-medium uppercase tracking-wider whitespace-nowrap min-w-[200px]'
+															}>
 															{item.title}
 														</th>
 													);
