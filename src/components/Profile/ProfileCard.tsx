@@ -82,24 +82,24 @@ function ProfileCard({}: ProfileCardProps) {
 						<div className={'w-full flex flex-col justify-center items-center gap-1'}>
 							{status === 'authenticated' ? (
 								<>
-									<Switch
-										isSelected={isShowVirtualVolume}
-										onValueChange={setIsShowVirtualVolume}
-										color={'warning'}
-										className={'w-full'}>
-										{isShowVirtualVolume ? 'Ẩn' : 'Hiện'} số dư nợ
-									</Switch>
-									{isShowVirtualVolume ? (
-										<div className={'flex flex-col justify-center items-center'}>
-											<p className={'text-sm text-gray-400'}>Số nợ cho phép</p>
-											<p className={'text-2xl font-bold flex gap-1'}>
-												<span className={'text-red-500'}>
-													{formatCurrency(userData.allowDebitLimit.toString())}
-												</span>
-												<span>vnđ</span>
-											</p>
-										</div>
-									) : null}
+									{/*<Switch*/}
+									{/*	isSelected={isShowVirtualVolume}*/}
+									{/*	onValueChange={setIsShowVirtualVolume}*/}
+									{/*	color={'warning'}*/}
+									{/*	className={'w-full'}>*/}
+									{/*	{isShowVirtualVolume ? 'Ẩn' : 'Hiện'} số dư nợ*/}
+									{/*</Switch>*/}
+									{/*{isShowVirtualVolume ? (*/}
+									{/*	<div className={'flex flex-col justify-center items-center'}>*/}
+									{/*		<p className={'text-sm text-gray-400'}>Số nợ cho phép</p>*/}
+									{/*		<p className={'text-2xl font-bold flex gap-1'}>*/}
+									{/*			<span className={'text-red-500'}>*/}
+									{/*				{formatCurrency(userData.allowDebitLimit.toString())}*/}
+									{/*			</span>*/}
+									{/*			<span>vnđ</span>*/}
+									{/*		</p>*/}
+									{/*	</div>*/}
+									{/*) : null}*/}
 									{/*<h1 className={"text-md font-semibold"}>{userData.fullName}</h1>*/}
 									<p className={'text-sm text-gray-400'}>Số dư hiện tại</p>
 									<div className={'flex flex-row justify-start items-center gap-2'}>
