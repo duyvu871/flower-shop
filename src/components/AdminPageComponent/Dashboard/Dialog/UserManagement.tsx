@@ -125,6 +125,7 @@ function UserManagement({ _id }: UserManagementProps) {
 					bankingInfo: newBankingInfo,
 					allowDebitLimit: newBalance,
 					isLoyalCustomer,
+					telegram: newTelegramLink,
 				},
 			}),
 		});

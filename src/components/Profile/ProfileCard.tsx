@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react';
 import {
 	Avatar,
-	Button,
-	Image,
-	Input,
+	// Button,
+	// Image,
+	// Input,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
-	Switch,
+	// Switch,
 } from '@nextui-org/react';
 import { useUserData } from '@/hooks/useUserData';
 import { formatCurrency, formatCurrencyWithDot } from '@/ultis/currency-format';
 import { FaEye, FaEyeSlash, FaMedal } from 'react-icons/fa';
 import { tw } from '@/ultis/tailwind.ultis';
 import { useSession } from 'next-auth/react';
-import store from '@/redux/store';
-import { closeOrderModal } from '@/redux/action/openOrderModal';
-import { isNumber } from '@/ultis/validate.ultis';
-import { Textarea } from '@nextui-org/input';
+// import store from '@/redux/store';
+// import { closeOrderModal } from '@/redux/action/openOrderModal';
+// import { isNumber } from '@/ultis/validate.ultis';
+// import { Textarea } from '@nextui-org/input';
 
 interface ProfileCardProps {}
 
@@ -146,7 +146,7 @@ function ProfileCard({}: ProfileCardProps) {
 				onClose={() => setIsPopupOpen(false)}
 				placement={'center'}
 				onOpenChange={() => {}}
-				className={'z-[999] mx-4'}>
+				className={'z-[999] mx-4 '}>
 				<ModalContent>
 					{onClose => (
 						<>

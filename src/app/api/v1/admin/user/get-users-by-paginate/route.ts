@@ -63,6 +63,7 @@ export async function GET(req: NextRequest) {
 			'actionHistory',
 			'withDrawHistory',
 			'bankingInfo',
+			'telegram',
 		];
 		// console.log(searchString)
 		const client = await clientPromise;
