@@ -101,7 +101,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 			<div className={'w-full flex flex-col justify-center items-center gap-1 mobile:px-10'}>
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
 					<h1>
-						Menu chiều: <p className={'text-lg text-gray-500'}>Thời gian giao (4:30-5:30)</p>
+						Menu chiều: <p className={'text-lg text-gray-500'}>Thời gian giao (16:30-17:30)</p>
 					</h1>
 				</div>
 				<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2'}>
