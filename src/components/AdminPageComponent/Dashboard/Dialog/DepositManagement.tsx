@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Select, SelectItem } from '@nextui-org/react';
+import { Button, Checkbox, Select, SelectItem } from '@nextui-org/react';
 import { useToast } from '@/hooks/useToast';
 import store from '@/adminRedux/store';
 import { UPDATE_ITEM } from '@/adminRedux/action/currentTable';
@@ -35,6 +35,7 @@ function DepositManagement({ _id }: DepositManagementProps) {
 	const [isUpdating, setIsUpdating] = React.useState<boolean>(false);
 	const [isDeleting, setIsDeleting] = React.useState<boolean>(false);
 	const [paymentMethod, setPaymentMethod] = useState<keyof typeof PaymentMethod>('balance');
+	const [confirmChange, setConfirmChange] = useState<boolean>(false);
 	const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		//@ts-ignore
 		setStatus(e.target.value);
@@ -46,7 +47,9 @@ function DepositManagement({ _id }: DepositManagementProps) {
 		// console.log(status)
 	};
 	const handleUpdate = async () => {
-		console.log(status);
+		// console.log(status);
+		if (!confirmChange)
+			return error('Vui lòng xác nhận thay đổi đơn hàng trước khi thực hiện thay đổi.');
 		setIsUpdating(true);
 		const response = await fetch('/api/v1/admin/deposit/update-deposit', {
 			method: 'POST',
@@ -85,6 +88,7 @@ function DepositManagement({ _id }: DepositManagementProps) {
 		setConfirm(tableItem.confirmed ? 'isConfirmed' : 'isNotConfirmed');
 		setPaymentMethod(tableItem.type);
 	}, [currentTable]);
+
 	return (
 		<div className={'flex flex-col justify-center items-center gap-4'}>
 			<div className={'w-full flex flex-col justify-center items-center gap-2 p-4'}>
@@ -136,6 +140,30 @@ function DepositManagement({ _id }: DepositManagementProps) {
 						</SelectItem>
 					)}
 				</Select>
+				<div className={'flex justify-center items-center gap-1'}>
+					<Checkbox
+						type={'checkbox'}
+						isSelected={confirmChange}
+						onValueChange={e => {
+							// console.log(e);
+							setConfirmChange(e);
+						}}
+					/>
+					<p>Xác nhận thay đổi đơn hàng</p>
+				</div>
+				<div className={'text-xs italic flex flex-wrap gap-1 max-w-md'}>
+					{'Việc xác nhận thay đổi trạng thái đơn hàng chỉ được phép thực hiện'
+						.split(' ')
+						.map(word => (
+							<p>{word}</p>
+						))}
+					<p className={'text-red-500 w-fit'}>1</p>
+					{'lần để đảm bảo tính chất bảo mật của hệ thống và quá trình làm việc thuận lợi hơn.'
+						.split(' ')
+						.map(word => (
+							<p>{word}</p>
+						))}
+				</div>
 			</div>
 			<div className={'flex flex-row gap-2 mt-2'}>
 				<Button className={'bg-blue-600 text-white'} disabled={isUpdating} onClick={handleUpdate}>
