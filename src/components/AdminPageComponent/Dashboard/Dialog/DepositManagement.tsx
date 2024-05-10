@@ -154,14 +154,14 @@ function DepositManagement({ _id }: DepositManagementProps) {
 				<div className={'text-xs italic flex flex-wrap gap-1 max-w-md'}>
 					{'Việc xác nhận thay đổi trạng thái đơn hàng chỉ được phép thực hiện'
 						.split(' ')
-						.map(word => (
-							<p>{word}</p>
+						.map((word, index) => (
+							<p key={'word-key' + index + word.length}>{word}</p>
 						))}
 					<p className={'text-red-500 w-fit'}>1</p>
 					{'lần để đảm bảo tính chất bảo mật của hệ thống và quá trình làm việc thuận lợi hơn.'
 						.split(' ')
-						.map(word => (
-							<p>{word}</p>
+						.map((word, index) => (
+							<p key={'word-key' + index + word.length}>{word}</p>
 						))}
 				</div>
 			</div>
