@@ -82,9 +82,9 @@ export interface OrderWithDrawType {
 	updatedAt: Date;
 }
 export enum TranslateMenuType {
-	'morning-menu' = 'Menu trưa',
-	'afternoon-menu' = 'Menu chiều',
-	'evening-menu' = 'Menu tối',
-	'other-menu' = 'Khác',
+	'morning-menu' = 'Hoa sáp',
+	'afternoon-menu' = 'Hoa len',
+	'evening-menu' = 'Đồ trang trí',
+	'other-menu' = 'Quà tặng khác',
 }
 // }

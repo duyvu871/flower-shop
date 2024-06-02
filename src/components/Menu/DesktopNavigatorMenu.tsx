@@ -51,12 +51,14 @@ interface DesktopNavigatorMenuProps {
 	isShow: boolean;
 }
 
-const pages = ['home', 'order', 'introduce'] as const;
+const pages = ['landing', 'home', 'order', 'introduce'] as const;
 
 const BonusTranslateIconName = {
 	...TranslateIconName,
+	home: 'Sản phẩm',
 	menu: 'Thực đơn',
 	introduce: 'Giới thiệu cửa hàng',
+	landing: 'Trang chủ',
 } as const;
 
 function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
@@ -126,7 +128,7 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 	return (
 		<Navbar
 			shouldHideOnScroll
-			className={tw(isShow ? '' : 'hidden', 'p-3 bg-white')}
+			className={tw(isShow ? '' : 'hidden', 'p-3 bg-navbar text-[#dfd4c8]')}
 			maxWidth={'full'}
 			classNames={{
 				wrapper: 'px-2',
@@ -134,7 +136,9 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 			<NavbarContent justify='start'>
 				<NavbarBrand onClick={logoAction} className={'cursor-pointer flex gap-1'}>
 					<Logo size={50} />
-					<p className={'text-xl font-bold text-inherit sm:block'}>commanau</p>
+					<p className={'text-xl font-bold text-inherit sm:block'}>
+						<Image src='/Tiệm nhà Sắn.svg' alt='logo text' width={'170'} height={'50'} />
+					</p>
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent justify='center' className={''}>
@@ -163,21 +167,25 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 			<NavbarContent justify='center' className={'hidden md:flex'}>
 				{pages.map((page: keyof typeof BonusTranslateIconName, index) => (
 					<NavbarItem
-						isActive={pathname.includes(page) || pathname === '/'}
+						isActive={pathname.includes(page) || pathname === '/product'}
 						className={tw(
-							'cursor-pointer font-semibold',
-							pathname.includes(page) || (page === 'home' && pathname === '/') ? 'text-orange-600' : '',
+							'cursor-pointer font-semibold hover:text-white transition-colors',
+							pathname.includes(page) ||
+								(page === 'home' && pathname === '/product') ||
+								(page === 'landing' && pathname === '/')
+								? 'text-white'
+								: '',
 						)}
 						key={'navbar-item-' + page}
 						onClick={() => {
-							push(`/${page === 'home' ? '/' : page}`);
+							push(`/${page === 'home' ? 'product' : page === 'landing' ? '/' : page}`);
 						}}>
 						<div>{BonusTranslateIconName[page]}</div>
 					</NavbarItem>
 				))}
 			</NavbarContent>
 			<NavbarContent justify='end'>
-				<NavbarItem className={'hidden lg:flex'}>
+				<NavbarItem className={tw('hidden lg:flex')}>
 					<div
 						className={tw(
 							'absolute top-[55px] bg-gray-100 rounded-xl p-5',
@@ -188,7 +196,9 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 						) : (
 							<>
 								<div
-									className={'absolute right-[15px] top-[15px] hover:text-orange-600 transition-all text-lg'}
+									className={
+										'absolute right-[15px] top-[15px] hover:text-orange-600 transition-all text-lg'
+									}
 									onClick={() => setIsOpenSearchDropdown(false)}>
 									<MdOutlineClose />
 								</div>
@@ -221,8 +231,10 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 																	src={item.image}
 																/>
 															</div>
-															<div className={'flex flex-col justify-start items-start px-2 w-[70%]'}>
-																<h1 className={'text-xs font-semibold w-44 whitespace-break-spaces'}>
+															<div
+																className={'flex flex-col justify-start items-start px-2 w-[70%]'}>
+																<h1
+																	className={'text-xs font-semibold w-44 whitespace-break-spaces'}>
 																	{item.name}
 																</h1>
 																{/*<p className={"text-xs text-default-500 line-clamp-2"}>{item.description}</p>*/}
@@ -245,12 +257,14 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 				<NavbarItem className={'hidden lg:flex'}>
 					<Input
 						classNames={{
-							base: 'max-w-full sm:max-w-[12rem] h-10',
+							base: 'max-w-full sm:max-w-[12rem] h-10 bg-white rounded-lg',
 							mainWrapper: 'h-full',
 							input: 'text-small',
-							inputWrapper: 'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20',
+							inputWrapper:
+								'h-full font-normal text-default-500 bg-white bg-default-400/20 dark:bg-default-500/20',
 						}}
-						placeholder='Tìm kiếm món ăn...'
+						className={pathname === '/' ? 'hidden' : ''}
+						placeholder='Tìm kiếm sản phẩm...'
 						size='sm'
 						startContent={<IoIosSearch size={18} />}
 						type='search'
@@ -262,7 +276,7 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 					<Link href={'https://t.me/menucommanau'} isExternal={true}>
 						<RiCustomerService2Line
 							size={24}
-							className={'text-orange-600'}
+							className={'text-white'}
 							onClick={() => {
 								// toggleWidget(!isOpened)
 								// setIsOpenChatWidget((isOpened) => !isOpened);
@@ -289,7 +303,6 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 								<Avatar
 									showFallback
 									isBordered
-									color='warning'
 									size='sm'
 									// name={userData.fullName}
 									src={userData.avatar}
@@ -300,10 +313,14 @@ function DesktopNavigatorMenu({ isShow }: DesktopNavigatorMenuProps) {
 					) : (
 						<div className={'flex justify-center items-center gap-2'}>
 							<Link href={'/auth/signin'}>
-								<Button className={'bg-gray-400/10 text-orange-600'}>Đăng nhập</Button>
+								<Button
+									className={'text-[white_!important] hover:bg-[#EAA0A2] hover:'}
+									variant={'bordered'}>
+									Đăng nhập
+								</Button>
 							</Link>
 							<Link href={'/auth/signup'}>
-								<Button className={'bg-orange-600 text-white'}>Đăng Ký</Button>
+								<Button className={' text-white bg-[#EAA0A2]'}>Đăng Ký</Button>
 							</Link>
 						</div>
 					)}

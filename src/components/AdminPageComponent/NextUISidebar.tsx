@@ -31,7 +31,7 @@ const sidebarItems = [
 		icon: BsPeople,
 	},
 	{
-		name: 'Quản lý món ăn',
+		name: 'Quản lý sản phẩm',
 		notifyAction: 'product',
 		href: '/admin/dashboard/product-management',
 		icon: BiFoodMenu,

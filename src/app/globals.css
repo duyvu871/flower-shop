@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -132,3 +134,20 @@ div[data-overlay-container] {
         transform: translate3d(0,-.5em,0) rotate(45deg);
     }
 }
+
+
+.bg-background-main {
+    background-color: #3A4664;
+}
+
+.bg-navbar {
+    background-color: #6779A7;
+}
+
+.dancing-script {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+  

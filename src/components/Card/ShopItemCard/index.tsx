@@ -27,7 +27,7 @@ function ShopItemCard({title, img, price, location, dishID, totalSold, discount}
             className={"m-2 max-w-[300px]"}
             key={dishID}
         >
-          <CardBody className="overflow-visible p-0 sendtocart">
+          <CardBody className="overflow-visible p-0 sendtocart aspect-square ">
               <Image
                    shadow="sm"
                    radius="lg"

@@ -90,8 +90,8 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 		<>
 			<div className={'w-full flex flex-col justify-center items-center gap-1 mobile:px-10'}>
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
-					<h1>
-						Menu trưa: <p className={'text-lg text-gray-500'}>Thời gian giao (10:30-11:00)</p>
+					<h1 className='text-[white_!important]'>
+						Hoa sáp: <p className={'text-lg text-gray-500'}></p>
 					</h1>
 				</div>
 				<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2'}>
@@ -100,8 +100,8 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 			</div>
 			<div className={'w-full flex flex-col justify-center items-center gap-1 mobile:px-10'}>
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
-					<h1>
-						Menu chiều: <p className={'text-lg text-gray-500'}>Thời gian giao (16:30-17:30)</p>
+					<h1 className='text-[white_!important]'>
+						Hoa len: <p className={'text-lg text-gray-500'}></p>
 					</h1>
 				</div>
 				<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2'}>
@@ -110,8 +110,8 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 			</div>
 			<div className={'w-full flex flex-col justify-center items-center gap-1 mobile:px-10'}>
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
-					<h1>
-						Menu tối:<p className={'text-lg text-gray-500'}>Thời gian giao (21:00-23:00)</p>
+					<h1 className='text-[white_!important]'>
+						Đồ trang trí:<p className={'text-lg text-gray-500'}></p>
 					</h1>
 				</div>
 				<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4 my-2'}>
@@ -127,7 +127,7 @@ function MobileSessionMenu({}: MobileSessionMenuProps) {
 				loader={<Spinner label='Loading...' color='warning' />}
 				endMessage={<div></div>}>
 				<div className={'text-2xl font-bold text-start w-full p-2'}>
-					<h1>Các món khác</h1>
+					<h1 className='text-[white_!important]'>Quà tặng khác:</h1>
 				</div>
 				{allMenuType.other.data.length > 0 ? (
 					<div className={'w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4'}>

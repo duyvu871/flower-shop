@@ -45,7 +45,7 @@ const headerTable = [
 		isSort: false,
 	},
 	{
-		title: 'Tên món',
+		title: 'Tên sản phẩm',
 		key: 'name',
 		isSort: false,
 		// action: "formatCurrency"
@@ -232,13 +232,13 @@ function Table({ type, isRerender, isShowSelect }: TableProps) {
 			type={'product-management'}
 			title={TranslateMenuType[type + '-menu']}
 			addNew={{
-				title: 'Thêm món',
+				title: 'Thêm sản phẩm',
 				onClick: () => {
 					// @ts-ignore
 					store.dispatch(openModal(type + '-menu', 'create-product'));
 				},
 			}}
-			listTitle={'Danh sách món ăn'}
+			listTitle={'Danh sách sản phẩm'}
 			isShowSelect={isShowSelect}
 			selectedItems={selectedItems}
 			setSelectedItems={async state => {

@@ -27,10 +27,10 @@ function OrderCart({}: OrderCartProps) {
         // }
     }, [cart]);
     return (
-        <div className={"text-orange-600 relative cart"} ref={cartRef} onClick={() => {
+        <div className={"text-white relative cart"} ref={cartRef} onClick={() => {
             store.dispatch({type: 'OPEN_CART_MODAL'})
         }}>
-            <div className={"absolute top-[-10px] right-[-10px] text-xs text-orange-400 bg-orange-50 rounded-full py-[2px] px-[5px] "}>
+            <div className={"absolute top-[-10px] right-[-10px] text-xs bg-navbar bg-orange-50 rounded-full py-[2px] px-[5px] "}>
                 {cart.length}
             </div>
             <FaShoppingCart className={"text-2xl"}/>
