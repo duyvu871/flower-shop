@@ -112,7 +112,7 @@ function OrderModal({}: OrderModalProps) {
 			<ModalContent>
 				{onClose => (
 					<>
-						<ModalHeader className={'flex flex-col gap-1'}>Thông tin món</ModalHeader>
+						<ModalHeader className={'flex flex-col gap-1'}></ModalHeader>
 						<ModalBody className={'flex flex-col gap-1'}>
 							<Image
 								shadow='sm'

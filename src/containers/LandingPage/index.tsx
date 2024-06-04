@@ -274,7 +274,7 @@ export default function LandingPage() {
 								<ul className='text-white dark:text-gray-400 font-medium'>
 									<li className='mb-4'>
 										<a href='/' className='hover:underline'>
-											Connected Brain
+											Tiệm nhà sán
 										</a>
 									</li>
 									{/*<li>*/}
