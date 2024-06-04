@@ -28,7 +28,7 @@ import { getServerAuthSession } from '@/lib/nextauthOptions';
 const inter = Inter({ subsets: ['vietnamese'] });
 
 export const metadata: Metadata = {
-	title: 'Cơm má nấu, ngon như má nấu',
+	title: 'Tiệm nhà sán',
 	description: '',
 	// viewport: 'width=device-width, initial-scale=1',
 	keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 		'má nấu',
 		'cơm má nấu',
 	],
-	applicationName: 'Cơm má nấu',
+	applicationName: 'Tiem nha san',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
