@@ -39,7 +39,7 @@ const style1 = [
 	},
 ];
 
-const card2 = ['/img_2.png', '/img_3.png', '/img_1.png'].map(item => '/landing' + item);
+const card2 = ['/anh1.svg', '/image 4.svg', '/image 5.svg'].map(item => '/landing' + item);
 const style2 = [
 	{
 		src: card2[0],
@@ -129,9 +129,9 @@ export default function LandingPage() {
 						</div>
 					))}
 				</div>
-				<div className={'flex flex-col justify-center items-center gap-10 w-full'}>
-					<div className={'flex justify-between items-center w-full'}>
-						<div className={'  w-[50px] relative'}>
+				<div className={'flex flex-col justify-center items-center gap-10 w-full max-w-[50%]'}>
+					<div className={'flex justify-center items-center w-full relative'}>
+						<div className={' w-[50px] absolute right-[calc(100%-100px)]'}>
 							<Image
 								src={'/admin-assets/img1.png'}
 								alt={'logo'}
@@ -145,14 +145,14 @@ export default function LandingPage() {
 						</div>
 						<div
 							className={
-								'flex flex-col justify-center items-center text-white dancing-script text-5xl gap-5'
+								'flex flex-col justify-center items-center text-white dancing-script text-5xl gap-5 px-10'
 							}>
 							<span className={''}>Tâm hồn hoa cỏ</span>
-							<span>
+							<span className={'whitespace-nowrap'}>
 								Hơn cả hoa - là những câu <TextTyping text={'chuyện'} />
 							</span>
 						</div>
-						<div className={'w-[50px] relative'}>
+						<div className={'w-[50px] absolute left-[calc(100%-100px)]'}>
 							<Image
 								src={'/admin-assets/img3.png'}
 								className={'shake-image top-[-90px] absolute'}

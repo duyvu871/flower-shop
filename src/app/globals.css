@@ -40,7 +40,8 @@ body {
 
 
 div[data-overlay-container] {
-    height: 100%;
+    height: fit-content;
+    min-height: 100%;
 }
 
 
